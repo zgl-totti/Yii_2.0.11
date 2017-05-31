@@ -45,6 +45,15 @@ return [
             ],
         ],
 
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=taolu_five',
+            'username' => 'root',
+            'password' => 'root',
+            'charset' => 'utf8',
+            'tablePrefix'=>'shop_'
+        ],
+
     ],
     'params' => $params,
 ];
