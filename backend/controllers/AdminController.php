@@ -18,7 +18,11 @@ class AdminController extends BaseController{
             'pageSize'=>10,
             'totalCount'=>$count
         ]);
-        $list=Admin::find()->where($where)->offset($pages->offset)->limit($pages->limit)->all();
+        $list=Admin::find()->where($where)
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->asArray()
+            ->all();
         /*foreach($list as $k=>$v){
 
         }*/
