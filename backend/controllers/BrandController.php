@@ -2,8 +2,10 @@
 namespace backend\controllers;
 
 use backend\models\Brand;
+use backend\models\UploadForm;
 use yii\data\Pagination;
 use yii\helpers\Json;
+use yii\web\UploadedFile;
 
 class BrandController extends BaseController{
     public function actionIndex(){
@@ -50,11 +52,39 @@ class BrandController extends BaseController{
         }
     }
 
-    public function acitonAdd(){
+    public function actionAdd(){
         if(\Yii::$app->request->isPost){
-
-
-
+            $bname=trim(\Yii::$app->request->post('bname'));
+            if(!$bname){
+                return Json::encode(['code'=>3,'body'=>'品牌名称不能为空']);
+            }
+            $info=Brand::findOne(['bname'=>$bname]);
+            if(!$info){
+                return Json::encode(['code'=>4,'body'=>'品牌名称已存在']);
+            }
+            $brand= new Brand();
+            $brand->bname=$bname;
+            $brand->description=trim(\Yii::$app->request->post('description'));
+            $brand->addtime=time();
+            if($brand->save()){
+                $id=\Yii::$app->db->getLastInsertID();
+                $model= new UploadForm();
+                $model->file=UploadedFile::getInstance($model,'file');
+                if($model->validate()){
+                    $model->file->saveAs('backend/web/uploads/'.$model->file->baseName.'.'.$model->file->extension);
+                    $data['logo']=$model->file->baseName.$model->file->extension;
+                    $arr=Brand::findOne($id);
+                    if($arr->load($data) && $arr->save()){
+                        return Json::encode(['code'=>1,'body'=>'添加成功']);
+                    }else{
+                        return Json::encode(['code'=>2,'body'=>'添加失败']);
+                    }
+                }else{
+                    return Json::encode(['code'=>5,'body'=>'上传失败']);
+                }
+            }else{
+                return Json::encode(['code'=>6,'body'=>'添加失败']);
+            }
         }else{
             return $this->render('add');
         }
@@ -62,100 +92,43 @@ class BrandController extends BaseController{
 
     public function actionEdit(){
         if(\Yii::$app->request->isPost){
-
-
-
-
+            $brand= new Brand();
+            if($brand->load(\Yii::$app->request->post()) && $brand->validate()){
+                $bname=trim(\Yii::$app->request->post('bname'));
+                $info=Brand::findOne(['bname'=>$bname]);
+                if(!$info){
+                    $data['description']=trim(\Yii::$app->request->post('description'));
+                    $data['bname']=$bname;
+                    $data['addtime']=time();
+                    $id=\Yii::$app->request->post('id');
+                    $model=Brand::findOne($id);
+                    if($model->load($data) && $model->save()){
+                        $upload= new UploadForm();
+                        $upload->file=UploadedFile::getInstance($upload,'file');
+                        if($upload->validate()){
+                            $upload->file->saveAs('backend/web/uploads/'.$upload->file->baseName.'.'.$upload->file->extension);
+                            $arr['logo']=$upload->file->baseName.$upload->file->extension;
+                            if($model->load($arr) && $model->save()){
+                                return Json::encode(['code'=>1,'body'=>'编辑成功']);
+                            }else{
+                                return Json::encode(['code'=>2,'body'=>'编辑失败']);
+                            }
+                        }else{
+                            return Json::encode(['code'=>3,'body'=>'上传失败']);
+                        }
+                    }else{
+                        return Json::encode(['code'=>4,'body'=>'编辑失败']);
+                    }
+                }else{
+                    return Json::encode(['code'=>5,'body'=>'品牌名称已存在']);
+                }
+            }else{
+                return Json::encode(['code'=>6,'body'=>'必填项不能为空']);
+            }
         }else{
             $id=\Yii::$app->request->get('id');
             $info=Brand::findOne($id);
             return $this->render('edit',['info'=>$info]);
         }
     }
-
-
-
-
-
-
-    //编辑
-    public function edictlist(){
-        if(IS_GET){
-            $Brand=M('Brand');// 实例化User对象
-            $where['id']=I('get.id');
-            $list = $Brand->where($where)->select();
-            //print_r($list);
-            $this->assign('list',$list);// 赋值数据集
-        }
-        if(IS_AJAX){
-            $Brand=M('Brand');// 实例化User对象
-            $where['id']=I('post.id');
-            $Data=$Brand->create();
-            $Data['bname']=I('post.bname');
-            $Data['description']=I('post.description');
-            $Data['addtime']=time();
-            $v=$Brand->where($where)->save($Data);
-            //print_r($Data);
-            if($v){
-                $this->ajaxReturn(1);
-            }else{
-                $this->ajaxReturn(0);
-            }
-        }else{
-            $this->display(); // 输出模板
-        }
-
-    }
-
-    //添加列表
-    public function addlist(){
-        $Brand=M('Brand');
-        if(IS_AJAX) {
-            $bname=I("post.bname");
-            //判断品牌名是否为空
-            if(empty($bname)){
-                $this->ajaxReturn(array("status"=>"error","msg"=>"品牌名不能为空"));
-            }else{
-                //判断品牌名称是否重复
-                if($Brand->where("bname='{$bname}'")->find()){
-                    $this->ajaxReturn(array("status"=>"error","msg"=>"品牌已存在"));
-                }else{
-                        $upload = new \Think\Upload();// 实例化上传类
-                        $upload->maxSize = 3145728;// 设置附件上传大小
-                        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-                        $upload->rootPath = './Public/Admin/Uploads/'; // 设置附件上传根目录
-                        $upload->autoSub = true;
-                        $upload->subName = 'brand';
-                        // 上传文件
-                        $info = $upload->upload();
-                        $Data['bname']=I('post.bname');
-                        $Data['description']=I('post.description');
-                        $Data['addtime']=time();
-                        $flag=$Brand->add($Data);
-                        if($flag){
-                            //判断是否有图片上传
-                            if ($info) {
-                                $where['id']=$flag;
-                                $brandpic['logo']=$info['pic']['savename'];
-                                $num=$Brand->where($where)->save($brandpic);
-                                if($num){
-                                    $this->ajaxReturn(array('status'=>'ok','msg'=>'添加完成,是否继续添加?'));
-                                }else{
-                                    $this->ajaxReturn(array('status'=>'error','msg'=>'图片上传失败'));
-                                }
-                            } else {// 上传成功
-                                $this->ajaxReturn(array('status'=>'ok','msg'=>'添加完成,是否继续添加?'));
-                            }
-                        }else{
-                            $this->ajaxReturn(array('status'=>'error','msg'=>'添加失败'));
-                        }
-                }
-
-            }
-
-        }else{
-            $this->display();
-        }
-    }
-
 }
