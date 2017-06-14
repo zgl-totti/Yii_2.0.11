@@ -3,6 +3,7 @@
     echo \yii\helpers\Html::jsFile('@web/js/jquery_1.8.2.min.js');
     echo \yii\helpers\Html::jsFile('@web/js/jquery.js');
     echo \yii\helpers\Html::jsFile('@web/js/cloud.js');
+    echo \yii\helpers\Html::jsFile('@web/layer/layer.js');
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,17 +17,18 @@
                 $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
             });
             $('.btn').click(function(){
-                $.post("<?=\yii\helpers\Url::toRoute(['index'])?>",$("#form1").serialize(),function(res){
-                    alert(1111);
-                    alert(res.code);
+                var $form=$('#roma');
+                $.post($form.attr('action'),$form.serialize(),function(res){
                     if(res.code==1){
                         layer.msg(res.body,{icon:6,time:1000},function(){
-                            window.location.href="<?=\yii\helpers\Url::toRoute(['admin/index']);?>"
+                            window.location.href="<?=\yii\helpers\Url::toRoute(['admin/index']);?>";
                         });
                     }else{
-                        layer.msg(res.body,{icon:5});
+                        layer.msg(res.body,{icon:5,time:1000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['login/index']);?>";
+                        });
                     }
-                });
+                },'json');
             })
         });
     </script>
@@ -50,7 +52,10 @@
     </div>
     <div class="loginbody">
         <span class="systemlogo"></span>
-        <?php $form=\yii\widgets\ActiveForm::begin();?>
+        <?php $form=\yii\widgets\ActiveForm::begin([
+            'id'=>'roma',
+            'action'=>\yii\helpers\Url::to(['login/index'])
+        ]);?>
             <div class="loginbox loginbox1">
                 <ul>
                     <li style="position: relative">
@@ -59,10 +64,10 @@
                     <li style="position: relative">
                         <?=$form->field($info,'password');?>
                     </li>
-                    <li class="yzm"  style="position: relative">
+                    <!--<li class="yzm"  style="position: relative">
                         <span><input class="yzm" name="verify" type="text" placeholder="验证码" /></span>
                         <cite><img style="width: 120px; height:46px ;cursor: pointer" src="" alt="验证码"/></cite>
-                    </li>
+                    </li>-->
                     <li>
                         <?=\yii\helpers\Html::button('确定',['class' => 'btn'])?>
                         <label><input type="checkbox" value="" />记住密码</label>

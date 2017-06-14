@@ -12,6 +12,7 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'defaultRoute'=>'login',    //修改默认控制器
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',

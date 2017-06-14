@@ -1,0 +1,776 @@
+2017-06-14 07:50:24 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "".' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('', Array)
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-06-14 07:50:24 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '62678'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497426624.237
+    'REQUEST_TIME' => 1497426624
+]
+2017-06-14 07:52:58 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "site/index".' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('site/index', Array)
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-06-14 07:52:58 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '62761'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/site/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/site/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497426778.083
+    'REQUEST_TIME' => 1497426778
+]
+2017-06-14 07:53:26 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "".' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('', Array)
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-06-14 07:53:26 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '62779'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497426806.305
+    'REQUEST_TIME' => 1497426806
+]
+2017-06-14 07:53:29 [127.0.0.1][-][-][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "".' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('', Array)
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Page not found.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2017-06-14 07:53:29 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '62780'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497426809.155
+    'REQUEST_TIME' => 1497426809
+]
+2017-06-14 08:00:54 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:00:53 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '63158'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497427253.971
+    'REQUEST_TIME' => 1497427253
+]
+2017-06-14 08:02:19 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:02:19 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '63312'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497427339.307
+    'REQUEST_TIME' => 1497427339
+]
+2017-06-14 08:03:18 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:03:18 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '63435'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497427398.344
+    'REQUEST_TIME' => 1497427398
+]
+2017-06-14 08:04:49 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('totti', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/totti', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:04:49 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '63596'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/totti'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/totti'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497427489.135
+    'REQUEST_TIME' => 1497427489
+]
+2017-06-14 08:14:30 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:14:30 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '64810'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497428070.537
+    'REQUEST_TIME' => 1497428070
+]
+2017-06-14 08:15:12 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:15:12 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '64874'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497428112.45
+    'REQUEST_TIME' => 1497428112
+]
+2017-06-14 08:15:15 [127.0.0.1][-][-][error][yii\web\HttpException:400] exception 'yii\web\BadRequestHttpException' with message 'Unable to verify your data submission.' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Controller.php:166
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(154): yii\web\Controller->beforeAction(Object(yii\base\InlineAction))
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#5 {main}
+2017-06-14 08:15:15 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '0'
+    'HTTP_ACCEPT' => '*/*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'text/plain;charset=UTF-8'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '64890'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497428115.331
+    'REQUEST_TIME' => 1497428115
+]
+2017-06-14 09:40:31 [127.0.0.1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: backend\models\Admin::passwords' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Component.php:147
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('passwords')
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\validators\Validator.php(281): yii\db\BaseActiveRecord->__get('passwords')
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\validators\Validator.php(267): yii\validators\Validator->validateAttribute(Object(backend\models\Admin), 'passwords')
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Model.php(358): yii\validators\Validator->validateAttributes(Object(backend\models\Admin), Array)
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\controllers\LoginController.php(14): yii\base\Model->validate()
+#5 [internal function]: backend\controllers\LoginController->actionIndex()
+#6 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#9 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#10 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#12 {main}
+2017-06-14 09:40:30 [127.0.0.1][-][-][info][application] $_POST = [
+    '_csrf-backend' => 'VkxRWXUtMXMhKCgOAhpCMDM8EggmZhwxHH8gES95AAQDfAYKGHxhHA=='
+    'Admin' => [
+        'username' => ''
+        'password' => ''
+    ]
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '116'
+    'HTTP_ACCEPT' => 'application/json, text/javascript, */*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '58459'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497433230.04
+    'REQUEST_TIME' => 1497433230
+]
+2017-06-14 09:40:52 [127.0.0.1][-][-][error][yii\base\UnknownPropertyException] exception 'yii\base\UnknownPropertyException' with message 'Getting unknown property: backend\models\Admin::passwords' in D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Component.php:147
+Stack trace:
+#0 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\BaseActiveRecord.php(286): yii\base\Component->__get('passwords')
+#1 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\validators\Validator.php(281): yii\db\BaseActiveRecord->__get('passwords')
+#2 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\validators\Validator.php(267): yii\validators\Validator->validateAttribute(Object(backend\models\Admin), 'passwords')
+#3 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Model.php(358): yii\validators\Validator->validateAttributes(Object(backend\models\Admin), Array)
+#4 D:\phpstudy\WWW\Yii_2.0.11_new\backend\controllers\LoginController.php(14): yii\base\Model->validate()
+#5 [internal function]: backend\controllers\LoginController->actionIndex()
+#6 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#7 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#8 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\base\Controller->runAction('index', Array)
+#9 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php(102): yii\base\Module->runAction('login/index', Array)
+#10 D:\phpstudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#11 D:\phpstudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#12 {main}
+2017-06-14 09:40:50 [127.0.0.1][-][-][info][application] $_POST = [
+    '_csrf-backend' => 'M0tCdTJwNjlELzsiRUdFelY7ASRhOxt7eXgzPWgkB05mexUmXyFmVg=='
+    'Admin' => [
+        'username' => ''
+        'password' => ''
+    ]
+]
+
+$_COOKIE = [
+    'PHPSESSID' => '90d48c42iqpu210vrcu9lafp32'
+    'hzy_login_back' => 'http://127.0.0.1/'
+    '_csrf' => '8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"8JMxAmCIeSs693iFg9oH655P04drfwmj\";}'
+    '_csrf-backend' => 'b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo\";}'
+]
+
+$_SERVER = [
+    'REDIRECT_STATUS' => '200'
+    'HTTP_HOST' => '127.0.0.1'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'CONTENT_LENGTH' => '116'
+    'HTTP_ACCEPT' => 'application/json, text/javascript, */*'
+    'HTTP_ORIGIN' => 'http://127.0.0.1'
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36'
+    'CONTENT_TYPE' => 'application/x-www-form-urlencoded'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/login/index'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => 'PHPSESSID=90d48c42iqpu210vrcu9lafp32; hzy_login_back=http://127.0.0.1/; _csrf=8960bed032f0f92c87ce5190d35881d860880536aef6f109d76e11ca326b8905a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%228JMxAmCIeSs693iFg9oH655P04drfwmj%22%3B%7D; _csrf-backend=b9420058918c69862fc389fe3c4ddc53208361101616d982580383966c6104daa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22wdyWw7sCepCQSK-BJ3qHZT1wU0WSmQPo%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C:\\Program Files (x86)\\AMD APP\\bin\\x86;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\MySP\\系统调试\\;C:\\;ySP\\常用软件\\;C:\\;ySP\\调试工具;C:\\;ySP\\硬件检测\\;C:\\;ySP\\远程工具\\;D:\\;oftware\\svn\\bin;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D:\\phpstudy\\php\\php-5.4.45;D:\\Software\\nodejs\\;D:\\phpstudy\\php\\php-5.4.45;C:\\Users\\Administrator\\AppData\\Roaming\\npm'
+    'SystemRoot' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'SERVER_SIGNATURE' => ''
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j PHP/5.4.45'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/phpstudy/WWW'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'SCRIPT_FILENAME' => 'D:/phpstudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'REMOTE_PORT' => '58500'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/login/index'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'POST'
+    'QUERY_STRING' => ''
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/login/index'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1497433250.898
+    'REQUEST_TIME' => 1497433250
+]

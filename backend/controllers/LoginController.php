@@ -10,10 +10,8 @@ class LoginController extends Controller{
 
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){
-            //$admin= new Admin();
-            return Json::encode(['code'=>3,'body'=>'账号或密码错误']);
-
-            /*if($admin->load(\Yii::$app->request->post()) && $admin->validate()) {
+            $admin= new Admin();
+            if($admin->load(\Yii::$app->request->post()) && $admin->validate()) {
                 $username = trim(\Yii::$app->request->post('username'));
                 $password = trim(\Yii::$app->request->post('password'));
                 $data['username']=$username;
@@ -34,7 +32,7 @@ class LoginController extends Controller{
                 }
             }else{
                 return Json::encode(['code'=>4,'body'=>$admin->getErrors()]);
-            }*/
+            }
         }else{
             $admin= new Admin();
             return $this->render('login',['info'=>$admin]);
