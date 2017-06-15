@@ -70,8 +70,7 @@
                     <li>
                         <?= $form->field($info, 'captcha')
                             ->widget(\yii\captcha\Captcha::className(),[
-                                'captchaAction'=>'/user/security/captcha',
-                                'template'=>'<p><span>{input}</span><abbr>{image}</abbr></p>',
+                                'captchaAction'=>'login/captcha',
                                 'imageOptions'=>['alt'=>'点击换图','style'=>'cursor:pointer'],
                                 'options'=>['placeholder'=>'验证码']
                             ])->label(false); ?>
