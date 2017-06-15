@@ -4,15 +4,17 @@ namespace backend\models;
 use yii\db\ActiveRecord;
 
 class Admin extends ActiveRecord{
+    public $captcha;
     public static function tableName(){
         return "{{%admin}}";
     }
 
     public function rules(){
         return [
-            [['username','password'],'required','message'=>"{attribute}不能为空"],
+            [['username','password','captcha'],'required','message'=>"{attribute}不能为空"],
             /*['password','validatePassword']*/
             //[['username'],'max'=>'12','min'=>'6','tooLong'=>"{attrbute}不能大于12个字符",'tooShort'=>"{attribute}不能小于6个字符"]
+            //['captcha','captcha']
         ];
     }
 
@@ -20,10 +22,11 @@ class Admin extends ActiveRecord{
         return [
             'username'=>'用户名',
             'password'=>'密 码',
+            'captcha'=>'验证码'
         ];
     }
 
-    public function validatePassword(){
+    /*public function validatePassword(){
         $user = $this->getUser();
         if(! $user || ! $user->validatePassword($this->password)) {
             $this->addError('password', 'Incorrect username or password.');
@@ -43,5 +46,5 @@ class Admin extends ActiveRecord{
             $this->_user = Admin::findByUsername($this->username);
         }
         return $this->_user;
-    }
+    }*/
 }

@@ -20,13 +20,12 @@
                 var $form=$('#roma');
                 $.post($form.attr('action'),$form.serialize(),function(res){
                     if(res.code==1){
-                        layer.msg(res.body,{icon:6,time:1000},function(){
-                            window.location.href="<?=\yii\helpers\Url::toRoute(['admin/index']);?>";
-                        });
+                        /*layer.msg(res.body,{icon:6,time:1000},function(){
+                            *//*window.location.href="<?=\yii\helpers\Url::toRoute(['admin/roma']);?>";*//*
+                        });*/
+                        location="<?=\yii\helpers\Url::toRoute(['login/roma']);?>";
                     }else{
-                        layer.msg(res.body,{icon:5,time:1000},function(){
-                            window.location.href="<?=\yii\helpers\Url::to(['login/index']);?>";
-                        });
+                        layer.msg(res.body);
                     }
                 },'json');
             })
@@ -68,6 +67,15 @@
                         <span><input class="yzm" name="verify" type="text" placeholder="验证码" /></span>
                         <cite><img style="width: 120px; height:46px ;cursor: pointer" src="" alt="验证码"/></cite>
                     </li>-->
+                    <li>
+                        <?= $form->field($info, 'captcha')
+                            ->widget(\yii\captcha\Captcha::className(),[
+                                'captchaAction'=>'/user/security/captcha',
+                                'template'=>'<p><span>{input}</span><abbr>{image}</abbr></p>',
+                                'imageOptions'=>['alt'=>'点击换图','style'=>'cursor:pointer'],
+                                'options'=>['placeholder'=>'验证码']
+                            ])->label(false); ?>
+                    </li>
                     <li>
                         <?=\yii\helpers\Html::button('确定',['class' => 'btn'])?>
                         <label><input type="checkbox" value="" />记住密码</label>

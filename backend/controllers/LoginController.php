@@ -8,20 +8,37 @@ use yii\web\Controller;
 class LoginController extends Controller{
     public $layout=false;
 
+    public function actions(){
+        return [
+            'captcha'=>[
+                'class'=>'yii\captcha\CaptchaAction',
+                'width'=>300,
+                'height'=>40,
+                'maxLength'=>4,
+                'minLength'=>2
+            ],
+        ];
+    }
+
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){
             $admin= new Admin();
             if($admin->load(\Yii::$app->request->post()) && $admin->validate()) {
-                $username = trim(\Yii::$app->request->post('username'));
-                $password = trim(\Yii::$app->request->post('password'));
-                $data['username']=$username;
-                $data['password']=md5($password);
-                $info=Admin::find()->where($data)->one();
+                $data['username']=$admin->username;
+                $data['password']=md5($admin->password);
+                $info=Admin::findOne($data);
                 if($info){
                     if($info['active'] != 0){
-                        $update['last_time'] = time();
-                        $update['login_ip'] = \Yii::$app->request->getUserIP();
-                        Admin::findOne($info['id'])->save($update);
+
+                        /*$update['logintime'] = time();
+                        $update['loginip'] = \Yii::$app->request->getUserIP();
+                        $info->load($update);
+                        $info->save();*/
+
+                        $info->logintime=time();
+                        $info->loginip=\Yii::$app->request->getUserIP();
+                        $info->save();
+
                         \Yii::$app->session->set('aid',$info['id']);
                         return Json::encode(['code'=>1,'body'=>'登录成功']);
                     }else{
@@ -46,6 +63,16 @@ class LoginController extends Controller{
             }else{
                 return Json::encode(['code'=>2,'body'=>'退出失败']);
             }
+        }
+    }
+
+    public function actionRoma(){
+        $a='admin';
+        $data['username']=$a;
+        $data['password']=md5($a);
+        $info=Admin::findOne($data);
+        if($info) {
+            print_r($info);
         }
     }
 }

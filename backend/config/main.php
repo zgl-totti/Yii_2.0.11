@@ -48,7 +48,7 @@ return [
 
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=taolu_five',
+            'dsn' => 'mysql:host=localhost;dbname=Yii2.0_new',
             'username' => 'root',
             'password' => 'root',
             'charset' => 'utf8',
