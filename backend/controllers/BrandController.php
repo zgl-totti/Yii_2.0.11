@@ -8,6 +8,7 @@ use yii\helpers\Json;
 use yii\web\UploadedFile;
 
 class BrandController extends BaseController{
+    public $layout=false;
     public function actionIndex(){
         $bname=trim(\Yii::$app->request->get('bname'));
         if($bname){
