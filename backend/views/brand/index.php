@@ -205,7 +205,7 @@
             })
         })
 	</script>
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         //禁用品牌
         function disabled(bid){
                 layer.confirm("你确定要启用我吗？",{
@@ -221,7 +221,6 @@
                         }else{
                             layer.msg(res.msg,{icon:2,time:1000});
                         }
-
                     },'json')
                 })
         }
@@ -240,11 +239,10 @@
                     }else{
                         layer.msg(res.msg,{icon:2,time:1000});
                     }
-
                 },'json')
             })
         }
-    </script>
+    </script>-->
 </body>
 </html>
 

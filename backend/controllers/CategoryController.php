@@ -6,6 +6,7 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 
 class CategoryController extends BaseController{
+    public $layout=false;
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
         if($keywords){
