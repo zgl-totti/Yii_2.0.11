@@ -26,14 +26,14 @@
     <script type="text/javascript">
         $(function(){
             $("#addBtn").click(function(){
-                $.post("{:U('Admin/Admin/updlist')}",$("#form1").serialize(),function(res){
-                    if(res.status=="ok"){
-                        layer.alert(res.msg,{icon:1,title:"提示"},function(){
+                $.post("<?=\yii\helpers\Url::to(['admin/edit'])?>",$("#form1").serialize(),function(res){
+                    if(res.code==1){
+                        layer.alert(res.body,{icon:1,title:"提示"},function(){
                             //好的
-                            window.location.href="{:U('Admin/Admin/showlist')}";
+                            window.location.href="<?=\yii\helpers\Url::to(['admin/index'])?>";
                         });
                     }else{
-                        layer.alert(res.msg,{icon:2,title:"提示"});
+                        layer.alert(res.body,{icon:2,title:"提示"});
                     }
                 })
             })
@@ -55,10 +55,10 @@
     <div id="usual1" class="usual"> 
   	<div id="tab1" class="tabson">
  
-    <form action="{:U('Admin/Admin/updlist')}" method="post" id="form1">
-        <input value="{$info['id']}" name="id" type="hidden"/>
+    <form action="#" method="post" id="form1">
+        <input value="<?=$info['id']?>" name="id" type="hidden"/>
     <ul class="forminfo">
-        <li>
+        <!--<li>
             <label>所属组<b>*</b></label>
             <volist name="groupList" id="value">
                         <span style="float:left;margin-right: 25px;">
@@ -66,11 +66,16 @@
                         <input name="group_id[]" {:in_array($value['id'],$info['gid'])?'checked':''} id="{$value.title}" type="checkbox" value="{$value.id}" class="dfinput"  style="width:18px;"/>
                          </span>
             </volist>
-        </li>
-    <li><label>管理员账号<b>*</b></label><input disabled="disabled" name="adminname" value="{$info['adminname']}" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
+        </li>-->
+    <li><label>管理员账号<b>*</b></label><input disabled="disabled" name="username" value="<?=$info['username']?>" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
     <li><label>性别<b>*</b></label>
         <div class="vocation">
             <select name="gender" class="select2">
+                <option value="0" <?=($info['gender']==0)?'selected':'';?>>男</option>
+                <option value="1" <?=($info['gender']==1)?'selected':'';?>>女</option>
+                <option value="2" <?=($info['gender']==2)?'selected':'';?>>保密</option>
+            </select>
+            <!--<select name="gender" class="select2">
                 <if condition="$info['gender'] eq 0">
                     <option selected value="0">男</option>
                     <elseif condition="$info['gender'] eq 1"/>
@@ -78,25 +83,17 @@
                     <else/>
                     <option value="2">保密</option>
                 </if>
-            </select>
+                <?php /*if($info['gender']==0): */?><!--
+                    <option selected value="0">男</option>
+                <?php /*elseif($info['gender']==1): */?>
+                    <option selected value="1">女</option>
+                <?php /*else: */?>
+                    <option selected value="2">保密</option>
+                --><?php /*endif;*/?>
+            </select>-->
         </div>
     </li>
-    <li><label>管理员密码<b>*</b></label><input name="password"  value="{$info['password']}" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
-   <!-- <li><label>职位名称<b>*</b></label>
-    <div class="vocation">
-    <select class="select1">
-    <option>UI设计师</option>
-    <option>交互设计师</option>
-    <option>前端设计师</option>
-    <option>网页设计师</option>
-    <option>Flash动画</option>
-    <option>视觉设计师</option>
-    <option>插画设计师</option>
-    <option>美工</option>
-    <option>其他</option>
-    </select>
-    </div>
-    </li>-->
+    <li><label>管理员密码<b>*</b></label><input name="password"  value="<?=$info['password']?>" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
 
     <li><label>&nbsp;</label><input id="addBtn"  type="button" class="btn" value="编辑保存"/></li>
     </ul>

@@ -1,30 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-<link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.form.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.form.js')?>
 
-  
-<script type="text/javascript">
-$(document).ready(function(e) {
-    $(".select1").uedSelect({
-		width : 345			  
-	});
-	$(".select2").uedSelect({
-		width : 167  
-	});
-	$(".select3").uedSelect({
-		width : 100
-	});
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select1").uedSelect({
+                width : 345
+            });
+            $(".select2").uedSelect({
+                width : 167
+            });
+            $(".select3").uedSelect({
+                width : 100
+            });
+        });
+    </script>
     <style type="text/css">
         .logobox{ width:200px; height:130px; border:1px solid #dddddd; margin-left:150px;}
         .resizebox{ width:180px; height:110px; border:1px solid #dddddd;margin:10px; }
@@ -55,14 +54,14 @@ $(document).ready(function(e) {
     <div class="formbody">
     <div id="usual1" class="usual"> 
   	<div id="tab1" class="tabson">
-        <form id="form1" action="{:U('addlist')}" method="post" enctype="multipart/form-data">
+        <form id="form1" action="<?=\yii\helpers\Url::to(['brand/add'])?>" method="post" enctype="multipart/form-data">
             <ul class="forminfo">
             <li><label>品牌名称<b>*</b></label><input name="bname" type="text" onclick="this.value=''" class="dfinput" placeholder="请填写品牌名称"  style="width:450px;"/></li>
             <li><label>品牌LOGO<b>*</b></label>
 
                 <div class="logobox">
                     <div class="resizebox">
-                        <img id="img0" src="__PUBLIC__/Admin/Uploads/default.png" width="180px"   height="110px"/>
+                        <img id="img0" src="<?=\yii\helpers\Url::to('@web/uploads/default.png')?>" width="180px" height="110px"/>
                     </div>
                 </div>
 
@@ -138,20 +137,17 @@ $(document).ready(function(e) {
     $(function(){
         $('#form1').submit(function() {
             $(this).ajaxSubmit(function(res) {
-                if(res.status=="ok"){
-                   layer.confirm(res.msg,{icon:3,btn:['确定','取消']},function(){
-                       window.location.href="{:U('Brand/addlist')}";
+                if(res.code==1){
+                   layer.confirm(res.body,{icon:3,btn:['确定','取消']},function(){
+                       window.location.href="<?=\yii\helpers\Url::to(['brand/add'])?>";
                    },function(){
-                       window.location.href="{:U('Brand/showlist')}";
+                       window.location.href="<?=\yii\helpers\Url::to(['brand/index'])?>";
                    });
                 }else{
-                    layer.msg(res.msg,{icon:2,time:1000});
-
+                    layer.msg(res.body,{icon:2,time:1000});
                 }
-
             });
             return false; //阻止表单默认提交
         });
-
     })
 </script>

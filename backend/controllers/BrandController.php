@@ -33,8 +33,8 @@ class BrandController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
             $info=Brand::findOne($id);
-            $data['active']=($info['active']==0)?1:0;
-            if($info->save($data)){
+            $info->active=($info['active']==0)?1:0;
+            if($info->save()){
                 return Json::encode(['code'=>1,'body'=>'操作成功']);
             }else{
                 return Json::encode(['code'=>2,'body'=>'操作失败']);
@@ -42,7 +42,7 @@ class BrandController extends BaseController{
         }
     }
 
-    public function acitonDel(){
+    public function actionDel(){
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
             if(Brand::findOne($id)->delete()){

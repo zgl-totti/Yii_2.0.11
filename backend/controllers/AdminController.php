@@ -34,14 +34,14 @@ class AdminController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $admin= new Admin();
             if($admin->load(\Yii::$app->request->post()) && $admin->validate()){
-                $data['username']=\Yii::$app->request->post('username');
+                $data['username']=$admin->username;
                 $info=Admin::find()->where($data)->one();
                 if(!$info) {
-                    $password=trim(\Yii::$app->request->post('password'));
-                    $data['password']=md5($password);
-                    $data['addtime']=time();
-                    $data['gender']=trim(\Yii::$app->request->post('gender'));
-                    $row = $admin->save($data);
+                    $password=$admin->password;
+                    $pwd=md5($password);
+                    $admin->password=$pwd;
+                    $admin->addtime=time();
+                    $row = $admin->save();
                     if ($row) {
                         return Json::encode(['code' => 1, 'body' => '添加成功']);
                     } else {
@@ -51,7 +51,7 @@ class AdminController extends BaseController{
                     return Json::encode(['code' => 3, 'body' => '管理员已存在']);
                 }
             }else{
-                return Json::encode(['code'=>3]);
+                return Json::encode(['code'=>4,'body'=>$admin->getErrors()]);
             }
         }else{
             return $this->render('add');
@@ -95,11 +95,13 @@ class AdminController extends BaseController{
     public function actionEdit(){
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
-            $data['gender']=trim(\Yii::$app->request->post('gender'));
+            $gender=trim(\Yii::$app->request->post('gender'));
             $password=trim(\Yii::$app->request->post('password'));
-            $data['password']=md5($password);
+            $pwd=md5($password);
             $info=Admin::findOne($id);
-            $row=$info->save($data);
+            $info->gender=$gender;
+            $info->password=$pwd;
+            $row=$info->save();
             if($row){
                 return Json::encode(['code'=>1,'body'=>'编辑成功']);
             }else{

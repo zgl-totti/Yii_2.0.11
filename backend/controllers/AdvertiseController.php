@@ -13,15 +13,16 @@ class AdvertiseController extends BaseController{
         $adname=\Yii::$app->request->get('adname');
         $adposition=\Yii::$app->request->get('position');
         if($adname){
-            $where['adname']=['like',$adname];
-        }
-        if($adposition){
-            $where['adposition']=$adposition;
-        }
-        if(! isset($where)){
+            $where=['like','adname',$adname];
+        }else{
             $where='';
         }
-        $count=Advertise::find()->where($where)->count();
+        if($adposition){
+            $conditon=['adposition',$adposition];
+        }else{
+            $conditon='';
+        }
+        $count=Advertise::find()->where($where)->andWhere($conditon)->count();
         $pages= new Pagination([
             'pageSize'=>10,
             'totalCount'=>$count
@@ -32,7 +33,7 @@ class AdvertiseController extends BaseController{
             ->orderBy('adposition,top desc')
             ->asArray()
             ->all();
-        return $this->render('index',['list'=>$list,'pages'=>$pages]);
+        return $this->render('index',['list'=>$list,'pages'=>$pages,'adname'=>$adname]);
     }
 
     //展示隐藏操作
@@ -45,8 +46,8 @@ class AdvertiseController extends BaseController{
                 $map['top']=array('neq',0);
                 $num=Advertise::find()->where($map)->count();
                 if($num<3){
-                    $data['top']=time();
-                    if($info->save($data)){
+                    $info->top=time();
+                    if($info->save()){
                         return Json::encode(['code'=>1,'body'=>'展示成功']);
                     }else{
                         return Json::encode(['code'=>2,'body'=>'展示失败']);
@@ -55,8 +56,8 @@ class AdvertiseController extends BaseController{
                     return Json::encode(['code'=>3,'body'=>'超过图片展示数量']);
                 }
             }else{
-                $data['top']=0;
-                if($info->save($data)){
+                $info->top=time();
+                if($info->save()){
                     return Json::encode(['code'=>1,'body'=>'隐藏成功']);
                 }else{
                     return Json::encode(['code'=>2,'body'=>'隐藏失败']);
@@ -76,7 +77,7 @@ class AdvertiseController extends BaseController{
         }
     }
 
-    public function acitonAdd(){
+    public function actionAdd(){
         if(\Yii::$app->request->isPost){
             $advertise= new Advertise();
             if($advertise->load(\Yii::$app->request->post()) && $advertise->validate()){

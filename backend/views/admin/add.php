@@ -26,6 +26,18 @@
     <script type="text/javascript">
         $(function(){
             $("#addBtn").click(function(){
+                $.post("<?=\yii\helpers\Url::to(['admin/add'])?>",$("#form1").serialize(),function(res){
+                    alert(res.body);
+                    /*if(res.code==1){
+                        layer.msg(res.body,{icon:6,time:2000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['admin/index'])?>";
+                        })
+                    }else{
+                        layer.msg(res.body,{icon:6,time:2000})
+                    }*/
+                },'json')
+            })
+            /*$("#addBtn").click(function(){
                 $.post("{:U('Admin/Admin/addlist')}",$("#form1").serialize(),function(res){
                     if(res.status=="ok"){
                         layer.confirm(res.msg,{icon:1,title:"提示",btn:['好的','算了']},function(){
@@ -45,7 +57,7 @@
                         });
                     }
                 })
-            })
+            })*/
         })
     </script>
 </head>
@@ -66,7 +78,7 @@
  
     <form action="#" id="form1">
     <ul class="forminfo">
-        <li>
+        <!--<li>
             <label for="{$val['title']}">所属角色<b>*</b></label>
             <volist name="groupList" id="val">
             <label for="{$val['title']}" style="width: 70px">{$val['title']}</label>
@@ -74,8 +86,8 @@
                 <input name="group_id[]" id="{$val['title']}" value="{$val['id']}" type="checkbox" class="dfinput" style="width:18px;"/>
             </span>
             </volist>
-        </li>
-    <li><label>管理员账号<b>*</b></label><input name="adminname" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
+        </li>-->
+    <li><label>管理员账号<b>*</b></label><input name="username" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
     <li><label>性别<b>*</b></label>
         <div class="vocation">
             <select name="gender" class="select2">
@@ -88,7 +100,7 @@
     <li><label>管理员密码<b>*</b></label><input name="password" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
     <li><label>确认密码<b>*</b></label><input name="repassword" type="password" class="dfinput" placeholder="请填写确认密码"  style="width:200px;"/></li>
 
-    <li><label>&nbsp;</label><input id="addBtn"  type="button" class="btn" value="添加管理员"/></li>
+    <li><label>&nbsp;</label><input id="addBtn" type="button" class="btn" value="添加管理员"/></li>
     </ul>
     </form>
     </div> 

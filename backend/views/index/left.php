@@ -163,14 +163,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Advertise/index')}" target="rightFrame">广告列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['advertise/index'])?>" target="rightFrame">广告列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Advertise/add')}" target="rightFrame">添加广告</a>
+                        <a href="<?=\yii\helpers\Url::to(['advertise/add'])?>" target="rightFrame">添加广告</a>
                         <i></i>
                     </div>
                 </li>
@@ -185,14 +185,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Goods/index')}" target="rightFrame">商品列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['goods/index'])?>" target="rightFrame">商品列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Goods/addAct')}" target="rightFrame">添加商品</a>
+                        <a href="<?=\yii\helpers\Url::to(['goods/add'])?>" target="rightFrame">添加商品</a>
                         <i></i>
                     </div>
                 </li>
@@ -243,7 +243,7 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Category/index')}" target="rightFrame">分类列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['category/index'])?>" target="rightFrame">分类列表</a>
                         <i></i>
                     </div>
                 </li>
@@ -251,7 +251,7 @@
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Category/add')}" target="rightFrame">添加分类</a>
+                        <a href="<?=\yii\helpers\Url::to(['category/add'])?>" target="rightFrame">添加分类</a>
                         <i></i>
                     </div>
                 </li>
@@ -296,14 +296,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('User/UserList')}" target="rightFrame">会员列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['member/index'])?>" target="rightFrame">会员列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('BrandAdd/UserAdd')}" target="rightFrame">添加会员</a>
+                        <a href="<?=\yii\helpers\Url::to(['member/add'])?>" target="rightFrame">添加会员</a>
                         <i></i>
                     </div>
                 </li>
@@ -368,14 +368,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('User/UserList')}" target="rightFrame">新闻列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['article/index'])?>" target="rightFrame">新闻列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('BrandAdd/UserAdd')}" target="rightFrame">新闻发布</a>
+                        <a href="<?=\yii\helpers\Url::to(['article/add'])?>" target="rightFrame">新闻发布</a>
                         <i></i>
                     </div>
                 </li>

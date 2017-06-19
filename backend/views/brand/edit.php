@@ -3,14 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-
-
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.form.js')?>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -48,15 +47,14 @@
                 var myName=$('.forminfo .dfinput').val();
                 var myDes=$('.forminfo .textarea').val();
                 //alert(myDes);
-                $.post("{:U('Admin/Brand/edictlist')}",{'id':myID,'bname':myName,'description':myDes},function(res){
+                $.post("<?=\yii\helpers\Url::to(['brand/edit'])?>",{'id':myID,'bname':myName,'description':myDes},function(res){
                     if(res>0){
                         layer.msg("修改成功",{icon:1,time:1000},function(){
-                            window.location.href="{:U('Admin/Brand/showlist')}";
+                            window.location.href="<?=\yii\helpers\Url::to(['brand/index'])?>";
                         })
                     }else{
                         layer.msg("修改失败",{icon:2,time:1000})
                     }
-                    //alert(res);
                 },'json')
             })
         })
@@ -77,17 +75,15 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="{:U('Admin/Brand/edictlist')}" method="post" enctype="multipart/form-data">
+            <form action="<?=\yii\helpers\Url::to(['brand/edit'])?>" method="post" enctype="multipart/form-data">
                 <ul class="forminfo">
-                    <volist name="list" id="val" key="k">
-                        <input value="{$val.id}" name="id" type="hidden"/></li>
-
-                        <li><label>品牌名称<b>*</b></label><input value="{$val.bname}" name="bname" type="text"  class="dfinput" placeholder="请填写品牌名称"  style="width:450px;"/></li>
+                    <input value="<?=\yii\helpers\Html::encode($info['id'])?>" name="id" type="hidden"/>
+                    <li><label>品牌名称<b>*</b></label><input value="<?=\yii\helpers\Html::encode($info['bname'])?>" name="bname" type="text"  class="dfinput" placeholder="请填写品牌名称"  style="width:450px;"/></li>
                     <li><label>品牌LOGO<b>*</b></label>
 
                         <div class="logobox">
                             <div class="resizebox">
-                                <img id="img0" src="__PUBLIC__/Admin/Uploads/brand/{$val.logo}" width="180px" alt="" height="110px"/>
+                                <img id="img0" src="<?=\yii\helpers\Url::to('@web/uploads/brand/').$info['logo'];?>" width="180px" alt="" height="110px"/>
                             </div>
                         </div>
 
@@ -95,11 +91,10 @@
 
                     <li><label>描述<b>*</b></label>
                         <div class="vocation">
-                            <textarea  name="description" cols="" rows="" class="textarea" onkeyup="checkLength(this);">{$val.description}</textarea>
+                            <textarea name="description" cols="" rows="" class="textarea" onkeyup="checkLength(this);"><?=\yii\helpers\Html::encode($info['description'])?></textarea>
                             <div class="wordage"><span>剩余字数：</span><span id="sy" style="color:Red;">500</span>&nbsp;字</div>
                         </div>
                     </li>
-                    </volist>
                     <li><label>&nbsp;</label><input name="btn" type="button" class="btn" value="更改"/></li>
                 </ul>
             </form>
