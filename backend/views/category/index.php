@@ -11,62 +11,12 @@
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
 
     <style type="text/css">
-        .page{  float: right;  }
-        .page a,.page span{  display: inline-block;  background: #0093DD;  margin-left: 5px;  width: 24px;  height: 24px;  text-align: center;  line-height: 24px;  font-weight: bolder;  }
-        .page span{background: #ececec;}
-        .page a:hover{  background: #ececec;  }
+        div.pagin{background-color: red;}
+        div.pagin div{float: right}
+        div.pagin span{text-align:center;line-height: 30px; display: inline-block;width: 30px;height: 30px; background-color:orange;}
+        div.pagin a{text-align:center;line-height: 30px;display: inline-block;width: 30px;height: 30px; background-color:gray;}
     </style>
-    <script type="text/javascript">
-        function disabled(bid){
-            layer.confirm("确定要更改吗？",{
-                icon:3,
-                title:'提示'
-            },function(){
-                $.get("{:U('Category/disabled')}","id="+bid,function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:1000},function(){
-                            window.location.href="{:U('Category/showlist')}";   //如果成功刷新页面;
-                        });
-                    }else{
-                        layer.msg(res.msg,{icon:2,time:1000});
-                    }
-                },'json')
-            })
-        }
-        function enabled(bid){
-            layer.confirm("确定要更改吗？",{
-                icon:3,
-                title:'提示'
-            },function(){
-                $.get("{:U('Category/enabled')}","id="+bid,function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:1000},function(){
-                            window.location.href="{:U('Category/showlist')}";
-                        });
-                    }else{
-                        layer.msg(res.msg,{icon:2,time:1000});
-                    }
 
-                },'json')
-            })
-        }
-    function del(bid){
-        layer.confirm("确定要删除吗?",{
-            icon:2,
-            title:'提示'
-        },function(){
-            $.get("{:U('Category/del')}","id="+bid,function(res){
-                if(res.status=='ok'){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Category/showlist')}";
-                    })
-                }else{
-                    layer.msg(res.msg,{icon:2,time:1000});
-                }
-            },'json')
-        })
-    }
-    </script>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -79,6 +29,44 @@
                 width : 100
             });
         });
+    </script>
+    <script type="text/javascript">
+        $(function(){
+            $('.operate').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm("确定要更改状态吗？",{
+                    icon:3,
+                    title:'提示'
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['category/operate'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:1,time:1000},function(){
+                                window.location.href="<?=\yii\helpers\Url::to(['category/index'])?>";
+                            });
+                        }else{
+                            layer.msg(res.body,{icon:2,time:1000});
+                        }
+                    },'json')
+                })
+            });
+            $('.del').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm("确定要删除吗？",{
+                    icon:3,
+                    title:'提示'
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['category/del'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:1,time:1000},function(){
+                                window.location.href="<?=\yii\helpers\Url::to(['category/index'])?>";
+                            });
+                        }else{
+                            layer.msg(res.body,{icon:2,time:1000});
+                        }
+                    },'json')
+                })
+            })
+        })
     </script>
 </head>
 
@@ -117,44 +105,81 @@
                 <?php foreach($list as $k=>$v): ?>
                     <tr>
                         <!--<td><input name="" type="checkbox" value="" /></td>-->
-                        <td><?=$pages->pages*$pages->pageSize+$k+1;?></td>
-                        <td><a href="{:U('Admin/Category/showlist',array('pid'=>$value['id']))}"><?=\yii\helpers\Html::encode($v['catename'])?></a></td>
-                        <td>{$value.id}</td>
-                        <td>{$value.pid}</td>
-                        <td>{$value["pathname"]}</td>
-                        <td>{$value['active']==1?'已展示':'已禁用'}</td>
-                        <td><a href="{:U('Admin/Category/edit',array('id'=>$value['id']))}" class="tablelink">编辑</a>
-                            <if condition="$value['active'] eq 0">
-                                <a href="javascript:enabled({$value['id']})" class="tablelink">展示</a>
-                                <elseif condition="$value['active'] eq 1"/>
-                                <a href="javascript:disabled({$value['id']})" class="tablelink">禁用</a>
-                            </if>
-                            <a href="javascript:del({$value['id']})" class="tablelink"> 删除</a>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><a href="<?=\yii\helpers\Url::to(['category/index','pid'=>$v['id']])?>"><?=\yii\helpers\Html::encode($v['catename'])?></a></td>
+                        <td><?=\yii\helpers\Html::encode($v['id'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['pid'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['path'])?></td>
+                        <td><?=(\yii\helpers\Html::encode($v['active'])==1)?'已展示':'已禁用';?></td>
+                        <td>
+                            <a href="<?=\yii\helpers\Url::to(['category/edit','id'=>$v['id']])?>" class="tablelink">编辑</a>&nbsp;&nbsp;
+                            <a href="#" id="<?=$v['id']?>" class="tablelink operate"><?=(\yii\helpers\Html::encode($v['active'])==1)?'禁用':'展示';?></a>&nbsp;&nbsp;
+                            <a href="#" id="<?=$v['id']?>" class="tablelink del">删除</a>
                         </td>
                     </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
             <div class="pagin">
-                <div class="message" style="display: block;width: 300px;height: 30px;float: left;font-size: 14px;font-weight: bolder">共<i class="blue">{$count}</i>条记录，当前显示第&nbsp;<i class="blue">
-                    <if condition="$p eq 0 ">
-                        1
-                        <else />
-                        {$p}
-                    </if>
-                </i>页</div>
-                <div class="page" style="display: block;float: right;">
-                    {$page}
-                </div>
+                <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?></div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
-    </script>
-    <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
+    <!--<script type="text/javascript">
+        function disabled(bid){
+            layer.confirm("确定要更改吗？",{
+                icon:3,
+                title:'提示'
+            },function(){
+                $.get("{:U('Category/disabled')}","id="+bid,function(res){
+                    if(res.status=="ok"){
+                        layer.msg(res.msg,{icon:1,time:1000},function(){
+                            window.location.href="{:U('Category/showlist')}";   //如果成功刷新页面;
+                        });
+                    }else{
+                        layer.msg(res.msg,{icon:2,time:1000});
+                    }
+                },'json')
+            })
+        }
+        function enabled(bid){
+            layer.confirm("确定要更改吗？",{
+                icon:3,
+                title:'提示'
+            },function(){
+                $.get("{:U('Category/enabled')}","id="+bid,function(res){
+                    if(res.status=="ok"){
+                        layer.msg(res.msg,{icon:1,time:1000},function(){
+                            window.location.href="{:U('Category/showlist')}";
+                        });
+                    }else{
+                        layer.msg(res.msg,{icon:2,time:1000});
+                    }
+
+                },'json')
+            })
+        }
+        function del(bid){
+            layer.confirm("确定要删除吗?",{
+                icon:2,
+                title:'提示'
+            },function(){
+                $.get("{:U('Category/del')}","id="+bid,function(res){
+                    if(res.status=='ok'){
+                        layer.msg(res.msg,{icon:1,time:1000},function(){
+                            window.location.href="{:U('Category/showlist')}";
+                        })
+                    }else{
+                        layer.msg(res.msg,{icon:2,time:1000});
+                    }
+                },'json')
+            })
+        }
+    </script>-->
 </div>
 </body>
 </html>

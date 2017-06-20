@@ -11,26 +11,41 @@ class CategoryController extends BaseController{
 
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
+        $pid=\Yii::$app->request->get('pid');
         if($keywords){
             $where=['like','catename',$keywords];
         }else{
             $where='';
         }
-        $category=Category::find()->where($where);
+        if($pid){
+            $condition['pid']=$pid;
+        }else{
+            $condition['pid']=0;
+        }
+        $category=Category::find()->where($where)->andWhere($condition);
         $pages= new Pagination([
             'pageSize'=>10,
-            'totalCount'=>$category->count(),
+            'totalCount'=>$category->count()
         ]);
         $list=$category->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+        /*foreach($list as $k1=>$v1){
+            $res=['in','id',$v1['path']];
+            $arr=Category::find()->where($res)->asArray()->all();
+            $v1['pathname']='';
+            foreach($arr as $k2=>$v2){
+                $v1['pathname'] .= '>' . $v2['catename'];
+                $list[$k1]['pathname'] = ltrim($v1['pathname'], ">");
+            }
+        }*/
         return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords]);
     }
 
-    public function actionGetChildCate(){
+    public function actionGetcategory(){
         if(\Yii::$app->request->isAjax){
             $pid=\Yii::$app->request->post('val');
             $info=Category::findAll(['pid'=>$pid]);
             if($info){
-                return Json::encode(['code'=>1,'body'=>$info]);
+                return Json::encode($info);
             }else{
                 return Json::encode(['code'=>2,'body'=>'没有查到数据']);
             }
@@ -56,8 +71,9 @@ class CategoryController extends BaseController{
     public function actionDel(){
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
-            $row=Category::findOne($id)->delete();
-            if($row){
+            $info=Category::findOne($id);
+            $where=['like','path',$info['path']];
+            if(Category::deleteAll($where)){
                 return Json::encode(['code'=>1,'body'=>'删除成功']);
             }else{
                 return Json::encode(['code'=>2,'body'=>'删除失败']);
@@ -154,7 +170,7 @@ class CategoryController extends BaseController{
             $list=Category::find()->orderBy('path')->asArray()->all();
             foreach($list as $val){
                 $space=count(explode(',',$val['path']));
-                $val['catename']=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $space).$val['catename'];
+                $val['catename']=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;",$space).$val['catename'];
                 $res[]=$val;
             }
             return $this->render('edit',['info'=>$info,'res'=>$res]);

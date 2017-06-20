@@ -9,6 +9,6 @@ class Member extends ActiveRecord{
     }
 
     public function getLevel(){
-        return $this->hasMany(Level::className(),['level'=>'id']);
+        return $this->hasMany(Level::className(),['id'=>'level']);
     }
 }

@@ -3,23 +3,35 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-    <script>
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+
+    <script type="text/javascript">
         $(function () {
             $("#firstParent").live('change',function(){
-                var val = $("#firstParent").attr("value");
+                var val=$(this).attr('value');
                 $('#vocation1').show();
-                $.post('{:U("Admin/Category/getChildCate")}',{'val':val},function(res){
+                $.post("<?=\yii\helpers\Url::to(['category/getcategory'])?>",{val:val},function(res){
                     var str='<option value="0" >二级分类</option>';
                     for(var i in res){
-                        str+='<option value="'+res[i]["id"]+'">'+res[i]['catename']+'</option>';
+                        str+='<option value="'+res[i]['id']+'">'+res[i]['catename']+'</option>';
                     }
                     $('#selectChild').html(str);
+                },'json')
+            })
+            $('.button').click(function(){
+                $.post("<?=\yii\helpers\Url::to(['category/add'])?>",$('#form1').serialize(),function(res){
+                    if(res.code==1){
+                        layer.msg(res.body,{icon:6,time:1000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['cagegory/index'])?>";
+                        })
+                    }else{
+                        layer.msg(res.body,{icon:5,time:1000})
+                    }
                 })
             })
         })
@@ -49,15 +61,16 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="{:U('Admin/Category/addlist')}" method="post" id="form1">
+            <form action="#" method="post" id="form1">
                 <ul class="forminfo">
                     <li><label>商品分类<b>*</b></label><input name="catename" type="text" class="dfinput" placehold="请添加分类名称"  style="width:167px;"/></li>
                     <li><label>选择分类<b>*</b></label>
                         <div class="vocation">
-                            <select id="firstParent" class="select2" name="parent"><option value="0">请选择</option>
-                                <volist name='cates' id='value'>
-                                    <option id="catename" value="{$value['id']}" >{$value['catename']}</option>
-                                </volist>
+                            <select id="firstParent" class="select2" name="parent">
+                                <option value="0">请选择</option>
+                                <?php foreach($list as $v): ?>
+                                    <option id="catename" value="<?=$v['id']?>"><?=\yii\helpers\Html::encode($v['catename'])?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                         <div id="vocation1" class="vocation" style="display: none; margin-left: 20px;">
@@ -66,7 +79,10 @@
                             </select>
                         </div>
                     </li>
-                    <li><label>&nbsp;</label><input onclick="myfun()" id="contrue" type="button" class="btn" value="添加分类"/></li>
+                    <li>
+                        <label>&nbsp;</label><input id="contrue" type="button" class="btn" value="添加分类"/>
+                    </li>
+                    <!--<li><label>&nbsp;</label><input onclick="myfun()" id="contrue" type="button" class="btn" value="添加分类"/></li>-->
                 </ul>
             </form>
         </div>

@@ -3,14 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-<!--    <script>
-
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+    <!--<script>
         $(function () {
             $(".select2").live('change',function(){
                 var val = $(".select2").attr("value");
@@ -62,23 +61,18 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="{:U('Admin/Category/edit')}" method="post" id="form1">
+            <form action="#" method="post" id="form1">
                 <ul class="forminfo">
-                    <li><label>商品分类名称<b>*</b></label><input name="catename" type="text" class="dfinput" value="{$list['catename']}" style="width:167px;"/></li>
-                    <input name="gid" type="hidden" value="{$list['id']}" id="ggg">
+                    <li><label>商品分类名称<b>*</b></label><input name="catename" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['catename'])?>" style="width:167px;"/></li>
+                    <input name="gid" type="hidden" value="<?=\yii\helpers\Html::encode($info['id'])?>" id="ggg">
                     <li><label>选择修改分类<b>*</b></label>
                         <div class="vocation">
                             <select class="select2" name="parent"><option value="0">请选择</option>
-                                <volist name='result' id='value'>
-                                    <option id="catename" value="{$value['id']}" {$list['id']==$value['id']?'selected':''}>{$value['catename']}</option>
-                                </volist>
+                                <?php foreach($res as $v): ?>
+                                    <option id="catename" value="<?=$v['id']?>" <?=($v['id']==$info['id'])?'selected':'';?>><?=$v['catename']?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
-<!--                        <div id="vocation1" class="vocation" style="display: none; margin-left: 20px;">
-                            <select class="select2" id="selectChild" name="child">
-                                <option>二级分类</option>
-                            </select>
-                        </div>-->
                     </li>
                     <li><label>&nbsp;</label><input onclick="myfun()" type="button" class="btn" value="编辑分类"/></li>
                 </ul>

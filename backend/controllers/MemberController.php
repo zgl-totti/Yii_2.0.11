@@ -23,10 +23,13 @@ class MemberController extends BaseController{
             ->limit($page->firstRow.",".$page->listRows)
             ->select();*/
         $list=$member->joinWith('level')
+            ->select('member.*')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->orderBy('addtime')
+            ->asArray()
             ->all();
+        print_r($list);die;
         return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords]);
     }
 
