@@ -9,6 +9,8 @@ use yii\web\UploadedFile;
 
 class AdvertiseController extends BaseController{
     public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $adname=\Yii::$app->request->get('adname');
         $adposition=\Yii::$app->request->get('position');

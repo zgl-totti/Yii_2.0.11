@@ -27,14 +27,13 @@
         $(function(){
             $("#addBtn").click(function(){
                 $.post("<?=\yii\helpers\Url::to(['admin/add'])?>",$("#form1").serialize(),function(res){
-                    alert(res.body);
-                    /*if(res.code==1){
+                    if(res.code==1){
                         layer.msg(res.body,{icon:6,time:2000},function(){
                             window.location.href="<?=\yii\helpers\Url::to(['admin/index'])?>";
                         })
                     }else{
                         layer.msg(res.body,{icon:6,time:2000})
-                    }*/
+                    }
                 },'json')
             })
             /*$("#addBtn").click(function(){

@@ -6,6 +6,9 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 
 class ArticleController extends BaseController{
+    public $layout=false;                //关闭布局;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $keywords=trim(\Yii::$app->request->get('keywords'));
         if($keywords){
@@ -32,11 +35,11 @@ class ArticleController extends BaseController{
     }
 
     public function actionOperate(){
-        if(\Yii::$app->request->isAjax){
+        if(\Yii::$app->request->isPost){
             $id=\Yii::$app->request->post('id');
             $info=Article::findOne($id);
-            $data['active']=($info['active']==0)?1:0;
-            if($info->save($data)){
+            $info->active=($info['active']==0)?1:0;
+            if($info->save()){
                 return Json::encode(['code'=>1,'body'=>'操作成功']);
             }else{
                 return Json::encode(['code'=>2,'body'=>'操作失败']);
@@ -59,7 +62,7 @@ class ArticleController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $article= new Article();
             if($article->load(\Yii::$app->request->post()) && $article->validate()){
-                if($article->save(\Yii::$app->request->post())){
+                if($article->save()){
                     return Json::encode(['code'=>1,'body'=>'添加成功']);
                 }else{
                     return Json::encode(['code'=>2,'body'=>'添加失败']);

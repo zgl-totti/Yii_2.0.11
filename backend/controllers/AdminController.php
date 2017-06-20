@@ -7,6 +7,8 @@ use yii\helpers\Json;
 
 class AdminController extends BaseController{
     public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
         if($keywords) {
@@ -24,9 +26,6 @@ class AdminController extends BaseController{
             ->limit($pages->limit)
             ->asArray()
             ->all();
-        /*foreach($list as $k=>$v){
-
-        }*/
         return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords]);
     }
 

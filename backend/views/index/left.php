@@ -426,14 +426,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Comment/index')}" target="rightFrame">文章列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['article/index'])?>" target="rightFrame">文章列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Comment/index')}" target="rightFrame">添加文章</a>
+                        <a href="<?=\yii\helpers\Url::to(['article/add'])?>" target="rightFrame">添加文章</a>
                         <i></i>
                     </div>
                 </li>

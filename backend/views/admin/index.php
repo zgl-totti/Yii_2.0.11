@@ -9,6 +9,7 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+
     <style type="text/css">
         div.pagin{background-color: red;}
         div.pagin div{float: right}
@@ -82,7 +83,7 @@
             <td><?=\yii\helpers\Html::encode($v['loginip'])?></td>
             <td><?=(\yii\helpers\Html::encode($v['active'])==0)?'已禁用':'已启用';?></td>
             <td>
-                <a href="<?=\yii\helpers\Url::to(['admin/edit'])?>" id="<?=$v['id']?>" class="tablelink operate">
+                <a href="#" id="<?=$v['id']?>" class="tablelink operate">
                     <?=(\yii\helpers\Html::encode($v['active'])==0)?'启用':'禁用';?>
                 </a>&nbsp;
                 <a href="<?=\yii\helpers\Url::to(['admin/edit','id'=>$v['id']])?>" class="tablelink">编辑</a>&nbsp;&nbsp;

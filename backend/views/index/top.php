@@ -35,10 +35,10 @@
                 layer.confirm('确定要退出吗？', {
                     btn: ['是','否'] //按钮
                 }, function(){
-                    $.post(<?=\yii\helpers\Url::to(['login/logout'])?>,'',function(res){
+                    $.post("<?=\yii\helpers\Url::to(['login/logout'])?>",'',function(res){
                         if(res.code==1){
                             layer.msg(res.body,{icon:6},function(){
-                                parent.location.href=<?=\yii\helpers\Url::to(['login/index'])?>;
+                                parent.location.href="<?=\yii\helpers\Url::to(['login/index'])?>";
                             })
                         }else{
                             layer.msg(res.body,{icon:5});

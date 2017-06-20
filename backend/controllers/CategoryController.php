@@ -6,6 +6,9 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 
 class CategoryController extends BaseController{
+    public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
         if($keywords){

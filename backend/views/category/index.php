@@ -9,13 +9,7 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="editor/kindeditor.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
+
     <style type="text/css">
         .page{  float: right;  }
         .page a,.page span{  display: inline-block;  background: #0093DD;  margin-left: 5px;  width: 24px;  height: 24px;  text-align: center;  line-height: 24px;  font-weight: bolder;  }

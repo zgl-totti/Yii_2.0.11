@@ -83,7 +83,7 @@
 
                         <div class="logobox">
                             <div class="resizebox">
-                                <img id="img0" src="<?=\yii\helpers\Url::to('@web/uploads/brand/').$info['logo'];?>" width="180px" alt="" height="110px"/>
+                                <img id="img0" src="<?=\yii\helpers\Url::to('@web/uploads/brand/').\yii\helpers\Html::encode($info['logo']);?>" width="180px" alt="" height="110px"/>
                             </div>
                         </div>
 

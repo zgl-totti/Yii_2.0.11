@@ -89,11 +89,11 @@
                     <option selected value="1">女</option>
                 <?php /*else: */?>
                     <option selected value="2">保密</option>
-                --><?php /*endif;*/?>
+                <?php /*endif;*/?>
             </select>-->
         </div>
     </li>
-    <li><label>管理员密码<b>*</b></label><input name="password"  value="<?=$info['password']?>" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
+    <li><label>管理员密码<b>*</b></label><input name="password"  value="<?=\yii\helpers\Html::encode($info['password'])?>" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
 
     <li><label>&nbsp;</label><input id="addBtn"  type="button" class="btn" value="编辑保存"/></li>
     </ul>

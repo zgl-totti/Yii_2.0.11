@@ -9,6 +9,8 @@ use yii\web\UploadedFile;
 
 class BrandController extends BaseController{
     public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $bname=trim(\Yii::$app->request->get('bname'));
         if($bname){
