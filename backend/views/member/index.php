@@ -1,16 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>列表页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>列表页</title>
 
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
 
     <script type="text/javascript">
         $(document).ready(function(e) {
@@ -92,7 +91,6 @@
 
         <tr>
             <th>编号</th>
-            <th>id</th>
             <th>会员名</th>
             <th>状态</th>
             <th>添加时间</th>
@@ -107,7 +105,6 @@
         <?php foreach($list as $k=>$v): ?>
             <tr>
                 <td width="80px"><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                <td><?=\yii\helpers\Html::encode($v['id'])?></td>
                 <td><?=\yii\helpers\Html::encode($v['username'])?></td>
                 <td><?=(\yii\helpers\Html::encode($v['active'])==0)?'已禁用':'已启用';?></td>
                 <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
@@ -125,8 +122,8 @@
                 <td><?=\yii\helpers\Html::encode($v['costs'])?></td>
                 <td><?=\yii\helpers\Html::encode($v['credit'])?></td>
                 <td>
-                    <a href="<?=\yii\helpers\Url::to(['member/detail','id'=>$v['id']])?>">详情</a>
-                    <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate"><?=(\yii\helpers\Html::encode($v['active'])==0)?'启用':'禁用';?></a>
+                    <a href="<?=\yii\helpers\Url::to(['member/detail','id'=>$v['id']])?>" class="tablelink">详情</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate"><?=(\yii\helpers\Html::encode($v['active'])==0)?'启用':'禁用';?></a>&nbsp;&nbsp;&nbsp;
                     <a href="<?=\yii\helpers\Url::to(['member/del','id'=>$v['id']])?>" class="tablelink del" style="color:red">删除</a></td>
             </tr>
         <?php endforeach;?>
@@ -152,7 +149,7 @@
                     $.post("<?=\yii\helpers\Url::to(['member/operate'])?>",{id:id},function(res){
                         if(res.code==1){
                             layer.msg(res.body,{icon:6,time:1000},function(){
-                                href="<?=\yii\helpers\Url::to(['member/index'])?>";
+                                location="<?=\yii\helpers\Url::to(['member/index'])?>";
                             })
                         }else{
                             layer.msg(res.body,{icon:5,time:1000})
@@ -168,7 +165,7 @@
                     $.post("<?=\yii\helpers\Url::to(['member/del'])?>",{id:id},function(res){
                         if(res.code==1){
                             layer.msg(res.body,{icon:6,time:1000},function(){
-                                href="<?=\yii\helpers\Url::to(['member/index'])?>";
+                                location="<?=\yii\helpers\Url::to(['member/index'])?>";
                             })
                         }else{
                             layer.msg(res.body,{icon:5,time:1000})

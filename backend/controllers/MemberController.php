@@ -6,6 +6,9 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 
 class MemberController extends BaseController{
+    public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
     public function actionIndex(){
         $keywords=trim(\Yii::$app->request->get('keywords'));
         if($keywords){
@@ -18,25 +21,22 @@ class MemberController extends BaseController{
             'pageSize'=>10,
             'totalCount'=>$member->count(),
         ]);
-        /*$list=$member->order("addtime")->join('shop_level ON shop_member.level=shop_level.lid')
-            ->where($condition)
-            ->limit($page->firstRow.",".$page->listRows)
-            ->select();*/
         $list=$member->joinWith('level')
-            ->select('member.*')
+            ->select('{{%member}}.*,{{%level}}.level_name')
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->orderBy('addtime')
             ->asArray()
             ->all();
-        print_r($list);die;
         return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords]);
     }
 
     public function actionDetail(){
         $id=\Yii::$app->request->get('id');
-        /*$abc=$member->where($where)->join('shop_level ON shop_member.level=shop_level.lid')->select();*/
-        $info=Member::find()->joinWith('level')->where(['member.id'=>$id])->one();
+        $info=Member::find()->joinWith('level')
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->where(['{{%member}}.id'=>$id])
+            ->asArray()->one();
         return $this->render('detail',['info'=>$info]);
     }
 
@@ -44,8 +44,8 @@ class MemberController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
             $info=Member::findOne($id);
-            $data['active']=($info['active']==0)?1:0;
-            if($info->load($data) && $info->save()){
+            $info->active=($info['active']==0)?1:0;
+            if($info->save()){
                 return Json::encode(['code'=>1,'body'=>'操作成功']);
             }else{
                 return Json::encode(['code'=>2,'body'=>'操作失败']);
@@ -66,13 +66,15 @@ class MemberController extends BaseController{
     }
 
     public function actionLevel(){
-        $member=Member::find();
         $where1['level']=1;
-        $count1=$member->where($where1)->count();
-        $pages= new Pagination([
-            'pageSize'=>20,
-            'totalCount'=>$count1,
-        ]);
+        $count1=Member::find()->where($where1)->count();
+        $pages1= new Pagination(['pageSize'=>20, 'totalCount'=>$count1]);
+        $list1=Member::find()->joinWith('level')->where($where1)
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->offset($pages1->offset)->limit($pages1->limit)
+            ->orderBy('addtime')
+            ->asArray()
+            ->all();
 
         /*$list=$member->order("addtime")->join('shop_level ON shop_member.level=shop_level.lid')
             ->where('level=1')->limit($page->firstRow.",".$page->listRows)
@@ -82,36 +84,57 @@ class MemberController extends BaseController{
             $page->parameter[$key]=urlencode($v);
         }*/
 
-        $list1=$member->joinWith('level')->where($where1)
-            ->offset($pages->offset)->limit($pages->limit)
-            ->orderBy('addtime')->all();
         $where2['level']=2;
-        $count2=$member->where($where2)->count();
-        $list2=$member->joinWith('level')->where($where2)
-            ->offset($pages->offset)->limit($pages->limit)
-            ->orderBy('addtime')->all();
+        $count2=Member::find()->where($where2)->count();
+        $pages2= new Pagination(['pageSize'=>20, 'totalCount'=>$count2]);
+        $list2=Member::find()->joinWith('level')->where($where2)
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->offset($pages2->offset)->limit($pages2->limit)
+            ->orderBy('addtime')
+            ->asArray()
+            ->all();
         $where3['level']=3;
-        $count3=$member->where($where3)->count();
-        $list3=$member->joinWith('level')->where($where3)
-            ->offset($pages->offset)->limit($pages->limit)
-            ->orderBy('addtime')->all();
+        $count3=Member::find()->where($where3)->count();
+        $pages3= new Pagination(['pageSize'=>20, 'totalCount'=>$count3]);
+        $list3=Member::find()->joinWith('level')->where($where3)
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->offset($pages3->offset)->limit($pages3->limit)
+            ->orderBy('addtime')
+            ->asArray()
+            ->all();
         $where4['level']=4;
-        $count4=$member->where($where4)->count();
-        $list4=$member->joinWith('level')->where($where4)
-            ->offset($pages->offset)->limit($pages->limit)
-            ->orderBy('addtime')->all();
+        $count4=Member::find()->where($where4)->count();
+        $pages4= new Pagination(['pageSize'=>20, 'totalCount'=>$count4]);
+        $list4=Member::find()->joinWith('level')->where($where1)
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->offset($pages4->offset)->limit($pages4->limit)
+            ->orderBy('addtime')
+            ->asArray()
+            ->all();
         $where5['level']=5;
-        $count5=$member->where($where5)->count();
-        $list5=$member->joinWith('level')->where($where5)
-            ->offset($pages->offset)->limit($pages->limit)
-            ->orderBy('addtime')->all();
-        return $this->render('index',[
-            'count1'=>$count1,'list1'=>$list1,
-            'count2'=>$count2,'list2'=>$list2,
-            'count3'=>$count3,'list3'=>$list3,
-            'count4'=>$count4,'list4'=>$list4,
-            'count5'=>$count5,'list5'=>$list5,
-            'pages'=>$pages
-        ]);
+        $count5=Member::find()->where($where5)->count();
+        $pages5= new Pagination(['pageSize'=>20, 'totalCount'=>$count5]);
+        $list5=Member::find()->joinWith('level')->where($where5)
+            ->select('{{%member}}.*,{{%level}}.level_name')
+            ->offset($pages5->offset)->limit($pages5->limit)
+            ->orderBy('addtime')
+            ->asArray()
+            ->all();
+        $count['count1']=$count1;
+        $count['count2']=$count2;
+        $count['count3']=$count3;
+        $count['count4']=$count4;
+        $count['count5']=$count5;
+        $pages['pages1']=$pages1;
+        $pages['pages2']=$pages2;
+        $pages['pages3']=$pages3;
+        $pages['pages4']=$pages4;
+        $pages['pages5']=$pages5;
+        $list['list1']=$list1;
+        $list['list2']=$list2;
+        $list['list3']=$list3;
+        $list['list4']=$list4;
+        $list['list5']=$list5;
+        return $this->render('level',['list'=>$list,'pages'=>$pages,'count'=>$count]);
     }
 }

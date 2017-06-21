@@ -36,7 +36,7 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="#" method="post">
+            <form action="#" id="form1">
                 <ul class="forminfo">
                     <input name="id" id="id" type="hidden" value="<?=\yii\helpers\Html::encode($info['id'])?>">
                     <li><label>用户名<b>*</b></label><input disabled name="username" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['username'])?>"  style="width:345px;"/></li>
@@ -62,7 +62,7 @@
     }
     $(function(){
         $('#btn').click(function(){
-            $.post("<?=\yii\helpers\Url::to(['feedback/add'])?>",$('#form1').serialize(),function(res){
+            $.post("<?=\yii\helpers\Url::to(['feedback/detail'])?>",$('#form1').serialize(),function(res){
                 if(res.code==1){
                     layer.msg(res.body,{icon:6,time:2000},function(){
                         window.location.href="<?=\yii\helpers\Url::to(['feedback/index'])?>";
@@ -70,7 +70,7 @@
                 }else{
                     layer.msg(res.body,{icon:5,time:2000})
                 }
-            })
+            },'json')
         })
     })
     /*$(function(){

@@ -72,11 +72,11 @@
                         <td><input name="" type="checkbox" value="" /></td>
                         <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
                         <td><?=\yii\helpers\Html::encode($v['username'])?></td>
-                        <td><?=(\yii\helpers\Html::encode($v['username']))?'已回复':'未回复';?></td>
-                        <td>{:date('Y-m-d H:i:s',$value['addtime'])}</td>
+                        <td><?=(\yii\helpers\Html::encode($v['reply']))?'已回复':'未回复';?></td>
+                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
                         <td>
-                            <a href="<?=\yii\helpers\Url::to(['feedback/detail','id'=>$v['id']])?>" class="tablelink">查看详情</a>
-                            <a href="#" id="<?=$v['id']?>" class="tablelink del">删除</a>
+                            <a href="<?=\yii\helpers\Url::to(['feedback/detail','id'=>$v['id']])?>" class="tablelink">查看详情</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">删除</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

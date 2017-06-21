@@ -69,7 +69,7 @@
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('AdminNav/add')}" target="rightFrame">商城反馈</a>
+                        <a href="<?=\yii\helpers\Url::to(['feedback/index'])?>" target="rightFrame">商城反馈</a>
                         <i></i>
                     </div>
                 </li>
@@ -303,7 +303,7 @@
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="<?=\yii\helpers\Url::to(['member/add'])?>" target="rightFrame">添加会员</a>
+                        <a href="<?=\yii\helpers\Url::to(['member/level'])?>" target="rightFrame">会员等级</a>
                         <i></i>
                     </div>
                 </li>
@@ -318,42 +318,42 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/index')}" target="rightFrame">订单列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index'])?>" target="rightFrame">订单列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/dfk')}" target="rightFrame">待付款订单</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index','status'=>1])?>" target="rightFrame">待付款订单</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/dfh')}" target="rightFrame">待发货订单</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index','status'=>2])?>" target="rightFrame">待发货订单</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/yfh')}" target="rightFrame">已发货订单</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index','status'=>3])?>" target="rightFrame">已发货订单</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/ysh')}" target="rightFrame">未评价订单</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index','status'=>4])?>" target="rightFrame">未评价订单</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Order/ysh')}" target="rightFrame">已完成订单</a>
+                        <a href="<?=\yii\helpers\Url::to(['order/index','status'=>5])?>" target="rightFrame">已完成订单</a>
                         <i></i>
                     </div>
                 </li>

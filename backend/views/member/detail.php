@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>会员详情</title>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <style>
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
 
+    <style type="text/css">
         td{
             border-bottom: 1px solid #ccc;
-
         }
         .t1{
             width: 250px;
@@ -19,7 +18,6 @@
             color: orangered;
             margin: 20px auto;
             text-align: center;
-
         }
     </style>
 </head>
@@ -32,63 +30,49 @@
     </ul>
 </div>
 <div class="te">用户详情</div>
-<volist name="abc" id="val">
 <table style="margin:0 auto; ;width:400px;height: 500px;letter-spacing: 0px">
     <tr>
-        <td class="t1">姓名:</td><td>{$val.username}</td>
-    </tr>
-    <tr>
-        <td class="t1">id:</td><td>{$val.id}</td>
+        <td class="t1">姓名:</td><td><?=\yii\helpers\Html::encode($info['username'])?></td>
     </tr>
     <tr>
         <td class="t1">性别:</td>
-
-        <if condition="$val['gender'] eq 0">
+        <?php if(\yii\helpers\Html::encode($info['gender'])==0): ?>
             <td>男</td>
-            <elseif condition="$val['gender'] eq 1"/>
+        <?php elseif(\yii\helpers\Html::encode($info['gender'])==1): ?>
             <td>女</td>
-            <else/>
+        <?php else: ?>
             <td>保密</td>
-        </if>
-
+        <?php endif;?>
     </tr>
     <tr>
-
-        <td class="t1" >等级:</td><td style="color: red">{$val.level_name}</td>
+        <td class="t1" >等级:</td><td style="color: red"><?=\yii\helpers\Html::encode($info['level_name'])?></td>
     </tr>
     <tr>
-        <td class="t1">金钱:</td><td>{$val.money}</td>
+        <td class="t1">金钱:</td><td><?=\yii\helpers\Html::encode($info['money'])?></td>
     </tr>
     <tr>
-        <td class="t1">总花费:</td><td>{$val.costs}</td>
+        <td class="t1">总花费:</td><td><?=\yii\helpers\Html::encode($info['costs'])?></td>
     </tr>
     <tr>
-        <td class="t1">积分:</td><td>{$val.credit}</td>
+        <td class="t1">积分:</td><td><?=\yii\helpers\Html::encode($info['credit'])?></td>
     </tr>
     <tr>
-        <td class="t1">QQ:</td><td>{$val.qq}</td>
+        <td class="t1">QQ:</td><td><?=\yii\helpers\Html::encode($info['qq'])?></td>
     </tr>
     <tr>
-        <td class="t1">手机号:</td><td>{$val.mobile}</td>
+        <td class="t1">手机号:</td><td><?=\yii\helpers\Html::encode($info['mobile'])?></td>
     </tr>
     <tr>
-        <td class="t1">邮箱地址:</td><td>{$val.email}</td>
+        <td class="t1">邮箱地址:</td><td><?=\yii\helpers\Html::encode($info['email'])?></td>
     </tr>
     <tr>
         <td class="t1">用户状态:</td>
-        <if condition="$val['active'] eq 1">
-            <td>已启用</td>
-            <else/>
-                <td>已禁用</td>
-
-    </if>
+        <td><?=(\yii\helpers\Html::encode($info['active'])==1)?'已启用':'已禁用';?></td>
     </tr>
     <tr>
-        <td class="t1">注册时间:</td><td>{:date("Y-m-d H:i:s",$val['addtime'])}</td>
+        <td class="t1">注册时间:</td><td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($info['addtime']))?></td>
     </tr>
 
 </table>
-
-</volist>
 </body>
 </html>
