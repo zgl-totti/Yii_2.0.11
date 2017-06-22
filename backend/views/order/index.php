@@ -13,6 +13,12 @@
 
     <?/*=\backend\assets\AppAsset::register($this)*/?>
 
+    <style type="text/css">
+        div.pagin{background-color: red;}
+        div.pagin div{float: right}
+        div.pagin span{text-align:center;line-height: 30px; display: inline-block;width: 30px;height: 30px; background-color:orange;}
+        div.pagin a{text-align:center;line-height: 30px;display: inline-block;width: 30px;height: 30px; background-color:gray;}
+    </style>
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -28,7 +34,22 @@
     </script>
     <script type="text/javascript">
         $(function(){
-
+            $('.del').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm('确定要删除订单吗？',{
+                    btn:['确定','返回']
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['order/del'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:6,time:2000},function(){
+                                location="<?=\yii\helpers\Url::to(['order/index'])?>";
+                            })
+                        }else{
+                            layer.msg(res.body,{icon:5,time:2000})
+                        }
+                    },'json')
+                })
+            })
         })
     </script>
 </head>
@@ -49,23 +70,25 @@
             <label>订单号/价格</label>
             <input name="order_syn" value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" type="text" class="scinput" />
         </li>
+        <?php if(!(\yii\helpers\Html::encode($status))): ?>
         <li><label>订单状态</label>
             <div class="vocation">
-                <select class="select2" name="status">
+                <select class="select2" name="order_status">
                     <option value="0">全部</option>
-                    <option value="1">已下单，为付款</option>
-                    <option value="2">已付款，为发货</option>
-                    <option value="3">已发货，未签收</option>
-                    <option value="4">已签收，未评价</option>
-                    <option value="10">已评价，订单完成</option>
-                    <option value="5">已取消</option>
-                    <option value="6">申请退货</option>
-                    <option value="7">退货中</option>
-                    <option value="8">已退货</option>
-                    <option value="9">商家已取消，缺货</option>
+                    <option value="1" <?=\yii\helpers\Html::encode($order_status)==1?'selected':'';?>>已下单，为付款</option>
+                    <option value="2" <?=\yii\helpers\Html::encode($order_status)==2?'selected':'';?>>已付款，为发货</option>
+                    <option value="3" <?=\yii\helpers\Html::encode($order_status)==3?'selected':'';?>>已发货，未签收</option>
+                    <option value="4" <?=\yii\helpers\Html::encode($order_status)==4?'selected':'';?>>已签收，未评价</option>
+                    <option value="5" <?=\yii\helpers\Html::encode($order_status)==5?'selected':'';?>>已评价，订单完成</option>
+                    <option value="6" <?=\yii\helpers\Html::encode($order_status)==6?'selected':'';?>>已取消</option>
+                    <option value="7" <?=\yii\helpers\Html::encode($order_status)==7?'selected':'';?>>申请退货</option>
+                    <option value="8" <?=\yii\helpers\Html::encode($order_status)==8?'selected':'';?>>退货中</option>
+                    <option value="9" <?=\yii\helpers\Html::encode($order_status)==9?'selected':'';?>>已退货</option>
+                    <option value="10" <?=\yii\helpers\Html::encode($order_status)==10?'selected':'';?>>商家已取消，缺货</option>
                 </select>
             </div>
         </li>
+        <?php endif;?>
         <li>
             <label>用户名</label>
             <input name="username" type="text" class="scinput" value="<?=\yii\helpers\Html::encode($username?$username:'')?>"/>
@@ -100,16 +123,16 @@
                 <a href="<?=\yii\helpers\Url::to(['order/detail','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink detail">订单详情</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
                 <?php if(\yii\helpers\Html::encode($v['order_status'])==2): ?>
-                    <a href="#" class="tablelink operate" id="<?=\yii\helpers\Html::encode($v['id'])?>">发货</a>
+                    <a href="<?=\yii\helpers\Url::to(['order/send','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">发货</a>
                 <?php endif;?>
             </td>
         </tr>
         <?php endforeach;?>
         </tbody>
     </table>
-       <div>
-           <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
-       </div>
+        <div class="pagin">
+            <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?></div>
+        </div>
     </div>
 	</div>
 	<script type="text/javascript">

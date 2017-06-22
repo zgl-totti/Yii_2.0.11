@@ -368,21 +368,21 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="<?=\yii\helpers\Url::to(['article/index'])?>" target="rightFrame">新闻列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['news/index'])?>" target="rightFrame">新闻列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="<?=\yii\helpers\Url::to(['article/add'])?>" target="rightFrame">新闻发布</a>
+                        <a href="<?=\yii\helpers\Url::to(['news/add'])?>" target="rightFrame">新闻发布</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('BrandAdd/UserAdd')}" target="rightFrame">评论列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['news/comment'])?>" target="rightFrame">评论列表</a>
                         <i></i>
                     </div>
                 </li>

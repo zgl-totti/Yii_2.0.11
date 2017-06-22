@@ -15,4 +15,12 @@ class Order extends ActiveRecord{
     public function getStatus(){
         return $this->hasOne(Status::className(),['id'=>'order_status']);
     }
+
+    public function getAddress(){
+        return $this->hasOne(Address::className(),['id'=>'address']);
+    }
+
+    public function getOrderGoods(){
+        return $this->hasMany(OrderGoods::className(),['oid'=>'id']);
+    }
 }

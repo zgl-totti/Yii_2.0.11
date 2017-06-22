@@ -99,12 +99,10 @@
        </div>
     </div>
 	</div>
-	<script type="text/javascript"> 
-      $("#usual1 ul").idTabs(); 
+	<script type="text/javascript">
+        $("#usual1 ul").idTabs();
+        $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-    <script type="text/javascript">
-	$('.tablelist tbody tr:odd').addClass('odd');
-	</script>
     </div>
 </body>
 <script type="text/javascript">

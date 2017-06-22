@@ -1,8 +1,12 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Address;
 use backend\models\Order;
+use backend\models\OrderGoods;
 use yii\data\Pagination;
+use yii\db\Exception;
+use yii\helpers\Json;
 
 class OrderController extends BaseController{
     public $layout=false;
@@ -11,22 +15,25 @@ class OrderController extends BaseController{
         $status=\Yii::$app->request->get('status');
         $keywords=trim(\Yii::$app->request->get('keywords'));
         $username=trim(\Yii::$app->request->get('username'));
+        $order_status=\Yii::$app->request->get('order_status');
         if($status){
-            $where=['{{%order}}.order_status'=>$status];
+            $where['order_status']=$status;
+        }elseif($order_status){
+            $where['order_status']=$order_status;
         }else{
             $where='';
         }
         if($keywords){
-            $condition=['like','{{%order}}.order_syn or {{%order}}.order_price',$keywords];
+            $condition=['like','order_syn or order_price',$keywords];
         }else{
             $condition='';
         }
         if($username){
-            $factor=['like','{{%member}}.username',$username];
+            $factor=['like','username',$username];
         }else{
             $factor='';
         }
-        $order=Order::find()->joinWith('member')->where($where)->where($condition)->andWhere($factor);
+        $order=Order::find()->joinWith('member')->where($where)->andWhere(['and',$condition,$factor]);
         $pages= new Pagination([
             'pageSize'=>10,
             'totalCount'=>$order->count()
@@ -38,128 +45,98 @@ class OrderController extends BaseController{
             ->orderBy('{{%order}}.id desc')
             ->asArray()
             ->all();
-        //print_r($list);die;
-        return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords,'username'=>$username]);
+        return $this->render('index',[
+            'list'=>$list,
+            'pages'=>$pages,
+            'keywords'=>$keywords,
+            'username'=>$username,
+            'status'=>$status,
+            'order_status'=>$order_status
+        ]);
 
     }
 
-    //订单展示列表
-    public function showlist(){
-        //实例化管理员表数据模型
-        $order=D("Order");
-        //代表有没有传递状态值
-        $status=I("get.status")?I("get.status"):'';
-        //搜索条件传递给前台模板
-        $order_syn=I("get.order_syn");
-        $order_status=I("get.order_status");
-        $username=I("get.username");
-        //订单号或者价格搜索条件
-        $search["order_syn|order_price"]=array("like","%".I('get.order_syn')."%");
-        //订单状态搜索条件
-        $search["order_status"]=array("like","%".I('get.order_status')."%");
-        //根据用户名，查找该用户在订单表中所对应的【mid】作为搜索条件
-        $usersearch["username"]=array("like","%".I('get.username')."%");
-        $user=M("Member");
-        $userinfo=$user->where($usersearch)->find();
-        if(!$username){
-            $search["mid"]=array("like","%".''."%");
-        }else{
-            $search["mid"]=$userinfo["id"];
+    public function actionDetail(){
+        $id=\Yii::$app->request->get('id');
+        $info=Order::find()->alias('o')->where(['o.id'=>$id])
+            ->joinWith('status')->joinWith('member')
+            ->joinWith('address')
+            ->joinWith('orderGoods')
+            ->asArray()
+            ->one();
+        foreach($info['orderGoods'] as $k=>$v){
+            $info['orderGoods']=OrderGoods::find()->alias('og')->joinWith('goods')
+                ->where(['og.gid'=>$v['gid']])
+                ->asArray()
+                ->one();
         }
-        //数据库所有记录总数
-        //根据订单状态进行数据展示
-        if($status){
-            $count=$order->where("order_status={$status}")->where($search)->count("id");
-        }else{
-            $count=$order->where($search)->count("id");
-        }
-        //实例化分页类 传入总记录数和每页显示的记录数为 2
-        $page=new Page($count,2);
-        $page->rollPage=3;
-        $page->setConfig("first","首页");
-        //分页显示输出(分页的页码输出)
-        $show=$page->show();
-        //进行分页数据查询 注意limit方法的参数要使用Page类的属性
-        // $list代表每页显示的数据记录数
-        //根据订单状态进行数据展示
-        if($status){
-            $list = $order->where("order_status={$status}")->where($search)->limit($page->firstRow.','.$page->listRows)->select();
-        }else{
-            $list = $order->where($search)->limit($page->firstRow.','.$page->listRows)->select();
-        }
-        //根据会员ID和订单状态值，得到订单名和状态名的新【$list】数组
-        $list=$order->getList($list);
-        //查询条件分页传递
-        $map["key"]=I("get.status");
-        foreach($map as $key=>$v){
-            $page->parameter[$key]=urlencode($v);
-        }
-        //赋值数据集
-        $this->assign("list",$list);
-        $this->assign("firstRow",$page->firstRow);
-        $this->assign("page",$show);
-        $this->assign("username",$username);
-        $this->assign("order_status",$order_status);
-        $this->assign("order_syn",$order_syn);
-        $this->display();
+
+        /*$info=Order::find()->alias('o')->where(['o.id'=>$id])
+            ->select('o.*,g.*')
+            ->joinWith('status')->joinWith('member')
+            ->joinWith('address')
+            ->joinWith('orderGoods og')
+            ->innerJoin('shop_goods g','g.id=og.gid')
+            ->asArray()
+            ->one();*/
+
+        return $this->render('detail',['info'=>$info]);
     }
-    //订单列表发货功能
-    public function tosend(){
-        $order=D("Order");
-        if(IS_POST){
-            $address=I("post.address");
-            $mobile=I("post.mobile");
+
+    public function actionSend(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $address=trim(\Yii::$app->request->post('address'));
+            $mobile=trim(\Yii::$app->request->post('mobile'));
+            $username=trim(\Yii::$app->request->post('username'));
+            $info=Order::findOne($id);
+            $model=Address::findOne($info['address']);
+            if(empty($address)){
+                return Json::encode(['code'=>3,'body'=>'收货地址不能为空']);
+            }elseif($address != $model['address']){
+                $model->address=$address;
+            }
             if(empty($mobile)){
-                $this->ajaxReturn(array("status"=>"error","msg"=>"请填写联系方式"));
+                return Json::encode(['code'=>4,'body'=>'收货电话不能为空']);
+            }elseif($mobile != $model['$mobile']){
+                $model->mobile=$mobile;
+            }
+            if(empty($username)){
+                return Json::encode(['code'=>5,'body'=>'收货人不能为空']);
+            }elseif($username != $model['username']){
+                $model->username=$username;
+            }
+            $model->save();
+            $info->order_status=3;
+            if($info->save()){
+                return Json::encode(['code'=>1,'body'=>'发货成功']);
             }else{
-                if(empty($address)){
-                    $this->ajaxReturn(array("status"=>"error","msg"=>"请填写收货地址"));
-                }else{
-                    $data['id']=I("post.id");
-                    $data['order_status']=3;
-                    $info=$order->save($data);
-                    if($info){
-                        $this->ajaxReturn(array("status"=>"ok","msg"=>"发货成功"));
-                    }else{
-                        $this->ajaxReturn(array("status"=>"error","msg"=>"发货失败"));
-                    }
-                }
+                return Json::encode(['code'=>2,'body'=>'发货失败']);
             }
         }else{
-            $id=I("get.id");
-            $data=$order->toSend($id);
-            $this->assign("val",$data);
-            $this->display();
+            $id=\Yii::$app->request->get('id');
+            $where['o.id']=$id;
+            $info=Order::find()->alias('o')->joinWith('address')->where($where)->asArray()->one();
+            return $this->render('send',['info'=>$info]);
         }
     }
-    //订单详情
-    public function orderDetail($id){
-        //根据订单号拼装所有信息
-        $order=D("Order");
-        //返回用户订单的相关信息
-        $data=$order->getDetail($id);
-        //查询订单中商品的信息
-        $goodsInfo=$order->getGoodsInfo($id);
-        $this->assign("data",$data);
-        $this->assign("goodsInfo",$goodsInfo);
-//        dump($data);
-        $this->display();
-    }
-    //订单删除
-    public function delete($oid){
-        $order=M("Order");
-        $orderGoods=M("Order_goods");
-        //根据订单ID，删除订单中该订单的信息
-        $info1=$order->where("id={$oid}")->delete();
-        //根据订单ID，删除订单商品表中，该订单中的商品信息
-        $data=$orderGoods->field('id')->where("oid={$oid}")->select();
-        foreach($data as $k=>$v){
-            $orderGoods->where("id={$v['id']}")->delete();
-        }
-        if($info1){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"订单移除成功"));
-        }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"订单移除失败"));
+
+    public function actionDel(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $transaction=\Yii::$app->db->beginTransaction();
+            try{
+                $row1=Order::findOne($id)->delete();
+                $row2=OrderGoods::deleteAll(['oid'=>$id]);
+                if(!$row1 || !$row2){
+                    throw new Exception('订单删除失败');
+                }
+                $transaction->commit();
+                return Json::encode(['code'=>1,'body'=>'订单删除成功']);
+            }catch (Exception $e){
+                $transaction->rollBack();
+                return Json::encode(['code'=>2,'body'=>$e->getMessage()]);
+            }
         }
     }
 }
