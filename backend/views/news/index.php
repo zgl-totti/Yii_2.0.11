@@ -68,41 +68,19 @@
         <?php foreach($list as $k=>$v): ?>
         <tr>
         <td><input name="" type="checkbox" value="" /></td>
-        <td>{$k+$firstRow}</td>
-        <td>{$val["title"]}</td>
-        <td>{$val["author"]}</td>
-        <!--<td>{$val["clicknum"]}</td>-->
-        <!--<td>{$val["commentnum"]}</td>-->
-        <!--<td>{$val["likenum"]}</td>-->
-            <if condition="$val['isshow'] eq 1">
-                <td>显示</td>
-                <else/>
-                <td>隐藏</td>
-            </if>
-            <if condition="$val['top'] eq 1">
-                <td>是</td>
-                <else/>
-                <td>否</td>
-            </if>
-            <td>{:date("Y-m-d H:i:s",$val['addtime'])}</td>
-            <!--<td>{$val['content']}</td>-->
-            <if condition="$val['iscomment'] eq 1">
-                <td>已评论</td>
-                <else/>
-                <td>未评论</td>
-            </if>
+        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+        <td><?=\yii\helpers\Html::encode($v['title'])?></td>
+        <td><?=\yii\helpers\Html::encode($v['author'])?></td>
+
+            <td><?=\yii\helpers\Html::encode($v['isshow'])==1?'显示':'隐藏';?></td>
+            <td><?=\yii\helpers\Html::encode($v['top'])==1?'是':'否';?></td>
+            <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
+            <td><?=\yii\helpers\Html::encode($v['iscomment'])==1?'已评论':'未评论';?></td>
+
         <td>
-            <a href="javascript:del({$val['id']})" class="tablelink"> 删除</a>
-            <if condition="$val['isshow'] eq 1">
-                <a href="javascript:tohide({$val['id']})" class="tablelink">隐藏</a>
-            <else/>
-                <a href="javascript:toshow({$val['id']})" class="tablelink">显示</a>
-            </if>
-            <if condition="$val['top'] eq 1">
-                <a href="javascript:canceltop({$val['id']})" class="tablelink"> 取消置顶</a>
-            <else/>
-                <a href="javascript:totop({$val['id']})" class="tablelink"> 置顶</a>
-            </if>
+            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">删除</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate"><?=\yii\helpers\Html::encode($v['isshow'])==1?'隐藏':'显示';?></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink top"><?=\yii\helpers\Html::encode($v['top'])==1?'取消置顶':'置顶';?></a>&nbsp;&nbsp;&nbsp;&nbsp;
         </td>
         </tr>
         <?php endforeach;?>
@@ -111,15 +89,65 @@
     
        <div class="pagin">
         <!--<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>-->
-        {$page}
+           <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
     </div>
     </div>
 	</div>
-	<script type="text/javascript"> 
-      $("#usual1 ul").idTabs(); 
+	<script type="text/javascript">
+        $("#usual1 ul").idTabs();
+        $('.tablelist tbody tr:odd').addClass('odd');
     </script>
     <script type="text/javascript">
-	$('.tablelist tbody tr:odd').addClass('odd');
+        $(function(){
+            $('.del').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm('确定要删除吗？',{
+                    btn:['确定','取消']
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['news/del'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:6,time:2000},function(){
+                                location="<?=\yii\helpers\Url::to(['news/index'])?>";
+                            })
+                        }else{
+                            layer.msg(res.body,{icon:5,time:2000})
+                        }
+                    },'json')
+                })
+            })
+            $('.operate').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm('确定要更改状态吗？',{
+                    btn:['确定','取消']
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['news/operate'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:6,time:2000},function(){
+                                location="<?=\yii\helpers\Url::to(['news/index'])?>";
+                            })
+                        }else{
+                            layer.msg(res.body,{icon:5,time:2000})
+                        }
+                    },'json')
+                })
+            })
+            $('.top').click(function(){
+                var id=$(this).attr('id');
+                layer.confirm('确定要更改置顶状态吗？',{
+                    btn:['确定','取消']
+                },function(){
+                    $.post("<?=\yii\helpers\Url::to(['news/top'])?>",{id:id},function(res){
+                        if(res.code==1){
+                            layer.msg(res.body,{icon:6,time:2000},function(){
+                                location="<?=\yii\helpers\Url::to(['news/index'])?>";
+                            })
+                        }else{
+                            layer.msg(res.body,{icon:5,time:2000})
+                        }
+                    },'json')
+                })
+            })
+        })
 	</script>
     </div>
 <script type="text/javascript">

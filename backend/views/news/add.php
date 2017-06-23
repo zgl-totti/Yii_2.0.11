@@ -1,28 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
-<link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-<!--<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.js"></script>-->
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-<script type="text/javascript">
-$(document).ready(function(e) {
-    $(".select1").uedSelect({
-		width : 345			  
-	});
-	$(".select2").uedSelect({
-		width : 167  
-	});
-	$(".select3").uedSelect({
-		width : 100
-	});
-});
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select1").uedSelect({
+                width : 345
+            });
+            $(".select2").uedSelect({
+                width : 167
+            });
+            $(".select3").uedSelect({
+                width : 100
+            });
+        });
+    </script>
 </head>
 <body>
 	<div class="place">
@@ -35,7 +35,7 @@ $(document).ready(function(e) {
     <div class="formbody">
     <div id="usual1" class="usual"> 
   	<div id="tab1" class="tabson">
-        <form action="{:U('News/addlist')}" method="post" id="form1">
+        <form action="#" id="form1">
     <ul class="forminfo">
     <li><label>新闻标题<b>*</b></label><input name="title" type="text" class="dfinput" placeholder="请填写新闻标题"  style="width:200px;"/></li>
     <li><label>新闻作者<b>*</b></label><input name="author" type="text" class="dfinput" placeholder="请填写作者名称"  style="width:200px;"/></li>
@@ -50,15 +50,15 @@ $(document).ready(function(e) {
 <script>
     $(function(){
         $(".btn").click(function(){
-            $.post("{:U('News/addlist')}",$("#form1").serialize(),function(res){
-                if(res.status=="ok"){
-                    layer.confirm(res.msg,{icon:1,btn:["继续","算了"]},function(){
-                        window.location.href="{:U('News/addlist')}";
+            $.post("<?=\yii\helpers\Url::to(['news/add'])?>",$("#form1").serialize(),function(res){
+                if(res.code==1){
+                    layer.confirm(res.body,{icon:1,btn:["继续","算了"]},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['news/add'])?>";
                     },function(){
-                        window.location.href="{:U('News/showlist')}";
+                        window.location.href="<?=\yii\helpers\Url::to(['news/index'])?>";
                     })
                 }else {
-                    layer.msg(res.msg,{icon:2})
+                    layer.msg(res.body,{icon:2})
                 }
             },'json');
         })

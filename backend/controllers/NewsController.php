@@ -2,10 +2,13 @@
 namespace backend\controllers;
 
 use backend\models\News;
+use backend\models\NewsComment;
 use yii\data\Pagination;
+use yii\helpers\Json;
 
 class NewsController extends BaseController{
     public $layout=false;
+    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
 
     public function actionIndex(){
         $keywords=trim(\Yii::$app->request->get('keywords'));
@@ -20,108 +23,140 @@ class NewsController extends BaseController{
             'totalCount'=>$news->count()
         ]);
         $list=$news->offset($pages->offset)->limit($pages->limit)->asArray()->all();
-        return $this->render('index',['keywords'=>$keywords,'list'=>$list]);
+        return $this->render('index',['keywords'=>$keywords,'list'=>$list,'pages'=>$pages]);
     }
 
-    //展示列表
-    public function showlist(){
-        $news=D("News");
-        //实例化分页类 传入总记录数和每页显示的记录数为 2
-        //拼装查询条件
-        $condition["title"]=array("like","%".I("get.keywords")."%");
-        //查询满足查询条件的总记录数
-        $count=$news->where($condition)->count("id");
-        $page=new Page($count,4);
-        $page->rollPage=3;
-        $page->setConfig("first","首页");
-        //分页显示输出(分页的页码输出)
-        $show=$page->show();
-        //进行分页数据查询 注意limit方法的参数要使用Page类的属性
-        //查询满足查询条件的数据
-        $list = $news->where($condition)->order('addtime')->limit($page->firstRow.','.$page->listRows)->select();
-        $map["key"]=I("get.keywords");
-        foreach($map as $key=>$v){
-            $page->parameter[$key]=urlencode($v);
-        }
-        //赋值数据集
-        $this->assign("list",$list);
-        $this->assign("firstRow",$page->firstRow);
-        $this->assign("page",$show);
-        $this->assign("keywords",I("get.keywords"));
-        $this->display();
-    }
-    //添加列表
-    public function addlist(){
-        $news=D("News");
-        if(IS_POST){
-            $data=I("post.");
-            $data["addtime"]=time();
-            $info=$news->add($data);
-            if($info){
-                $this->ajaxReturn(array("status"=>"ok","msg"=>"发布成功,继续发布？"));
+    public function actionDel(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $row=News::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'删除成功']);
             }else{
-                $this->ajaxReturn(array("status"=>"error","msg"=>"发布失败"));
+                return Json::encode(['code'=>2,'body'=>'删除失败']);
+            }
+        }
+    }
+
+    public function actionOperate(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $news=News::findOne($id);
+            $news->isshow=$news['isshow']==0?1:0;
+            if($news->save()){
+                return Json::encode(['code'=>1,'body'=>'更改状态成功']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'更改状态失败']);
+            }
+        }
+    }
+
+    public function actionTop(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $news=News::findOne($id);
+            $news->top=$news['top']==0?1:0;
+            if($news->save()){
+                return Json::encode(['code'=>1,'body'=>'更改置顶状态成功']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'更改置顶状态失败']);
+            }
+        }
+    }
+
+    public function actionAdd(){
+        if(\Yii::$app->request->isAjax){
+            $news= new News();
+            if($news->load(\Yii::$app->request->post()) && $news->validate()){
+                $title=$news->title;
+                $info=News::findOne(['title'=>$title]);
+                if($info){
+                    return Json::encode(['code'=>3,'body'=>'新闻已存在']);
+                }
+                if($news->save()){
+                    return Json::encode(['code'=>1,'body'=>'添加成功']);
+                }else{
+                    return Json::encode(['code'=>2,'body'=>'添加失败']);
+                }
+            }else{
+                return Json::encode(['code'=>4,'body'=>'必填项不能为空']);
             }
         }else{
-            $this->display();
+            return $this->render('add');
         }
     }
-    //删除新闻
-    public function del($id){
-        $news=D("News");
-        $info=$news->where("id='{$id}'")->delete();
-        if($info){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"删除成功"));
+
+    public function actionComment(){
+        $keywords=trim(\Yii::$app->request->get('keywords'));
+        if($keywords){
+            $where=['like','title',$keywords];
         }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"删除失败"));
+            $where='';
+        }
+        $comment=NewsComment::find()->where($where);
+        $pages= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$comment->count()
+        ]);
+        $list=$comment->joinWith('news')->joinWith('member')
+            ->offset($pages->offset)->limit($pages->limit)
+            ->asArray()->all();
+        return $this->render('comment',['pages'=>$pages,'list'=>$list,'keywords'=>$keywords]);
+    }
+
+    public function actionCommentDetail(){
+        $id=\Yii::$app->request->get('id');
+        $info=NewsComment::find()->alias('c')
+            ->where(['c.id'=>$id])
+            ->joinWith('news')
+            ->joinWith('member')
+            ->asArray()->one();
+        return $this->render('commentDetail',['info'=>$info]);
+    }
+
+    public function actionCommentOperate(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $comment=NewsComment::findOne($id);
+            $comment->isshow=$comment['isshow']==0?1:0;
+            if($comment->save()){
+                return Json::encode(['code'=>1,'body'=>'更改状态成功']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'更改状态失败']);
+            }
         }
     }
-    //新闻隐藏
-    public function tohide($id){
-        $news=D("News");
-        $data["id"]=$id;
-        $data["isshow"]=0;
-        $info=$news->save($data);
-        if($info){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"隐藏成功"));
-        }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"隐藏失败"));
+
+    public function actionCommentDel(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $row=NewsComment::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'删除成功']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'删除失败']);
+            }
         }
     }
-    //新闻显示
-    public function toshow($id){
-        $news=D("News");
-        $data["id"]=$id;
-        $data["isshow"]=1;
-        $info=$news->save($data);
-        if($info){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"显示成功"));
+
+    public function actionReply(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $replycontent=trim(\Yii::$app->request->post('replycontent'));
+            if($replycontent){
+                $comment=NewsComment::findOne($id);
+                $comment->replycontent=$replycontent;
+                if($comment->save()){
+                    return Json::encode(['code'=>1,'body'=>'回复成功']);
+                }else{
+                    return Json::encode(['code'=>2,'body'=>'回复失败']);
+                }
+            }else{
+                return Json::encode(['code'=>3,'body'=>'回复内容不能为空']);
+            }
         }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"显示失败"));
-        }
-    }
-    //新闻置顶
-    public function totop($id){
-        $news=D("News");
-        $data["id"]=$id;
-        $data["top"]=1;
-        $info=$news->save($data);
-        if($info){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"置顶成功"));
-        }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"置顶失败"));
-        }
-    }
-    //取消置顶
-    public function canceltop($id){
-        $news=D("News");
-        $data["id"]=$id;
-        $data["top"]=0;
-        $info=$news->save($data);
-        if($info){
-            $this->ajaxReturn(array("status"=>"ok","msg"=>"取消成功"));
-        }else{
-            $this->ajaxReturn(array("status"=>"error","msg"=>"取消失败"));
+            $id=\Yii::$app->request->get('id');
+            return $this->render('reply',['id'=>$id]);
         }
     }
 }

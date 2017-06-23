@@ -448,14 +448,14 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Golds/index')}" target="rightFrame">商品列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['integral/index'])?>" target="rightFrame">商品列表</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Golds/addAct')}" target="rightFrame">添加商品</a>
+                        <a href="<?=\yii\helpers\Url::to(['integral/add'])?>" target="rightFrame">添加商品</a>
                         <i></i>
                     </div>
                 </li>
