@@ -7,6 +7,7 @@
     <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/kindeditor/kindeditor-all-min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.form.js')?>
@@ -15,20 +16,14 @@
         .cb{width: 30px;  height: 30px;margin:0 10px 0 0;  }
         .lb{width:150px;height: 70px;font-size: 30px;}
     </style>
-    <script>
-        var uploadUrl = '{:U("uploadGoodsPic")}';
-        var listUrl = '{:U("showlist")}';
+    <script type="text/javascript">
+        var uploadUrl="<?=\yii\helpers\Url::to(['integral/upload-goods-pic'])?>";
+        var listUrl = "<?=\yii\helpers\Url::to(['integral/index'])?>";
         KindEditor.ready(function(K) {
             K.create('#content7', {
                 allowFileManager : true,
                 afterBlur:function(){
                     this.sync('#content7');
-                }
-            });
-            K.create('#content1', {
-                allowFileManager : true,
-                afterBlur:function(){
-                    this.sync('#content1');
                 }
             });
         });
@@ -47,16 +42,12 @@
             //提交商品发布表单
             $('.btn').click(function(){
                 $('form').ajaxSubmit(function(res){
-                    if(res.status==1){
-                        layer.msg(
-                                res.info,
-                                {icon:1},
-                                function(){
-                                    location.href="{:U('Integral/showlist')}";
-                                }
-                        );
+                    if(res.code==1){
+                        layer.msg(res.info,{icon:1},function(){
+                            location.href="<?=\yii\helpers\Url::to(['integral/index'])?>";
+                        });
                     }else{
-                        layer.alert(res.info);
+                        layer.msg(res.body);
                     }
                 })
                 return false;

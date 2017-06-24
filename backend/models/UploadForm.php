@@ -8,7 +8,7 @@ class UploadForm extends Model{
 
     public function rules(){
         return [
-            [['file'], 'file', 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
+            [['image'], 'file', 'extensions' => 'jpg, png', 'mimeTypes' => 'image/jpeg, image/png',],
         ];
     }
 }

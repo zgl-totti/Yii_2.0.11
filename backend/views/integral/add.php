@@ -5,17 +5,19 @@
     <title>无标题文档</title>
     <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/webuploader/0.1.5/webuploader.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/kindeditor/kindeditor-all-min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.form.js')?>
-    <!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/webuploader/0.1.5/webuploader.css" />
-    <script type="text/javascript" src="__PUBLIC__/Home/webuploader/0.1.5/webuploader.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Home/webuploader/upload.js"></script>-->
+    <?=\yii\helpers\Html::jsFile('@web/webuploader/0.1.5/webuploader.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/webuploader/upload.js')?>
+
     <script type="text/javascript">
-        var uploadUrl = '{:U("uploadGoodsPic")}';
-        var listUrl = '{:U("index")}';
+        var uploadUrl="<?=\yii\helpers\Url::to(['integral/upload-goods-pic'])?>";
+        var listUrl = "<?=\yii\helpers\Url::to(['integral/index'])?>";
         KindEditor.ready(function(K) {
             K.create('#content1', {
                 allowFileManager : true,
@@ -39,10 +41,10 @@
             //提交商品发布表单
             $('.btn').click(function(){
                 $('form').ajaxSubmit(function(res){
-                    if(res.status==1){
+                    if(res.code==1){
                         $('.uploadBtn').click();
                     }else{
-                        layer.alert(res.info);
+                        layer.msg(res.body);
                     }
                 })
                 return false;
@@ -61,7 +63,7 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="{:U('Integral/addlist')}" method="post" enctype="multipart/form-data" id="form1">
+            <form action="<?=\yii\helpers\Url::to(['integral/add'])?>" method="post" enctype="multipart/form-data" id="form1">
                 <ul class="forminfo" id="goodsInfo" >
                     <li>
                         <label>商品名称<b>*</b></label>
@@ -81,7 +83,7 @@
                         <label>商品主图<b>*</b></label>
                         <div class="usercity" style="border:3px dashed #e6e6e6;width:520px;height:300px;position: relative">
                             <p id="preview1" ><img id="imghead1"  border=0 src=''></p><span></span>
-                            <input type="file" id="image1" name="image[]" onchange="previewImage(this,'preview1','imghead1')" style="display:none;" >
+                            <input type="file" id="image1" name="image" onchange="previewImage(this,'preview1','imghead1')" style="display:none;" >
                             <label for="image1"  style="margin:130px 180px;color:#fff;text-align:center;border-radius:4px;width:130px;height:26px;line-height:26px;font-size:18px;background:#00b7ee;padding:8px 16px;cursor:pointer;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">点击选择主图</label>
                         </div>
                     </li>
@@ -109,7 +111,7 @@
                     <!--副图end-->
                     <li>
                         <label>商品详情<b>*</b></label>
-                        <textarea name="detail" id="content1" style="    width: 680px" rows="30"></textarea>
+                        <textarea name="detail" id="content1" style="width: 680px" rows="30"></textarea>
                     </li>
 
                     <li><label>&nbsp;</label><input id="btn" name="" type="button" class="btn" value="发布商品"/></li>

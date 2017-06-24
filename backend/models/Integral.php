@@ -11,4 +11,11 @@
      public function getPics(){
          return $this->hasMany(IntegralPic::className(),['iid'=>'id']);
      }
+
+     public function rules(){
+         return [
+             [['goodsname','integral','num','detail'],'required'],
+             //[['image'],'file','extensions'=>'gif,jpg,jpeg,png']
+         ];
+     }
  }

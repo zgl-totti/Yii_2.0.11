@@ -397,7 +397,7 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Sale/index')}" target="rightFrame">拍卖列表</a>
+                        <a href="<?=\yii\helpers\Url::to(['auction/index'])?>" target="rightFrame">拍卖列表</a>
                         <i></i>
                     </div>
                 </li>

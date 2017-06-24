@@ -82,11 +82,11 @@ class AdvertiseController extends BaseController{
     public function actionAdd(){
         if(\Yii::$app->request->isPost){
             $advertise= new Advertise();
-            if($advertise->load(\Yii::$app->request->post()) && $advertise->validate()){
+            if($advertise->load(\Yii::$app->request->post(),'') && $advertise->validate()){
                 if(Advertise::find()->where(\Yii::$app->request->post())->one()){
                     return Json::encode(['code'=>3,'body'=>'广告已存在']);
                 }else{
-                    if($advertise->save(\Yii::$app->request->post())){
+                    if($advertise->save()){
                         $model= new UploadForm();
                         $files=UploadedFile::getInstance($model,'file');
                         foreach($files as $file){
