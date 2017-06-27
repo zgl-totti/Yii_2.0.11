@@ -29,6 +29,22 @@
             });
         });
     </script>
+    <script type="text/javascript">
+        $(function(){
+            $('.operate').click(function(){
+                var id=$(this).attr('id');
+                $.post("<?=\yii\helpers\Url::to(['auction/operate'])?>",{id:id},function(res){
+                    if(res.code==1){
+                        layer.msg(res.body,{icon:6,time:2000},function(){
+                            location="<?=\yii\helpers\Url::to(['auction/index'])?>";
+                        })
+                    }else{
+                        layer.msg(res.body,{icon:5,time:2000});
+                    }
+                },'json')
+            })
+        })
+    </script>
 </head>
 
 <body>

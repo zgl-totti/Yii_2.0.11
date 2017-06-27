@@ -3,13 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <link href="__PUBLIC__/Admin/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="__PUBLIC__/Admin/css/select.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jQuery-1.8.2.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/timer/WdatePicker.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
+    <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
+    <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/timer/WdatePicker.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
+
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -36,29 +37,27 @@
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
-            <form action="{:U('Auction/settime')}" method="post" id="form1">
+            <form action="#" id="form1">
             <ul class="forminfo">
-                <volist name="auctionInfo" id="val1">
-                    <input type="hidden" name="id" value="{$val1['ag_id']}" />
+                <input type="hidden" name="id" value="<?=\yii\helpers\Html::encode($info['id'])?>" />
                 <li><label>商品名称<b>*</b></label>
-                    <input disabled="disabled" name="" type="text" value="{$val1['goodsname']}" class="dfinput" value="请填写单位名称"  style="width:518px;"/>
+                    <input disabled="disabled" name="" type="text" value="<?=\yii\helpers\Html::encode($info['goods']['goodsname'])?>" class="dfinput" style="width:518px;"/>
                 </li>
                 <li>
                     <label>商品图片<b>*</b></label>
                     <div class="imagBox ">
                         <div class="imgsml">
-                            <img id="img0"  src="__PUBLIC__/Admin/Uploads/goods/{$val1['pic']}" alt="" width="150px" height="100px"/>
+                            <img id="img0"  src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($info['goods']['pic']);?>" alt="" width="150px" height="100px"/>
                         </div>
                     </div>
                     <!--<input id="file0" style="margin-left: 85px;margin-top: 10px;  " type="file" name="pic"/>-->
                 </li>
                 <li><label>开始时间<b>*</b></label>
                     <!--<input id="d11" style="border:1px;" type="text" onClick="WdatePicker()" />-->
-                    <input id="d11" name="starttime" onClick="WdatePicker()" type="text" class="dfinput" style="height:20px;width:146px;"/>
+                    <input id="d11" name="starttime" onClick="WdatePicker()" type="text" class="dfinput" style="height:20px;width:146px;" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['starttime']))?>"/>
                 </li>
-                <li><label>结束时间<b>*</b></label><input name="endtime" class="Wdate" type="text" id="d15" onFocus="WdatePicker({isShowClear:false,readOnly:true})"/></li>
+                <li><label>结束时间<b>*</b></label><input name="endtime" class="Wdate" type="text" id="d15" onFocus="WdatePicker({isShowClear:false,readOnly:true})" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['endtime']))?>"/></li>
                 <li><label>&nbsp;</label><input id="sub" type="button" class="btn" value="确认设置"/></li>
-                </volist>
             </ul>
             </form>
         </div>
@@ -66,23 +65,23 @@
 </div>
 </body>
 </html>
-<script>
+<script type="text/javascript">
     $(function(){
         //设置拍卖时间
         $("#sub").click(function(){
-            $.post("{:U('Auction/settime')}",$("#form1").serialize(),function(res){
-                if(res.status=="ok"){
-                    layer.msg(res.msg,{icon:1,time:2000},function(){
-                        window.location.href="{:U('Auction/showlist')}";
+            $.post("<?=\yii\helpers\Url::to(['auction/settime'])?>",$("#form1").serialize(),function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:2000},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['auction/index'])?>";
                     })
                 }else{
-                    layer.msg(res.msg,{icon:2,time:2000})
+                    layer.msg(res.body,{icon:2,time:2000})
                 }
-            })
+            },'json')
         })
     })
 </script>
-<script>
+<script type="text/javascript">
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
         console.log("objUrl = "+objUrl) ;

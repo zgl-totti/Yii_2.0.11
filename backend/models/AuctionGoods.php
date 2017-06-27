@@ -8,6 +8,12 @@ class AuctionGoods extends ActiveRecord{
         return "{{%auction_goods}}";
     }
 
+    public function rules(){
+        return [
+            [['starttime','endtime'],'required']
+        ];
+    }
+
     public function getGoods(){
         return $this->hasOne(Goods::className(),['id'=>'gid']);
     }

@@ -9,7 +9,7 @@ class Activity extends ActiveRecord{
     }
 
     public function getGoods(){
-        return $this->hasOne(Goods::className(),['gid'=>'id']);
+        return $this->hasOne(Goods::className(),['id'=>'gid']);
     }
 
     public function getVote(){

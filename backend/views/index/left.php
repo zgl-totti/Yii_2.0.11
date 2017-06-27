@@ -59,13 +59,7 @@
                 <span><img src="<?=\yii\helpers\Url::to('@web/images/leftico01.png')?>" /></span>系统管理
             </div>
             <ul class="menuson">
-                <li class="active">
-                    <div class="header">
-                        <cite></cite>
-                        <a href="<?=\yii\helpers\Url::to(['vote/index'])?>" target="rightFrame">投票系统</a>
-                        <i></i>
-                    </div>
-                </li>
+
                 <li>
                     <div class="header">
                         <cite></cite>
@@ -267,21 +261,28 @@
                 <li class="active">
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('User/UserList')}" target="rightFrame">限时抢购</a>
+                        <a href="<?=\yii\helpers\Url::to(['sale/index'])?>" target="rightFrame">限时抢购</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('BrandAdd/UserAdd')}" target="rightFrame">节日狂欢</a>
+                        <a href="<?=\yii\helpers\Url::to(['sale/vote'])?>" target="rightFrame">投票系统</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('BrandAdd/UserAdd')}" target="rightFrame">十年店庆</a>
+                        <a href="<?=\yii\helpers\Url::to(['sale/activity','activity'=>2])?>" target="rightFrame">节日狂欢</a>
+                        <i></i>
+                    </div>
+                </li>
+                <li>
+                    <div class="header">
+                        <cite></cite>
+                        <a href="<?=\yii\helpers\Url::to(['sale/activity','activity'=>3])?>" target="rightFrame">十年店庆</a>
                         <i></i>
                     </div>
                 </li>
@@ -404,14 +405,14 @@
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Sale/add')}" target="rightFrame">竞价记录</a>
+                        <a href="<?=\yii\helpers\Url::to(['auction/bidding'])?>" target="rightFrame">竞价记录</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Admin/Sale/add')}" target="rightFrame">成交记录</a>
+                        <a href="<?=\yii\helpers\Url::to(['auction/bargain'])?>" target="rightFrame">成交记录</a>
                         <i></i>
                     </div>
                 </li>
