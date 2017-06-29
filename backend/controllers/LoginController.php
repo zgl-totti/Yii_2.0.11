@@ -20,6 +20,20 @@ class LoginController extends Controller{
         ];
     }
 
+    /**清除公共布局
+     * (non-PHPdoc)
+     *  * @see \yii\web\Controller::beforeAction()
+     *  */
+    /*public function beforeAction($action){
+        if(!parent::beforeAction($action)){
+            return false;
+        }
+        if($action->id=='login' or $action->id=='reset'){
+            $this->layout=false;
+        }
+        return true;
+    }*/
+
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){
             $admin= new Admin();

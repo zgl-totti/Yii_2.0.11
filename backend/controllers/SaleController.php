@@ -9,8 +9,8 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 
 class SaleController extends BaseController{
-    public $layout=false;
-    public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+    public $layout = false;
+    public $enableCsrfValidation = false;  //关闭防御csrf的攻击机制;
 
     //抢购
     public function actionIndex(){

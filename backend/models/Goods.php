@@ -15,4 +15,8 @@ class Goods extends ActiveRecord{
     public function getBrand(){
         return $this->hasOne(Brand::className(),['id'=>'bid']);
     }
+
+    public function getPics(){
+        return $this->hasMany(GoodsPic::className(),['gid'=>'id']);
+    }
 }

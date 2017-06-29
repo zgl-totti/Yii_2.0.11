@@ -175,39 +175,54 @@
         $(function(){
             $('.operate').click(function(){
                 var id=$(this).attr('id');
-                $.post("<?=\yii\helpers\Url::to(['goods/operate'])?>",{id:id},function(res){
-                    if(res.code==1){
-                        layer.msg(res.body,{icon:6,time:2000},function(){
-                            location="<?=\yii\helpers\Url::to(['goods/index'])?>";
-                        })
-                    }else{
-                        layer.msg(res.body,{icon:5,time:2000})
-                    }
-                },'json')
+                layer.confirm("确定要改变状态吗?",{
+                    icon:3,
+                    title:'提示'
+                },function() {
+                    $.post("<?=\yii\helpers\Url::to(['goods/operate'])?>", {id: id}, function (res) {
+                        if (res.code == 1) {
+                            layer.msg(res.body, {icon: 6, time: 2000}, function () {
+                                location = "<?=\yii\helpers\Url::to(['goods/index'])?>";
+                            })
+                        } else {
+                            layer.msg(res.body, {icon: 5, time: 2000})
+                        }
+                    }, 'json')
+                })
             })
             $('.recycle').click(function(){
                 var id=$(this).attr('id');
-                $.post("<?=\yii\helpers\Url::to(['goods/recycle'])?>",{id:id},function(res){
-                    if(res.code==1){
-                        layer.msg(res.body,{icon:6,time:2000},function(){
-                            location="<?=\yii\helpers\Url::to(['goods/index'])?>";
-                        })
-                    }else{
-                        layer.msg(res.body,{icon:5,time:2000})
-                    }
-                },'json')
+                layer.confirm("确定要加入回收站吗?",{
+                    icon:3,
+                    title:'提示'
+                },function() {
+                    $.post("<?=\yii\helpers\Url::to(['goods/add-recycle'])?>", {id: id}, function (res) {
+                        if (res.code == 1) {
+                            layer.msg(res.body, {icon: 6, time: 2000}, function () {
+                                location = "<?=\yii\helpers\Url::to(['goods/index'])?>";
+                            })
+                        } else {
+                            layer.msg(res.body, {icon: 5, time: 2000})
+                        }
+                    }, 'json')
+                })
             })
             $('.del').click(function(){
                 var id=$(this).attr('id');
-                $.post("<?=\yii\helpers\Url::to(['goods/del'])?>",{id:id},function(res){
-                    if(res.code==1){
-                        layer.msg(res.body,{icon:6,time:2000},function(){
-                            location="<?=\yii\helpers\Url::to(['goods/index'])?>";
-                        })
-                    }else{
-                        layer.msg(res.body,{icon:5,time:2000})
-                    }
-                },'json')
+                layer.confirm("确定要完全删除吗?",{
+                    icon:3,
+                    title:'提示'
+                },function() {
+                    $.post("<?=\yii\helpers\Url::to(['goods/del'])?>", {id: id}, function (res) {
+                        if (res.code == 1) {
+                            layer.msg(res.body, {icon: 6, time: 2000}, function () {
+                                location = "<?=\yii\helpers\Url::to(['goods/index'])?>";
+                            })
+                        } else {
+                            layer.msg(res.body, {icon: 5, time: 2000})
+                        }
+                    }, 'json')
+                })
             })
         })
     </script>

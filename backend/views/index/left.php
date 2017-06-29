@@ -193,14 +193,14 @@
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Goods/index')}" target="rightFrame">用户评论</a>
+                        <a href="<?=\yii\helpers\Url::to(['goods/comment'])?>" target="rightFrame">用户评论</a>
                         <i></i>
                     </div>
                 </li>
                 <li>
                     <div class="header">
                         <cite></cite>
-                        <a href="{:U('Goods/addAct')}" target="rightFrame">商品回收站</a>
+                        <a href="<?=\yii\helpers\Url::to(['goods/recycle'])?>" target="rightFrame">商品回收站</a>
                         <i></i>
                     </div>
                 </li>
