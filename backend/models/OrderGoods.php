@@ -9,6 +9,10 @@ class OrderGoods extends ActiveRecord{
     }
 
     public function getGoods(){
-        return $this->hasMany(Goods::className(),['id'=>'gid']);
+        return $this->hasOne(Goods::className(),['id'=>'gid']);
+    }
+
+    public function getOrder(){
+        return $this->hasOne(Order::className(),['id'=>'oid']);
     }
 }
