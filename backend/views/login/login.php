@@ -31,10 +31,10 @@
             })
         });
     </script>
-    <style type="text/css">
+    <!--<style type="text/css">
         .loginbox ul li label{padding-left: 0;font-size: 14px}
         .form-control{width: 300px;height: 40px;border: 1px solid blue;}
-    </style>
+    </style>-->
 </head>
 <body style="background-color:#1c77ac; background-image:url(../../web/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
     <div id="mainBody">
@@ -58,22 +58,18 @@
             <div class="loginbox loginbox1">
                 <ul>
                     <li style="position: relative">
-                        <?=$form->field($info,'username');?>
+                        <?=$form->field($info,'username')->textInput();?>
                     </li>
                     <li style="position: relative">
-                        <?=$form->field($info,'password');?>
+                        <?=$form->field($info,'password')->passwordInput();?>
                     </li>
-                    <!--<li class="yzm"  style="position: relative">
-                        <span><input class="yzm" name="verify" type="text" placeholder="验证码" /></span>
-                        <cite><img style="width: 120px; height:46px ;cursor: pointer" src="" alt="验证码"/></cite>
-                    </li>-->
                     <li>
                         <?= $form->field($info, 'captcha')
                             ->widget(\yii\captcha\Captcha::className(),[
                                 'captchaAction'=>'login/captcha',
                                 'imageOptions'=>['alt'=>'点击换图','style'=>'cursor:pointer'],
-                                'options'=>['placeholder'=>'验证码']
-                            ])->label(false); ?>
+                                //'options'=>['placeholder'=>'验证码']
+                            ]); ?>
                     </li>
                     <li>
                         <?=\yii\helpers\Html::button('确定',['class' => 'btn'])?>

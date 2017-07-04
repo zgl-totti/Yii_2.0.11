@@ -12,8 +12,6 @@ class Admin extends ActiveRecord{
     public function rules(){
         return [
             [['username','password','captcha'],'required','message'=>"{attribute}不能为空"],
-            /*['password','validatePassword']*/
-            //[['username'],'max'=>'12','min'=>'6','tooLong'=>"{attrbute}不能大于12个字符",'tooShort'=>"{attribute}不能小于6个字符"]
             //['captcha','captcha']
         ];
     }

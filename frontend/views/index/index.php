@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>网站首页</title>
+    <link rel="shortcut icon" href="<?=\yii\helpers\Url::to('@web/uploads/minilogo.ico')?>" type="image/x-icon">
 
     <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/common.css')?>
     <?=\yii\helpers\Html::cssFile('@web/fonts/iconfont.css')?>
-    <?=\yii\helpers\Html::cssFile('@web/uploads/minilogo.ico')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery-1.9.1.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.SuperSlide.2.1.1.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/common_js.js')?>

@@ -25,7 +25,7 @@ class IndexController extends Controller{
         $order=$this->getOrderList();
         $news=News::find()->where(['isshow'=>1])->limit(6)->orderBy('addtime desc')->asArray()->all();
         $hot=Goods::find()->where(['display'=>1,'activity'=>1])->orderBy('salenum desc')->limit(8)->asArray()->all();
-        $avtivity=Activity::find()->joinWith('goods')->limit(5)->asArray()->all();
+        $activity=Activity::find()->joinWith('goods')->limit(5)->asArray()->all();
         $advertise=$this->getAdvertise();
         $list['a']=$this->getGoodsList(1);
         $list['b']=$this->getGoodsList(2);
@@ -41,7 +41,7 @@ class IndexController extends Controller{
             'news'=>$news,
             'order'=>$order,
             'hot'=>$hot,
-            'activity'=>$avtivity,
+            'activity'=>$activity,
             'advertise'=>$advertise,
             'list'=>$list,
             'like'=>$like,

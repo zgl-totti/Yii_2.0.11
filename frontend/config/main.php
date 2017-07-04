@@ -41,6 +41,7 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            //'suffix'=>'.asp', //后缀
             'rules' => [
             ],
         ],
