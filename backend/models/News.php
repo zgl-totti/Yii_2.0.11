@@ -13,4 +13,8 @@ class News extends ActiveRecord{
             [['title','author','content'],'required']
         ];
     }
+
+    public function getComment(){
+        return $this->hasMany(NewsComment::className(),['nid'=>'id']);
+    }
 }

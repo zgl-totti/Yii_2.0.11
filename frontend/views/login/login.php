@@ -7,7 +7,7 @@
     <?=\yii\helpers\Html::cssFile('@web/css/styles.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/drag.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery-1.9.1.min.js')?>
-    <?=\yii\helpers\Html::jsFile('@web/js/login/drag.js')?>
+    <?=\yii\helpers\Html::jsFile('@web/js/drag.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/abc.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/layer/layer.js')?>
 
@@ -41,9 +41,6 @@
             </script>
 
             <div class="denglu">
-                <!--<div class="qq"><img src="__PUBLIC__/Home/images/qq.png"></div>
-                <div class="wb"><img src="__PUBLIC__/Home/images/wb.png"></div>
-                <div class="zfb"><img src="__PUBLIC__/Home/images/zfb.png"></div>-->
                 <span id="hzy_fast_login"></span>
             </div>
             <span style="margin-left:200px;color: red"><a href="<?=\yii\helpers\Url::to(['login/register'])?>">没有账号,去注册</a></span>
@@ -66,11 +63,11 @@
         $('.floating-btn').click(function() {
             $.post("<?=\yii\helpers\Url::to(['login/index'])?>", $(".form1").serialize(), function (res) {
                 if (res.code == 1) {
-                    layer.msg(res.info, {icon: 1, time: 1000}, function () {
+                    layer.msg(res.body, {icon: 1, time: 1000}, function () {
                         window.location.href = "<?=\yii\helpers\Url::to(['index/index'])?>";
                     });
                 } else {
-                    layer.msg(res.info, {icon: 2, time: 1000});
+                    layer.msg(res.body, {icon: 2, time: 1000});
                 }
             },'json');
         })

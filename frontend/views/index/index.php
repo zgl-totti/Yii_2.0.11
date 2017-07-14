@@ -234,12 +234,12 @@
         <input type="hidden" value="{$Think.session.mid}" id="islogin"/>
         <div id="top">
             <div class="Inside_pages">
-                <if condition="$Think.session.mid egt 1">
-                    <div class="Collection"><div class="time"><script>jQuery('.time').html(getText());</script>,{$Think.session.username} 欢迎光临！<em></em><a href="#" onclick="javascript:addFavorite2()"></span>收藏我们</a></div></div>
-                    <else/>
-                    <div class="Collection"><div class="time"><script>jQuery('.time').html(getText());</script>,欢迎光临！<em></em><a href="#" onclick="javascript:addFavorite2()">收藏我们</a></div></div>
-
-                </if>
+                <div class="Collection">
+                    <div class="time">
+                        <script>jQuery('.time').html(getText());</script>,<?=\yii\helpers\Html::encode($info)?\yii\helpers\Html::encode($info['username']):'';?> 欢迎光临！<em></em>
+                        <a href="#" onclick="javascript:addFavorite2()">收藏我们</a>
+                    </div>
+                </div>
                 <span id="hzy_fast_login"></span>
                 <script>
                     $(function () {
@@ -249,7 +249,7 @@
                             })
                         }else {
                             $('#hzy_fast_login').click(function () {
-                                alert('您以登录,可以更改快捷登录qq');
+                                alert('您已登录,可以更改快捷登录qq');
                             })
                         }
                     })
@@ -362,13 +362,13 @@
                 <div class="Navigation" id="Navigation">
                     <!--<ul class="Navigation_name">-->
                     <ul class="Navigation_name">
-                        <li id="sy"><a href="{:U('Home/Index/index')}">首页</a></li>
-                        <li id="cplb"><a href="{:U('Home/ProductList/showlist',array('bid'=>0,'minprice'=>0,'maxprice'=>0))}">产品列表</a></li>
-                        <li id="xsqg"><a href="{:U('Home/Sale/showlist')}">限时抢购</a><em class="hot_icon"></em></li>
-                        <li id="tptj"><a href="{:U('Home/Vote/showlist')}">投票统计</a></li>
-                        <li id="pmsc"><a href="{:U('Home/Auction/showlist')}">拍卖商城</a></li>
-                        <li id="jfdh"><a href="{:U('Home/Integral/showlist')}" target="_blank">积分兑换</a></li>
-                        <li id="lxwm"><a href="{:U('Home/Connect/showlist')}">联系我们</a></li>
+                        <li id="sy"><a href="<?=\yii\helpers\Url::to(['index/index'])?>">首页</a></li>
+                        <li id="cplb"><a href="<?=\yii\helpers\Url::to(['product/index'])?>">产品列表</a></li>
+                        <li id="xsqg"><a href="<?=\yii\helpers\Url::to(['sale/index'])?>">限时抢购</a><em class="hot_icon"></em></li>
+                        <li id="tptj"><a href="<?=\yii\helpers\Url::to(['vote/index'])?>">投票统计</a></li>
+                        <li id="pmsc"><a href="<?=\yii\helpers\Url::to(['auction/index'])?>">拍卖商城</a></li>
+                        <li id="jfdh"><a href="<?=\yii\helpers\Url::to(['integral/index'])?>" target="_blank">积分兑换</a></li>
+                        <li id="lxwm"><a href="<?=\yii\helpers\Url::to(['connect/index'])?>">联系我们</a></li>
                     </ul>
                 </div>
             </div>
@@ -437,7 +437,7 @@
                 <ul>
                     <?php foreach($brand as $v): ?>
                         <li style="width:218px;height:120px">
-                            <a href="<?=\yii\helpers\Url::to(['brand/index','bid'=>\yii\helpers\Html::encode($v['id'])])?>">
+                            <a href="<?=\yii\helpers\Url::to(['product/index','bid'=>\yii\helpers\Html::encode($v['id'])])?>">
                                 <img src="<?=\yii\helpers\Url::to('@web/uploads/brand/').\yii\helpers\Html::encode($v['logo']);?>" style="width:180px;height: 120px;">
                             </a>
                         </li>
@@ -482,7 +482,7 @@
                                 <?php foreach($news as $v): ?>
                                     <tr>
                                         <td style="width: 170px;line-height: 30px;border-bottom: 1px solid #ccc;text-align: center">
-                                            <a href="<?=\yii\helpers\Url::to(['news/index'])?>" target="_blank" ><?=mb_substr(\yii\helpers\Html::encode($v['title']),0,10,'utf-8')?></a>
+                                            <a href="<?=\yii\helpers\Url::to(['news/index','id'=>\yii\helpers\Html::encode($v['id'])])?>" target="_blank" ><?=mb_substr(\yii\helpers\Html::encode($v['title']),0,10,'utf-8')?></a>
                                         </td>
                                         <td style="width: 60px;line-height: 30px;border-bottom: 1px solid #ccc"><?=date('Y/m/d',\yii\helpers\Html::encode($v['addtime']))?></td>
                                     </tr>
@@ -776,19 +776,20 @@
             <p>蜀ICP备11017033号 Copyright ©2011 成都福际生物技术有限公司 All Rights Reserved. Technical support:CDDGG Group</p>
         </div>
     </div>
-    <!--右侧菜单栏购物车样式-->
 
+    <!--右侧菜单栏购物车样式-->
     <div class="fixedBox">
         <ul class="fixedBoxList">
             <li class="fixeBoxLi user">
-                <if condition="$mid neq 0">
-                    <a href="{:U('Personal/showlist')}">
+                <?php if(\yii\helpers\Html::encode($info)): ?>
+                    <a href="<?=\yii\helpers\Url::to(['member/index'])?>">
                         <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong>
                     </a>
-                    <else />
-                    <a href="{:U('Member/login')}">
-                       <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong></a>
-                </if>
+                <?php else: ?>
+                    <a href="<?=\yii\helpers\Url::to(['login/index'])?>">
+                        <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong>
+                    </a>
+                <?php endif;?>
             </li>
 
             <li class="fixeBoxLi Service "> <span class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
@@ -799,13 +800,12 @@
                         <dd> <strong style="float: left;top:12px;left: 30px;position: absolute">QQ客服1</strong>
                             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=591813762&site=qq&menu=yes">
                                 <img border="0" src="http://wpa.qq.com/pa?p=2:591813762:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-                        </dd><br><br>
+                        </dd>
+                        <br><br>
                         <dd> <strong style="float: left;top:52px;left: 30px;position: absolute">QQ客服2</strong>
                             <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=211663882&site=qq&menu=yes">
                                 <img border="0" style="" src="http://wpa.qq.com/pa?p=2:211663882:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
-                        <!--                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=591813766&site=qq&menu=yes">
-                                                    <img border="0" src="http://wpa.qq.com/pa?p=2:591813766:53" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>-->
-                       </dd>
+                        </dd>
                     </dl>
 
                 </div>
@@ -815,32 +815,44 @@
                 <div class="cartBox">
                     <div class="bjfff"></div>
                     <div class="QR_code">
-                        <p><img src="__PUBLIC__/Home/images/two-code.png" width="150px" height="150px" style=" margin-top:10px;" /></p>
+                        <p><img src="<?=\yii\helpers\Url::to('@web/images/two-code.png')?>" width="150px" height="150px" style=" margin-top:10px;" /></p>
                         <span style="color: #000">微信扫一扫，关注我们</span>
                     </div>
                 </div>
             </li>
             <li class="fixeBoxLi Home">
-                <if condition="$mid neq 0">
-                    <a href="{:U('Personal/collection')}"> <span class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong> </a>
-                    <else />
-                    <a href="{:U('Member/login')}"><span class="fixeBoxSpan iconfont  icon-shoucang"></span> <strong>收藏</strong></a>
-                </if>
+                <?php if(\yii\helpers\Html::encode($info)): ?>
+                    <a href="<?=\yii\helpers\Url::to(['member/collect'])?>">
+                        <span class="fixeBoxSpan iconfont icon-shoucang"></span> <strong>收藏</strong>
+                    </a>
+                <?php else: ?>
+                    <a href="<?=\yii\helpers\Url::to(['login/index'])?>">
+                        <span class="fixeBoxSpan iconfont icon-shoucang"></span> <strong>收藏</strong>
+                    </a>
+                <?php endif;?>
             </li>
             <li class="fixeBoxLi Home">
-                <if condition="$mid neq 0">
-                    <a href="{:U('Personal/foot')}"> <span class="fixeBoxSpan iconfont  icon-zuji"></span> <strong>足迹</strong> </a>
-                    <else />
-                    <a href="{:U('Member/login')}"><span class="fixeBoxSpan iconfont  icon-zuji"></span> <strong>足迹</strong></a>
-                </if>
+                <?php if(\yii\helpers\Html::encode($info)): ?>
+                    <a href="<?=\yii\helpers\Url::to(['member/footprint'])?>">
+                        <span class="fixeBoxSpan iconfont icon-zuji"></span> <strong>足迹</strong>
+                    </a>
+                <?php else: ?>
+                    <a href="<?=\yii\helpers\Url::to(['login/index'])?>">
+                        <span class="fixeBoxSpan iconfont icon-zuji"></span> <strong>足迹</strong>
+                    </a>
+                <?php endif;?>
             </li>
 
             <li class="fixeBoxLi Home">
-                <if condition="$mid neq 0">
-                    <a href="{:U('Personal/feedback')}"> <span class="fixeBoxSpan iconfont  icon-fankui"></span> <strong>反馈</strong> </a>
-                    <else />
-                    <a href="{:U('Member/login')}"><span class="fixeBoxSpan iconfont  icon-fankui"></span> <strong>反馈</strong></a>
-                </if>
+                <?php if(\yii\helpers\Html::encode($info)): ?>
+                    <a href="<?=\yii\helpers\Url::to(['member/feedback'])?>">
+                        <span class="fixeBoxSpan iconfont icon-fankui"></span> <strong>反馈</strong>
+                    </a>
+                <?php else: ?>
+                    <a href="<?=\yii\helpers\Url::to(['login/index'])?>">
+                        <span class="fixeBoxSpan iconfont icon-fankui"></span> <strong>反馈</strong>
+                    </a>
+                <?php endif;?>
             </li>
             <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan iconfont icon-top"></span> <strong>返回顶部</strong> </li>
         </ul>
@@ -898,9 +910,7 @@
                 return day + "天 " + hou + "小时 " + min + "分钟 " + sec + "秒";
             }
         }
-
     })
-
 </script>
 </html>
 

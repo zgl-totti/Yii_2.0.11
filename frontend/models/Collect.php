@@ -1,6 +1,7 @@
 <?php
 namespace frontend\models;
 
+use backend\models\Goods;
 use yii\db\ActiveRecord;
 
 class Collect extends ActiveRecord{
@@ -12,6 +13,10 @@ class Collect extends ActiveRecord{
         return [
             [['mid','gid','addtime'],'required']
         ];
+    }
+
+    public function getGoods(){
+        return $this->hasOne(Goods::className(),['id'=>'gid']);
     }
 
     public function collect($mid,$gid){

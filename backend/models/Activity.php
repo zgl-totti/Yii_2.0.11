@@ -15,4 +15,8 @@ class Activity extends ActiveRecord{
     public function getVote(){
         return $this->hasOne(Vote::className(),['id'=>'aid']);
     }
+
+    public function getPics(){
+        return $this->hasMany(GoodsPic::className(),['gid'=>'gid']);
+    }
 }
