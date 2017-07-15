@@ -1,16 +1,12 @@
-<layout name="Public/layout"/>
+
+
 <style type="text/css">
     .page{  float: right; margin-top: 20px; }
     .page a,.page span{  display: inline-block;  background: yellowgreen;  margin-left: 5px;  width: 24px;  height: 24px;  text-align: center;  line-height: 24px;  font-weight: bolder;  }
     .page span{background: #ececec;}
     .page a:hover{  background: #ececec;  }
 </style>
-<div class="i_bg bg_color">
-    <!--Begin 用户中心 Begin -->
-    <div class="m_content">
-        <include file="Public/user_left"/>
-        <div class="right_style">
-            <div class="info_content">
+
                 <!--积分样式-->
                 <div class="integral">
                     <div class="title_Section"><span>用户积分</span></div>
@@ -23,7 +19,7 @@
                         </div>
                         <div class="bd">
                             <ul>
-                                <div class="Integral_Number"><em></em>你当前的积分：<b>{$sum['credit']}</b></div>
+                                <div class="Integral_Number"><em></em>你当前的积分：<b><?=\yii\helpers\Html::encode($info['credit']?$info['credit']:0)?></b></div>
                                 <table>
                                     <thead>
                                     <tr class="thead_title">
@@ -34,22 +30,22 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <volist name="point" id="val" key="k">
+                                    <?php foreach($list1 as $v1): ?>
                                         <tr>
-                                            <td>{$val.order_syn}</td>
-                                            <td>￥{$val.order_price}</td>
-                                            <td>{:floor($val['order_price']/10)}</td>
-                                            <td>{:date('Y-m-d H:i:s',$val['addtime'])}</td>
+                                            <td><?=\yii\helpers\Html::encode($v1['order_syn'])?></td>
+                                            <td>￥<?=\yii\helpers\Html::encode($v1['order_price'])?></td>
+                                            <td><?=floor(\yii\helpers\Html::encode($v1['order_price'])/10)?></td>
+                                            <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v1['addtime']))?></td>
                                         </tr>
-                                    </volist>
+                                    <?php endforeach;?>
                                     </tbody>
                                 </table>
                                 <div class="Paging">
-                                    <div class="page">{$page}</div>
+                                    <div class="page"><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages1])?></div>
                                 </div>
                             </ul>
                             <ul>
-                                <div class="Integral_Number"><em></em>你兑换的积分：<b>{$usesum}</b></div>
+                                <div class="Integral_Number"><em></em>你兑换的积分：<b><?=\yii\helpers\Html::encode($sum?$sum:0)?></b></div>
                                 <table>
                                     <thead>
                                     <tr class="thead_title">
@@ -60,27 +56,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <volist name="usepoint" id="val" key="k">
+                                    <?php foreach($list2 as $k2=>$v2): ?>
                                         <tr>
-                                            <td>{$k}</td>
-                                            <td>{$val.goodsname|mb_substr=0,20,'utf-8'}</td>
-                                            <td><img src="__PUBLIC__/Admin/Uploads/goods/thumb100/100_{$val['pic']}"></td>
-                                            <td>{:date('Y-m-d H:i:s',$val['addtime'])}</td>
+                                            <td><?=$pages2->page*$pages2->pageSize+$k2+1;?></td>
+                                            <td><?=mb_substr(\yii\helpers\Html::encode($v2['goods']['goodsname']),0,20,'utf-8')?></td>
+                                            <td><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/thumb100/100_').\yii\helpers\Html::encode($v2['goods']['pic']);?>"></td>
+                                            <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v2['addtime']))?></td>
                                         </tr>
-                                    </volist>
+                                    <?php endforeach;?>
                                     </tbody>
                                 </table>
-                                <!--<div class="Paging">-->
-                                    <!--<div class="page">{$page}</div>-->
-                                <!--</div>-->
+                                <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages2])?>
                             </ul>
 
                         </div>
                     </div>
                     <script>jQuery(".slideTxtBox").slide({trigger:"click"});</script>
                 </div>
-            </div>
-        </div>
 
-        </div>
-    </div>

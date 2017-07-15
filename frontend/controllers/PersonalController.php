@@ -2,12 +2,17 @@
 namespace frontend\controllers;
 
 
+use backend\models\Auction;
+use backend\models\AuctionSuccess;
 use backend\models\Goods;
+use backend\models\GoodsComment;
 use backend\models\Member;
 use backend\models\Order;
 use backend\models\UploadForm;
 use frontend\models\Cart;
 use frontend\models\Collect;
+use frontend\models\Credit;
+use frontend\models\History;
 use frontend\models\Message;
 use yii\data\Pagination;
 use yii\helpers\Json;
@@ -110,35 +115,182 @@ class PersonalController extends BaseController{
     }
 
     public function actionCollect(){
-        $where['mid']=$this->mid;
-        $collect=Collect::find()->where($where);
-        $pages= new Pagination([
-            'pageSize'=>9,
-            'totalCount'=>$collect->count()
-        ]);
-        $list=$collect
-            ->joinWith('goods')
-            ->offset($pages->offset)
-            ->limit($pages->limit)
-            ->asArray()->all();
-        $num=$collect->count();
-        return $this->render('collect',['list'=>$list,'num'=>$num,'pages'=>$pages]);
+        if (\Yii::$app->request->isAjax) {
+            $id=\Yii::$app->request->post('id');
+            $row=Collect::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'收藏商品已删除']);
+            }else{
+                return Json::encode(['code'=>1,'body'=>'收藏商品删除失败']);
+            }
+        } else {
+            $where['mid'] = $this->mid;
+            $collect = Collect::find()->where($where);
+            $pages = new Pagination([
+                'pageSize' => 9,
+                'totalCount' => $collect->count()
+            ]);
+            $list = $collect
+                ->joinWith('goods')
+                ->offset($pages->offset)
+                ->limit($pages->limit)
+                ->asArray()->all();
+            $num = $collect->count();
+            return $this->render('collect', ['list' => $list, 'num' => $num, 'pages' => $pages]);
+        }
     }
 
     public function actionFootprint(){
-        return $this->render('footprint');
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $row=History::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'商品足迹已删除']);
+            }else{
+                return Json::encode(['code'=>1,'body'=>'删除失败']);
+            }
+        }else {
+            $where['mid'] = $this->mid;
+            $footprint = History::find()->where($where);
+            $pages = new Pagination([
+                'pageSize' => 9,
+                'totalCount' => $footprint->count()
+            ]);
+            $list = $footprint
+                ->joinWith('goods')
+                ->offset($pages->offset)
+                ->limit($pages->limit)
+                ->asArray()->all();
+            $num = $footprint->count();
+            return $this->render('footprint',['list' => $list, 'num' => $num, 'pages' => $pages]);
+        }
     }
 
     public function actionAuction(){
-        return $this->render('auction');
+        $where['a.mid']=$this->mid;
+        $auction=Auction::find()->alias('a')->where($where);
+        $pages1= new Pagination([
+            'pageSize'=>9,
+            'totalCount'=>$auction->count()
+        ]);
+        $list1=$auction->joinWith('auctionGoods ag')
+            ->innerJoin('shop_goods g','g.id=ag.gid')
+            ->select('a.*,g.goodsname,g.pic')
+            ->offset($pages1->offset)
+            ->limit($pages1->limit)
+            ->asArray()->all();
+        $success=AuctionSuccess::find()->alias('a')->where($where);
+        $pages2= new Pagination([
+            'pageSize'=>9,
+            'totalCount'=>$auction->count()
+        ]);
+        $list2=$success->joinWith('auctionGoods ag')
+            ->innerJoin('shop_goods g','g.id=ag.gid')
+            ->innerJoin('shop_auction_deposit d','d.mid=a.mid and d.ag_id=a.ag_id')
+            ->select('a.*,g.goodsname,g.pic,d.deposit')
+            ->offset($pages2->offset)
+            ->limit($pages2->limit)
+            ->asArray()->all();
+        return $this->render('auction',['pages1'=>$pages1,'list1'=>$list1,'pages2'=>$pages2,'list2'=>$list2]);
     }
 
     public function actionIntegral(){
-        return $this->render('integral');
+        $mid=$this->mid;
+        $where['mid']=$mid;
+        $order=Order::find()->where($where);
+        $pages1= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$order->count()
+        ]);
+        $list1=$order->offset($pages1->offset)->limit($pages1->limit)->asArray()->all();
+        $info=Member::findOne($mid);
+        $credit=Credit::find()->where($where);
+        $pages2= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$credit->count()
+        ]);
+        $list2=$credit->joinWith('goods')->offset($pages2->offset)->limit($pages2->limit)->asArray()->all();
+        $sum=$credit->sum('credit');
+        return $this->render('integral',['pages1'=>$pages1,'list1'=>$list1,'info'=>$info,'pages2'=>$pages2,'list2'=>$list2,'sum'=>$sum]);
     }
 
     public function actionComment(){
-        return $this->render('comment');
+        $mid=$this->mid;
+        $where['mid']=$mid;
+        $where['order_status']=4;
+        $order1=Order::find()->where($where);
+        $pages1= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$order1->count()
+        ]);
+        $list1=$order1->joinWith('orderGoods')
+            ->offset($pages1->offset)
+            ->limit($pages1->limit)
+            ->asArray()->all();
+        foreach($list1 as $k1=>$v1){
+            foreach($v1['orderGoods'] as $k2=>$v2){
+                $list1[$k1]['orderGoods'][$k2]['info']=Goods::find()->where(['id'=>$v2['gid']])->asArray()->one();
+            }
+        }
+        $where['order_status']=5;
+        $order2=Order::find()->where($where);
+        $pages2= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$order2->count()
+        ]);
+        $list2=$order2->joinWith('orderGoods')
+            ->offset($pages2->offset)
+            ->limit($pages2->limit)
+            ->asArray()->all();
+        foreach($list2 as $k1=>$v1){
+            foreach($v1['orderGoods'] as $k2=>$v2){
+                $list2[$k1]['orderGoods'][$k2]['info']=Goods::find()->where(['id'=>$v2['gid']])->asArray()->one();
+                $list2[$k1]['orderGoods'][$k2]['comment']=GoodsComment::find()->where(['gid'=>$v2['gid'],'mid'=>$mid])->asArray()->one();
+            }
+        }
+        return $this->render('comment',['pages1'=>$pages1,'list1'=>$list1,'pages2'=>$pages2,'list2'=>$list2]);
+    }
+
+    public function actionDelComment(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $row=GoodsComment::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'评论删除成功']);
+            }else{
+                return Json::encode(['code'=>1,'body'=>'评论删除失败']);
+            }
+        }
+    }
+
+    public function actionCommentGoods(){
+        if(\Yii::$app->request->isAjax){
+            $comment= new GoodsComment();
+            if($comment->load(\Yii::$app->request->post(),'') && $comment->validate()){
+                $gid=\Yii::$app->request->post('gid');
+                $mid=$this->mid;
+                $info=GoodsComment::findOne(['gid'=>$gid,'mid'=>$mid]);
+                if($info){
+                    return Json::encode(['code'=>5,'body'=>'你已经评价过了']);
+                }
+                $comment->addtime=time();
+                if($comment->save()){
+
+
+
+
+
+                }else{
+                    return Json::encode(['code'=>5,'body'=>'评价失败']);
+                }
+            }else{
+                return Json::encode(['code'=>5,'body'=>'必填项不能为空']);
+            }
+        }else{
+            $gid=\Yii::$app->request->get('gid');
+            $oid=\Yii::$app->request->get('oid');
+            return $this->renderPartial('commentGoods',['gid'=>$gid,'oid'=>$oid]);
+        }
     }
 
     public function actionDraw(){

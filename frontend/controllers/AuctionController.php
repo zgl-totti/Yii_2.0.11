@@ -4,9 +4,9 @@ namespace frontend\controllers;
 use backend\models\Advertise;
 use backend\models\Auction;
 use backend\models\AuctionGoods;
+use backend\models\AuctionSuccess;
 use frontend\models\Deposit;
 use frontend\models\Message;
-use frontend\models\Success;
 use yii\data\Pagination;
 use yii\helpers\Json;
 
@@ -69,7 +69,7 @@ class AuctionController extends BaseController{
                     $model->status=0;
                     $model->save();
 
-                    $success= new Success();
+                    $success= new AuctionSuccess();
                     $success->mid=$mid;
                     $success->ag_id=$ag_id;
                     $success->price=$auctionPrice;
@@ -162,10 +162,10 @@ class AuctionController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $id=\Yii::$app->request->post('id');
             $where['ag_id']=$id;
-            $info=Success::find()->where($where)->one();
+            $info=AuctionSuccess::find()->where($where)->one();
             if(!$info){
                 $auction=Auction::find()->where($where)->orderBy('auctionprice desc')->asArray()->one();
-                $success= new Success();
+                $success= new AuctionSuccess();
                 $success->mid=$auction['mid'];
                 $success->ag_id=$id;
                 $success->price=$auction['auctionprice'];

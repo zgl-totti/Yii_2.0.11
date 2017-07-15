@@ -15,4 +15,10 @@ class GoodsComment extends ActiveRecord{
     public function getMember(){
         return $this->hasOne(Member::className(),['id'=>'mid']);
     }
+
+    public function rules(){
+        return [
+            [['gid','commentcontent','start'],'required']
+        ];
+    }
 }

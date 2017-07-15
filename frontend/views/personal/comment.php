@@ -1,4 +1,4 @@
-<layout name="Public/layout"/>
+
 <style type="text/css">
     body,ul,li{margin: 0;padding: 0;list-style: none;}
     a{text-decoration: none;color: #000;font-size: 14px;}
@@ -41,12 +41,7 @@
     });
 </script>
 
-<div class="i_bg bg_color">
-    <!--Begin 用户中心 Begin -->
-    <div class="m_content">
-        <include file="Public/user_left"/>
-        <div class="right_style" style="margin-top: 10px;">
-            <div class="info_content" style="float: left;width:1000px;">
+
                 <!--评论-->
                 <div id="tabbox">
                     <ul class="tabs" id="tabs">
@@ -68,19 +63,44 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="list" id="val" key="k" empty="$empty">
+                                <?php foreach($list1 as $k1=>$v1): ?>
                                     <tr>
-                                        <td>{$k}</td>
-                                        <td><img src="__PUBLIC__/Admin/Uploads/goods/thumb100/100_{$val['pic']}" style="width: 50px;height: 50px;"></td>
-                                        <td>{$val.goodsname|mb_substr=0,20,'utf-8'}</td>
-                                        <td>{$val.price}</td>
-                                        <td>{$val.buynum}</td>
-                                        <td>{$val['price']*$val['buynum']}</td>
-                                        <td><a href="javascript:comment({$val['id']},{$val['oid']})" class="tablelink">我要评价</a></td>
+                                        <td><?=$pages1->pageSize*$pages1->page+$k1+1;?></td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/thumb100/100_').\yii\helpers\Html::encode($v2['info']['pic']);?>" style="width: 50px;height: 50px;"></li>
+                                            <?php endforeach;?>
+                                        </td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><?=mb_substr(\yii\helpers\Html::encode($v2['info']['goodsname']),0,20,'utf-8')?></li>
+                                            <?php endforeach;?>
+                                        </td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><?=\yii\helpers\Html::encode($v2['info']['price'])?></li>
+                                            <?php endforeach;?>
+                                        </td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><?=\yii\helpers\Html::encode($v2['buynum'])?></li>
+                                            <?php endforeach;?>
+                                        </td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><?=\yii\helpers\Html::encode($v2['buynum'])*\yii\helpers\Html::encode($v2['info']['price']);?></li>
+                                            <?php endforeach;?>
+                                        </td>
+                                        <td>
+                                            <?php foreach($v1['orderGoods'] as $v2): ?>
+                                                <li><a href="javascript:comment(<?=\yii\helpers\Html::encode($v2['gid'])?>,<?=\yii\helpers\Html::encode($v2['oid'])?>)" class="tablelink">我要评价</a></li>
+                                            <?php endforeach;?>
+                                        </td>
                                     </tr>
-                                </volist>
+                                <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages1])?>
                         </li>
 
                         <li id="tab2" class="tab_con">
@@ -98,29 +118,59 @@
                                 </tr>
                                 </thead>
                             <tbody>
-                                <volist name="aready" id="val" key="k" empty="$empty">
-                                    <tr>
-                                        <td>{$k}</td>
-                                        <td><img src="__PUBLIC__/Admin/Uploads/goods/thumb100/100_{$val['pic']}" style="width: 50px;height: 50px;"></td>
-                                        <td>{$val.goodsname|mb_substr=0,20,'utf-8'}</td>
-                                        <td>{$val.price}</td>
-                                        <td>{$val.buynum}</td>
-                                        <td>{$val['price']*$val['buynum']}</td>
-                                        <td>{$val.commentcontent|mb_substr = 0,10,'utf-8'}</td>
-                                        <td><a href="javascript:del({$val['id']})">删除</a>
-                                            <a href="{:U('Detail/detail',array('gid'=>$val['gid']))}">查看详情</a></td>
-                                    </tr>
-                                </volist>
-                           </tbody>
+                            <?php foreach($list2 as $k1=>$v1): ?>
+                                <tr>
+                                    <td><?=$pages2->pageSize*$pages2->page+$k1+1;?></td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/thumb100/100_').\yii\helpers\Html::encode($v2['info']['pic']);?>" style="width: 50px;height: 50px;"></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><?=mb_substr(\yii\helpers\Html::encode($v2['info']['goodsname']),0,20,'utf-8')?></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><?=\yii\helpers\Html::encode($v2['info']['price'])?></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><?=\yii\helpers\Html::encode($v2['buynum'])?></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><?=\yii\helpers\Html::encode($v2['buynum'])*\yii\helpers\Html::encode($v2['info']['price']);?></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li><?=mb_substr(\yii\helpers\Html::encode($v2['comment']['commentcontent']),0,10,'utf-8')?></li>
+                                        <?php endforeach;?>
+                                    </td>
+                                    <td>
+                                        <?php foreach($v1['orderGoods'] as $v2): ?>
+                                            <li>
+                                                <a href="javascript:del(<?=\yii\helpers\Html::encode($v2['id'])?>)">删除</a>
+                                                <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>$v2['gid']])?>">查看详情</a>
+                                            </li>
+                                        <?php endforeach;?>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>
+                            </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages2])?>
                         </li>
                     </ul>
                 </div>
-                </div>
-            </div>
-         </div>
-    </div>
-</div>
+
+
+
+
 <script>
     function comment(gid,oid){
         layer.open({
@@ -128,19 +178,18 @@
             title:'评价',
             skin:'demo-class',
             area: ['600px', '620px'],
-           content:"{:U('Personal/commentlist')}?gid="+gid+"&&oid="+oid
+            content:"<?=\yii\helpers\Url::to(['personal/comment-goods'])?>?gid="+gid+"&&oid="+oid
         });
     }
-    function del(mid){
+    function del(id){
         layer.confirm('是否删除',{icon:3,title:'删除'},function(){
-            $.get("{:U('Personal/del')}","mid="+mid,function(res){
-                if(res.status=="ok"){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Personal/comment')}";
+            $.post("<?=\yii\helpers\Url::to(['personal/del-comment'])?>",{id:id},function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:1000},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['personal/comment'])?>";
                     })
-                }else{layer.msg(res.msg,{icon:2,time:1000});}
+                }else{layer.msg(res.body,{icon:2,time:1000});}
             },'json')
-
         })
     }
 </script>

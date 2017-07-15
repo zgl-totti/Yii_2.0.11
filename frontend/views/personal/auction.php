@@ -1,4 +1,4 @@
-<layout name="Public/layout"/>
+
 <style type="text/css">
     body,ul,li{margin: 0;padding: 0;list-style: none;}
     a{text-decoration: none;color: #000;font-size: 14px;}
@@ -41,14 +41,9 @@
     });
 </script>
 
-<div class="i_bg bg_color">
-    <!--Begin 用户中心 Begin -->
-    <div class="m_content">
-        <include file="Public/user_left"/>
-        <div class="right_style" style="margin-top: 10px;">
-            <div class="info_content" style="float: left;width:1000px;">
+
                 <!--评论-->
-                <div id="tabbox">
+                <div id="tabbox" style="margin-top: 20px;">
                     <ul class="tabs" id="tabs">
                         <li><a href="#" tab="tab1">竞拍记录</a></li>
                         <li><a href="#" tab="tab2">已拍商品</a></li>
@@ -69,20 +64,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="myAuctionRecord" id="val1" key="k1">
+                                <?php foreach($list1 as $k1=>$v1): ?>
                                     <tr>
-                                        <td>{$k1}</td>
+                                        <td><?=$pages1->page*$pages1->pageSize+$k1+1;?></td>
                                         <td>
-                                            <img src="__PUBLIC__/Admin/Uploads/goods/{$val1['pic']}" style="width: 50px;height: 50px;">
+                                            <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v1['pic']);?>" style="width: 50px;height: 50px;">
                                         </td>
-                                        <td>{$val1['goodsname']|mb_substr=0,15,"utf-8"}</td>
-                                        <td>{$val1['auctionprice']}</td>
-                                        <td>{$val1['buynum']}</td>
-                                        <td>{:date('Y-m-d H:i:s',$val1['addtime'])}</td>
+                                        <td><?=mb_substr(\yii\helpers\Html::encode($v1['goodsname']),0,15,'utf-8')?></td>
+                                        <td><?=\yii\helpers\Html::encode($v1['auctionprice'])?></td>
+                                        <td>1</td>
+                                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v1['addtime']))?></td>
                                     </tr>
-                                </volist>
+                                <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages1])?>
                         </li>
 
                         <li id="tab2" class="tab_con">
@@ -100,68 +96,44 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="getAuctionGoods" id="val2" key="k2">
-                                    <form action="" method="post" id="auctionForm{$k2}">
-                                        <input name="total_price" value="{$val2['pay']}" type="hidden">
-                                        <input name="checkitems[]" value="{$val2['gid']}" type="hidden">
-                                        <input name="ag_id" value="{$val2['ag_id']}" type="hidden">
-                                        <input name="pay" value="{$val2['pay']}" type="hidden">
-                                        <input name="buynum{$val2['gid']}" value="{$val2['buynum']}" type="hidden">
+                                <?php foreach($list2 as $k2=>$v2): ?>
+                                    <form action="#" id="auctionForm<?=$k2?>">
+                                        <input name="checkitems[]" value="<?=\yii\helpers\Html::encode($v2['auctionGoods']['gid'])?>" type="hidden">
+                                        <input name="ag_id" value="<?=\yii\helpers\Html::encode($v2['ag_id'])?>" type="hidden">
+                                        <input name="pay" value="<?=\yii\helpers\Html::encode($v2['price'])-\yii\helpers\Html::encode($v2['deposit']);?>" type="hidden">
+                                        <input name="buynum" value="1" type="hidden">
                                     <tr>
-                                        <td>{$k2}</td>
-                                        <td><img src="__PUBLIC__/Admin/Uploads/goods/{$val2['pic']}" style="width: 50px;height: 50px;"></td>
-                                        <td>{$val2['goodsname']}</td>
-                                        <td>{$val2['price']}</td>
-                                        <td>{$val2['buynum']}</td>
-                                        <td>{$val2['deposit']}</td>
-                                        <td>{$val2['pay']}</td>
+                                        <td><?=$pages2->page*$pages2->pageSize+$k2+1;?></td>
+                                        <td><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v2['pic']);?>" style="width: 50px;height: 50px;"></td>
+                                        <td><?=\yii\helpers\Html::encode($v2['goodsname'])?></td>
+                                        <td><?=\yii\helpers\Html::encode($v2['price'])?></td>
+                                        <td>1</td>
+                                        <td><?=\yii\helpers\Html::encode($v2['deposit'])?></td>
+                                        <td><?=\yii\helpers\Html::encode($v2['price'])-\yii\helpers\Html::encode($v2['deposit']);?></td>
                                         <td>
-                                            <if condition="$val2['isshow'] eq 1">
-                                                <a href="javascript:pay({$k2})">去付款</a>
-                                                <else/>
-                                                <a href="{:U('Personal/order')}">查看订单</a>
-                                            </if>
+                                            <?php if(\yii\helpers\Html::encode($v2['isshow'])==1): ?>
+                                                <a href="javascript:pay(<?=$k2?>)">去付款</a>
+                                            <?php else: ?>
+                                                <a href="<?=\yii\helpers\Url::to(['personal/order'])?>">查看订单</a>
+                                            <?php endif;?>
                                         </td>
                                     </tr>
                                     </form>
-                                </volist>
+                                <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages2])?>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<script>
-    function comment(gid,oid){
-        layer.open({
-            type:2,
-            title:'评价',
-            skin:'demo-class',
-            content:"{:U('Personal/commentlist')}?gid="+gid+"&&oid="+oid
-        });
-    }
-    function del(mid){
-        layer.confirm('是否删除',{icon:3,title:'删除'},function(){
-            $.get("{:U('Personal/del')}","mid="+mid,function(res){
-                if(res.status=="ok"){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Personal/comment')}";
-                    })
-                }else{layer.msg(res.msg,{icon:2,time:1000});}
-            },'json')
 
-        })
-    }
+<script type="text/javascript">
     //去付款
     function pay(k){
-        $.post("{:U('Order/createOrder')}",$("#auctionForm"+k).serialize(),function(res){
-            if(res.status=="ok"){
+        $.post("<?=\yii\helpers\Url::to(['order/creat-order'])?>",$("#auctionForm"+k).serialize(),function(res){
+            if(res.code==1){
                 layer.msg(res.msg,{icon:1,time:2000},function(){
-                    window.location.href="{:U('Order/showlist')}?oid="+res.oid+"&pay="+res.pay;
+                    window.location.href="<?=\yii\helpers\Url::to(['order/index'])?>?oid="+res.oid+"&pay="+res.pay;
                 })
             }else{
                 layer.msg("付款失败，请稍后尝试",{icon:2,time:1000})
