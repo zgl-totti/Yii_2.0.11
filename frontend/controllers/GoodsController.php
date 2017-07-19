@@ -90,5 +90,4 @@ class GoodsController extends Controller{
             return Json::encode(['code'=>3]);
         }
     }
-
 }

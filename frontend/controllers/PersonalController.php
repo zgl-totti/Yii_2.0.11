@@ -2,8 +2,10 @@
 namespace frontend\controllers;
 
 
+use backend\models\Address;
 use backend\models\Auction;
 use backend\models\AuctionSuccess;
+use backend\models\Feedback;
 use backend\models\Goods;
 use backend\models\GoodsComment;
 use backend\models\Member;
@@ -11,7 +13,9 @@ use backend\models\Order;
 use backend\models\UploadForm;
 use frontend\models\Cart;
 use frontend\models\Collect;
+use frontend\models\CommentPic;
 use frontend\models\Credit;
+use frontend\models\Draw;
 use frontend\models\History;
 use frontend\models\Message;
 use yii\data\Pagination;
@@ -275,11 +279,27 @@ class PersonalController extends BaseController{
                 }
                 $comment->addtime=time();
                 if($comment->save()){
-
-
-
-
-
+                    $model= new UploadForm();
+                    $model->file=UploadedFile::getInstance($model,'file');
+                    if($model->file) {
+                        if ($model->validate()) {
+                            $model->file->saveAs('@web/uploads/member/' . $model->file->baseName . '.' . $model->file->extension);
+                            $pic= new CommentPic();
+                            $pic->mid=$mid;
+                            $pic->gid=$gid;
+                            $pic->addtime=time();
+                            $pic->picname = $model->file->baseName . $model->file->extension;
+                            if ($pic->save()) {
+                                return Json::encode(['code' => 1, 'body' => '评价成功']);
+                            } else {
+                                return Json::encode(['code' => 5, 'body' => '评价失败']);
+                            }
+                        } else {
+                            return Json::encode(['code' => 5, 'body' => $model->getErrors()]);
+                        }
+                    }else{
+                        return Json::encode(['code' => 1, 'body' => '评价成功']);
+                    }
                 }else{
                     return Json::encode(['code'=>5,'body'=>'评价失败']);
                 }
@@ -294,28 +314,172 @@ class PersonalController extends BaseController{
     }
 
     public function actionDraw(){
-        return $this->render('draw');
+        if(\Yii::$app->request->isAjax){
+            $str=trim(\Yii::$app->request->post('str'));
+            $where['addtime']=date('Y-m-d',time());
+            $where['mid']=$this->mid;
+            $info=Draw::findOne($where);
+            if($info){
+                return Json::encode(['code'=>5,'body'=>'亲,您今日已抽过奖,请明天再来吧!']);
+            }
+            $draw= new Draw();
+            $draw->mid=$where['mid'];
+            $draw->addtime=$where['addtime'];
+            $draw->text=$str;
+            if($draw->save()){
+                $member=Member::findOne($this->mid);
+                $num=substr($str,0,2);
+                $member->credit=$member['credit']+$num;
+                if($member->save()){
+                    return Json::encode(['code'=>1,'body'=>$str]);
+                }else{
+                    return Json::encode(['code'=>5,'body'=>'抽奖失败,请稍后再试!']);
+                }
+            }else{
+                return Json::encode(['code'=>5,'body'=>'抽奖失败,请稍后再试!']);
+            }
+        }else {
+            return $this->render('draw');
+        }
     }
 
     public function actionOrder(){
-        return $this->render('order');
+        $status=\Yii::$app->request->get('status');
+        if($status){
+            $where['order_status']=$status;
+        }else{
+            $where='';
+        }
+        $condition['mid']=$this->mid;
+        $order=Order::find()->alias('o')->where($where)->andWhere($condition);
+        $pages= new Pagination([
+            'pageSize'=>10,
+            'totalCount'=>$order->count()
+        ]);
+        $list=$order->joinWith('orderGoods og')
+            ->joinWith('status s')
+            ->offset($pages->offset)
+            ->limit($pages->limit)
+            ->orderBy('id desc')
+            ->asArray()->all();
+        foreach($list as $k1=>$v1){
+            foreach($v1['orderGoods'] as $k2=>$v2){
+                $list[$k1]['orderGoods'][$k2]['goods']=Goods::findOne($v2['gid']);
+            }
+        }
+        return $this->render('order',['pages'=>$pages,'list'=>$list]);
     }
 
     public function actionAddress(){
-        return $this->render('address');
+        $where['mid']=$this->mid;
+        $list=Address::find()->where($where)->asArray()->all();
+        return $this->render('address',['list'=>$list]);
     }
 
     public function actionFeedback(){
-        return $this->render('feedback');
+        if(\Yii::$app->request->isAjax){
+            $mid=$this->mid;
+            $content=trim(\Yii::$app->request->post('content'));
+            if(!$content){
+                return Json::encode(['code'=>5,'body'=>'反馈内容不能为空!']);
+            }
+            $where['mid']=$mid;
+            $where['content']=$content;
+            $info=Feedback::findOne($where);
+            if($info){
+                return Json::encode(['code'=>5,'body'=>'此信息你已经反馈过了,请耐心等待!']);
+            }
+            $feedback= new Feedback();
+            $feedback->mid=$mid;
+            $feedback->addtime=time();
+            $feedback->content=$content;
+            if($feedback->save()){
+                return Json::encode(['code'=>1,'body'=>'反馈成功!']);
+            }else{
+                return Json::encode(['code'=>5,'body'=>'反馈失败!']);
+            }
+        }else {
+            $where['mid']=$this->mid;
+            $feedback=Feedback::find()->where($where);
+            $pages= new Pagination([
+                'pageSize'=>10,
+                'totalCount'=>$feedback->count()
+            ]);
+            $list=$feedback->offset($pages->offset)->limit($pages->limit)->asArray()->all();
+            return $this->render('feedback',['pages'=>$pages,'list'=>$list]);
+        }
+    }
+
+    public function actionDelFeedback(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            $row=Feedback::findOne($id)->delete();
+            if($row){
+                return Json::encode(['code'=>1,'body'=>'删除成功!']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'删除失败!']);
+            }
+        }
     }
 
     public function actionMyCart(){
-        return $this->render('myCart');
+        $mid=$this->mid;
+        $where['mid']=$mid;
+        $list=Cart::find()->where($where)->joinWith('goods')->asArray()->all();
+        $condition['display']=1;
+        $recommend=Goods::find()->where($condition)->orderBy('salenum desc')->limit(10)->asArray()->all();
+        return $this->render('myCart',['list'=>$list,'recommend'=>$recommend]);
     }
 
     public function actionAccount(){
-        return $this->render('account');
+        $mid=$this->mid;
+        $info=Member::findOne($mid);
+        return $this->render('account',['info'=>$info]);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -822,8 +986,7 @@ class PersonalController extends BaseController{
                 }else{
                     $this->ajaxReturn(array('status'=>'error','msg'=>'抽奖失败,请稍后再试'));
                 }
-            }
-            elseif($find1 && $find1['addtime']!=date('Y-m-d',time())){
+            } elseif($find1 && $find1['addtime']!=date('Y-m-d',time())){
                 $map['addtime']=date('Y-m-d',time());
                 $map['text']=trim(I('post.str'));
                 $info2 =$draw->where(array('mid'=>session('mid')))->save($map);
@@ -840,9 +1003,9 @@ class PersonalController extends BaseController{
             }else{
                 $this->ajaxReturn(array('status'=>'not','msg'=>'亲,您今日已抽过,明天再来吧!'));
             }
+        } else {
+            $this->display();
         }
-        else
-        {$this->display();}
     }
 
 

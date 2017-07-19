@@ -47,27 +47,20 @@ class IntegralController extends BaseController{
 
 
 
-    public function ads(){
-
-            $pathInfo = M('Category')->where("id=1")->field('path')->select();
-            $path=$pathInfo[0]['path'];
-            $map['path']=(array('like',"{$path}%"));
-            $cateArr =  M('Category')->where($map)->field('id')->select();
-            $catestr='';
-            foreach ($cateArr as $k=>$v){
-                $catestr.=$v['id'].',';
-            }
-            $catestr=substr($catestr,0,-1);
-            $goods = M('Goods');
-            $where1['cid']=(array('in',"{$catestr}"));
-            $one = $goods->where($where1)->limit(6)->select();
-            /*$two =$this->getGoodslist(5);*/
-            $this->assign('one',$one);
-//            $this->assign('two',$two);
-        $this->display();
-    }
-    //去登陆
-    public function tologin(){
+    /*public function ads(){
+        $pathInfo = M('Category')->where("id=1")->field('path')->select();
+        $path=$pathInfo[0]['path'];
+        $map['path']=(array('like',"{$path}%"));
+        $cateArr =  M('Category')->where($map)->field('id')->select();
+        $catestr='';
+        foreach ($cateArr as $k=>$v){
+            $catestr.=$v['id'].',';
+        }
+        $catestr=substr($catestr,0,-1);
+        $goods = M('Goods');
+        $where1['cid']=(array('in',"{$catestr}"));
+        $one = $goods->where($where1)->limit(6)->select();
+        $this->assign('one',$one);
         $this->display();
     }
     //显示留言
@@ -87,8 +80,7 @@ class IntegralController extends BaseController{
         }
     }
     //收藏
-
-/*    public function collect(){
+    public function collect(){
         $collect=D('Collect');
         if(session('mid') && session('mid')>0){
             $col['mid']=session('mid');
@@ -110,5 +102,4 @@ class IntegralController extends BaseController{
             $this->ajaxReturn(array('status'=>4));
         }
     }*/
-    
 }

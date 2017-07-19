@@ -41,7 +41,7 @@ class LoginController extends Controller{
                 return Json::encode(['code'=>4,'body'=>'必填项不能为空']);
             }
         } else {
-            return $this->renderPartial('login');
+            return $this->renderPartial('index');
         }
     }
 
@@ -68,5 +68,9 @@ class LoginController extends Controller{
         }else{
             return $this->renderPartial('register');
         }
+    }
+
+    public function actionLogin(){
+        return $this->renderPartial('login');
     }
 }

@@ -368,7 +368,7 @@
                         <li id="tptj"><a href="<?=\yii\helpers\Url::to(['vote/index'])?>">投票统计</a></li>
                         <li id="pmsc"><a href="<?=\yii\helpers\Url::to(['auction/index'])?>">拍卖商城</a></li>
                         <li id="jfdh"><a href="<?=\yii\helpers\Url::to(['integral/index'])?>" target="_blank">积分兑换</a></li>
-                        <li id="lxwm"><a href="<?=\yii\helpers\Url::to(['connect/index'])?>">联系我们</a></li>
+                        <li id="lxwm"><a href="<?=\yii\helpers\Url::to(['index/connect'])?>">联系我们</a></li>
                     </ul>
                 </div>
             </div>
@@ -782,7 +782,7 @@
         <ul class="fixedBoxList">
             <li class="fixeBoxLi user">
                 <?php if(\yii\helpers\Html::encode($info)): ?>
-                    <a href="<?=\yii\helpers\Url::to(['member/index'])?>">
+                    <a href="<?=\yii\helpers\Url::to(['personal/index'])?>">
                         <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong>
                     </a>
                 <?php else: ?>
@@ -822,7 +822,7 @@
             </li>
             <li class="fixeBoxLi Home">
                 <?php if(\yii\helpers\Html::encode($info)): ?>
-                    <a href="<?=\yii\helpers\Url::to(['member/collect'])?>">
+                    <a href="<?=\yii\helpers\Url::to(['personal/collect'])?>">
                         <span class="fixeBoxSpan iconfont icon-shoucang"></span> <strong>收藏</strong>
                     </a>
                 <?php else: ?>
@@ -833,7 +833,7 @@
             </li>
             <li class="fixeBoxLi Home">
                 <?php if(\yii\helpers\Html::encode($info)): ?>
-                    <a href="<?=\yii\helpers\Url::to(['member/footprint'])?>">
+                    <a href="<?=\yii\helpers\Url::to(['personal/footprint'])?>">
                         <span class="fixeBoxSpan iconfont icon-zuji"></span> <strong>足迹</strong>
                     </a>
                 <?php else: ?>
@@ -845,7 +845,7 @@
 
             <li class="fixeBoxLi Home">
                 <?php if(\yii\helpers\Html::encode($info)): ?>
-                    <a href="<?=\yii\helpers\Url::to(['member/feedback'])?>">
+                    <a href="<?=\yii\helpers\Url::to(['personal/feedback'])?>">
                         <span class="fixeBoxSpan iconfont icon-fankui"></span> <strong>反馈</strong>
                     </a>
                 <?php else: ?>

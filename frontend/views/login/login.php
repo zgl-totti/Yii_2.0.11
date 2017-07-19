@@ -1,77 +1,54 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>欢迎您的到来</title>
-
-    <?=\yii\helpers\Html::cssFile('@web/css/styles.css')?>
-    <?=\yii\helpers\Html::cssFile('@web/css/drag.css')?>
-    <?=\yii\helpers\Html::jsFile('@web/js/jquery-1.9.1.min.js')?>
-    <?=\yii\helpers\Html::jsFile('@web/js/drag.js')?>
-    <?=\yii\helpers\Html::jsFile('@web/js/abc.js')?>
-    <?=\yii\helpers\Html::jsFile('@web/js/layer/layer.js')?>
-
+    <meta charset="UTF-8">
+    <title>小米登陆页面</title>
+    <style type="text/css">
+        input{ border: 0; }
+        body{ background-color: #f5f5f5; }
+        .zong{ width:450px; height: 400px; background-color: #fff; margin: 0 auto; position: relative;}
+        .neirong{ width: 358px; height: 420px; margin:50px auto;}
+        .logo{ text-align: center;}
+        .neirong h3{ text-align: center; }
+        .name{ width: 100%; height:40px; border: 1px solid #959595; color: #959595; font-size: 12px; margin-top: 10px;}
+        .submit{cursor:pointer; width: 100%; height: 40px; background-color: #ef5b00; text-align: center; line-height: 40px; font-size: 16px; color: #fff; margin-top: 30px; }
+        .zhuce a{color:grey;text-decoration: none;font-size: 12px;padding-right: 10px}
+        .di a{font-size: 12px;color: grey;text-decoration: none;}
+        .di p{font-size: 10px;color: grey;float: left;padding: 10px}
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.min.1.8.2.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/layer/layer.js"></script>
 </head>
 <body>
-<div class="login-top">
-    <div class="wrapper">
-        <span class="logo"><img src="<?=\yii\helpers\Url::to('@web/images/logo2.png')?>" alt=""></span>
-    </div>
-</div>
-<div class="zhu">
-    <img src="<?=\yii\helpers\Url::to('@web/images/zs.png')?>" alt="左上" class="zs">
-    <img src="<?=\yii\helpers\Url::to('@web/images/ys.png')?>" alt="右上" class="ys">
-
-    <div class="panel-lite">
-        <div class="img"><img src="<?=\yii\helpers\Url::to('@web/images/h1.png')?>" alt=""/></div>
-        <h4>用户登录</h4>
-        <form action="#" class="form1" autocomplete="off" >
-            <div class="form-group">
-                <input name="username" required="required" class="form-control" autocomplete="off" />
-                <label class="form-label" >用户名   </label>
-            </div>
-            <div class="form-group">
-                <input name="password" id="pwd" type="password" required="required" class="form-control"/>
-                <label class="form-label">密　码</label>
-            </div>
-
-            <div id="drag"></div>
-            <script type="text/javascript">
-                $('#drag').drag();
-            </script>
-
-            <div class="denglu">
-                <span id="hzy_fast_login"></span>
-            </div>
-            <span style="margin-left:200px;color: red"><a href="<?=\yii\helpers\Url::to(['login/register'])?>">没有账号,去注册</a></span>
-            <div>
-                <button class="floating-btn" type="button" ><i class="icon-arrow"></i></button>
-            </div>
+<div class="zong">
+    <div class="neirong">
+        <form action="" method="post" id="myform1">
+            <div class="logo" ><img src="__PUBLIC__/Home/images/tu.gif" style="height: 90px;margin-top: 20px"></div>
+            <h3>用户登陆</h3>
+            <input  class="name" type="text" name="username" placeholder="  邮箱 / 手机号 / 账号">
+            <input  class="name" type="password" name="password" placeholder="   密码">
+            <input class="submit" type="button" name="" value="立即提交">
+            <div class="wx"></div>
         </form>
     </div>
-    <img src="<?=\yii\helpers\Url::to('@web/images/zx.png')?>" alt="左下" class="zx">
-    <img src="<?=\yii\helpers\Url::to('@web/images/yx.png')?>" alt="右下" class="yx">
 </div>
-
-
-<div class="footer">
-    关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 广告服务 | 手机电商 | 友情链接 | 销售联盟 | 美食社区 | 热爱公益 | English Site<br>
-    <span>Copyright © 2004-2016  我爱我家wawj.com 版权所有</span>
-</div>
-<script>
-    $(function () {
-        $('.floating-btn').click(function() {
-            $.post("<?=\yii\helpers\Url::to(['login/index'])?>", $(".form1").serialize(), function (res) {
-                if (res.code == 1) {
-                    layer.msg(res.body, {icon: 1, time: 1000}, function () {
-                        window.location.href = "<?=\yii\helpers\Url::to(['index/index'])?>";
-                    });
-                } else {
-                    layer.msg(res.body, {icon: 2, time: 1000});
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $(".submit").click(function(){
+            $.post("{:U('Member/login')}",$("#myform1").serialize(),function(res){
+                if(res.status==1){
+                    layer.msg(res.info,{icon:1,time:1000},function(){
+//                        parent.layer.closeAll();
+                        parent.location.reload();
+                       // parent.location.href="{:U('Detail/detail')}";
+                    })
+                }else{
+                    layer.msg(res.info,{icon:2,time:1000})
                 }
-            },'json');
+            })
         })
     })
 </script>
-</body>
-</html>

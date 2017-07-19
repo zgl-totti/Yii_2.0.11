@@ -1,4 +1,4 @@
-<layout name="Public/layout"/>
+
 <style type="text/css">
     body,ul,li{margin: 0;padding: 0;list-style: none;}
     a{text-decoration: none;color: #000;font-size: 14px;}
@@ -42,12 +42,11 @@
     });
 </script>
 
-<div class="i_bg bg_color">
-    <!--Begin 用户中心 Begin -->
+<!--<div class="i_bg bg_color">
     <div class="m_content">
         <include file="Public/user_left"/>
         <div class="right_style" style="margin-top: 10px;">
-            <div class="info_content" style="float: left;width:1000px;">
+            <div class="info_content" style="float: left;width:1000px;">-->
                 <!--评论-->
                 <div id="tabbox">
                     <ul class="tabs" id="tabs">
@@ -60,7 +59,7 @@
 
 
                         <li id="tab1" class="tab_con">
-                            <form action="{:U('Personal/feedback')}" method="post" id="form1">
+                            <form action="#" id="form1">
                                 <div style="width: 400px;height:350px;margin-left: 70px;">
                                     <span style="font-size: 20px;">欢迎您对我们提出您的宝贵意见:</span>
                                     <div class="vocation">
@@ -87,16 +86,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <volist name="feedback" id="val" key="k" empty="$empty">
+                                    <?php foreach($list as $k=>$v): ?>
                                         <tr>
-                                            <td>{$k}</td>
-                                            <td>{$val.content|mb_substr=0,25,'utf-8'}</td>
-                                            <td>{:date('Y-m-d H:i:s',$val['addtime'])}</td>
-                                            <td><a href="javascript:feeddel({$val['feedback_id']})">删除</a></td>
+                                            <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                                            <td><?=mb_substr(\yii\helpers\Html::encode($v['content']),0,20,'utf-8')?></td>
+                                            <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
+                                            <td><a href="javascript:feeddel(<?=\yii\helpers\Html::encode($v['id'])?>)">删除</a></td>
                                         </tr>
-                                    </volist>
+                                    <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
                         </li>
 
                         <li id="tab3" class="tab_con">
@@ -110,39 +110,44 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <volist name="feedback" id="val" key="k" empty="$empty1">
+                                <?php foreach($list as $k=>$v): ?>
                                     <tr>
-                                        <td>{$k}</td>
-                                        <td>{:date('Y-m-d H:i:s',$val['addtime'])}</td>
-                                        <td>{$val.reply|mb_substr=0,40,'utf-8'}</td>
-                                        <td>{$val.feedback_admin}</td>
+                                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
+                                        <td><?=mb_substr(\yii\helpers\Html::encode($v['reply']),0,40,'utf-8')?></td>
+                                        <td><?=\yii\helpers\Html::encode($v['feedback_admin'])?></td>
                                     </tr>
-                                </volist>
+                                <?php endforeach;?>
                                 </tbody>
                             </table>
+                            <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
                         </li>
                     </ul>
                 </div>
-            </div>
+            <!--</div>
         </div>
     </div>
 </div>
-</div>
+</div>-->
 <script>
     /*删除操作*/
     function feeddel(fid){
         layer.confirm('是否删除',{icon:3,title:'删除'},function(){
-            $.get("{:U('Personal/feeddel')}","fid="+fid,function(res){
-                if(res.status=="ok"){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Personal/feedback')}";
+            $.post("<?=\yii\helpers\Url::to(['personal/del-feedback'])?>",{id:fid},function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:1000},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['personal/feedback'])?>";
                     })
-                }else{layer.msg(res.msg,{icon:2,time:1000});}
+                }else{
+                    layer.msg(res.body,{icon:2,time:1000});
+                }
             },'json')
         })
     }
     /*返回操作*/
-    function clickback(){location.href = "{:U('Personal/feedback')}";}
+    function clickback(){
+        location.href = "<?=\yii\helpers\Url::to(['personal/feedback'])?>";
+    }
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -172,12 +177,14 @@
     $(function(){
         $("#btn").click(function(){
             $('#form1').ajaxSubmit(function(res){
-                if(res.status=="ok")
-                {layer.msg(res.msg, {icon:1,time:1000},function(){
-                    location.href="{:U('Personal/feedback')}";
-                });}
-                else{layer.msg(res.msg, {icon:2,time:1000});}
-            })
+                if(res.code==1){
+                    layer.msg(res.msg, {icon:1,time:1000},function(){
+                        location.href="<?=\yii\helpers\Url::to(['personal/feedback'])?>";
+                    });
+                }else{
+                    layer.msg(res.msg, {icon:2,time:1000});
+                }
+            });
             return false;
         })
     })

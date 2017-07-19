@@ -1,9 +1,6 @@
 
-<layout name="Public/layout"/>
 
-<!--购物车样式-->
-<div class="Inside_pages clearfix">
-    <include file="Public/user_left"/>
+    <!--购物车样式-->
     <div class="shop_carts" style="float:left;width:900px;margin-top:-15px;">
         <div class="Shopping_list">
             <style>
@@ -11,7 +8,7 @@
                 #tab #nam{width:300px;}
             </style>
             <div class="shopping">
-                <form  method="post" action="{:U('Order/createOrder')}" id="cartForm">
+                <form method="post" action="#" id="cartForm">
                     <input type="hidden" name="total_price" id="totalprices" value="">
                     <table class="table_list" id="tab">
                         <tr class="tr">
@@ -23,32 +20,32 @@
                             <th class="xj">小计</th>
                             <th class="cz">操作</th>
                         </tr>
-                        <volist name="cartList" id="val1" key="k">
+                        <?php foreach($list as $k=>$v): ?>
                             <tr class="tr">
-                                <td class="checkbox"><input onclick="gettotalprice()" name="checkitems[]" type="checkbox" value="{$val1['gid']}" /></td>
+                                <td class="checkbox"><input onclick="gettotalprice()" name="checkitems[]" type="checkbox" value="<?=\yii\helpers\Html::encode($v['gid'])?>" /></td>
                                 <td class="name">
-                                    <div class="img"><a href="#"><img src="__PUBLIC__/Admin/Uploads/goods/{$val1['pic']}" /></a></div>
-                                    <div class="p_name"><a href="#">{$val1['goodsname']|mb_substr=0,20,'utf-8'}</a></div>
+                                    <div class="img"><a href="#"><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic']);?>" /></a></div>
+                                    <div class="p_name"><a href="#"><?=mb_substr(\yii\helpers\Html::encode($v['goods']['goodsname']),0,20,'utf-8')?></a></div>
                                 </td>
-                                <td class="scj sp"><span id="Original_Price_1">￥{$val1['marketprice']}</span></td>
-                                <td class="bgj sp" ><span class="price_item_1" id="price_item_1">{$val1['price']}</span></td>
+                                <td class="scj sp"><span id="Original_Price_1">￥<?=\yii\helpers\Html::encode($v['goods']['marketprice'])?></span></td>
+                                <td class="bgj sp" ><span class="price_item_1" id="price_item_1"><?=\yii\helpers\Html::encode($v['goods']['price'])?></span></td>
                                 <td class="sl">
                                     <div class="Numbers">
-                                        <a onClick="setAmount.reduce('#qty_item_1')" href="javascript:jian({$k})" class="jian">-</a>
-                                        <input onkeyup="chgnum(this)" type="text" id="buy-num{$k}" name="buynum{$val1['gid']}" value="{$val1['buynum']}" id="qty_item_1" onkeyup="setAmount.modify('#qty_item_1')" class="number_text">
-                                        <a onclick="setAmount.add('#qty_item_1')" href="javascript:jia({$k})" class="jia">+</a>
+                                        <a onClick="setAmount.reduce('#qty_item_1')" href="javascript:jian(<?=$k;?>)" class="jian">-</a>
+                                        <input onkeyup="chgnum(this)" type="text" id="buy-num<?=$k;?>" name="buynum<?=\yii\helpers\Html::encode($v['gid'])?>" value="<?=\yii\helpers\Html::encode($v['buynum'])?>" id="qty_item_1" onkeyup="setAmount.modify('#qty_item_1')" class="number_text">
+                                        <a onclick="setAmount.add('#qty_item_1')" href="javascript:jia(<?=$k;?>)" class="jia">+</a>
                                     </div>
                                 </td>
                                 <td class="xj" >
                                     <span class="total_item_1" ></span>
                                 </td>
                                 <td class="cz">
-                                    <p><a href="javascript:del({$val1['gid']})">删除</a><P>
-                                    <p><a id="collect" href="javascript:collect({$val1['gid']})">收藏该商品</a></p>
+                                    <p><a href="javascript:del(<?=\yii\helpers\Html::encode($v['id'])?>)">删除</a><P>
+                                    <p><a id="collect" href="javascript:collect(<?=\yii\helpers\Html::encode($v['gid'])?>)">收藏该商品</a></p>
                                     <!--<p><a style="display:none;" id="collect2" href="">已收藏</a></p>-->
                                 </td>
                             </tr>
-                        </volist>
+                        <?php endforeach;?>
                     </table>
                     <div class="sp_Operation clearfix">
                         <div class="select-all">
@@ -72,7 +69,7 @@
                             <div class="btn">
                                 <!--<a class="cartsubmit" href="javascript:sub()"></a>-->
                                 <a class="cartsubmit"></a>
-                                <a class="continueFind" href="{:U('Home/ProductList/showlist')}"></a>
+                                <a class="continueFind" href="<?=\yii\helpers\Url::to(['product/index'])?>"></a>
                             </div>
                         </div>
                     </div>
@@ -89,31 +86,30 @@
                 </div>
                 <div class="bd">
                     <ul>
-                        <volist name="recommendInfo" id="recommendList">
+                        <?php foreach($recommend as $v): ?>
                             <li class="recommend_info">
-                                <a href="{:U('Detail/detail',array('gid'=>$recommendList['id']))}" class="buy_btn">查看详情</a>
-                                <a href="{:U('Detail/detail',array('gid'=>$recommendList['id']))}" class="img"><img src="__PUBLIC__/Admin/Uploads/goods/{$recommendList['pic']}" width="160px" height="160px"/></a>
-                                <a href="{:U('Detail/detail',array('gid'=>$recommendList['id']))}" class="name">{$recommendList['goodsname']}</a>
-                                <h4><span class="Price"><i>RNB</i>{$recommendList['price']}</span></h4>
+                                <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>$v['id']])?>" class="buy_btn">查看详情</a>
+                                <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>$v['id']])?>" class="img"><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>" width="160px" height="160px"/></a>
+                                <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>$v['id']])?>" class="name"><?=\yii\helpers\Html::encode($v['goodsname'])?></a>
+                                <h4><span class="Price"><i>RNB</i><?=\yii\helpers\Html::encode($v['price'])?></span></h4>
                             </li>
-                        </volist>
+                        <?php endforeach;?>
                     </ul>
                 </div>
             </div>
             <script>jQuery(".recommend_list").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:6});</script>
         </div>
     </div>
-</div>
 <script type="text/javascript">
     $(function(){
         $(".cartsubmit").click(function(){
-            $.post("{:U('Order/createOrder')}",$("#cartForm").serialize(),function(res){
-                if(res.status=="ok"){
+            $.post("<?=\yii\helpers\Url::to(['order/create-order'])?>",$("#cartForm").serialize(),function(res){
+                if(res.code==1){
                     layer.msg(res.msg,{icon:1,time:1000},function(){
                         window.location.href="{:U('Order/showlist')}?oid="+res.oid;
                     })
-                }else if(res.status=="login"){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
+                }else if(res.code==5){
+                    layer.msg(res.body,{icon:1,time:1000},function(){
                         layer.open({
                             type:2,
                             title:"",
@@ -121,11 +117,11 @@
                             area:["480px","56%"],
                             shadeClose: true,
                             shade: 0.8,
-                            content:"{:U('Cart/tologin')}"
+                            content:"<?=\yii\helpers\Url::to(['login/login'])?>"
                         })
                     })
                 }else{
-                    layer.msg(res.msg,{icon:2,time:1000})
+                    layer.msg(res.body,{icon:2,time:1000})
                 }
             })
         })
@@ -212,26 +208,25 @@
     //删除
     function del(id){
         layer.confirm("确定要删除我吗?",{icon:3,btn:['确定','取消']},function(){
-            $.get("{:U('Home/Cart/del')}",{gid:id},function(res){
-                if(res.status=="ok"){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Home/Personal/myCart')}";
+            $.post("<?=\yii\helpers\Url::to(['cart/del'])?>",{id:id},function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:1000},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['personal/my-cart'])?>";
                     })
                 }else{
-                    layer.msg(res.msg,{icon:2,time:1000})
+                    layer.msg(res.body,{icon:2,time:1000});
                 }
             })
         })
     }
+
     //收藏
-    function collect(id){
-        $.get("{:U('Collect/addCollect')}",{gid:id},function(res){
-            if(res.status=="ok"){
-                layer.msg(res.msg,{icon:1,time:1000})
-            }else if(res.status=="error"){
-                layer.msg(res.msg,{icon:2,time:1000})
-            }else{
-                layer.alert(res.msg,{icon:3},function(){
+    function collect(gid){
+        $.post("<?=\yii\helpers\Url::to(['collect/add'])?>",{gid:gid},function(res){
+            if(res.code==1){
+                layer.msg(res.body,{icon:1,time:1000})
+            }else if(res.code==5){
+                layer.alert(res.body,{icon:3},function(){
                     layer.open({
                         type:2,
                         title:"",
@@ -239,9 +234,11 @@
                         area:["480px","56%"],
                         shadeClose: true,
                         shade: 0.8,
-                        content:"{:U('Collect/tologin')}"
+                        content:"<?=\yii\helpers\Url::to(['login/login'])?>"
                     })
                 });
+            }else{
+                layer.msg(res.msg,{icon:2,time:1000})
             }
         })
     }

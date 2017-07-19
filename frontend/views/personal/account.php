@@ -1,10 +1,8 @@
 
-<layout name="Public/layout"/>
 <style>
     input{padding-left:10px;padding-right:10px;}
 </style>
-<div style="width: 1200px;margin-top:20px;">
-    <include file="Public/user_left"/>
+
     <div style="width:960px;float: left;height:800px;margin-top:-10px;">
         <div id="title" style="height:40px;line-height:40px;font-size:20px;margin-top:15px;padding-left:40px;">
             <span style="cursor:pointer;border-bottom:2px solid red;">修改密码</span>
@@ -15,11 +13,11 @@
             <div class="content" style="display:block;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
                 <span style="padding-left:30px;line-height:40px;font-size:16px;color:red;font-weight: bolder">设置登录密码:</span>
                 <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="{:U('Personal/editLoginPwd')}" method="post" id="accountForm1">
+                    <form action="#" method="post" id="accountForm1">
                     <div style="height:40px;margin-top:30px;">
                         <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">用户名:</span>
                         <span style="padding-left:30px;font-size:20px;color:red">
-                            {$memberInfo["username"]}
+                            <?=\yii\helpers\Html::encode($info->username);?>
                             <!--<input name="password" type="text">-->
                         </span>
                     </div>
@@ -46,18 +44,18 @@
             <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
                 <span style="padding-left:30px;line-height:40px;font-size:16px;color:green;font-weight: bolder">余额查看:</span>
                 <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="{:U('Personal/accountAdd')}" method="post" id="accountForm3">
+                    <form action="#" method="post" id="accountForm3">
                         <div style="height:40px;margin-top:30px;">
                             <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">账号:</span>
                         <span style="padding-left:30px;font-size:20px;color:green">
-                             {$memberInfo["username"]}
+                            <?=\yii\helpers\Html::encode($info->username);?>
                             <!--<input name="password" type="text">-->
                         </span>
                         </div>
                         <div style="height:40px;margin-top:10px;">
                             <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">余额:</span>
                         <span style="padding-left:30px;font-size:20px;color:red">
-                             {$memberInfo["money"]}
+                            <?=\yii\helpers\Html::encode($info->money);?>
                             <!--<input disabled="disabled" name="password" type="text">-->
                         </span>
                         </div>
@@ -87,11 +85,11 @@
             <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
                 <span style="padding-left:30px;line-height:40px;font-size:16px;color:blue;font-weight: bolder">设置支付密码:</span>
                 <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="{:U('Personal/editPayPwd')}" method="post" id="accountForm2">
+                    <form action="#" method="post" id="accountForm2">
                     <div style="height:40px;margin-top:30px;">
                         <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">用户名:</span>
                         <span style="padding-left:30px;font-size:20px;color:blue">
-                            {$memberInfo["username"]}
+                            <?=\yii\helpers\Html::encode($info->username);?>
                             <!--<input name="password" type="text">-->
                         </span>
                     </div>
@@ -117,10 +115,10 @@
             </div>
         </div>
     </div>
-</div>
+
 <div style="clear:both"></div>
-<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.validate.js"></script>
-<script>
+<?=\yii\helpers\Html::jsFile('@web/js/jquery.validate.js')?>
+<script type="text/javascript">
     $(function(){
         var Obj=$("#accountForm1").validate({
             rules:{
@@ -161,15 +159,15 @@
         //修改登录密码
         $("#editlogin").click(function(){
             if(Obj.form()){
-                $.post("{:U('Personal/editLoginPwd')}",$("#accountForm1").serialize(),function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:2000},function(){
-                            window.location.href="{:U('Personal/safety')}";
+                $.post("<?=\yii\helpers\Url::to(['account/change-pwd'])?>",$("#accountForm1").serialize(),function(res){
+                    if(res.code==1){
+                        layer.msg(res.body,{icon:1,time:2000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['personal/account'])?>";
                         })
                     }else{
-                        layer.msg(res.msg,{icon:2,time:2000})
+                        layer.msg(res.body,{icon:2,time:2000});
                     }
-                })
+                },'json')
             }
         })
     })
@@ -214,28 +212,28 @@
         //修改支付密码
         $("#editpay").click(function(){
             if(Obj.form()){
-                $.post("{:U('Personal/editPayPwd')}",$("#accountForm2").serialize(),function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:2000},function(){
-                            window.location.href="{:U('Personal/safety')}";
+                $.post("<?=\yii\helpers\Url::to(['account/pay-pwd'])?>",$("#accountForm2").serialize(),function(res){
+                    if(res.code==1){
+                        layer.msg(res.body,{icon:1,time:2000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['personal/account'])?>";
                         })
                     }else{
-                        layer.msg(res.msg,{icon:2,time:2000})
+                        layer.msg(res.body,{icon:2,time:2000});
                     }
-                })
+                },'json')
             }
         })
         //余额充值
         $("#accountAdd").click(function(){
-                $.post("{:U('Personal/accountAdd')}",$("#accountForm3").serialize(),function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:2000},function(){
-                            window.location.href="{:U('Personal/safety')}";
-                        })
-                    }else{
-                        layer.msg(res.msg,{icon:2,time:2000})
-                    }
-                })
+            $.post("<?=\yii\helpers\Url::to(['account/recharge'])?>",$("#accountForm3").serialize(),function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:2000},function(){
+                        window.location.href="<?=\yii\helpers\Url::to(['personal/account'])?>";
+                    })
+                }else{
+                    layer.msg(res.body,{icon:2,time:2000});
+                }
+            },'json')
         })
     })
 </script>

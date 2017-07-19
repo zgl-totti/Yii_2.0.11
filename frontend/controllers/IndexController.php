@@ -120,6 +120,9 @@ class IndexController extends Controller{
         return $article;
     }
 
+    public function actionConnect(){
+        return $this->render('connect');
+    }
 
 
 
@@ -127,7 +130,9 @@ class IndexController extends Controller{
 
 
 
-    public function index(){
+
+
+    /*public function index(){
         $goodslist1=$this->getGoodslist(1);
         $goodslist2=$this->getGoodslist(2);
         $goodslist3=$this->getGoodslist(3);
@@ -143,9 +148,7 @@ class IndexController extends Controller{
                     $sum+=$v1;
                 }
             }
-        }
-        else{
-//                $abc=$_SESSION['mycart'];
+        }else{
             $abc=session("mycart");
                 $sum = '0';
                 foreach ($abc as $k=>$v){
@@ -158,13 +161,10 @@ class IndexController extends Controller{
         $this->assign('lastlist',$show);
         //循环商标
         $brand = M('Brand');
-//        改动第二处
-       /* $bpic = $brand->field('logo')->limit(10)->select();*/
         $bpic = $brand->limit(10)->select();
-//            改动结束
         $activity =M('Goods');
         $act = M('Activity');
-//        第一排促销活动
+        //第一排促销活动
         $firsttj = $activity->order('addtime desc')->where(array("activity"=>0,'display'=>1))->limit(10)->select();
         //循环促销商品
         $h = $act->field('gid,endtime')->limit(5)->select();
@@ -189,7 +189,6 @@ class IndexController extends Controller{
                 $firstcate[$k]['second'][$k1]['third'] = $cate->where(array('pid'=>$v1['id'],'active'=>1))->select();
             }
         }
-
         //猜我喜欢
         $like = $activity->order('clicknum desc')->limit(6)->select();
         //获取session
@@ -198,7 +197,6 @@ class IndexController extends Controller{
         $this->assign('mid',$mid);
         $this->assign('like',$like);
         $this->assign('firstcate',$firstcate);
-//        $this->assign('secondcate',);
         $this->assign('sumlist',$sumlist);
         $this->assign('tjlist',$tjlist);
         $this->assign('firsttj',$firsttj);
@@ -207,7 +205,7 @@ class IndexController extends Controller{
         $this->assign('goodslist2',$goodslist2);
         $this->assign('goodslist3',$goodslist3);
         $this->assign('goodslist4',$goodslist4);
-        /*广告部分*/
+        //广告部分
         $where['top']=array('neq',0);
         $ads=M('Ads');
         $where['adposition']=0;
@@ -233,11 +231,8 @@ class IndexController extends Controller{
         $articleInfo=A('Home/Article')->article();
         $this->assign('articleInfo',$articleInfo);
         $this->display();
-
     }
-
-
-/*广告页面*/
+    //广告页面
     public function ads(){
         $list1= $this->getGoodslist(3);
         $list2 =$this->getGoodslist(5);
@@ -249,30 +244,27 @@ class IndexController extends Controller{
         $this->assign('list4',$list4);
         $this->display();
     }
-/**/
-     public function buyCart()
-     {
-         $cart = M('cart');
-         $goods=D("Goods");
-             if (session("mid") && session("mid") > 0) {
-                 $user["mid"]=session("mid");
-                 $ceshi=$cart->where($user)->field('id')->select();
-                 if ($ceshi){
-                 $data=$cart->where($user)
-                 ->join('shop_goods ON shop_cart.gid=shop_goods.id')
-                 ->select();
-                 echo json_encode($data);
-                 }
-             }else{
-//                 foreach(array_reverse($_SESSION["mycart"]) as $k=>$v){
-                   foreach(array_reverse(session("mycart")) as $k=>$v){
-                     $data[$k]=$goods->getSessionGoods($v["gid"]);
-                     $data[$k]["gid"]=$v["gid"];
-                     $data[$k]["buynum"]=$v["buynum"];
-                 }
-                 echo json_encode($data);
-             }
-     }
+    public function buyCart(){
+        $cart = M('cart');
+        $goods=D("Goods");
+        if (session("mid") && session("mid") > 0) {
+            $user["mid"]=session("mid");
+            $ceshi=$cart->where($user)->field('id')->select();
+            if ($ceshi){
+                $data=$cart->where($user)
+                    ->join('shop_goods ON shop_cart.gid=shop_goods.id')
+                    ->select();
+                echo json_encode($data);
+            }
+        }else{
+            foreach(array_reverse(session("mycart")) as $k=>$v){
+                $data[$k]=$goods->getSessionGoods($v["gid"]);
+                $data[$k]["gid"]=$v["gid"];
+                $data[$k]["buynum"]=$v["buynum"];
+            }
+            echo json_encode($data);
+        }
+    }
     public function buycar(){
         $cart=M('cart');
         if (session("mid") && session("mid") > 0){
@@ -281,5 +273,5 @@ class IndexController extends Controller{
             $this->assign('buynum',$dat);
             $this->display('Home/Index/index');
         }
-    }
+    }*/
 }
