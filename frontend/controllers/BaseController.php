@@ -10,5 +10,6 @@ class BaseController extends Controller{
         $mid=\Yii::$app->session->get('mid');
         $info=Member::findOne($mid);
         \Yii::$app->view->params['info']=$info;
+        \Yii::$app->view->params['keywords']='';
     }
 }

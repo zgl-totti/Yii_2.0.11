@@ -9,7 +9,7 @@ use frontend\models\History;
 use yii\helpers\Json;
 use yii\web\Controller;
 
-class GoodsController extends Controller{
+class GoodsController extends BaseController{
     public $mid;
     public function init(){
         parent::init();
@@ -87,7 +87,7 @@ class GoodsController extends Controller{
                 }
             }
         }else{
-            return Json::encode(['code'=>3]);
+            return Json::encode(['code'=>3,'body'=>'请先登录']);
         }
     }
 }

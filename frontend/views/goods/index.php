@@ -1,4 +1,6 @@
 
+
+
 <?=\yii\helpers\Html::jsFile('@web/js/jquery-1.9.1.min.js')?>
 <?=\yii\helpers\Html::jsFile('@web/js/echarts.min.js')?>
 
@@ -74,13 +76,13 @@
             //收藏
             function collect(id,val) {
                 $.post("<?=\yii\helpers\Url::to(['goods/collect'])?>", {id: id}, function (res) {
-                    if(res.status==3){
+                    if(res.code==3){
                         layer.confirm('您还未登陆哦', {
                             btn: ['登录','取消'] //按钮
                         }, function(){
                             window.location.href="<?=\yii\helpers\Url::to(['login/index'])?>";
                         });
-                    }else if(res.status==1){
+                    }else if(res.code==1){
                         layer.msg(res.msg,{icon:6,time:1000});
                         $(val).children("em").css({ "background-position": " 0 -438px" });
                         $(val).css({color:"red"})
@@ -141,16 +143,16 @@
         <!--推荐-->
         <div class="p_right_info">
             <div class="Brands">
-                <a href="javascript:text();"><img src="__PUBLIC__/Home/images/products/logo/chat.jpg"  width="120" height="60"/></a>
-                <script>
-
+                <a href="javascript:text();"><img src="<?=\yii\helpers\Url::to('@web/images/products/logo/chat.jpg')?>"  width="120" height="60"/></a>
+                <script type="text/javascript">
                     function text(){
                         layer.open({
                             type: 2,
                             shade: false,
                             area: ['700px', '660px'],
                             title:'聊天室',
-                            content: 'http://localhost:55151/',
+                            //content: 'http://localhost:55151/',
+                            content: "<?=\yii\helpers\Url::to(['chat-room/index'])?>",
                             zIndex: layer.zIndex, //重点1
                             success: function(layero){
                                 layer.setTop(layero); //重点2
@@ -399,7 +401,7 @@
 <input type="hidden" id="gid" value="{$gid}"/>
 <input type="hidden" id="mid" value="{$Think.session.mid}"/>
 <!--图片放大效果-->
-<script src="__PUBLIC__/Home/js/jqzoom.js" type="text/javascript"></script>
+<?=\yii\helpers\Html::jsFile('@web/js/jqzoom.js')?>
 <script language="javascript">
     function updatenum(type){
         var qty = parseInt(document.forms['ECS_FORMBUY'].elements['number'].value);
@@ -453,24 +455,28 @@
     }
     //加入购物车
     function addToCart(){
-        $.post("{:U('Cart/addtocart')}",$("#ECS_FORMBUY").serialize(),function(res){
-            if(res.status=="ok"){
-                layer.msg(res.msg,{icon:1,time:1000},function(){
-                    window.location.href="{:U('Cart/addtocart')}?gid="+{$detailInfo["id"]};
+        var gid=$('#gid').val();
+        $.post("<?=\yii\helpers\Url::to(['cart/add'])?>",$("#ECS_FORMBUY").serialize(),function(res){
+            if(res.code==1){
+                layer.msg(res.body,{icon:1,time:1000},function(){
+                    window.location.href="<?=\yii\helpers\Url::to(['cart/add'])?>?gid="+gid;
                 })
+            }else{
+                layer.msg(res.msg,{icon:2,time:1000});
             }
-        });
+        },'json');
     }
+
+
     //立即购买
     function addToBuy(){
         //判断用户是否登陆过
         var mid=$('#mid').val();
-        alert(111);
-        if( mid){
-            $.post("{:U('Order/toBuyCreateOrder')}",$("#ECS_FORMBUY").serialize(),function(res){
-                if(res.status=="ok"){
+        if(mid){
+            $.post("<?=\yii\helpers\Url::to(['order/create-order'])?>",$("#ECS_FORMBUY").serialize(),function(res){
+                if(res.code==1){
                     layer.msg(res.msg,{icon:1,time:1000},function(){
-                        window.location.href="{:U('Order/showlist')}?oid="+res.oid;
+                        window.location.href="<?=\yii\helpers\Url::to(['order/index'])?>oid="+res.oid;
                     })
                 }else{
                     layer.msg(res.msg,{icon:2,time:1000})
@@ -484,7 +490,7 @@
                 area:["480px","56%"],
                 shadeClose: true,
                 shade: 0.8,
-                content:"{:U('Detail/tologin')}"
+                content:"<?=\yii\helpers\Url::to(['login/login'])?>"
             })
         }
     }

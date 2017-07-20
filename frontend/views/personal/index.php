@@ -8,7 +8,7 @@
                 <h4>购物车数量 : <?=\yii\helpers\Html::encode($cart)?></h4>
             </a></li>
         <li class="Favorable" style="width: 170px;"><a href="<?=\yii\helpers\Url::to(['personal/level'])?>"><img src="<?=\yii\helpers\Url::to('@web/images/user_img_07.png')?>" /><h4><?=\yii\helpers\Html::encode($info['level']['level_name'])?></h4></a></li>
-        <li class="integral" style="width: 170px;"><a href="<?=\yii\helpers\Url::to(['personal/integral'])?>{:U('Personal/point')}"><img src="<?=\yii\helpers\Url::to('@web/images/user_img_06.png')?>" /><h4><?=\yii\helpers\Html::encode($info['credit'])?>分</h4></a></li>
+        <li class="integral" style="width: 170px;"><a href="<?=\yii\helpers\Url::to(['personal/integral'])?>"><img src="<?=\yii\helpers\Url::to('@web/images/user_img_06.png')?>" /><h4><?=\yii\helpers\Html::encode($info['credit'])?>分</h4></a></li>
     </ul>
 </div>
 <!--样式-->

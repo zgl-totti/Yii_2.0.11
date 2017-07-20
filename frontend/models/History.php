@@ -42,15 +42,14 @@ class History extends ActiveRecord{
                 ->orderBy('addtime desc')
                 ->asArray()
                 ->all();
-
         }else{
-            /*foreach(session() as $v1) {
-                foreach($v1 as $v2){
-                    $list[]=Goods::find()->where(['id'=>$v2['id']])->orderBy('addtime desc')->asArray()->one();
-                    $list=array_reverse($list);
-                }
-            }*/
             $list=[];
+            for($i=0;$i>0;$i++){
+                $list[]=\Yii::$app->session->get('gid_'.$i);
+            }
+            foreach($list as $k=>$v){
+                $list[$k]['goods']=Goods::findOne($v['value']);
+            }
         }
         return $list;
     }
@@ -62,9 +61,5 @@ class History extends ActiveRecord{
         $condition=['!=','id',$gid];
         $list=Goods::find()->where($where)->andWhere($condition)->asArray()->all();
         return $list;
-    }
-
-    public function collect(){
-
     }
 }

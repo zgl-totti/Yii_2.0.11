@@ -290,13 +290,21 @@
             <div class="logo"><a href="#"><img src="<?=\yii\helpers\Url::to('@web/images/logo.png')?>" /></a></div>
             <!--结束图层-->
             <div class="Search">
-                <form action="{:U('Home/ProductList/searchlist',array('maxprice'=>0,'minprice'=>0))}" method="get">
+                <!--<p><input name="" type="text"  class="text"/><input name="" type="submit" value="搜 索"  class="Search_btn"/></p>-->
+                <form action="<?=\yii\helpers\Url::to(['product/index'])?>" method="get">
                     <p>
-                        <input name="words" type="text"  class="text" />
-                        <input name="" type="submit" value="搜 索"  class="Search_btn"/>
+                        <input name="keywords" type="text"  value="" class="text" />
+                        <input name="" type="submit" value="搜 索" class="Search_btn" />
                     </p>
                 </form>
-                <p class="Words"><a href="{:U('Home/ProductList/catelist',array('path'=>1,'minprice'=>0,'maxprice'=>0))}">甜品</a><a href="{:U('Home/ProductList/catelist',array('path'=>3,'minprice'=>0,'maxprice'=>0))}">零食</a><a href="{:U('Home/ProductList/catelist',array('path'=>5,'minprice'=>0,'maxprice'=>0))}">水果</a><a href="{:U('Home/ProductList/catelist',array('path'=>7,'minprice'=>0,'maxprice'=>0))}">生鲜蔬菜</a><a href="{:U('Home/ProductList/catelist',array('path'=>8,'minprice'=>0,'maxprice'=>0))}">肉类</a><a href="{:U('Home/ProductList/catelist',array('path'=>2,'minprice'=>0,'maxprice'=>0))}">饮品</a></p>
+                <p class="Words">
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>1])?>">甜品</a>
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>3])?>">零食</a>
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>5])?>">水果</a>
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>7])?>">生鲜蔬菜</a>
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>8])?>">肉类</a>
+                    <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>2])?>">饮品</a>
+                </p>
             </div>
             <!--购物车样式-->
             <div class="hd_Shopping_list" id="Shopping_list">
@@ -325,11 +333,11 @@
                         <ul class="Menu_list">
                             <?php foreach($category as $v1): ?>
                                 <li class="name">
-                                    <div class="Menu_name"><a href="<?=\yii\helpers\Url::to(['category/index','path'=>$v1['path']])?>"><?=\yii\helpers\Html::encode($v1['catename'])?></a> <span>&lt;</span></div>
+                                    <div class="Menu_name"><a href="<?=\yii\helpers\Url::to(['product/index','cid'=>$v1['path']])?>"><?=\yii\helpers\Html::encode($v1['catename'])?></a> <span>&lt;</span></div>
                                     <div class="link_name">
                                         <p>
                                             <?php foreach($v1['child'] as $v2): ?>
-                                            <a href="<?=\yii\helpers\Url::to(['category/index','path'=>$v2['path']])?>"><?=\yii\helpers\Html::encode($v2['catename'])?></a>
+                                            <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>$v2['path']])?>"><?=\yii\helpers\Html::encode($v2['catename'])?></a>
                                             <?php endforeach;?>
                                         </p>
                                     </div>
@@ -338,10 +346,10 @@
                                             <div class="hd_sort_list">
                                                 <dl class="clearfix" data-tpc="1">
                                                     <?php foreach($v1['child'] as $v2): ?>
-                                                    <dt><a href="<?=\yii\helpers\Url::to(['category/index','path'=>$v2['path']])?>"><?=\yii\helpers\Html::encode($v2['catename'])?><i>></i></a></dt>
+                                                    <dt><a href="<?=\yii\helpers\Url::to(['product/index','cid'=>$v2['path']])?>"><?=\yii\helpers\Html::encode($v2['catename'])?><i>></i></a></dt>
                                                         <dd>
                                                             <?php foreach($v2['child'] as $v3): ?>
-                                                            <a href="<?=\yii\helpers\Url::to(['category/index','path'=>$v3['path']])?>"><?=\yii\helpers\Html::encode($v3['catename'])?></a>
+                                                            <a href="<?=\yii\helpers\Url::to(['product/index','cid'=>$v3['path']])?>"><?=\yii\helpers\Html::encode($v3['catename'])?></a>
                                                             <?php endforeach;?>
                                                         </dd>
                                                     <?php endforeach;?>

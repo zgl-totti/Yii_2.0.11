@@ -2,13 +2,15 @@
 namespace frontend\controllers;
 
 use backend\models\Brand;
+use backend\models\Category;
 use backend\models\Goods;
 use backend\models\Member;
 use yii\data\Pagination;
 use yii\web\Controller;
 
-class ProductController extends Controller{
+class ProductController extends BaseController{
     public $mid;
+
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid');
@@ -19,6 +21,8 @@ class ProductController extends Controller{
 
     public function actionIndex(){
         $bid=\Yii::$app->request->get('bid');
+        $cid=\Yii::$app->request->get('cid');
+        $keywords=trim(\Yii::$app->request->get('keywords'));
         $minprice=\Yii::$app->request->get('minprice');
         $maxprice=\Yii::$app->request->get('maxprice');
         $order=\Yii::$app->request->get('order');
@@ -26,6 +30,21 @@ class ProductController extends Controller{
             $where['bid']=$bid;
         }else{
             $where='';
+        }
+        if($cid){
+            $arr=['like','path',"$cid%",false];
+            $a=Category::find()->where($arr)->select('id')->asArray()->all();
+            foreach($a as $v){
+                $b[]=$v['id'];
+            }
+            $term=['in','cid',$b];
+        }else{
+            $term='';
+        }
+        if($keywords){
+            $divisor=['like','goodsname',$keywords];
+        }else{
+            $divisor='';
         }
         if($minprice && $maxprice){
             $condition=['between','price',$minprice,$maxprice];
@@ -43,13 +62,14 @@ class ProductController extends Controller{
         }
         $brand=Brand::findAll(['active'=>1]);
         $factor['display']=1;
-        $goods=Goods::find()->where($where)->andWhere($condition)->andWhere($factor);
+        $goods=Goods::find()->where($where)->andWhere($condition)->andWhere($factor)->andWhere($term)->andWhere($divisor);
         $pages= new Pagination([
             'pageSize'=>16,
             'totalCount'=>$goods->count()
         ]);
         $goodsList=$goods->offset($pages->offset)->limit($pages->limit)->orderBy($order_by)->asArray()->all();
         $sales=Goods::find()->where(['display'=>1])->orderBy('salenum desc')->limit(10)->asArray()->all();
+        \Yii::$app->view->params['keywords']=$keywords;
         return $this->render('index',[
             'brand'=>$brand,
             'goodsList'=>$goodsList,
@@ -57,7 +77,7 @@ class ProductController extends Controller{
             'sales'=>$sales,
             'bid'=>$bid,
             'min'=>$minprice,
-            'order'=>$order,
+            'order'=>$order
         ]);
     }
 

@@ -62,13 +62,13 @@ class OrderController extends BaseController{
                         $orderGoods->gid=$v['gid'];
                         $orderGoods->buynum=$v['buynum'];
                         if($orderGoods->save()){
-                            return Json::encode(['code'=>1,'body'=>'订单生产']);
+                            return Json::encode(['code'=>1,'body'=>'订单生产','oid'=>$oid]);
                         }else{
-                            return Json::encode(['code'=>5,'body'=>'下单失败']);
+                            return Json::encode(['code'=>2,'body'=>'下单失败']);
                         }
                     }
                 }else{
-                    return Json::encode(['code'=>5,'body'=>'下单失败']);
+                    return Json::encode(['code'=>2,'body'=>'下单失败']);
                 }
             }else{
                 return Json::encode(['code'=>5,'body'=>'请先登录']);

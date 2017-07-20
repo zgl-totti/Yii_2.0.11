@@ -16,13 +16,12 @@ class ArticleController extends BaseController{
 
 
 
-    public function article(){
+    /*public function article(){
         $Article=D('Article');
         $info=$Article->field('title')->group('title')->select();
         foreach($info as $k=>$v){
             $info[$k][]=$Article->where($v)->where("active=1")->field('cate,id')->select();
         }
         return   $info;
-    }
-
+    }*/
 }
