@@ -8,15 +8,15 @@ use yii\helpers\Json;
 class CollectController extends BaseController{
     public $layout=false;
     public $enableCsrfValidation=false;
-    public $mid;
 
+    /*public $mid;
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid',47);
         if(is_int($mid) && $mid>0){
             $this->mid=$mid;
         }
-    }
+    }*/
 
     public function actionAdd(){
         if(\Yii::$app->request->isAjax){

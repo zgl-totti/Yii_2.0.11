@@ -8,8 +8,8 @@ use yii\helpers\Json;
 class AddressController extends BaseController{
     public $layout=false;
     public $enableCsrfValidation=false;
-    public $mid;
 
+    /*public $mid;
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid',47);
@@ -18,7 +18,8 @@ class AddressController extends BaseController{
         }else{
             return $this->redirect(['/login/index']);
         }
-    }
+    }*/
+
     public function actionAdd(){
         if(\Yii::$app->request->isAjax){
             $address= new Address();

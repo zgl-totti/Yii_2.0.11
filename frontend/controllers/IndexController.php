@@ -13,12 +13,12 @@ use backend\models\Order;
 use backend\models\OrderGoods;
 use yii\web\Controller;
 
-class IndexController extends Controller{
+class IndexController extends BaseController{
     public $layout=false;
 
     public function actionIndex(){
-        $id=\Yii::$app->session->get('mid');
-        $info=Member::findOne($id);
+        $mid=$this->mid;
+        $info=Member::findOne($mid);
         $category=$this->getCategory();
         $recommend=Goods::find()->where(['display'=>1,'activity'=>0])->orderBy('salenum desc')->limit(8)->asArray()->all();
         $brand=Brand::find()->limit(10)->asArray()->all();

@@ -198,9 +198,9 @@
                         <li>
                             <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>\yii\helpers\Html::encode($v['gid'])])?>">
                                 <p><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic']);?>" data-bd-imgshare-binded="1"></p>
-                                <p class="p_name"><?=\yii\helpers\Html::encode($v['goods']['pic'])?></p>
+                                <p class="p_name"><?=\yii\helpers\Html::encode($v['goods']['goodsname'])?></p>
                             </a>
-                            <p><span class="p_Price"><i>￥</i><?=\yii\helpers\Html::encode($v['goods']['pic'])?></span><b><?=\yii\helpers\Html::encode($v['goods']['marketprice'])?></b></p>
+                            <p><span class="p_Price"><i>￥</i><?=\yii\helpers\Html::encode($v['goods']['price'])?></span><b><?=\yii\helpers\Html::encode($v['goods']['marketprice'])?></b></p>
                         </li>
                     <?php endforeach;?>
                 </ul>

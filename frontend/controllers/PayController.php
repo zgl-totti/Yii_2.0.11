@@ -9,14 +9,10 @@ use backend\models\OrderGoods;
 use yii\helpers\Json;
 
 class PayController extends BaseController{
-    public $mid;
 
     public function init(){
         parent::init();
-        $mid=\Yii::$app->session->get('mid',47);
-        if(is_int($mid) && $mid>0){
-            $this->mid=$mid;
-        }else{
+        if(!(is_int($this->mid)) || $this->mid<=0){
             return $this->redirect(['/login/index']);
         }
     }

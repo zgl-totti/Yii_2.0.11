@@ -236,7 +236,7 @@
             <div class="Inside_pages">
                 <div class="Collection">
                     <div class="time">
-                        <script>jQuery('.time').html(getText());</script>,<?=\yii\helpers\Html::encode($info)?\yii\helpers\Html::encode($info['username']):'';?> 欢迎光临！<em></em>
+                        <script>jQuery('.time').html(getText());</script>,<?=\yii\helpers\Html::encode($info['username']?$info['username']:'');?> 欢迎光临！<em></em>
                         <a href="#" onclick="javascript:addFavorite2()">收藏我们</a>
                     </div>
                 </div>
@@ -257,7 +257,7 @@
                 <!--<div class="Collection">下午好，欢迎{$Think.session.username}光临锦宏颜！<em></em><a href="#">收藏我们</a></div>-->
                 <div class="hd_top_manu clearfix">
                     <ul class="clearfix">
-                        <?php if(\yii\helpers\Html::encode($info) && \yii\helpers\Html::encode($info['id'])>0): ?>
+                        <?php if(\yii\helpers\Html::encode($info['id'])>0): ?>
                         <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">
                             <?=\yii\helpers\Html::encode($info['username'])?>,欢迎光临本店！
                             <a id="logout" href="javascript:logout()" class="red">[退出]</a>
@@ -789,7 +789,7 @@
     <div class="fixedBox">
         <ul class="fixedBoxList">
             <li class="fixeBoxLi user">
-                <?php if(\yii\helpers\Html::encode($info)): ?>
+                <?php if(\yii\helpers\Html::encode($info['id'])): ?>
                     <a href="<?=\yii\helpers\Url::to(['personal/index'])?>">
                         <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong>
                     </a>
@@ -829,7 +829,7 @@
                 </div>
             </li>
             <li class="fixeBoxLi Home">
-                <?php if(\yii\helpers\Html::encode($info)): ?>
+                <?php if(\yii\helpers\Html::encode($info['id'])): ?>
                     <a href="<?=\yii\helpers\Url::to(['personal/collect'])?>">
                         <span class="fixeBoxSpan iconfont icon-shoucang"></span> <strong>收藏</strong>
                     </a>
@@ -840,7 +840,7 @@
                 <?php endif;?>
             </li>
             <li class="fixeBoxLi Home">
-                <?php if(\yii\helpers\Html::encode($info)): ?>
+                <?php if(\yii\helpers\Html::encode($info['id'])): ?>
                     <a href="<?=\yii\helpers\Url::to(['personal/footprint'])?>">
                         <span class="fixeBoxSpan iconfont icon-zuji"></span> <strong>足迹</strong>
                     </a>
@@ -852,7 +852,7 @@
             </li>
 
             <li class="fixeBoxLi Home">
-                <?php if(\yii\helpers\Html::encode($info)): ?>
+                <?php if(\yii\helpers\Html::encode($info['id'])): ?>
                     <a href="<?=\yii\helpers\Url::to(['personal/feedback'])?>">
                         <span class="fixeBoxSpan iconfont icon-fankui"></span> <strong>反馈</strong>
                     </a>

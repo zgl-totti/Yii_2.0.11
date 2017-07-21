@@ -39,10 +39,20 @@ return [
         ],
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            //'suffix'=>'.asp', //后缀
+            'enablePrettyUrl' => true,      //path模式
+            'enableStrictParsing' => true,  //启用严格解析,必须有规则才会生效
+            'showScriptName' => false,      //隐藏入口文件
+            //'suffix'=>'.asp',             //后缀
             'rules' => [
+                /*"<controller:\w+>/<id:\d+>"=>"<controller>/view",
+                "<controller:\w+>/<action:\w+>"=>"<controller>/<action>",*/
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'wechat',
+                    'extraPatterns' => [
+                        'GET valid' => 'valid',
+                    ],
+                ],
             ],
         ],
 

@@ -38,13 +38,6 @@ class SaleController extends BaseController{
         ]);
     }
 
-    public function actionLogin(){
-        if(\Yii::$app->request->isAjax) {
-
-        }else{
-            return $this->renderPartial('login');
-        }
-    }
 
 
 

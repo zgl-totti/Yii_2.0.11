@@ -9,15 +9,15 @@ use yii\data\Pagination;
 use yii\web\Controller;
 
 class ProductController extends BaseController{
-    public $mid;
-
+    
+    /*public $mid;
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid');
         $info=Member::findOne($mid);
         \Yii::$app->view->params['info']=$info;
         $this->mid=$mid;
-    }
+    }*/
 
     public function actionIndex(){
         $bid=\Yii::$app->request->get('bid');

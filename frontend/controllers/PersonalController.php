@@ -27,10 +27,9 @@ class PersonalController extends BaseController{
     public $mid;
     public function init(){
         parent::init();
-        $mid=\Yii::$app->session->get('mid',47);
-        if(is_int($mid) && $mid>0){
-            $this->mid=$mid;
-            $where['mid']=$mid;
+        $_mid=$this->mid;
+        if(is_int($_mid) && $_mid>0){
+            $where['mid']=$_mid;
             $condition1['msgstatus']=0;
             $condition2['msgstatus']=1;
             $num1=Message::find()->where($where)->andWhere($condition1)->count();
@@ -43,6 +42,7 @@ class PersonalController extends BaseController{
     }
 
     public function actionIndex(){
+        //print_r($this->mid);die;
         $mid=$this->mid;
         $where['mid']=$mid;
         $condition1['msgstatus']=0;

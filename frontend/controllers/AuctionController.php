@@ -38,9 +38,8 @@ class AuctionController extends BaseController{
         if(\Yii::$app->request->isAjax){
             $ag_id=\Yii::$app->request->post('ag_id');
             $auctionPrice=\Yii::$app->request->post('auctionprice');
-            $mid=\Yii::$app->session->get('mid');
             $where['ag_id']=$ag_id;
-            $where['mid']=$mid;
+            $where['mid']=$this->mid;
             $info=Deposit::findOne($where);
             if($info){
                 $num1=Auction::find()->where(['ag_id'=>$ag_id])->count();

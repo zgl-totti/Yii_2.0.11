@@ -8,20 +8,19 @@ use yii\helpers\Json;
 
 class CartController extends BaseController{
     public $enableCsrfValidation=false;
-    public $mid;
 
+    /*public $mid;
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid',47);
         if(is_int($mid) && $mid>0){
             $this->mid=$mid;
         }
-    }
+    }*/
 
     public function actionIndex(){
         if($this->mid){
-            $mid=$this->mid;
-            $where['mid']=$mid;
+            $where['mid']=$this->mid;
             $list=Cart::find()->where($where)->joinWith('goods')->asArray()->all();
         }else{
             for($i=0;$i>0;$i++){

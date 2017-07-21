@@ -167,7 +167,7 @@ use common\widgets\Alert;
 
 <!--顶部样式-->
 <div id="header_top">
-    <input type="hidden" value="{$Think.session.mid}" id="islogin"/>
+    <input type="hidden" value="<?=\yii\helpers\Html::encode($this->params['info']['id'])?>" id="islogin"/>
     <div id="top">
         <div class="Inside_pages">
             <?php if(\yii\helpers\Html::encode($this->params['info']['id'])>0): ?>
@@ -344,7 +344,7 @@ use common\widgets\Alert;
 <div class="fixedBox">
     <ul class="fixedBoxList">
         <li class="fixeBoxLi user">
-            <?php if(\yii\helpers\Html::encode($this->params['info'])): ?>
+            <?php if(\yii\helpers\Html::encode($this->params['info']['id'])>0): ?>
                 <a href="<?=\yii\helpers\Url::to(['personal/index'])?>">
                     <span class="fixeBoxSpan iconfont icon-yonghu"></span> <strong>用户</strong>
                 </a>
@@ -384,7 +384,7 @@ use common\widgets\Alert;
             </div>
         </li>
         <li class="fixeBoxLi Home">
-            <?php if(\yii\helpers\Html::encode($this->params['info'])): ?>
+            <?php if(\yii\helpers\Html::encode($this->params['info']['id'])>0): ?>
                 <a href="<?=\yii\helpers\Url::to(['personal/collect'])?>">
                     <span class="fixeBoxSpan iconfont icon-shoucang"></span> <strong>收藏</strong>
                 </a>
@@ -395,7 +395,7 @@ use common\widgets\Alert;
             <?php endif;?>
         </li>
         <li class="fixeBoxLi Home">
-            <?php if(\yii\helpers\Html::encode($this->params['info'])): ?>
+            <?php if(\yii\helpers\Html::encode($this->params['info']['id'])): ?>
                 <a href="<?=\yii\helpers\Url::to(['personal/footprint'])?>">
                     <span class="fixeBoxSpan iconfont icon-zuji"></span> <strong>足迹</strong>
                 </a>
@@ -407,7 +407,7 @@ use common\widgets\Alert;
         </li>
 
         <li class="fixeBoxLi Home">
-            <?php if(\yii\helpers\Html::encode($this->params['info'])): ?>
+            <?php if(\yii\helpers\Html::encode($this->params['info']['id'])): ?>
                 <a href="<?=\yii\helpers\Url::to(['personal/feedback'])?>">
                     <span class="fixeBoxSpan iconfont icon-fankui"></span> <strong>反馈</strong>
                 </a>

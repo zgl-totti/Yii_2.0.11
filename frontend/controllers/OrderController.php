@@ -12,15 +12,15 @@ use yii\helpers\Json;
 
 class OrderController extends BaseController{
     public $enableCsrfValidation=false;
-    public $mid;
 
+    /*public $mid;
     public function init(){
         parent::init();
         $mid=\Yii::$app->session->get('mid',47);
         if(is_int($mid) && $mid>0){
             $this->mid=$mid;
         }
-    }
+    }*/
 
     public function actionIndex(){
         $id=\Yii::$app->request->get('id',10);
