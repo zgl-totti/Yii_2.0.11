@@ -29,7 +29,6 @@ class GoodsController extends BaseController{
         $count=GoodsComment::find()->where(['gid'=>$gid])->count();
         $collect= new Collect();
         $collectGoods=$collect->collect($this->mid,$gid);
-        print_r($this->mid);
         return $this->render('index',[
             'info'=>$info,
             'historyList'=>$historyList,

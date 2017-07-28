@@ -73,4 +73,16 @@ class LoginController extends Controller{
     public function actionLogin(){
         return $this->renderPartial('login');
     }
+
+    public function actionLogout(){
+        if(\Yii::$app->request->isAjax){
+            $id=\Yii::$app->request->post('id');
+            if($id){
+                \Yii::$app->session->remove('mid');
+                return Json::encode(['code'=>1,'body'=>'退出成功']);
+            }else{
+                return Json::encode(['code'=>2,'body'=>'请先登录']);
+            }
+        }
+    }
 }

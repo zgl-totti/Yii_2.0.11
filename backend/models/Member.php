@@ -11,16 +11,24 @@ class Member extends ActiveRecord{
         return "{{%member}}";
     }
 
-    public function getLevel(){
-        return $this->hasOne(Level::className(),['id'=>'level']);
+    public function scenarios(){
+        return [
+            'index'=>['username','password'],
+            'register'=>['username','password','repwd','verify'],
+            'member'=>['username'],
+        ];
     }
 
     public function rules(){
         return [
-            [['username','password','repwd','verify'],'required','on'=>['login/register']],
-            [['username','password'],'required','on'=>['login/index']],
-            ['verify','captcha','on'=>['login/register']],
-            ['username','required','on'=>['/personal/member']],
+            [['username','password','repwd','verify'],'required','on'=>'register'],
+            [['username','password'],'required','on'=>'index'],
+            ['verify','captcha','on'=>'register'],
+            ['username','required','on'=>'member'],
         ];
+    }
+
+    public function getLevel(){
+        return $this->hasOne(Level::className(),['id'=>'level']);
     }
 }

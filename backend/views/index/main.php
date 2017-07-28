@@ -58,9 +58,9 @@
     <div class="uimakerinfo"><b>版权所有：易购网</b>(<a href="http://www.egoods.com" target="_blank"><?=\yii\helpers\Html::encode($_SERVER['SERVER_NAME'])?></a>)</div>
     <div id="main1" style="width: 40%;height:600px;float: right;"></div>
     <div id="main" style="width: 60%;height:600px;position: absolute"></div>
-    <?php foreach($goods as $v):?>
-    <p><?=mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,5,'utf-8');?></p>
-    <?php endforeach;?>
+    <?php /*foreach($goods as $v):*/?><!--
+    <p><?/*=mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,5,'utf-8');*/?></p>
+    --><?php /*endforeach;*/?>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -68,26 +68,37 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '商城销量排行'
+                text: '商品销量排行'
             },
             tooltip: {},
             legend: {
-                data:['销量前十']
+                data:['数值','销量前十']
             },
-            xAxis: {
-                data: [<?php foreach($goods as $v):
-                echo mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,5,'utf-8');
-                endforeach;
-                ?>]
-            },
+            xAxis : [
+                {
+                    //type : 'category',
+                    data : [
+                        <?php foreach($goods as $v):
+                            echo "'".mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,5,'utf-8')."',";
+                        endforeach;?>
+                    ]
+                }
+            ],
             yAxis: {},
             series: [{
                 name: '销量',
                 type: 'bar',
-                data: [<?php foreach($goods as $v):
-                echo \yii\helpers\Html::encode($v['salenum']);
-                endforeach;
-                ?>]
+                data:[
+                    <?php foreach($goods as $v):
+                        echo \yii\helpers\Html::encode($v['salenum']).',';
+                    endforeach;?>
+                ],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                }
             }]
         };
         // 使用刚指定的配置项和数据显示图表。
@@ -97,6 +108,15 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main1'));
         myChart.setOption({
+            title : {
+                text: '会员等级占比',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            calculable : true,
             series : [
                 {
                     name: '访问来源',

@@ -155,7 +155,7 @@
 
     <script type="text/javascript">
         var url="{:U('Index/buyCart')}";
-        var  delurl="{:U('Cart/del')}";
+        var delurl="{:U('Cart/del')}";
         var pub="__PUBLIC__";
         $(function(){
             new ZoomPic("jswbox");
@@ -182,15 +182,18 @@
         })
         function change(id){
             layer.msg('此商品以抢购完',{icon:1,time:1500});
-            $("#ch"+id).attr({src:'__PUBLIC__/Home/images/mangguo.gif'});
+            $("#ch"+id).attr({src:"<?=\yii\helpers\Url::to('@web/images/mangguo.gif')?>"});
         }
         function logout(){
             layer.confirm("你确定要退出吗？",{icon:3,btn:['确定','取消']},function(){
-                $.get("{:U('Home/Member/logout')}",function(res){
-                    if(res.status=="ok"){
-                        layer.msg(res.msg,{icon:1,time:1000},function(){
-                            window.location.href="{:U('Home/Index/index')}"
+                var mid=$("#islogin").val();
+                $.post("<?=\yii\helpers\Url::to(['login/logout'])?>",{id:mid},function(res){
+                    if(res.code==1){
+                        layer.msg(res.body,{icon:1,time:1000},function(){
+                            window.location.href="<?=\yii\helpers\Url::to(['index/index'])?>";
                         })
+                    }else{
+                        layer.msg(res.body,{icon:2,time:1000});
                     }
                 })
             })
@@ -231,7 +234,7 @@
 <body>
     <!--顶部样式-->
     <div id="header_top">
-        <input type="hidden" value="{$Think.session.mid}" id="islogin"/>
+        <input type="hidden" value="<?=\yii\helpers\Html::encode($info['id'])?>" id="islogin"/>
         <div id="top">
             <div class="Inside_pages">
                 <div class="Collection">
@@ -277,7 +280,7 @@
                         <li class="hd_menu_tit phone_c" data-addclass="hd_menu_hover"><a href="#" class="hd_menu "><em class="iconfont icon-shouji"></em>手机版</a>
                             <div class="hd_menu_list erweima">
                                 <ul>
-                                    <img src="<?=\yii\helpers\Url::to('@web/images/erweima.png')?>  width="100px" height="100"/>
+                                    <img src="<?=\yii\helpers\Url::to('@web/images/erweima.png')?>"  width="100px" height="100"/>
                                 </ul>
                             </div>
                         </li>
@@ -308,7 +311,7 @@
             </div>
             <!--购物车样式-->
             <div class="hd_Shopping_list" id="Shopping_list">
-                <div class="s_cart" style="cursor: pointer"><em class="iconfont icon-cart2"></em><a >我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount">{$sum}</i></div>
+                <div class="s_cart" style="cursor: pointer"><em class="iconfont icon-cart2"></em><a >我的购物车</a> <i class="ci-right">&gt;</i><i class="ci-count" id="shopping-amount"><?=\yii\helpers\Html::encode($sum)?></i></div>
                 <div class="dorpdown-layer">
                     <div class="spacer"></div>
                     <!--<div class="prompt"></div><div class="nogoods"><b></b>购物车中还没有商品，赶紧选购吧！</div>-->
@@ -316,11 +319,43 @@
                     </ul>
                     <div class="Shopping_style">
                         <div class="p-total">共<b class="totalnum"></b>件商品　共计<strong id="totalprice"></strong></div>
-                        <a href="{:U('Home/Cart/mycart')}" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
+                        <a href="<?=\yii\helpers\Url::to(['cart/index'])?>" title="去购物车结算" id="btn-payforgoods" class="Shopping">去购物车结算</a>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(".s_cart").mouseenter(function(){
+                var mid=$("#islogin").val();
+                $.post("<?=\yii\helpers\Url::to(['cart/mycart'])?>",{mid:mid},function(res){
+                    var str='';
+                    var count='';
+                    if(res.code==1){
+                        for(var i in res.info){
+                            str+='<li>'
+                            str+='<div class="img">' + '<img src="<?=\yii\helpers\Url::to("@web/uploads/goods/")?>'+res.info[i]['pic']+'">' + '</div>';
+                            str+='<div class="content"><p>'
+                            str+='<a href="'+'{:U("Home/Order/goodsdetail")}?gid='+res.info[i]['gid']+'">';
+                            str+=res.info[i]['goodsname'].substr(0,10)+'</a></p><p>价格：￥'+res.info[i]['saleprice']+'</p></div>'
+                            str+='<div class="Operations">'
+                            str+='<p>'
+                            str+='<a href="javascript:;" class="deleteCollect" gid="'+res.info[i]['gid']+'">';
+                            str+= '删除</a>'
+                            str+='</p></div></li>'
+                        }if(res.code==2){
+                            str='<div class="prompt"></div>' +
+                            '<div class="nogoods"><b></b>您的购物车还没有宝贝哦，赶紧添加吧！！！！</div>';
+                        }
+                        $(".p_s_list").html(str);
+                    }else{
+                        str='<div class="prompt"></div>' +
+                        '<div class="nogoods"><b></b>登录之后才能看哦！！！</div>'
+                        $(".dorpdown-layer").html(str);
+                    }
+                });
+            });
+        </script>
 
         <!--菜单导航样式-->
         <div id="Menu" class="clearfix">

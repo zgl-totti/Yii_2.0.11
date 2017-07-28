@@ -16,6 +16,9 @@ return [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -24,6 +27,7 @@ return [
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
+            'timeout'=>3600,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -40,12 +44,17 @@ return [
 
         'urlManager' => [
             'enablePrettyUrl' => true,      //path模式
-            'enableStrictParsing' => true,  //启用严格解析,必须有规则才会生效
+            //'enableStrictParsing' => true,  //启用严格解析,必须有规则才会生效
             'showScriptName' => false,      //隐藏入口文件
             //'suffix'=>'.asp',             //后缀
-            'rules' => [
-                /*"<controller:\w+>/<id:\d+>"=>"<controller>/view",
-                "<controller:\w+>/<action:\w+>"=>"<controller>/<action>",*/
+
+            /*'rules' => [
+                'indexs' => 'index/index',
+                'goodss' => 'goods/index',
+                //'goodss/<id:\d+>' => 'goods/index',
+            ]*/
+
+            /*'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'wechat',
@@ -53,7 +62,7 @@ return [
                         'GET valid' => 'valid',
                     ],
                 ],
-            ],
+            ],*/
         ],
 
         'db' => [

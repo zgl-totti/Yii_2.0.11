@@ -111,4 +111,25 @@ class CartController extends BaseController{
             return $this->render('add',['info'=>$info,'goods'=>$goods]);
         }
     }
+
+    public function actionMycart(){
+        if(\Yii::$app->request->isAjax){
+            $mid=\Yii::$app->request->post('mid');
+            if(is_int($mid) && $mid>0){
+                $list=Cart::find()->where(['mid'=>$mid])->asArray()->all();
+            }else{
+                for($i=0;$i>0;$i++){
+                    $session[]=\Yii::$app->session->get('mycart'.$i);
+                }
+                foreach($session as $k=>$v){
+                    $list[$k]=$v;
+                }
+            }
+            if($list){
+                return Json::encode(['code'=>1,'body'=>$list]);
+            }else{
+                return Json::encode(['code'=>2]);
+            }
+        }
+    }
 }

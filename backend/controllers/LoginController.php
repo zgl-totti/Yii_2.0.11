@@ -15,7 +15,7 @@ class LoginController extends Controller{
                 'width'=>300,
                 'height'=>40,
                 'maxLength'=>4,
-                'minLength'=>2
+                'minLength'=>4
             ],
         ];
     }

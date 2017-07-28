@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'css/reset1.css'
     ];
     public $js = [
+        'js/jquery.min.1.8.2.js',
         'js/jquery-1.9.1.min.js',
         'js/jquery.SuperSlide.2.1.1.js',
         'js/common_js.js',

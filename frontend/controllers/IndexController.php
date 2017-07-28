@@ -11,10 +11,22 @@ use backend\models\Member;
 use backend\models\News;
 use backend\models\Order;
 use backend\models\OrderGoods;
+use frontend\models\Cart;
 use yii\web\Controller;
 
 class IndexController extends BaseController{
     public $layout=false;
+
+    /*public function behaviors(){
+        return [
+            'class'=>'yii\filters\HttpCache',
+            //'only'=>'index',
+            'lastModified' => function () {
+                $q = new \yii\db\Query();
+                return $q->from('shop_category')->max('id');
+            },
+        ];
+    }*/
 
     public function actionIndex(){
         $mid=$this->mid;
@@ -33,6 +45,17 @@ class IndexController extends BaseController{
         $list['d']=$this->getGoodsList(4);
         $like=Goods::find()->orderBy('clicknum desc')->limit(6)->asArray()->all();
         $article=$this->getArticle();
+        if(is_int($mid) && $mid>0){
+            $sum=Cart::find()->where(['mid'=>$mid])->sum('buynum');
+        }else{
+            for($i=0;$i>0;$i++){
+                $session=\Yii::$app->session->get('mycart'.$i);
+            }
+            $sum=0;
+            foreach($session as $v){
+                $sum+=$v['buynum'];
+            }
+        }
         return $this->render('index',[
             'info'=>$info,
             'category'=>$category,
@@ -45,7 +68,8 @@ class IndexController extends BaseController{
             'advertise'=>$advertise,
             'list'=>$list,
             'like'=>$like,
-            'article'=>$article
+            'article'=>$article,
+            'sum'=>$sum
         ]);
     }
 
@@ -121,6 +145,7 @@ class IndexController extends BaseController{
     }
 
     public function actionConnect(){
+        $this->layout='main';
         return $this->render('connect');
     }
 
