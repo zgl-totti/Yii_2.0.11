@@ -13,7 +13,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/style.css',
+        'css/site.css',
+        /*'css/style.css',
         'css/common.css',
         'fonts/iconfont.css',
         'css/orders.css',
@@ -22,7 +23,7 @@ class AppAsset extends AssetBundle
         'css/addtocart.css',
         'css/ordersuccess.css',
         'css/showcart.css',
-        'css/reset1.css'
+        'css/reset1.css'*/
     ];
     public $js = [
         'js/jquery.min.1.8.2.js',

@@ -8,6 +8,21 @@ class Goods extends ActiveRecord{
         return "{{%goods}}";
     }
 
+    public $cate_id;
+    public function attributeLabels(){
+        return [
+            'goodsname'=>'商品名称',
+            'price'=>'价格',
+            'activity'=>'活动',
+            'addtime'=>'添加时间',
+            'salenum'=>'销量',
+            'bid'=>'品牌名称',
+            'cid'=>'分类名称',
+            'display'=>'展示',
+            'cate_id'=>'行业分类'
+        ];
+    }
+
     public function getCate(){
         return $this->hasOne(Category::className(),['id'=>'cid']);
     }
