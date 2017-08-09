@@ -14,7 +14,7 @@ class LoginController extends Controller{
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
                 'width'=>100,
                 'height'=>40,
-                'maxLength'=>2,
+                'maxLength'=>4,
                 'minLength'=>2
             ],
         ];

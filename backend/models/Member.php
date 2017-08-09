@@ -23,7 +23,7 @@ class Member extends ActiveRecord{
         return [
             [['username','password','repwd','verify'],'required','on'=>'register'],
             [['username','password'],'required','on'=>'index'],
-            ['verify','captcha','on'=>'register'],
+            ['verify','captcha','captchaAction'=>'login/captcha','on'=>'register'],
             ['username','required','on'=>'member'],
         ];
     }

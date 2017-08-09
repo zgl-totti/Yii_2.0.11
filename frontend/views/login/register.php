@@ -1,3 +1,4 @@
+<?php $this->beginPage() ?>
 <!doctype html>
 <html>
 <head>
@@ -34,6 +35,7 @@
     </script>
 </head>
 <body>
+<?php $this->beginBody() ?>
 <div class="login-top">
     <div class="wrapper">
         <span class="logo"><img src="<?=\yii\helpers\Url::to('@web/images/logo2.png')?>" alt=""></span>
@@ -59,11 +61,16 @@
                 <label class="form-label">重复密码</label>
             </div>
             <div class="form-group" style="position: relative">
-                <label class="form-label">
-                    <img class="verify" src="<?=\yii\helpers\Url::to(['login/captcha'])?>" alt="验证码" onclick='this.src="<?=\yii\helpers\Url::to(['login/captcha','id'=>mt_rand()])?>"'></label>
                 <input type="text" name="verify" required="required" class="form-control1" autocomplete="off"/>
                 <label class="form-label">验证码</label>
             </div>
+                <?=\yii\captcha\Captcha::widget([
+                    'name'=>'verify',
+                    'captchaAction'=>'login/captcha',
+                    'imageOptions'=>[
+                        'alt'=>'点击换图','style'=>'cursor:pointer'
+                    ],
+                ])?>
             <div class="denglu">
                 <span id="hzy_fast_login"></span>
             </div>
@@ -83,5 +90,7 @@
     关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 广告服务 | 手机电商 | 友情链接 | 销售联盟 | 美食社区 | 热爱公益 | English Site<br>
     <span>Copyright © 2004-2016  我爱我家wawj.com 版权所有</span>
 </div>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

@@ -5,6 +5,7 @@ use yii\db\ActiveRecord;
 
 class Admin extends ActiveRecord{
     public $captcha;
+
     public static function tableName(){
         return "{{%admin}}";
     }
@@ -12,7 +13,7 @@ class Admin extends ActiveRecord{
     public function rules(){
         return [
             [['username','password','captcha'],'required','message'=>"{attribute}不能为空"],
-            //['captcha','captcha']
+            ['captcha','captcha','captchaAction'=>'login/captcha','message'=>"{attribute}错误"]
         ];
     }
 

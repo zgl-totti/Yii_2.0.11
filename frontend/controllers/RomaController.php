@@ -116,7 +116,7 @@ class RomaController extends Controller
                     }
                 }
             }
-            //print_r($category);
+
             return $this->render('update', [
                 'model' => $model,
                 'category'=>$category

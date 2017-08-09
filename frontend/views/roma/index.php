@@ -23,14 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'goodsname',
             [
-                'attribute' => 'bname',
+                'attribute' => 'bid',
                 'value' => function ($data) {
                     return $data->brand->bname;
                 },
                 'format' => 'html',
             ],
             [
-                'attribute' => 'catename',
+                'attribute' => 'cid',
                 'value' => function ($data) {
                     return $data->cate->catename;
                 },

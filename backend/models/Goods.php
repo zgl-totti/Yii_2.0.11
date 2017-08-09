@@ -8,7 +8,6 @@ class Goods extends ActiveRecord{
         return "{{%goods}}";
     }
 
-    public $cate_id;
     public function attributeLabels(){
         return [
             'goodsname'=>'商品名称',

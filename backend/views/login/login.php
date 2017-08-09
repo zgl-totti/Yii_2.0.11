@@ -5,6 +5,7 @@
     echo \yii\helpers\Html::jsFile('@web/js/cloud.js');
     echo \yii\helpers\Html::jsFile('@web/layer/layer.js');
 ?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -37,6 +38,7 @@
     </style>-->
 </head>
 <body style="background-color:#1c77ac; background-image:url(../../web/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+<?php $this->beginBody() ?>
     <div id="mainBody">
         <div id="cloud1" class="cloud"></div>
         <div id="cloud2" class="cloud"></div>
@@ -64,11 +66,12 @@
                         <?=$form->field($info,'password')->passwordInput();?>
                     </li>
                     <li>
-                        <?= $form->field($info, 'captcha')
+                        <?= $form->field($info, 'captcha',['options'=>['class'=>'form-group'],'template'=>'{input}'])
                             ->widget(\yii\captcha\Captcha::className(),[
                                 'captchaAction'=>'login/captcha',
-                                'imageOptions'=>['alt'=>'点击换图','style'=>'cursor:pointer'],
-                                //'options'=>['placeholder'=>'验证码']
+                                'imageOptions'=>[
+                                    'alt'=>'点击换图','style'=>'cursor:pointer'
+                                ],
                             ]); ?>
                     </li>
                     <li>
@@ -80,5 +83,7 @@
             </div>
         <?php \yii\widgets\ActiveForm::end(); ?>
     </div>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

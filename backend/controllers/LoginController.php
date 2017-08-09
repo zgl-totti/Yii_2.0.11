@@ -12,27 +12,17 @@ class LoginController extends Controller{
         return [
             'captcha'=>[
                 'class'=>'yii\captcha\CaptchaAction',
-                'width'=>300,
-                'height'=>40,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,  //刷新验证码
+                'backColor'=> 0x000000,      //背景颜色
+                'foreColor' => 0xffffff,     //字体颜色
+                'width'=>100,
+                'height'=>50,
                 'maxLength'=>4,
-                'minLength'=>4
+                'minLength'=>3,
+                'padding' => 4,
             ],
         ];
     }
-
-    /**清除公共布局
-     * (non-PHPdoc)
-     *  * @see \yii\web\Controller::beforeAction()
-     *  */
-    /*public function beforeAction($action){
-        if(!parent::beforeAction($action)){
-            return false;
-        }
-        if($action->id=='login' or $action->id=='reset'){
-            $this->layout=false;
-        }
-        return true;
-    }*/
 
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){
