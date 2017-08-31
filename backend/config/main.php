@@ -17,6 +17,9 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

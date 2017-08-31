@@ -6,7 +6,7 @@ use yii\web\Controller;
 class BaseController extends Controller{
     public function init(){
         parent::init();
-        $aid=\Yii::$app->session->get('aid');
+        $aid=\Yii::$app->session->get('aid',47);
         if(!$aid){
             $this->redirect(['login/index']);
         }
