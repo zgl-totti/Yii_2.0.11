@@ -366,7 +366,10 @@
                     <div class="hd_allsort_out_box_new">
                         <!--左侧栏目开始-->
                         <ul class="Menu_list">
-                            <?php foreach($category as $v1): ?>
+                            <?php foreach($category as $k1=>$v1): ?>
+                                <?php if($k1==100){
+                                    break;
+                                }?>
                                 <li class="name">
                                     <div class="Menu_name"><a href="<?=\yii\helpers\Url::to(['product/index','cid'=>$v1['path']])?>"><?=\yii\helpers\Html::encode($v1['catename'])?></a> <span>&lt;</span></div>
                                     <div class="link_name">
@@ -522,7 +525,7 @@
                                     <td style="width: 170px;line-height: 40px;border-bottom: 1px solid #ccc;text-align: center">标题</td>
                                     <td style="width:60px;line-height: 40px;border-bottom: 1px solid #ccc">日期</td>
                                 </tr>
-                                <?php foreach($news as $v): ?>
+                                <?php foreach($news as $k=>$v): ?>
                                     <tr>
                                         <td style="width: 170px;line-height: 30px;border-bottom: 1px solid #ccc;text-align: center">
                                             <a href="<?=\yii\helpers\Url::to(['news/index','id'=>\yii\helpers\Html::encode($v['id'])])?>" target="_blank" ><?=mb_substr(\yii\helpers\Html::encode($v['title']),0,10,'utf-8')?></a>

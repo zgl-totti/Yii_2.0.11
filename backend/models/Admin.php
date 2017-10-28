@@ -10,9 +10,18 @@ class Admin extends ActiveRecord{
         return "{{%admin}}";
     }
 
+    /*public function scenarios(){
+        return [
+            'index'=>['username','password','captcha'],
+            'add'=>['username','password'],
+            'edit'=>['password']
+        ];
+    }*/
+
     public function rules(){
         return [
             [['username','password','captcha'],'required','message'=>"{attribute}不能为空"],
+            /*[['username','password','captcha'],'required','message'=>"{attribute}不能为空",'on'=>'index'],*/
             ['captcha','captcha','captchaAction'=>'login/captcha','message'=>"{attribute}错误"]
         ];
     }
@@ -24,6 +33,11 @@ class Admin extends ActiveRecord{
             'captcha'=>'验证码'
         ];
     }
+
+
+
+
+
 
     /*public function validatePassword(){
         $user = $this->getUser();
