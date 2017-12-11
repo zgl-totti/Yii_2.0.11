@@ -29,6 +29,7 @@ class LoginController extends Controller{
             $admin= new Admin();
             if($admin->load(\Yii::$app->request->post()) && $admin->validate()) {
                 $data['username']=$admin->username;
+                //$data['password']=\Yii::$app->security->generatePasswordHash($admin->password);
                 $data['password']=md5($admin->password);
                 $info=Admin::findOne($data);
                 if($info){
