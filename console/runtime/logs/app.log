@@ -1,0 +1,106 @@
+2018-01-30 08:34:30 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1049] Unknown database 'yii2advanced' in F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php:630
+Stack trace:
+#0 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(630): PDO->__construct('mysql:host=loca...', 'root', '', NULL)
+#1 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(563): yii\db\Connection->createPdoInstance()
+#2 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(896): yii\db\Connection->open()
+#3 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(883): yii\db\Connection->getMasterPdo()
+#4 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(896): yii\db\Command->prepare(true)
+#6 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\mysql\Schema.php(199): yii\db\Command->queryAll()
+#8 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\mysql\Schema.php(98): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Schema.php(152): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\MigrateController.php(199): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(774): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(138): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#15 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#16 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#17 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#18 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 F:\phpStudy\WWW\Yii_2.0.11_new\yii(27): yii\base\Application->run()
+#22 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1049] Unknown database 'yii2advanced' in F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php:568
+Stack trace:
+#0 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(896): yii\db\Connection->open()
+#1 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Connection.php(883): yii\db\Connection->getMasterPdo()
+#2 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(896): yii\db\Command->prepare(true)
+#4 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\mysql\Schema.php(199): yii\db\Command->queryAll()
+#6 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\mysql\Schema.php(98): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\db\Schema.php(152): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\MigrateController.php(199): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(774): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(138): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#13 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#14 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#15 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#16 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 F:\phpStudy\WWW\Yii_2.0.11_new\yii(27): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2018-01-30 08:34:30 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'PC-20151102RYXA'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Administrator'
+    'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local'
+    'LOGONSERVER' => '\\\\PC-20151102RYXA'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;F:\\software\\PuTTY\\;C:\\Program Files\\TortoiseSVN\\bin;F:\\software\\Git\\cmd;F:\\phpStudy\\php\\php-7.0.12-nts;F:\\software\\composer;F:\\phpStudy\\MySQL\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 58 Stepping 9, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3a09'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'PC-20151102RYXA'
+    'USERNAME' => 'Administrator'
+    'USERPROFILE' => 'C:\\Users\\Administrator'
+    'windir' => 'C:\\Windows'
+    'windows_tracing_flags' => '3'
+    'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log'
+    'YII_PATH' => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\'
+    'PHP_SELF' => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\yii'
+    'SCRIPT_NAME' => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\yii'
+    'SCRIPT_FILENAME' => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\yii'
+    'PATH_TRANSLATED' => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1517301270.2653
+    'REQUEST_TIME' => 1517301270
+    'argv' => [
+        0 => 'F:\\phpStudy\\WWW\\Yii_2.0.11_new\\yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
