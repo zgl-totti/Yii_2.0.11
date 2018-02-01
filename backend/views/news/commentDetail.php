@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
+
     <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
@@ -25,27 +26,27 @@
     </script>
 </head>
 <body>
-	<div class="place">
+<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">系统设置</a></li>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
     </ul>
+</div>
+<div class="formbody">
+    <div id="usual1" class="usual">
+        <div id="tab1" class="tabson">
+            <ul class="forminfo">
+                <li><label>新闻标题<b>*</b></label><input disabled="disabled" name="title" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['news']['title'])?>"  style="width:200px;"/></li>
+                <li><label>评论者<b>*</b></label><input disabled="disabled" name="author" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['member']['username'])?>"  style="width:200px;"/></li>
+                <li><label>评论内容<b>*</b></label><textarea disabled="disabled" name="content" rows="10" cols="50" style="border: 1px solid lightblue"><?=\yii\helpers\Html::encode($info['commentcontent'])?></textarea></li>
+                <li><label>回复者<b>*</b></label><input disabled="disabled" name="author" type="text" class="dfinput" value="admin"  style="width:200px;"/></li>
+                <li><label>回复内容<b>*</b></label><textarea disabled="disabled" name="content" rows="10" cols="50" style="border: 1px solid lightblue"><?=\yii\helpers\Html::encode($info['replycontent'])?></textarea></li>
+                <li><label>&nbsp;</label><input onclick="clickBtn()" type="button" class="btn" value="返回"/></li>
+            </ul>
+        </div>
     </div>
-    <div class="formbody">
-    <div id="usual1" class="usual"> 
-  	<div id="tab1" class="tabson">
-    <ul class="forminfo">
-    <li><label>新闻标题<b>*</b></label><input disabled="disabled" name="title" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['news']['title'])?>"  style="width:200px;"/></li>
-    <li><label>评论者<b>*</b></label><input disabled="disabled" name="author" type="text" class="dfinput" value="<?=\yii\helpers\Html::encode($info['member']['username'])?>"  style="width:200px;"/></li>
-    <li><label>评论内容<b>*</b></label><textarea disabled="disabled" name="content" rows="10" cols="50" style="border: 1px solid lightblue"><?=\yii\helpers\Html::encode($info['commentcontent'])?></textarea></li>
-    <li><label>回复者<b>*</b></label><input disabled="disabled" name="author" type="text" class="dfinput" value="admin"  style="width:200px;"/></li>
-    <li><label>回复内容<b>*</b></label><textarea disabled="disabled" name="content" rows="10" cols="50" style="border: 1px solid lightblue"><?=\yii\helpers\Html::encode($info['replycontent'])?></textarea></li>
-    <li><label>&nbsp;</label><input onclick="clickBtn()" type="button" class="btn" value="返回"/></li>
-    </ul>
-    </div>
-	</div>
-    </div>
+</div>
 </body>
 <script type="text/javascript">
     function clickBtn(){

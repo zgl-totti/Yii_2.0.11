@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <style>
+    <style type="text/css">
         #auctionA{text-decoration:none;width:80%;height:35px;margin:0 auto;background-color:red;display:block;text-align:center;font-size:20px;color:#ffffff;border-radius:5px;cursor:pointer}
         #auctionA:hover{background-color:#FF3333;}
     </style>
@@ -47,7 +47,7 @@
     </div>
 </body>
 </html>
-<script>
+<script type="text/javascript">
     function auctionURL() {
         parent.location.href = "<?=\yii\helpers\Url::to(['personal/auction'])?>";
     }

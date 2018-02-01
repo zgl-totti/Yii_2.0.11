@@ -72,7 +72,6 @@
     <tr>
         <td class="t1">注册时间:</td><td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($info['addtime']))?></td>
     </tr>
-
 </table>
 </body>
 </html>

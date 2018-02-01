@@ -138,7 +138,6 @@
         </div>
     </form>
 </div>
-
 <div style="width:1200px;margin: 0 auto;">
     <div class="response" style="width: 600px;max-height:600px;line-height: 30px;border: 1px solid #ccc;border-radius: 10px;margin-top: 80px;">
         <p style="font-size: 18px">全部评论</p>
@@ -154,10 +153,8 @@
         </div>
     </div>
 </div>
-<div>
-</div>
-
-<script>
+<div></div>
+<script type="text/javascript">
     $(function () {
         $('.btn').click(function(){
             $.post("<?=\yii\helpers\Url::to(['news/comment'])?>", $('.form1').serialize(), function (res) {

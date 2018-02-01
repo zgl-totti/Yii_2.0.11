@@ -80,7 +80,7 @@
     </div>
 </body>
 </html>
-<script>
+<script type="text/javascript">
     $(function(){
         //交易保证金
         $("#submoney").click(function(){
@@ -118,7 +118,7 @@
         })
     })
 </script>
-<script>
+<script type="text/javascript">
     //时间处理
     $(function(){
         setInterval(changTime, 1000);    //每一秒都循环一次函数

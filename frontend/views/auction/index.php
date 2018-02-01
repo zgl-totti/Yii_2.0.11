@@ -1,6 +1,4 @@
 
-
-
 <style>
     .pic_inner #div1{width:100%;height:48px;;text-align:center;line-height:48px;font-size:16px;color:#ffffff}
     .pic_inner #div2{width:100%;height:50px;line-height:50px;}
@@ -15,7 +13,6 @@
     div.layui-layer-title{color:#FF3333;font-size:24px;}
     /*.layer-anim{box-shadow: 1px 1px 50px #ff6976  }*/
 </style>
-
 <div class="limit_style" id="">
     <div id="slideBox" class="slideBox">
         <div class="hd">
@@ -35,7 +32,6 @@
         <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
         <a class="prev" href="javascript:void(0)"></a>
         <a class="next" href="javascript:void(0)"></a>
-
     </div>
     <script type="text/javascript">
         jQuery("#slideBox").slide({titCell:".hd ul",mainCell:".bd ul",autoPlay:true,autoPage:true});
@@ -99,7 +95,7 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     function auction(id){
         var mid=document.getElementById("mid").value;
         if(mid){
@@ -127,7 +123,7 @@
         }
     }
 </script>
-<script>
+<script type="text/javascript">
     $(function(){
         setInterval(changTime, 1000);    //每一秒都循环一次函数
         function changTime(){

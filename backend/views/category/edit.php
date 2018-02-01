@@ -81,7 +81,7 @@
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     function myfun(){
         $.post("{:U('Category/edit')}",$('#form1').serialize(),function(res){
             if(res.status=='notc'){

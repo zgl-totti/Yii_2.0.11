@@ -1,9 +1,8 @@
 
-<style>
+<style type="text/css">
     th{text-align:center;height:30px;line-height:30px;font-size:18px;}
     td{text-align:center}
 </style>
-
     <div style="width:960px;float: left;height:800px;margin-top:-10px;">
         <div style="height:40px;line-height:40px;font-size:20px;margin-top:15px;padding-left:30px;">
             <span style="border-bottom:2px solid red;">未读列表</span>

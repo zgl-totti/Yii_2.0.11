@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>会员登记表</title>
+
     <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>
@@ -20,12 +21,10 @@
         .lev img{
             height:84px ;
             width: 100px;
-
         }
         .lev span{
             width: 100px;
             text-align: center;
-
         }
         .active{
             margin: 0 auto;
@@ -49,7 +48,6 @@
             background-color:#3C95C8 ;
             padding: 5px;
             font-weight: bolder;
-
         }
         .catepage a:hover{
             background-color: white;
@@ -69,7 +67,6 @@
         .tablelist tr th{
             text-align: center;
         }
-
     </style>
     <script type="text/javascript">
         $(function(){
@@ -247,7 +244,6 @@
                 <?php endforeach;?>
             </table>
             <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages['pages3']])?></div>
-
             <table class="tablelist" style="text-align: center;display: none">
                 <tr>
                     <th>编号</th>
@@ -278,7 +274,6 @@
                 <?php endforeach;?>
             </table>
             <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages['pages4']])?></div>
-
             <table class="tablelist" style="text-align: center;display: none">
                 <tr>
                     <th>编号</th>
@@ -309,7 +304,6 @@
                 <?php endforeach;?>
             </table>
             <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages['pages5']])?></div>
-
         </div>
         <div id="main" style="width: 600px;height:600px;float: left"></div>
     </div>

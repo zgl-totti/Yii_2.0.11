@@ -9,14 +9,12 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <style type="text/css">
         div.pagin{background-color: red;}
         div.pagin div{float: right}
         div.pagin span{text-align:center;line-height: 30px; display: inline-block;width: 30px;height: 30px; background-color:orange;}
         div.pagin a{text-align:center;line-height: 30px;display: inline-block;width: 30px;height: 30px; background-color:gray;}
     </style>
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -69,9 +67,7 @@
         })
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">

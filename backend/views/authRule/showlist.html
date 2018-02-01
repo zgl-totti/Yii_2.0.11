@@ -9,12 +9,8 @@
     <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-
-
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -22,14 +18,12 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab2" class="tabson">
             <table class="tablelist">
                 <thead>
                 <tr>
-
                     <th>权限名称</th>
                     <th>权限规则</th>
                     <th>操作</th>
@@ -46,41 +40,34 @@
                             <a href="{:U('edit',array('id'=>$value['id']))}" class="tablelink">编辑</a> |
                             <!--<a href="{:U('delete',array('id'=>$value['id']))}" class="tablelink">删除</a>-->
                             <a href="javascript:del({$value['id']})" class="tablelink">删除</a>
+                        </td>
                     </tr>
                 </volist>
                 </tbody>
             </table>
-
-
-
-
         </div>
-
     </div>
-
 </div>
 </body>
-
 <script type="text/javascript">
     $(function(){
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');
     })
-
 </script>
 <script type="text/javascript">
     //编辑
- /*   function edit(id){
-        $.get("{:U('AuthRole/edit')}",{id:id},function(res){
-            if(res.status=="ok"){
-                layer.msg(res.msg,{icon:6,time:2000},function(){
-                    window.location.href="{:U('AuthRole/showlist')}";
-                })
-            }else{
-                layer.alert(res.msg,{icon:5})
-            }
-        })
-    }*/
+    /*   function edit(id){
+           $.get("{:U('AuthRole/edit')}",{id:id},function(res){
+               if(res.status=="ok"){
+                   layer.msg(res.msg,{icon:6,time:2000},function(){
+                       window.location.href="{:U('AuthRole/showlist')}";
+                   })
+               }else{
+                   layer.alert(res.msg,{icon:5})
+               }
+           })
+       }*/
     //删除
     function del(id){
         layer.confirm("你确定要删除我吗?",{btn:['确定',"取消"]},function(){

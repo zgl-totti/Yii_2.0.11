@@ -9,7 +9,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <script type="text/javascript">
         $(function () {
             $("#firstParent").live('change',function(){

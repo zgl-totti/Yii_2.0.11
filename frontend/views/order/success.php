@@ -12,34 +12,31 @@
             <dd> &nbsp;</dd>
             <dd>2. 如有疑问，请拨打客服电话：400-6666-8888</dd>
         </dl>
-
     </div>
 </div>
-
-    <div class="pxlistcon box">
-         <div class="pxlist" >
-            <h3>购买该商品的用户还购买了</h3>
-            <ul>
-                <?php foreach($list as $v): ?>
-                    <li>
-                        <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>\yii\helpers\Html::encode($v['id'])])?>{:U('Detail/detail',array('gid'=>$val['id']))}" title="">
-                            <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>" alt="" />
-                            <span><?=\yii\helpers\Html::encode($v['goodsname'])?></span>
-                        </a>
-                        <p>￥<?=\yii\helpers\Html::encode($v['price'])?></p>
-                    </li>
-                <?php endforeach;?>
-            </ul>
-         </div>
+<div class="pxlistcon box">
+    <div class="pxlist" >
+        <h3>购买该商品的用户还购买了</h3>
+        <ul>
+            <?php foreach($list as $v): ?>
+                <li>
+                    <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>\yii\helpers\Html::encode($v['id'])])?>{:U('Detail/detail',array('gid'=>$val['id']))}" title="">
+                        <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>" alt="" />
+                        <span><?=\yii\helpers\Html::encode($v['goodsname'])?></span>
+                    </a>
+                    <p>￥<?=\yii\helpers\Html::encode($v['price'])?></p>
+                </li>
+            <?php endforeach;?>
+        </ul>
     </div>
-    <div style="clear:both;"></div>
-
+</div>
+<div style="clear:both;"></div>
 <script type="text/javascript">
     $(function() {
-      $('.cateList').hide();
+        $('.cateList').hide();
     });
-    
+
     function sort(v) {
-        $(v).addClass('active').siblings().removeClass('active');               
+        $(v).addClass('active').siblings().removeClass('active');
     }
 </script>

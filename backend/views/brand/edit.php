@@ -38,7 +38,6 @@
             cursor: pointer;
         }
     </style>
-
     <!--添加-->
     <script type="text/javascript">
         $(function(){
@@ -59,11 +58,8 @@
             })
         })
     </script>
-
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -71,7 +67,6 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
@@ -80,15 +75,12 @@
                     <input value="<?=\yii\helpers\Html::encode($info['id'])?>" name="id" type="hidden"/>
                     <li><label>品牌名称<b>*</b></label><input value="<?=\yii\helpers\Html::encode($info['bname'])?>" name="bname" type="text"  class="dfinput" placeholder="请填写品牌名称"  style="width:450px;"/></li>
                     <li><label>品牌LOGO<b>*</b></label>
-
                         <div class="logobox">
                             <div class="resizebox">
                                 <img id="img0" src="<?=\yii\helpers\Url::to('@web/uploads/brand/').\yii\helpers\Html::encode($info['logo']);?>" width="180px" alt="" height="110px"/>
                             </div>
                         </div>
-
                     </li>
-
                     <li><label>描述<b>*</b></label>
                         <div class="vocation">
                             <textarea name="description" cols="" rows="" class="textarea" onkeyup="checkLength(this);"><?=\yii\helpers\Html::encode($info['description'])?></textarea>
@@ -101,9 +93,7 @@
         </div>
     </div>
 </div>
-
-
-<script>
+<script type="text/javascript">
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
         console.log("objUrl = "+objUrl) ;
@@ -124,7 +114,6 @@
         return url ;
     }
 </script>
-
 </body>
 </html>
 <script type="text/javascript">
@@ -152,5 +141,4 @@
             return true;
         }
     }
-
 </script>

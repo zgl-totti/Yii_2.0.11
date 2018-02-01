@@ -36,9 +36,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -120,7 +118,7 @@
     </script>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     //删除
     function del(id){
         layer.confirm('确定删除?',{icon:2,title:'提示'},function(){

@@ -84,8 +84,6 @@
     <img src="<?=\yii\helpers\Url::to('@web/images/zx.png')?>" alt="左下" class="zx">
     <img src="<?=\yii\helpers\Url::to('@web/images/yx.png')?>" alt="右下" class="yx">
 </div>
-
-
 <div class="footer">
     关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 广告服务 | 手机电商 | 友情链接 | 销售联盟 | 美食社区 | 热爱公益 | English Site<br>
     <span>Copyright © 2004-2016  我爱我家wawj.com 版权所有</span>

@@ -21,7 +21,6 @@
 
     <script type="text/javascript">
         $(function () {
-
             $(".ui_timepicker").datetimepicker({
                 //showOn: "button",
                 //buttonImage: "./css/images/icon_calendar.gif",
@@ -35,7 +34,6 @@
         })
     </script>
     <!--更改结束-->
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -53,12 +51,9 @@
         .logobox{ width:200px; height:130px; border:1px solid #dddddd; margin-left:90px;}
         .resizebox{ width:180px; height:110px; border:1px solid #dddddd;margin:10px; }
 
-
     </style>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -66,32 +61,30 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
             <form id="form1" action="#">
                 <ul class="forminfo">
-                        <li><label>商品名称<b>*</b></label>
-                            <input name="goodsname" type="text"  class="dfinput" disabled value="<?=\yii\helpers\Html::encode($info['goods']['goodsname'])?>"  style="width:300px;"/>
-                        </li>
+                    <li><label>商品名称<b>*</b></label>
+                        <input name="goodsname" type="text"  class="dfinput" disabled value="<?=\yii\helpers\Html::encode($info['goods']['goodsname'])?>"  style="width:300px;"/>
+                    </li>
                     <input type="hidden" value="<?=\yii\helpers\Html::encode($info['id'])?>" name="id"/>
-                        <li>
-                            <div class="logobox">
-                                <div class="resizebox">
-                                    <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($info['goods']['pic'])?>" alt="" height="110px" width="180px"  />
-                                </div>
+                    <li>
+                        <div class="logobox">
+                            <div class="resizebox">
+                                <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($info['goods']['pic'])?>" alt="" height="110px" width="180px"  />
                             </div>
-                        </li>
-                        <li><label>开始时间<b>*</b></label>
-                            <!--<input name="starttime" value="{:date('Y-m-d H:i:m',$list[0]['starttime'])}" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true})"  class="Wdate"  style="height:30px;"/>-->
-                            <input type="text" name="starttime" class="ui_timepicker" value="<?=date('Y-m-d H:i:m',\yii\helpers\Html::encode($info['starttime']))?>">
-                        </li>
-                        <li><label>截止时间<b>*</b></label>
-                            <input type="text" name="endtime" class="ui_timepicker" value="<?=date('Y-m-d H:i:m',\yii\helpers\Html::encode($info['endtime']))?>">
-                            <!--<input class="Wdate" value="{:date('Y-m-d  H:i:m',$list[0]['endtime'])}" name="endtime" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true})"     style="height:30px;" />-->
-                        </li>
-
+                        </div>
+                    </li>
+                    <li><label>开始时间<b>*</b></label>
+                        <!--<input name="starttime" value="{:date('Y-m-d H:i:m',$list[0]['starttime'])}" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true})"  class="Wdate"  style="height:30px;"/>-->
+                        <input type="text" name="starttime" class="ui_timepicker" value="<?=date('Y-m-d H:i:m',\yii\helpers\Html::encode($info['starttime']))?>">
+                    </li>
+                    <li><label>截止时间<b>*</b></label>
+                        <input type="text" name="endtime" class="ui_timepicker" value="<?=date('Y-m-d H:i:m',\yii\helpers\Html::encode($info['endtime']))?>">
+                        <!--<input class="Wdate" value="{:date('Y-m-d  H:i:m',$list[0]['endtime'])}" name="endtime" type="text" onfocus="WdatePicker({isShowClear:false,readOnly:true})"     style="height:30px;" />-->
+                    </li>
                     <li><label>&nbsp;</label><input id="btn" type="button" class="btn" value="编辑发布"/></li>
                 </ul>
             </form>

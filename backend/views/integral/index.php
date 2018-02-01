@@ -30,12 +30,8 @@
 
         });
     </script>
-
-
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -52,7 +48,6 @@
                     <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
                 </ul>
             </form>
-
             <table class="tablelist">
                 <thead>
                 <tr>

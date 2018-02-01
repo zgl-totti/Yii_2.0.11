@@ -29,7 +29,6 @@
             });
         });
     </script>
-
     <script type="text/javascript">
         function enabled(gid){
             layer.confirm("确定要更改吗?",{
@@ -92,86 +91,84 @@
         }
     </script>
 </head>
-
 <body>
-
-	<div class="place">
+<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">系统设置</a></li>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
     </ul>
-    </div>
-    <div class="formbody">
+</div>
+<div class="formbody">
     <div id="usual1" class="usual">
-  	<div id="tab2" class="tabson">
-    <form action="<?=\yii\helpers\Url::to(['goods/index'])?>" method="get">
-    <ul class="seachform">
-    <li><label>综合查询</label><input name="keywords" value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" type="text" class="scinput" /></li>
-    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
-    </ul>
-    </form>
-    
-    <table class="tablelist">
-    	<thead>
-    	<tr>
-        <th><input name="" type="checkbox" value="" checked="checked"/></th>
-        <th>编号<i class="sort"><img src="<?=\yii\helpers\Url::to('@web/images/px.gif')?>" /></i></th>
-        <th>商品图片</th>
-        <th>商品名称</th>
-        <th>商品分类</th>
-        <th>商品品牌</th>
-        <th>市场价格</th>
-        <th>商城价格</th>
-        <th>库存量</th>
-        <th>销售数量</th>
-        <th>发布时间</th>
-        <th>状态</th>
-        <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach($list as $k=>$v): ?>
-        <tr>
-        <td><input name="" type="checkbox" value="" /></td>
-        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-        <td><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>" width="50px" height="50px" alt=""/></td>
-        <td><?=mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,20,'utf-8');?></td>
-        <td><?=\yii\helpers\Html::encode($v['cate']['catename'])?></td>
-        <td><?=\yii\helpers\Html::encode($v['brand']['bname'])?></td>
-        <td><?=\yii\helpers\Html::encode($v['marketprice'])?></td>
-        <td><?=\yii\helpers\Html::encode($v['price'])?></td>
-        <td><?=\yii\helpers\Html::encode($v['num'])?></td>
-        <td><?=\yii\helpers\Html::encode($v['salenum'])?></td>
-        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
-        <td><?=\yii\helpers\Html::encode($v['display'])==1?'上架':'下架';?></td>
-        <td>
-            <a href="<?=\yii\helpers\Url::to(['goods/edit','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">编辑</a>&nbsp;&nbsp;&nbsp;
-            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate">
-                <?=\yii\helpers\Html::encode($v['display'])==1?'下架':'上架';?>
-            </a>&nbsp;&nbsp;&nbsp;
-            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink recycle">加入回收站</a>&nbsp;&nbsp;&nbsp;
-            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">彻底删除</a>
-        </td>
-        </tr>
-        <?php endforeach;?>
-        </tbody>
-    </table>
-        <div class="pagin">
-            <!--<div class="message" style="display: block;width: 300px;height: 30px;float: left;font-size: 14px;font-weight: bolder">共<i class="blue">{$count}</i>条记录，当前显示第&nbsp;<i class="blue">
-                <if condition="$p eq 0 ">
-                    1
-                    <else />
-                    {$p}
-                </if>
-            </i>页</div>-->
-            <div class="page" style="display: block;float: right;">
-                <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
+        <div id="tab2" class="tabson">
+            <form action="<?=\yii\helpers\Url::to(['goods/index'])?>" method="get">
+                <ul class="seachform">
+                    <li><label>综合查询</label><input name="keywords" value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" type="text" class="scinput" /></li>
+                    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
+                </ul>
+            </form>
+
+            <table class="tablelist">
+                <thead>
+                <tr>
+                    <th><input name="" type="checkbox" value="" checked="checked"/></th>
+                    <th>编号<i class="sort"><img src="<?=\yii\helpers\Url::to('@web/images/px.gif')?>" /></i></th>
+                    <th>商品图片</th>
+                    <th>商品名称</th>
+                    <th>商品分类</th>
+                    <th>商品品牌</th>
+                    <th>市场价格</th>
+                    <th>商城价格</th>
+                    <th>库存量</th>
+                    <th>销售数量</th>
+                    <th>发布时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($list as $k=>$v): ?>
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>" width="50px" height="50px" alt=""/></td>
+                        <td><?=mb_substr(\yii\helpers\Html::encode($v['goodsname']),0,20,'utf-8');?></td>
+                        <td><?=\yii\helpers\Html::encode($v['cate']['catename'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['brand']['bname'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['marketprice'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['price'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['num'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['salenum'])?></td>
+                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
+                        <td><?=\yii\helpers\Html::encode($v['display'])==1?'上架':'下架';?></td>
+                        <td>
+                            <a href="<?=\yii\helpers\Url::to(['goods/edit','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">编辑</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate">
+                                <?=\yii\helpers\Html::encode($v['display'])==1?'下架':'上架';?>
+                            </a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink recycle">加入回收站</a>&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">彻底删除</a>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+            <div class="pagin">
+                <!--<div class="message" style="display: block;width: 300px;height: 30px;float: left;font-size: 14px;font-weight: bolder">共<i class="blue">{$count}</i>条记录，当前显示第&nbsp;<i class="blue">
+                    <if condition="$p eq 0 ">
+                        1
+                        <else />
+                        {$p}
+                    </if>
+                </i>页</div>-->
+                <div class="page" style="display: block;float: right;">
+                    <?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?>
+                </div>
             </div>
         </div>
     </div>
-	</div>
-	<script type="text/javascript">
+    <script type="text/javascript">
         $(function(){
             $('.operate').click(function(){
                 var id=$(this).attr('id');
@@ -229,7 +226,7 @@
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');
-	</script>
-    </div>
+    </script>
+</div>
 </body>
 </html>

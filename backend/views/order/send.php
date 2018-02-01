@@ -53,7 +53,7 @@
     </table>
 </form>
 </body>
-<script>
+<script type="text/javascript">
     $(function(){
         $("#sub").click(function(){
             $.post("<?=\yii\helpers\Url::to(['order/send'])?>",$("#form1").serialize(),function(res){

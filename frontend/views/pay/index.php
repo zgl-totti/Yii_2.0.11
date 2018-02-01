@@ -1,7 +1,4 @@
 
-
-
-
 <!-- 购物车的内容 开始-->
 <div class="shoppingMain">
     <ul class="title clearfix">
@@ -47,7 +44,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div id="div2" style="display: none">
                     <div class="pay2">
                         <span></span> 支付平台
@@ -60,7 +56,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div id="div3" style="display: none">
                     <div class="pay2">
                         <span></span> 网上银行
@@ -86,7 +81,7 @@
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     //确认支付
     $(function(){
         $("#subBtn").click(function(){

@@ -30,9 +30,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -40,23 +38,17 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
-
-
     <div id="usual1" class="usual">
-
         <div id="tab2" class="tabson">
-
             <ul class="seachform">
                 <form action="<?=\yii\helpers\Url::to(['sale/vote'])?>" method="get" id="form1">
-                <li><label>综合查询</label><input value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" name="keywords" type="text" class="scinput" /></li>
-                <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
+                    <li><label>综合查询</label><input value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" name="keywords" type="text" class="scinput" /></li>
+                    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
                 </form>
                 <li style="border-radius:5px;float: right;height:34px;width:80px;background-color:#3994C7;text-align:center;line-height:34px;">
                     <a style="color:white;font-size:16px;" href="<?=\yii\helpers\Url::to(['sale/record'])?>">投票记录</a>
                 </li>
-
             </ul>
             <table class="tablelist">
                 <thead>
@@ -72,31 +64,26 @@
                 </thead>
                 <tbody>
                 <?php foreach($list as $k=>$v): ?>
-                <tr>
-                    <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                    <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic']);?>"></td>
-                    <td><?=\yii\helpers\Html::encode($v['goods']['goodsname']);?></td>
-                    <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['starttime']))?></td>
-                    <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['endtime']))?></td>
-                    <td><?=\yii\helpers\Html::encode($v['votecount'])?></td>
-                    <td>
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink add">增加票数</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink reduce">减少票数</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic']);?>"></td>
+                        <td><?=\yii\helpers\Html::encode($v['goods']['goodsname']);?></td>
+                        <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['starttime']))?></td>
+                        <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['endtime']))?></td>
+                        <td><?=\yii\helpers\Html::encode($v['votecount'])?></td>
+                        <td>
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink add">增加票数</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink reduce">减少票数</a>
+                        </td>
+                    </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
-
             <div class="pagin">
                 <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?></div>
             </div>
-
-
         </div>
-
     </div>
-
     <script type="text/javascript">
         $(function(){
             $('.add').click(function(){
@@ -125,7 +112,6 @@
             })
         })
     </script>
-
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');

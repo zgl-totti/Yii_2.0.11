@@ -9,7 +9,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <style type="text/css">
         div.pagin{background-color: red;}
         div.pagin div{float: right}
@@ -30,9 +29,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -64,18 +61,18 @@
                 </thead>
                 <tbody>
                 <?php foreach($list as $k=>$v): ?>
-                <tr>
-                    <td><input name="" type="checkbox" value="" /></td>
-                    <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                    <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" alt=""/></td>
-                    <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['member']['username'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['auctionprice'])?></td>
-                    <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
-                    <td>
-                        <a href="#" class="tablelink del" id="<?=\yii\helpers\Html::encode($v['id'])?>">删除</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" alt=""/></td>
+                        <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['member']['username'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['auctionprice'])?></td>
+                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['addtime']))?></td>
+                        <td>
+                            <a href="#" class="tablelink del" id="<?=\yii\helpers\Html::encode($v['id'])?>">删除</a>
+                        </td>
+                    </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
@@ -106,7 +103,7 @@
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-    <script>
+    <script type="text/javascript">
         //删除
         function del(id){
             layer.confirm("你确定要删除我吗？",{btn:['确定','取消']},function(){

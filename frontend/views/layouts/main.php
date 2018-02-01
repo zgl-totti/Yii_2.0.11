@@ -46,7 +46,7 @@ use common\widgets\Alert;
     <?=Html::jsFile('@web/js/layer/layer.js')?>
 
     <style type="text/css">
-       .nav_on{ background:#FF7200;color:white;}
+        .nav_on{ background:#FF7200;color:white;}
     </style>
     <script type="text/javascript">
         $(function(){
@@ -132,6 +132,7 @@ use common\widgets\Alert;
                 })
             }
         }
+
         //我的订单判断是否登陆
         function isorder(){
             var mid=$("#islogin").val();
@@ -164,7 +165,6 @@ use common\widgets\Alert;
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <!--顶部样式-->
 <div id="header_top">
     <input type="hidden" value="<?=\yii\helpers\Html::encode($this->params['info']['id'])?>" id="islogin"/>
@@ -275,8 +275,6 @@ use common\widgets\Alert;
         </div>
     </div>
 </div>
-
-
 <div class="container">
     <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -284,8 +282,6 @@ use common\widgets\Alert;
     <?= Alert::widget() ?>
     <?= $content ?>
 </div>
-
-
 <!--底部图层-->
 <div class="phone_style">
     <div class="index_style">
@@ -338,8 +334,6 @@ use common\widgets\Alert;
         <p>蜀ICP备11017033号 Copyright ©2011 成都福际生物技术有限公司 All Rights Reserved. Technical support:CDDGG Group</p>
     </div>
 </div>
-
-
 <!--右侧菜单栏购物车样式-->
 <div class="fixedBox">
     <ul class="fixedBoxList">
@@ -354,11 +348,9 @@ use common\widgets\Alert;
                 </a>
             <?php endif;?>
         </li>
-
         <li class="fixeBoxLi Service "> <span class="fixeBoxSpan iconfont icon-service"></span> <strong>客服</strong>
             <div class="ServiceBox">
                 <div class="bjfffs"></div>
-
                 <dl onclick="javascript:;">
                     <dd> <strong style="float: left;top:12px;left: 30px;position: absolute">QQ客服1</strong>
                         <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=591813762&site=qq&menu=yes">
@@ -370,7 +362,6 @@ use common\widgets\Alert;
                             <img border="0" style="" src="http://wpa.qq.com/pa?p=2:211663882:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
                     </dd>
                 </dl>
-
             </div>
         </li>
         <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
@@ -420,8 +411,6 @@ use common\widgets\Alert;
         <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan iconfont icon-top"></span> <strong>返回顶部</strong> </li>
     </ul>
 </div>
-
-
 <?php $this->endBody() ?>
 </body>
 </html>

@@ -27,18 +27,18 @@
 </form>
 </body>
 <script>
-   $(function(){
-       $("#btn").click(function(){
-           $.post("<?=\yii\helpers\Url::to(['news/reply'])?>",$("#form1").serialize(),function(res){
-               if(res.code==1){
-                   layer.msg(res.body,{icon:1,time:1000},function(){
-                       location="<?=\yii\helpers\Url::to(['news/comment'])?>";
-                   })
-               }else {
-                   layer.msg(res.body,{icon:2,time:1000});
-               }
-           },'json')
-       })
-   })
+    $(function(){
+        $("#btn").click(function(){
+            $.post("<?=\yii\helpers\Url::to(['news/reply'])?>",$("#form1").serialize(),function(res){
+                if(res.code==1){
+                    layer.msg(res.body,{icon:1,time:1000},function(){
+                        location="<?=\yii\helpers\Url::to(['news/comment'])?>";
+                    })
+                }else {
+                    layer.msg(res.body,{icon:2,time:1000});
+                }
+            },'json')
+        })
+    })
 </script>
 </html>

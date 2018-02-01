@@ -9,9 +9,7 @@
     <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-
     <script type="text/javascript">
-
         function setPriority(nav,id){
             var priority=$(nav).val();
             $.post("{:U('setPriority')}",{'priority':priority,'id':id},function(res){
@@ -37,7 +35,6 @@
             });
         }
     </script>
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -52,9 +49,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -62,7 +57,6 @@
         <li><a href="#">管理组列表</a></li>
     </ul>
 </div>
-
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab2" class="tabson">
@@ -86,14 +80,13 @@
                             <a href="{:U('edit',array('id'=>$value['id']))}" class="tablelink">编辑</a> ｜
                             <!--<a href="{:U('delete',array('id'=>$value['id']))}" class="tablelink">删除</a>-->
                             <a href="javascript:del({$value['id']})" class="tablelink">删除</a>
+                        </td>
                     </tr>
                 </volist>
                 </tbody>
             </table>
         </div>
-
     </div>
-
 </div>
 </body>
 <script type="text/javascript">

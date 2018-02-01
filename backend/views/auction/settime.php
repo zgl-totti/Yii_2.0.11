@@ -10,7 +10,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/timer/WdatePicker.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -24,7 +23,6 @@
             });
         });
     </script>
-
 </head>
 <body>
 <div class="place">
@@ -38,27 +36,27 @@
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
             <form action="#" id="form1">
-            <ul class="forminfo">
-                <input type="hidden" name="id" value="<?=\yii\helpers\Html::encode($info['id'])?>" />
-                <li><label>商品名称<b>*</b></label>
-                    <input disabled="disabled" name="" type="text" value="<?=\yii\helpers\Html::encode($info['goods']['goodsname'])?>" class="dfinput" style="width:518px;"/>
-                </li>
-                <li>
-                    <label>商品图片<b>*</b></label>
-                    <div class="imagBox ">
-                        <div class="imgsml">
-                            <img id="img0"  src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($info['goods']['pic']);?>" alt="" width="150px" height="100px"/>
+                <ul class="forminfo">
+                    <input type="hidden" name="id" value="<?=\yii\helpers\Html::encode($info['id'])?>" />
+                    <li><label>商品名称<b>*</b></label>
+                        <input disabled="disabled" name="" type="text" value="<?=\yii\helpers\Html::encode($info['goods']['goodsname'])?>" class="dfinput" style="width:518px;"/>
+                    </li>
+                    <li>
+                        <label>商品图片<b>*</b></label>
+                        <div class="imagBox ">
+                            <div class="imgsml">
+                                <img id="img0"  src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($info['goods']['pic']);?>" alt="" width="150px" height="100px"/>
+                            </div>
                         </div>
-                    </div>
-                    <!--<input id="file0" style="margin-left: 85px;margin-top: 10px;  " type="file" name="pic"/>-->
-                </li>
-                <li><label>开始时间<b>*</b></label>
-                    <!--<input id="d11" style="border:1px;" type="text" onClick="WdatePicker()" />-->
-                    <input id="d11" name="starttime" onClick="WdatePicker()" type="text" class="dfinput" style="height:20px;width:146px;" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['starttime']))?>"/>
-                </li>
-                <li><label>结束时间<b>*</b></label><input name="endtime" class="Wdate" type="text" id="d15" onFocus="WdatePicker({isShowClear:false,readOnly:true})" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['endtime']))?>"/></li>
-                <li><label>&nbsp;</label><input id="sub" type="button" class="btn" value="确认设置"/></li>
-            </ul>
+                        <!--<input id="file0" style="margin-left: 85px;margin-top: 10px;  " type="file" name="pic"/>-->
+                    </li>
+                    <li><label>开始时间<b>*</b></label>
+                        <!--<input id="d11" style="border:1px;" type="text" onClick="WdatePicker()" />-->
+                        <input id="d11" name="starttime" onClick="WdatePicker()" type="text" class="dfinput" style="height:20px;width:146px;" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['starttime']))?>"/>
+                    </li>
+                    <li><label>结束时间<b>*</b></label><input name="endtime" class="Wdate" type="text" id="d15" onFocus="WdatePicker({isShowClear:false,readOnly:true})" value="<?=date('Y-m-d',\yii\helpers\Html::encode($info['endtime']))?>"/></li>
+                    <li><label>&nbsp;</label><input id="sub" type="button" class="btn" value="确认设置"/></li>
+                </ul>
             </form>
         </div>
     </div>

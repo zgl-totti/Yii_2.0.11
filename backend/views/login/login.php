@@ -5,6 +5,7 @@
     echo \yii\helpers\Html::jsFile('@web/js/cloud.js');
     echo \yii\helpers\Html::jsFile('@web/layer/layer.js');
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html>

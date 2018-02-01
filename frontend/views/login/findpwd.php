@@ -6,9 +6,9 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/styles.css">
     <script src="__PUBLIC__/Home/js/login/jQuery-1.8.2.min.js"></script>
     <script src="__PUBLIC__/Home/js/login/jquery.validate.js"></script>
-   <script src="__PUBLIC__/Home/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/Home/js/layer/layer.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Home/js/abc.js"></script>
-    <script>
+    <script type="text/javascript">
         $(function(){
             //validate表单验证
             var validate=$('#form1').validate({
@@ -70,31 +70,27 @@
                 errorElement:'div'
             })
 
-
             $('.floating-btn').click(function(){
                 //表单提交之前判断前端验证是否通过，只有通过时才提交表单
-
-
-                    if (validate.form()) {
-                        $.post("{:U('register')}", $('#form1').serialize(), function (res) {
-                            if (res.status == 1) {
-                                layer.open({
-                                    content: res.info,
-                                    icon: 1,
-                                    yes: function () {
-                                        location.href = "{:U('Home/Index/index')}";
-                                    }
-                                });
-                            } else {
-                                layer.open({
-                                    content: res,
-                                    icon: 2,
-                                    title: '错误提示'
-                                });
-                            }
-                        }, 'json')
-                    }
-
+                if (validate.form()) {
+                    $.post("{:U('register')}", $('#form1').serialize(), function (res) {
+                        if (res.status == 1) {
+                            layer.open({
+                                content: res.info,
+                                icon: 1,
+                                yes: function () {
+                                    location.href = "{:U('Home/Index/index')}";
+                                }
+                            });
+                        } else {
+                            layer.open({
+                                content: res,
+                                icon: 2,
+                                title: '错误提示'
+                            });
+                        }
+                    }, 'json')
+                }
             })
         })
     </script>
@@ -134,14 +130,11 @@
             <div>
                 <button id="btnSub" class="floating-btn" type="button" ><i class="icon-arrow"></i></button>
             </div>
-
         </form>
     </div>
     <img src="__PUBLIC__/Home/images/zx.png" alt="左下" class="zx">
     <img src="__PUBLIC__/Home/images/yx.png" alt="右下" class="yx">
 </div>
-
-
 <div class="footer">
     关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 广告服务 | 手机电商 | 友情链接 | 销售联盟 | 美食社区 | 热爱公益 | English Site<br>
     <span>Copyright © 2004-2016  我爱我家wawj.com 版权所有</span>

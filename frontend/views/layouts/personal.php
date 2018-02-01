@@ -474,10 +474,8 @@ use common\widgets\Alert;
     </ul>
 </div>
 
-
 <?php $this->endBody() ?>
 </body>
-
 <!--个人中心样式-->
 <style type="text/css">
     body{ margin:0; padding:0; font-size:12px; font-family:"Microsoft YaHei"; line-height:25px; color:#555555;}
@@ -506,6 +504,5 @@ use common\widgets\Alert;
     .mem_t{ width:870px; height:50px; line-height:50px; overflow:hidden; color:#333333; font-size:16px;}
     .mem_tit{ width:930px; height:50px; line-height:50px; overflow:hidden; color:#333333; font-size:16px; }
 </style>
-
 </html>
 <?php $this->endPage() ?>

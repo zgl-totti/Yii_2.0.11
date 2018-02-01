@@ -9,7 +9,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <style type="text/css">
         div.pagin{background-color: red;}
         div.pagin div{float: right}
@@ -30,9 +29,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -44,10 +41,10 @@
     <div id="usual1" class="usual">
         <div id="tab2" class="tabson">
             <form action="<?=\yii\helpers\Url::to(['auction/bargain'])?>" method="get">
-            <ul class="seachform">
-                <li><label>综合查询</label><input value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" name="keywords" type="text" class="scinput" /></li>
-                <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
-            </ul>
+                <ul class="seachform">
+                    <li><label>综合查询</label><input value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" name="keywords" type="text" class="scinput" /></li>
+                    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
+                </ul>
             </form>
             <table class="tablelist">
                 <thead>
@@ -63,18 +60,18 @@
                 </thead>
                 <tbody>
                 <?php foreach($list as $k=>$v): ?>
-                <tr>
-                    <td><input name="" type="checkbox" value="" /></td>
-                    <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                    <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" alt=""/></td>
-                    <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['member']['username'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['price'])?></td>
-                    <td>
-                        <a href="<?=\yii\helpers\Url::to(['auction/bargain-detail','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">查看详情</a> |
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">删除</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" alt=""/></td>
+                        <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['member']['username'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['price'])?></td>
+                        <td>
+                            <a href="<?=\yii\helpers\Url::to(['auction/bargain-detail','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">查看详情</a> |
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink del">删除</a>
+                        </td>
+                    </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
@@ -101,7 +98,6 @@
             })
         })
     </script>
-
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');

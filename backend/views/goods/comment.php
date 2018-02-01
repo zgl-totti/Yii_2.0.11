@@ -35,9 +35,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -142,7 +140,7 @@
     </script>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     //回复
     function reply(cid){
         layer.open({
@@ -154,17 +152,17 @@
     }
     //删除
     function del(cid){
-            layer.confirm('确定删除?',{icon:2,title:'提示'},function(){
-                $.get("{:U('GoodsComment/del')}","id="+cid,function(res){
-                    if(res.status=='ok'){
-                        layer.msg(res.msg,{icon:1,time:1000},function(){
-                            window.location.href="{:U('GoodsComment/comment')}";
-                        })
-                    }else{
-                        layer.msg(res.msg,{icon:2,time:1000});
-                    }
-                })
+        layer.confirm('确定删除?',{icon:2,title:'提示'},function(){
+            $.get("{:U('GoodsComment/del')}","id="+cid,function(res){
+                if(res.status=='ok'){
+                    layer.msg(res.msg,{icon:1,time:1000},function(){
+                        window.location.href="{:U('GoodsComment/comment')}";
+                    })
+                }else{
+                    layer.msg(res.msg,{icon:2,time:1000});
+                }
             })
+        })
     }
     //显示
 
@@ -192,7 +190,5 @@
             }
         },'json')
     }
-
-
 </script>
 </html>

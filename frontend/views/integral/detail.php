@@ -35,8 +35,6 @@
     }
     alert(substr(str,15));
 </script>
-
-
 <script type="text/javascript">
     //立即兑换
     function addToBuy(){
@@ -180,9 +178,6 @@
                         });
                     }
                 </script>
-
-
-
                 <h5 style="color:orange;">开心聊天室</h5>
             </div>
             <div class="Recommend">

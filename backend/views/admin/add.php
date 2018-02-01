@@ -9,7 +9,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -60,52 +59,45 @@
         })
     </script>
 </head>
-
 <body>
-
-	<div class="place">
+<div class="place">
     <span>位置：</span>
     <ul class="placeul">
-    <li><a href="#">首页</a></li>
-    <li><a href="#">系统设置</a></li>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
     </ul>
-    </div>
-    
-    <div class="formbody">
-    <div id="usual1" class="usual"> 
-  	<div id="tab1" class="tabson">
- 
-    <form action="#" id="form1">
-    <ul class="forminfo">
-        <!--<li>
-            <label for="{$val['title']}">所属角色<b>*</b></label>
-            <volist name="groupList" id="val">
-            <label for="{$val['title']}" style="width: 70px">{$val['title']}</label>
-            <span style="float:left;margin-right: 25px;">
-                <input name="group_id[]" id="{$val['title']}" value="{$val['id']}" type="checkbox" class="dfinput" style="width:18px;"/>
-            </span>
-            </volist>
-        </li>-->
-    <li><label>管理员账号<b>*</b></label><input name="username" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
-    <li><label>性别<b>*</b></label>
-        <div class="vocation">
-            <select name="gender" class="select2">
-                <option selected value="0">男</option>
-                <option value="1">女</option>
-                <option value="2">保密</option>
-            </select>
+</div>
+<div class="formbody">
+    <div id="usual1" class="usual">
+        <div id="tab1" class="tabson">
+            <form action="#" id="form1">
+                <ul class="forminfo">
+                    <!--<li>
+                        <label for="{$val['title']}">所属角色<b>*</b></label>
+                        <volist name="groupList" id="val">
+                        <label for="{$val['title']}" style="width: 70px">{$val['title']}</label>
+                        <span style="float:left;margin-right: 25px;">
+                            <input name="group_id[]" id="{$val['title']}" value="{$val['id']}" type="checkbox" class="dfinput" style="width:18px;"/>
+                        </span>
+                        </volist>
+                    </li>-->
+                    <li><label>管理员账号<b>*</b></label><input name="username" type="text" class="dfinput" placeholder="请填写账号"  style="width:200px;"/></li>
+                    <li><label>性别<b>*</b></label>
+                        <div class="vocation">
+                            <select name="gender" class="select2">
+                                <option selected value="0">男</option>
+                                <option value="1">女</option>
+                                <option value="2">保密</option>
+                            </select>
+                        </div>
+                    </li>
+                    <li><label>管理员密码<b>*</b></label><input name="password" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
+                    <li><label>确认密码<b>*</b></label><input name="repassword" type="password" class="dfinput" placeholder="请填写确认密码"  style="width:200px;"/></li>
+                    <li><label>&nbsp;</label><input id="addBtn" type="button" class="btn" value="添加管理员"/></li>
+                </ul>
+            </form>
         </div>
-    </li>
-    <li><label>管理员密码<b>*</b></label><input name="password" type="password" class="dfinput" placeholder="请填写密码"  style="width:200px;"/></li>
-    <li><label>确认密码<b>*</b></label><input name="repassword" type="password" class="dfinput" placeholder="请填写确认密码"  style="width:200px;"/></li>
-
-    <li><label>&nbsp;</label><input id="addBtn" type="button" class="btn" value="添加管理员"/></li>
-    </ul>
-    </form>
-    </div> 
-
-	</div>
     </div>
-
+</div>
 </body>
 </html>

@@ -34,12 +34,10 @@
                 <input name="password" id="pwd" type="password" required="required" class="form-control"/>
                 <label class="form-label">密　码</label>
             </div>
-
             <div id="drag"></div>
             <script type="text/javascript">
                 $('#drag').drag();
             </script>
-
             <div class="denglu">
                 <span id="hzy_fast_login"></span>
             </div>
@@ -52,13 +50,11 @@
     <img src="<?=\yii\helpers\Url::to('@web/images/zx.png')?>" alt="左下" class="zx">
     <img src="<?=\yii\helpers\Url::to('@web/images/yx.png')?>" alt="右下" class="yx">
 </div>
-
-
 <div class="footer">
     关于我们 | 联系我们 | 人才招聘 | 商家入驻 | 广告服务 | 手机电商 | 友情链接 | 销售联盟 | 美食社区 | 热爱公益 | English Site<br>
     <span>Copyright © 2004-2016  我爱我家wawj.com 版权所有</span>
 </div>
-<script>
+<script type="text/javascript">
     $(function () {
         $('.floating-btn').click(function() {
             $.post("<?=\yii\helpers\Url::to(['login/index'])?>", $(".form1").serialize(), function (res) {

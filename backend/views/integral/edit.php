@@ -73,12 +73,10 @@
                         <label>商品积分<b>*</b></label>
                         <input name="integral" type="text" value="<?=\yii\helpers\Html::encode($info['integral'])?>" class="dfinput" style="width: 525px;"/>
                     </li>
-
                     <li>
                         <label>库存数量<b>*</b></label>
                         <input name="num" type="text" value="<?=\yii\helpers\Html::encode($info['num'])?>" class="dfinput" style="width: 525px;"/>
                     </li>
-
                     <li>
                         <label>商品主图<b>*</b></label>
                         <div class="usercity" style="border:3px dashed #e6e6e6;width:520px;height:300px;position: relative">
@@ -99,7 +97,6 @@
                             </div>
                         <?php endforeach;?>
                     </li>
-
                     <li><label>商品描述<b>*</b></label>
                         <textarea id="content7" name="detail" style="width:700px;height:250px;visibility:hidden;"><?=\yii\helpers\Html::encode($info['detail'])?></textarea>
                     </li><br/>
@@ -111,7 +108,7 @@
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     //图片上传预览    IE是用了滤镜。
     function previewImage(file,pre,imag,width,height)
     {
@@ -177,7 +174,7 @@
         return param;
     }
 </script>
-<script>
+<script type="text/javascript">
     function auctionClick(){
         var chk=document.getElementById("act4").checked;
         if(chk==true){

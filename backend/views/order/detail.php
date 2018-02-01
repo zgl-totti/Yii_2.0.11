@@ -89,11 +89,10 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     $(function(){
         $(".btn").click(function(){
             window.location.href="<?=\yii\helpers\Url::to(['order/index'])?>";

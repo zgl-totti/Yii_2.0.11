@@ -131,7 +131,6 @@
                 }
             })
         })
-
     </script>
     <!--新加样式-->
     <style type="text/css">
@@ -152,7 +151,6 @@
         .focus{background:rgb(224,99,39);color: #fff;}
         #hzy_fast_login img{margin-top: 3px;}
     </style>
-
     <script type="text/javascript">
         var url="{:U('Index/buyCart')}";
         var delurl="{:U('Cart/del')}";
@@ -244,7 +242,7 @@
                     </div>
                 </div>
                 <span id="hzy_fast_login"></span>
-                <script>
+                <script type="text/javascript">
                     $(function () {
                         if("{$Think.session.username}"==0){
                             $('#hzy_fast_login').click(function () {

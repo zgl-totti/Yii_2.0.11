@@ -40,26 +40,22 @@
             });
         })
     </script>
-
-
 </head>
-
 <body style="background:#f0f9fd;">
 <div class="lefttop"><span></span>后台管理</div>
     <dl class="leftmenu">
-
         <dd>
             <div class="title">
                 <span><img src="<?=\yii\helpers\Url::to('@web/images/leftico01.png')?>" /></span>
                 <a href="<?=\yii\helpers\Url::to(['index/main'])?>" target="rightFrame">后台首页</a>
             </div>
         </dd>
+
         <dd>
             <div class="title">
                 <span><img src="<?=\yii\helpers\Url::to('@web/images/leftico01.png')?>" /></span>系统管理
             </div>
             <ul class="menuson">
-
                 <li>
                     <div class="header">
                         <cite></cite>

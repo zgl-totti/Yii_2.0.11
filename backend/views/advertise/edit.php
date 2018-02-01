@@ -23,16 +23,13 @@
             });
         });
     </script>
-
     <!--单选框  -->
     <style type="text/css">
         .imagBox{width:180px;height: 130px;border: 1px #8c8c8c solid ;margin-left: 85px }
         .imgsml{width:160px; height:110px;margin: 10px;border: 1px #8c8c8c solid;}
     </style>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -83,11 +80,8 @@
         </div>
     </div>
 </div>
-
 </body>
-
-
-<script>
+<script type="text/javascript">
     $("#file0").change(function(){
         var objUrl = getObjectURL(this.files[0]) ;
         console.log("objUrl = "+objUrl) ;

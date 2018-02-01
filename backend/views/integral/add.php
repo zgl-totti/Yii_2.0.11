@@ -113,18 +113,14 @@
                         <label>商品详情<b>*</b></label>
                         <textarea name="detail" id="content1" style="width: 680px" rows="30"></textarea>
                     </li>
-
                     <li><label>&nbsp;</label><input id="btn" name="" type="button" class="btn" value="发布商品"/></li>
                 </ul>
             </form>
-
-
         </div>
     </div>
 </div>
 </body>
-
-<script>
+<script type="text/javascript">
     //图片上传预览    IE是用了滤镜。
     function previewImage(file,pre,imag)
     {

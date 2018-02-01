@@ -3,7 +3,6 @@
     <script src="__PUBLIC__/Home/js/jquery.min.1.8.2.js" type="text/javascript"></script>
     <script src="__PUBLIC__/Home/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
     <title>易田商城首页</title>
-
 <body>
 <!--幻灯片样式-->
 <div class="AD_bg_img">

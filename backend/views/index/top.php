@@ -47,18 +47,12 @@
                 });
             })
         })
-
-
     </script>
-
 </head>
-
 <body style="background:url(<?=\yii\helpers\Url::to('@web/images/topbg.gif')?>) repeat-x;">
-
 <div class="topleft">
     <a href="index.html" target="_parent"><img src="<?=\yii\helpers\Url::to('@web/images/logo.png')?>" title="系统首页" /></a>
 </div>
-
 <!--    <ul class="nav">
 <li>
     <a href="main.html" target="rightFrame" class="selected">
@@ -66,23 +60,18 @@
     <h2>工作台</h2>
     </a>
 </li>
-
 </ul> -->
-
 <div class="topright">
     <ul>
         <li><span><img src="<?=\yii\helpers\Url::to('@web/images/help.png')?>" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
         <li><a href="#">关于</a></li>
         <li><a id="logout"  target="_top" style="cursor: pointer">退出</a></li>
     </ul>
-
     <div class="user">
         <span><?=$info['username']?></span>
         <i>消息</i>
         <b>5</b>
     </div>
-
 </div>
-
 </body>
 </html>

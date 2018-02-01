@@ -1,19 +1,18 @@
 
-<style>
+<style type="text/css">
     input{padding-left:10px;padding-right:10px;}
 </style>
-
-    <div style="width:960px;float: left;height:800px;margin-top:-10px;">
-        <div id="title" style="height:40px;line-height:40px;font-size:20px;margin-top:15px;padding-left:40px;">
-            <span style="cursor:pointer;border-bottom:2px solid red;">修改密码</span>
-            <span style="margin-left:10px;cursor:pointer">账户余额</span>
-            <span style="margin-left:10px;cursor:pointer">支付密码</span>
-        </div>
-        <div id="box">
-            <div class="content" style="display:block;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
-                <span style="padding-left:30px;line-height:40px;font-size:16px;color:red;font-weight: bolder">设置登录密码:</span>
-                <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="#" method="post" id="accountForm1">
+<div style="width:960px;float: left;height:800px;margin-top:-10px;">
+    <div id="title" style="height:40px;line-height:40px;font-size:20px;margin-top:15px;padding-left:40px;">
+        <span style="cursor:pointer;border-bottom:2px solid red;">修改密码</span>
+        <span style="margin-left:10px;cursor:pointer">账户余额</span>
+        <span style="margin-left:10px;cursor:pointer">支付密码</span>
+    </div>
+    <div id="box">
+        <div class="content" style="display:block;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
+            <span style="padding-left:30px;line-height:40px;font-size:16px;color:red;font-weight: bolder">设置登录密码:</span>
+            <div style="height:400px;margin-left:30px;margin-top:20px;">
+                <form action="#" method="post" id="accountForm1">
                     <div style="height:40px;margin-top:30px;">
                         <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">用户名:</span>
                         <span style="padding-left:30px;font-size:20px;color:red">
@@ -38,54 +37,54 @@
                             <input id="editlogin" style="cursor: pointer;width:100px;height:30px;"  type="button" value="确认修改">
                         </span>
                     </div>
-                    </form>
-                </div>
+                </form>
             </div>
-            <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
-                <span style="padding-left:30px;line-height:40px;font-size:16px;color:green;font-weight: bolder">余额查看:</span>
-                <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="#" method="post" id="accountForm3">
-                        <div style="height:40px;margin-top:30px;">
-                            <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">账号:</span>
+        </div>
+        <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
+            <span style="padding-left:30px;line-height:40px;font-size:16px;color:green;font-weight: bolder">余额查看:</span>
+            <div style="height:400px;margin-left:30px;margin-top:20px;">
+                <form action="#" method="post" id="accountForm3">
+                    <div style="height:40px;margin-top:30px;">
+                        <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">账号:</span>
                         <span style="padding-left:30px;font-size:20px;color:green">
                             <?=\yii\helpers\Html::encode($info->username);?>
                             <!--<input name="password" type="text">-->
                         </span>
-                        </div>
-                        <div style="height:40px;margin-top:10px;">
-                            <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">余额:</span>
+                    </div>
+                    <div style="height:40px;margin-top:10px;">
+                        <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">余额:</span>
                         <span style="padding-left:30px;font-size:20px;color:red">
                             <?=\yii\helpers\Html::encode($info->money);?>
                             <!--<input disabled="disabled" name="password" type="text">-->
                         </span>
-                        </div>
-                        <div style="height:40px;margin-top:10px;">
-                            <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">充值:</span>
+                    </div>
+                    <div style="height:40px;margin-top:10px;">
+                        <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">充值:</span>
                         <span style="padding-left:30px;font-size:16px;">
                             <input name="pay" value="1" type="radio">&nbsp;支付宝
                             <input name="pay" value="2" type="radio">&nbsp;银行卡
                             <input name="pay" value="3" type="radio">&nbsp;微信
                             <input name="pay" value="4" type="radio">&nbsp;QQ红包
                         </span>
-                        </div>
-                        <div style="height:40px;margin-top:10px;">
-                            <span style="margin-left:125px;padding-left:8px;line-height:40px;font-size:20px;">充值金额:</span>
+                    </div>
+                    <div style="height:40px;margin-top:10px;">
+                        <span style="margin-left:125px;padding-left:8px;line-height:40px;font-size:20px;">充值金额:</span>
                         <span style="padding-left:30px;font-size:20px;">
                             <input placeholder="请输入金额" name="money" type="text">
                         </span>
-                        </div>
-                        <div style="height:40px;margin-top:10px;">
+                    </div>
+                    <div style="height:40px;margin-top:10px;">
                         <span style="padding-left:30px;margin-left:260px;font-size:16px;">
                             <input id="accountAdd" style="cursor: pointer;width:100px;height:30px;" type="button" value="确认充值">
                         </span>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-            <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
-                <span style="padding-left:30px;line-height:40px;font-size:16px;color:blue;font-weight: bolder">设置支付密码:</span>
-                <div style="height:400px;margin-left:30px;margin-top:20px;">
-                    <form action="#" method="post" id="accountForm2">
+        </div>
+        <div class="content" style="display:none;width:900px;height:500px;border:1px solid gray;padding-top:20px;">
+            <span style="padding-left:30px;line-height:40px;font-size:16px;color:blue;font-weight: bolder">设置支付密码:</span>
+            <div style="height:400px;margin-left:30px;margin-top:20px;">
+                <form action="#" method="post" id="accountForm2">
                     <div style="height:40px;margin-top:30px;">
                         <span style="margin-left:150px;padding-left:30px;line-height:40px;font-size:20px;">用户名:</span>
                         <span style="padding-left:30px;font-size:20px;color:blue">
@@ -110,12 +109,11 @@
                             <input id="editpay" style="cursor: pointer;width:100px;height:30px;" type="button" value="确认修改">
                         </span>
                     </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
-
+</div>
 <div style="clear:both"></div>
 <?=\yii\helpers\Html::jsFile('@web/js/jquery.validate.js')?>
 <script type="text/javascript">
@@ -237,7 +235,7 @@
         })
     })
 </script>
-<script>
+<script type="text/javascript">
     $("#title").children("span").click(function(){
         var num=$(this).index();
         $(this).css("borderBottom","2px solid red").siblings().css("borderBottom","0");

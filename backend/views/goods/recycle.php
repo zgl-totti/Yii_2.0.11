@@ -132,7 +132,7 @@
     </script>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     function regain(gid){
         layer.confirm("是否要恢复数据",{icon:3,title:'恢复'},function(){
             $.get("{:U('Goods/regain')}",'id='+gid,function(res){

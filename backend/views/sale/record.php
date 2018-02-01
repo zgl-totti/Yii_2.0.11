@@ -30,9 +30,7 @@
         });
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -40,28 +38,17 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
-
-
     <div id="usual1" class="usual">
-
-
-
         <div id="tab2" class="tabson">
-
-
             <ul class="seachform">
                 <li style="font-size:18px;color:#3994C7;font-weight:bolder">投票记录总信息表</li>
-               <!-- <li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
-                <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>-->
+                <!-- <li><label>综合查询</label><input name="" type="text" class="scinput" /></li>
+                 <li><label>&nbsp;</label><input name="" type="button" class="scbtn" value="查询"/></li>-->
                 <li style="border-radius:5px;float: right;height:34px;width:80px;background-color:#3994C7;text-align:center;line-height:34px;">
                     <a style="color:white;font-size:16px;" href="<?=\yii\helpers\Url::to(['sale/vote'])?>">返回</a>
                 </li>
-
             </ul>
-
-
             <table class="tablelist">
                 <thead>
                 <tr>
@@ -78,36 +65,31 @@
                 </thead>
                 <tbody>
                 <?php foreach($list as $k=>$v): ?>
-                <tr>
-                    <td><input name="" type="checkbox" value="" /></td>
-                    <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                    <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>"></td>
-                    <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['ip'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['black'])==1?'已拉黑':'未拉黑';?></td>
-                    <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['votetime']))?></td>
-                    <td><?=\yii\helpers\Html::encode($v['votenum'])?></td>
-                    <td>
-                        <?php if(\yii\helpers\Html::encode($v['black'])==1): ?>
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" status="1" class="tablelink operate">移出黑名单</a>
-                        <?php else: ?>
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" status="2" class="tablelink operate">加入黑名单</a>
-                        <?php endif;?>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic']);?>"></td>
+                        <td><?=\yii\helpers\Html::encode($v['goodsname'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['ip'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['black'])==1?'已拉黑':'未拉黑';?></td>
+                        <td><?=date("Y-m-d H:i:s",\yii\helpers\Html::encode($v['votetime']))?></td>
+                        <td><?=\yii\helpers\Html::encode($v['votenum'])?></td>
+                        <td>
+                            <?php if(\yii\helpers\Html::encode($v['black'])==1): ?>
+                                <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" status="1" class="tablelink operate">移出黑名单</a>
+                            <?php else: ?>
+                                <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" status="2" class="tablelink operate">加入黑名单</a>
+                            <?php endif;?>
+                        </td>
+                    </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
-
             <div class="pagin">
                 <div><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?></div>
             </div>
-
-
         </div>
-
     </div>
-
     <script type="text/javascript">
         $(function(){
             $('.operate').click(function(){
@@ -134,15 +116,13 @@
             })
         })
     </script>
-
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-
-<script type="text/javascript">
-    //加入黑名单
-    function addBlack(id){
+    <script type="text/javascript">
+        //加入黑名单
+        function addBlack(id){
             $.get("{:U('Vote/addBlack')}",{id:id},function(res){
                 if(res.status=="ok"){
                     layer.msg("拉黑成功",{icon:1,time:2000},function(){
@@ -152,28 +132,20 @@
                     layer.msg("拉黑失败",{icon:2,time:2000})
                 }
             })
-
-    }
-    //移出黑名单
-    function removeBlack(id){
-        $.get("{:U('Vote/removeBlack')}",{id:id},function(res){
-            if(res.status=="ok"){
-                layer.msg("移出成功",{icon:1,time:2000},function(){
-                    window.location.reload();
-                })
-            }else{
-                layer.msg("移出失败",{icon:2,time:2000})
-            }
-        })
-
-    }
-</script>
-
-
-
+        }
+        //移出黑名单
+        function removeBlack(id){
+            $.get("{:U('Vote/removeBlack')}",{id:id},function(res){
+                if(res.status=="ok"){
+                    layer.msg("移出成功",{icon:1,time:2000},function(){
+                        window.location.reload();
+                    })
+                }else{
+                    layer.msg("移出失败",{icon:2,time:2000})
+                }
+            })
+        }
+    </script>
 </div>
-
-
 </body>
-
 </html>

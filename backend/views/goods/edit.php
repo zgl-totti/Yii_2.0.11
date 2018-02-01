@@ -50,13 +50,9 @@
             $('.btn').click(function(){
                 $('form').ajaxSubmit(function(res){
                     if(res.status==1){
-                        layer.msg(
-                                res.info,
-                                {icon:1},
-                                function(){
-                                    location.href="{:U('Goods/showlist')}";
-                                }
-                        );
+                        layer.msg(res.info,{icon:1},function(){
+                            location.href="{:U('Goods/showlist')}";
+                        });
                     }else{
                         layer.alert(res.info);
                     }
@@ -146,7 +142,7 @@
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     //图片上传预览    IE是用了滤镜。
     function previewImage(file,pre,imag,width,height)
     {
@@ -212,7 +208,7 @@
         return param;
     }
 </script>
-<script>
+<script type="text/javascript">
     function auctionClick(){
         var chk=document.getElementById("act4").checked;
         if(chk==true){
@@ -221,6 +217,5 @@
             document.getElementById("auction").style.display="none";
         }
     }
-
 </script>
 </html>

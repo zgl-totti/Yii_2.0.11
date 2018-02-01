@@ -10,7 +10,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.form.js')?>
-
     <script type="text/javascript">
         $(document).ready(function(e) {
             $(".select1").uedSelect({
@@ -45,7 +44,7 @@
                     <div style="border-bottom:1px dashed #a9a9a9;width: 100%;height: 20px;margin-bottom: 20px;"></div>
                     <li><label>管理员<b>*</b></label><input disabled name="admin" value="<?=\yii\helpers\Html::encode($info['feedback_admin'])?>" type="text" class="dfinput" style="width: 345px"></li>
                     <li><label>回复内容<b>*</b></label>
-                            <textarea name="reply" id="reply" rows="15" cols="55" style="border: 1px solid #a9a9a9;margin-top: 10px;"><?=\yii\helpers\Html::encode($info['reply'])?></textarea>
+                        <textarea name="reply" id="reply" rows="15" cols="55" style="border: 1px solid #a9a9a9;margin-top: 10px;"><?=\yii\helpers\Html::encode($info['reply'])?></textarea>
                     </li>
                     <li><label>&nbsp;</label><input onclick="myfun()" type="button" class="btn" value="返回"/>
                         <label>&nbsp;</label><input type="button" class="btn" id="btn" value="提交" style="margin-left: 20px;"/>
@@ -56,7 +55,7 @@
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     function myfun(){
         window.location.href="<?=\yii\helpers\Url::to(['feedback/index'])?>";
     }

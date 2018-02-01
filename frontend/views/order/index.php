@@ -1,5 +1,4 @@
 
-
 <?=\yii\helpers\Html::jsFile('@web/js/jquery.min.1.8.2.js')?>
 <?=\yii\helpers\Html::jsFile('@web/js/jquery.sumoselect.min.js')?>
 <!--确认订单页样式-->
@@ -38,10 +37,8 @@
                     <?php endif;?>
                 <?php endforeach;?>
             </ul>
-
         </div>
     </div>
-
         <fieldset>
             <!--快递选择-->
             <div class="express_delivery">
@@ -66,9 +63,7 @@
                 </ul>
             </div>
             <!--产品列表-->
-
             <div class="product_List">
-
                 <table>
                     <thead>
                     <tr class="title">
@@ -94,7 +89,6 @@
                     <?php endforeach;?>
                     </tbody>
                 </table>
-
                 <!--价格-->
                 <div class="price_style">
                     <div class="right_direction">

@@ -1,6 +1,4 @@
 
-
-
 <?=\yii\helpers\Html::jsFile('@web/js/jquery-1.9.1.min.js')?>
 <?=\yii\helpers\Html::jsFile('@web/js/echarts.min.js')?>
 
@@ -18,7 +16,6 @@
 <style>/*好评度css*/
     #main>div{display: block !important;}
 </style>
-
 <!--产品详细页样式-->
 <div class="clearfix Inside_pages">
     <div class="Location_link">
@@ -66,9 +63,9 @@
                 </script>
                 <!--收藏-->
                 <?php if($collectGoods): ?>
-                <div class="Collect" style="color: red;cursor: pointer" onclick="collect({$val['id']},this);"><em class="ico1" style="background-position:0 -438px;"></em>收藏商品</div>
+                    <div class="Collect" style="color: red;cursor: pointer" onclick="collect({$val['id']},this);"><em class="ico1" style="background-position:0 -438px;"></em>收藏商品</div>
                 <?php else: ?>
-                <div class="Collect" style="cursor: pointer" onclick="collect({$val['id']},this);"><em class="ico1"></em>收藏商品</div>
+                    <div class="Collect" style="cursor: pointer" onclick="collect({$val['id']},this);"><em class="ico1"></em>收藏商品</div>
                 <?php endif;?>
             </div>
         </div>
@@ -94,7 +91,6 @@
                 },'json')
             }
         </script>
-
         <!--产品信息-->
         <div class="property">
             <form action="<?=\yii\helpers\Url::to(['cart/addtobuy'])?>" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
@@ -133,8 +129,8 @@
                 <div class="Guarantee clearfix">
                     <dl><dt>支付方式</dt><dd><em></em>货到付款（部分地区）</dd><dd><em></em>在线支付</dd>
                         <dd> <div class="payment" id="payment">
-                            <a href="javascript:void(0);" class="paybtn">支付方式<span class="iconDetail"></span></a><ul><li>货到付款</li><li>礼品卡支付</li><li>网上支付</li><li>银行转账</li></ul>
-                        </div>
+                                <a href="javascript:void(0);" class="paybtn">支付方式<span class="iconDetail"></span></a><ul><li>货到付款</li><li>礼品卡支付</li><li>网上支付</li><li>银行转账</li></ul>
+                            </div>
                         </dd>
                     </dl>
                 </div>
@@ -161,25 +157,23 @@
                     }
                 </script>
                 <h5 style="color:orange;">开心聊天室</h5>
-
-
             </div>
             <div class="Recommend">
                 <div class="title_name">同类产品推荐</div>
                 <div class="Recommend_list">
                     <ul>
                         <?php foreach($recommend as $v): ?>
-                        <li class="clearfix">
-                            <div class="pic_img">
-                                <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>\yii\helpers\Html::encode($v['id'])])?>">
-                                    <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" data-bd-imgshare-binded="1">
-                                </a>
-                            </div>
-                            <div class="r_content">
-                                <div class="title"><a href="#"><?=\yii\helpers\Html::encode($v['goodsname'])?></a></div>
-                                <div class="p_Price">￥<?=\yii\helpers\Html::encode($v['price'])?></div>
-                            </div>
-                        </li>
+                            <li class="clearfix">
+                                <div class="pic_img">
+                                    <a href="<?=\yii\helpers\Url::to(['goods/index','gid'=>\yii\helpers\Html::encode($v['id'])])?>">
+                                        <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['pic'])?>" data-bd-imgshare-binded="1">
+                                    </a>
+                                </div>
+                                <div class="r_content">
+                                    <div class="title"><a href="#"><?=\yii\helpers\Html::encode($v['goodsname'])?></a></div>
+                                    <div class="p_Price">￥<?=\yii\helpers\Html::encode($v['price'])?></div>
+                                </div>
+                            </li>
                         <?php endforeach;?>
                     </ul>
                 </div>
@@ -187,7 +181,6 @@
         </div>
     </div>
     <!--样式-->
-
     <div class="clearfix">
         <!--引入浏览历史文件-->
         <div class="left_style">
@@ -223,11 +216,11 @@
                             <a href="javascript:addToBuy()" class="extra  notice J_BuyButtonSub">立即购买</a></div>
                     </div>
                     <div class="change" style="max-height: 30000px;position: relative">
-                            <div class="active2">
-                                <?php foreach($info['pics'] as $v): ?>
-                                    <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/thumb800/800_').\yii\helpers\Html::encode($v['picname']);?>"/>
-                                <?php endforeach;?>
-                            </div>
+                        <div class="active2">
+                            <?php foreach($info['pics'] as $v): ?>
+                                <img src="<?=\yii\helpers\Url::to('@web/uploads/goods/thumb800/800_').\yii\helpers\Html::encode($v['picname']);?>"/>
+                            <?php endforeach;?>
+                        </div>
                         <div style="display: none;text-align: left;width:1000px;line-height: 30px">
                             <pre>
                             <p style="text-align: center">质量安全承诺书</p>
@@ -283,27 +276,25 @@
 
                                 <ul id="showComment" class="jiesou" style="margin-top: 50px;color: #6c6c6c;height:1000px;overflow: auto;">
 
-                                <!--<li style="float: left;width: 1000px"><li>买家评论:{$val.commentcontent}</li><li style="width: 200px;float: right;"> {$val.username}</li></li>
-                                <p>{$val['addtime']|date="Y/m/d",###}</p>
-                                    <br>
-                                <li style="color: orangered;width: 600px">卖家回复:
-                                    <if condition="$val['isreply'] eq 1">
-                                        {$val['replycontent']}
-                                        <else/>
-                                        亲的好评对小店来说是多么重要，它是对小店服务的肯定，更是对小店工作的默默支持，它激发了小店追求更高标准的潜力，让小店感觉到一切的付出都是那么的值得，感谢亲的支持，相信小店会做的更好，因为有亲。也希望亲时刻记得有小店这样一位朋友在期待亲的再次光临！
-                                    </if>
-                                </li>-->
+                                    <!--<li style="float: left;width: 1000px"><li>买家评论:{$val.commentcontent}</li><li style="width: 200px;float: right;"> {$val.username}</li></li>
+                                    <p>{$val['addtime']|date="Y/m/d",###}</p>
+                                        <br>
+                                    <li style="color: orangered;width: 600px">卖家回复:
+                                        <if condition="$val['isreply'] eq 1">
+                                            {$val['replycontent']}
+                                            <else/>
+                                            亲的好评对小店来说是多么重要，它是对小店服务的肯定，更是对小店工作的默默支持，它激发了小店追求更高标准的潜力，让小店感觉到一切的付出都是那么的值得，感谢亲的支持，相信小店会做的更好，因为有亲。也希望亲时刻记得有小店这样一位朋友在期待亲的再次光临！
+                                        </if>
+                                    </li>-->
                                 </ul>
-
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
-
-<!--分享-->
-        <script>
+        </div>
+        <!--分享-->
+        <script type="text/javascript">
             window._bd_share_config={
                 "common":{
                     "bdPopTitle":"您的自定义pop窗口标题",
@@ -319,8 +310,8 @@
             };
             with(document)[
                 (getElementsByTagName('head')[0]||body).
-                        appendChild(createElement('script')).
-                        src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
+                appendChild(createElement('script')).
+                    src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)
             ];
             function substr(s, n) {
                 return s.slice(0, n).replace(/([^x00-xff])/g, "$1a").slice(0, n).replace(/([^x00-xff])a/g, "$1");
@@ -329,7 +320,7 @@
         </script>
 
 
-        <script>
+        <script type="text/javascript">
             var bate="";
             $(function(){
                 $('.sit li').click(function(){
@@ -339,64 +330,64 @@
                 })
             })
             $(function () {
-            $('.sdetail').click(function () {
-                var gid=$('#gid').val();
-                $.post("{:U('shower')}",'gid='+gid,function (res) {
-                    var str='';
-                    for(var i in res){
-                        str+="<div style='width:200px;height: 80px'><img src=";
-                        str+=res[i].pic?'__PUBLIC__/Admin/Uploads/member/thumb100/100_'+res[i].pic:'__PUBLIC__/Home/images/h1.png';
-                        str+= " style='width: 60px;height: 60px;border-radius: 100px' /><p><li style='width: 200px;float: right'> 会员:"+res[i].username+"</li></p></div>"
-                        str+="买家评论:";
-                        str+="<li style='float: left;width: 1000px'><li>"+res[i].commentcontent+"</li>";
-                        s=+res[i].cad+"%";
-                        for(var m in res[i].picname){
-                            str+="<img src='__PUBLIC__/Admin/Uploads/comments/"+res[i].picname[m]['picname']+"' ' style='height:100px;width:100px'>";
+                $('.sdetail').click(function () {
+                    var gid=$('#gid').val();
+                    $.post("{:U('shower')}",'gid='+gid,function (res) {
+                        var str='';
+                        for(var i in res){
+                            str+="<div style='width:200px;height: 80px'><img src=";
+                            str+=res[i].pic?'__PUBLIC__/Admin/Uploads/member/thumb100/100_'+res[i].pic:'__PUBLIC__/Home/images/h1.png';
+                            str+= " style='width: 60px;height: 60px;border-radius: 100px' /><p><li style='width: 200px;float: right'> 会员:"+res[i].username+"</li></p></div>"
+                            str+="买家评论:";
+                            str+="<li style='float: left;width: 1000px'><li>"+res[i].commentcontent+"</li>";
+                            s=+res[i].cad+"%";
+                            for(var m in res[i].picname){
+                                str+="<img src='__PUBLIC__/Admin/Uploads/comments/"+res[i].picname[m]['picname']+"' ' style='height:100px;width:100px'>";
+                            }
+                            str+="<br><p style='float: right'>"+res[i].addtime+"</p><br>";
+                            str+="卖家回复:<li style='color:#AF874D'>";
+                            /* str+="<p style='float: right'>"+res[i].addtime+"</p><br>";
+                             str+="卖家回复:<li style='color:#AF874D'>";*/
+                            if(res[i].isreply== 1){
+                                str+= ""+res[i].replycontent+"<br><br><hr style='color: #c5d9e8;width: 100%'><br></div>";
+                            }else{
+                                str+="亲的好评对小店来说是多么重要,它是对小店服务的肯定,更是对小店工作的默默支持,它激发了小店追求更高标准的潜力,让小店感觉到一切的付出都是<br>那么的值得,感谢亲的支持,相信小店会做的更好,因为有亲.也希望亲时刻记得有小店这样一位朋友在期待亲的再次光临!<br><br><hr style='color: #c5d9e8;width: 100%'></li><br></div>";
+                            }
                         }
-                        str+="<br><p style='float: right'>"+res[i].addtime+"</p><br>";
-                        str+="卖家回复:<li style='color:#AF874D'>";
-                       /* str+="<p style='float: right'>"+res[i].addtime+"</p><br>";
-                        str+="卖家回复:<li style='color:#AF874D'>";*/
-                        if(res[i].isreply== 1){
-                           str+= ""+res[i].replycontent+"<br><br><hr style='color: #c5d9e8;width: 100%'><br></div>";
-                        }else{
-                            str+="亲的好评对小店来说是多么重要,它是对小店服务的肯定,更是对小店工作的默默支持,它激发了小店追求更高标准的潜力,让小店感觉到一切的付出都是<br>那么的值得,感谢亲的支持,相信小店会做的更好,因为有亲.也希望亲时刻记得有小店这样一位朋友在期待亲的再次光临!<br><br><hr style='color: #c5d9e8;width: 100%'></li><br></div>";
-                        }
-                    }
-                    $('.jiesou').html(str);
-                    $('.lvlv').html(s);
+                        $('.jiesou').html(str);
+                        $('.lvlv').html(s);
 
-                    //统计图开始部分
-                    s=(parseFloat(s)/100).toFixed(2);
-                    // 基于准备好的dom，初始化echarts实例
-                    var myChart = echarts.init(document.getElementById('main'));
-                    // 指定图表的配置项和数据
-                    var option = {
-                        legend: {
-                            data:['好评度']
-                        },
-                        tooltip: {},
+                        //统计图开始部分
+                        s=(parseFloat(s)/100).toFixed(2);
+                        // 基于准备好的dom，初始化echarts实例
+                        var myChart = echarts.init(document.getElementById('main'));
+                        // 指定图表的配置项和数据
+                        var option = {
+                            legend: {
+                                data:['好评度']
+                            },
+                            tooltip: {},
 
-                        yAxis: {
-                            data: ["好评度"]
+                            yAxis: {
+                                data: ["好评度"]
 
-                        },
-                        xAxis: {
-                            max:1
-                        },
-                        series: [{
-                            type: 'bar',
-                            data: [s]
-                        }]
-                    };
-                    // 使用刚指定的配置项和数据显示图表。
-                    myChart.setOption(option);
-                    //统计图结束部分
-                },'json')
-            })
+                            },
+                            xAxis: {
+                                max:1
+                            },
+                            series: [{
+                                type: 'bar',
+                                data: [s]
+                            }]
+                        };
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                        //统计图结束部分
+                    },'json')
+                })
             })
         </script>
-</div>
+    </div>
 </div>
 <input type="hidden" id="gid" value="{$gid}"/>
 <input type="hidden" id="mid" value="{$Think.session.mid}"/>
@@ -467,7 +458,6 @@
         },'json');
     }
 
-
     //立即购买
     function addToBuy(){
         //判断用户是否登陆过
@@ -495,10 +485,8 @@
         }
     }
 </script>
-
-
 <!--详情的js-->
-<script>
+<script type="text/javascript">
     $(function () {
         $("#ul input").click(function () {
             /*var i=$(this).index();*/
@@ -511,9 +499,9 @@
                     str+="<div style='width:200px;height: 80px'><img src=";
                     str+=res[i].pic?'__PUBLIC__/Admin/Uploads/member/thumb100/100_'+res[i].pic:'__PUBLIC__/Home/images/h1.png';
                     str+= " style='width: 60px;height: 60px;border-radius: 100px' /><p><li style='width: 200px;float: right'> 会员:"+res[i].username+"</li></p></div>";
-                   /* str+="<div style='width: 200px;height: 80px'>" +
-                            "<if condition='"+res.i.pic+" eq null'><img src='__PUBLIC__/Home/images/h1.png' style='width: 60px;height: 60px;border-radius: 100px'><else/><img src='__PUBLIC__/Admin/Uploads/member/thumb100/100_"+res[i].pic+"' alt='wutu' style='width: 60px;height: 60px;border-radius: 100px'></if>";
-                    str+= "<p><li style='width: 200px;float: right'> 会员:"+res[i].username+"</li></p></div>"*/
+                    /* str+="<div style='width: 200px;height: 80px'>" +
+                             "<if condition='"+res.i.pic+" eq null'><img src='__PUBLIC__/Home/images/h1.png' style='width: 60px;height: 60px;border-radius: 100px'><else/><img src='__PUBLIC__/Admin/Uploads/member/thumb100/100_"+res[i].pic+"' alt='wutu' style='width: 60px;height: 60px;border-radius: 100px'></if>";
+                     str+= "<p><li style='width: 200px;float: right'> 会员:"+res[i].username+"</li></p></div>"*/
 
                     str+="买家评论:<br>";
                     str+="<li style='float: left;width: 1000px'><li>"+res[i].commentcontent+"</li>";
@@ -534,15 +522,10 @@
 
 
             },'json')
-                /*commentcontent,username,replycontent,shop_goods_comment.addtime,isreply*/
-            });
-        })
+            /*commentcontent,username,replycontent,shop_goods_comment.addtime,isreply*/
+        });
+    })
 </script>
-
-
-
-
-
 <script type="text/javascript">
     $(function(){
         //评论列表

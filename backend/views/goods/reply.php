@@ -51,7 +51,7 @@
     </div>
 </div>
 </body>
-    <script>
+    <script type="text/javascript">
         $(function(){
             $('.btn').click(function(){
                 $.post("<?=\yii\helpers\Url::to(['goods/reply'])?>",$('#form1').serialize(),function(res){

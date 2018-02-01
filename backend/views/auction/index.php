@@ -9,7 +9,6 @@
     <?=\yii\helpers\Html::jsFile('@web/js/jquery.idTabs.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/js/select-ui.min.js')?>
     <?=\yii\helpers\Html::jsFile('@web/layer/layer.js')?>
-
     <style type="text/css">
         div.pagin{background-color: red;}
         div.pagin div{float: right}
@@ -46,9 +45,7 @@
         })
     </script>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -60,10 +57,10 @@
     <div id="usual1" class="usual">
         <div id="tab2" class="tabson">
             <form action="<?=\yii\helpers\Url::to(['auction/index'])?>" method="get" id="form1">
-            <ul class="seachform">
-                <li><label>综合查询</label><input name="keywords" value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" type="text" class="scinput" /></li>
-                <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
-            </ul>
+                <ul class="seachform">
+                    <li><label>综合查询</label><input name="keywords" value="<?=\yii\helpers\Html::encode($keywords?$keywords:'')?>" type="text" class="scinput" /></li>
+                    <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+                </ul>
             </form>
             <table class="tablelist">
                 <thead>
@@ -84,23 +81,23 @@
                 </thead>
                 <tbody>
                 <?php foreach($list as $k=>$v): ?>
-                <tr>
-                    <td><input name="" type="checkbox" value="" /></td>
-                    <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
-                    <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic'])?>" alt=""/></td>
-                    <td><?=\yii\helpers\Html::encode($v['goods']['goodsname'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['startprice'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['commonprice'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['maxprice'])?></td>
-                    <td><?=\yii\helpers\Html::encode($v['isshow'])==1?'展示':'隐藏';?></td>
-                    <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['starttime']))?></td>
-                    <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['endtime']))?></td>
-                    <td><?=\yii\helpers\Html::encode($v['status'])==1?'正在拍卖':'交易完成';?></td>
-                    <td>
-                        <a href="<?=\yii\helpers\Url::to(['auction/settime','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">设置时间</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate"><?=\yii\helpers\Html::encode($v['isshow'])==1?'隐藏':'展示';?></a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><input name="" type="checkbox" value="" /></td>
+                        <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
+                        <td><img width="50" height="50" src="<?=\yii\helpers\Url::to('@web/uploads/goods/').\yii\helpers\Html::encode($v['goods']['pic'])?>" alt=""/></td>
+                        <td><?=\yii\helpers\Html::encode($v['goods']['goodsname'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['startprice'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['commonprice'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['maxprice'])?></td>
+                        <td><?=\yii\helpers\Html::encode($v['isshow'])==1?'展示':'隐藏';?></td>
+                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['starttime']))?></td>
+                        <td><?=date('Y-m-d H:i:s',\yii\helpers\Html::encode($v['endtime']))?></td>
+                        <td><?=\yii\helpers\Html::encode($v['status'])==1?'正在拍卖':'交易完成';?></td>
+                        <td>
+                            <a href="<?=\yii\helpers\Url::to(['auction/settime','id'=>\yii\helpers\Html::encode($v['id'])])?>" class="tablelink">设置时间</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="#" id="<?=\yii\helpers\Html::encode($v['id'])?>" class="tablelink operate"><?=\yii\helpers\Html::encode($v['isshow'])==1?'隐藏':'展示';?></a>
+                        </td>
+                    </tr>
                 <?php endforeach;?>
                 </tbody>
             </table>
@@ -111,12 +108,9 @@
     </div>
     <script type="text/javascript">
         $("#usual1 ul").idTabs();
-    </script>
-
-    <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-    <script>
+    <script type="text/javascript">
         //隐藏
         function disabled(id){
             $.get("{:U('Auction/disabled')}",{ag_id:id},function(res){

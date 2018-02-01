@@ -9,11 +9,8 @@
     <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.idTabs.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/select-ui.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
-
-
     <script type="text/javascript">
         $(document).ready(function(e) {
-
             $(".select1").uedSelect({
                 width: 345
             });
@@ -28,11 +25,11 @@
                 $.post("{:U('AdminNav/addlist')}",$('#form1').serialize(),function(res){
                     if(res.status==1){
                         layer.msg(
-                                res.info,
-                                {icon:1},
-                                function(){
-                                    location.href=res.url;
-                                }
+                            res.info,
+                            {icon:1},
+                            function(){
+                                location.href=res.url;
+                            }
                         );
                     }else{
                         layer.alert(res.info);
@@ -40,11 +37,9 @@
                 })
                 return false;
             })
-
-      })
-  </script>
+        })
+    </script>
 </head>
-
 <body>
 <div class="place">
     <span>位置：</span>
@@ -53,19 +48,18 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
             <form action="" method="post" id="form1">
-            <ul class="forminfo">
-                <li><label>上级菜单<b>*</b></label><input type="text" class="dfinput" disabled value="{$pname|default='顶级菜单'}"  style="width:400px;"/></li>
-                <input name="pid" type="hidden" class="dfinput" value="{$pid|default=0}"  style="width:400px;"/>
-                <li><label>菜单名称<b>*</b></label><input name="navname" type="text" class="dfinput" placeholder="请填写菜单名称"  style="width:400px;"/></li>
-                <li><label>菜单链接<b>*</b></label><input name="navurl" type="text" class="dfinput" placeholder="请填写菜单链接"  style="width:400px;"/></li>
-                <li><label>菜单优先级<b>*</b></label><input name="priority" type="text" class="dfinput" placeholder="请填写菜单优先级" style="width:400px;"/></li>
-                <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认添加"/></li>
-            </ul>
+                <ul class="forminfo">
+                    <li><label>上级菜单<b>*</b></label><input type="text" class="dfinput" disabled value="{$pname|default='顶级菜单'}"  style="width:400px;"/></li>
+                    <input name="pid" type="hidden" class="dfinput" value="{$pid|default=0}"  style="width:400px;"/>
+                    <li><label>菜单名称<b>*</b></label><input name="navname" type="text" class="dfinput" placeholder="请填写菜单名称"  style="width:400px;"/></li>
+                    <li><label>菜单链接<b>*</b></label><input name="navurl" type="text" class="dfinput" placeholder="请填写菜单链接"  style="width:400px;"/></li>
+                    <li><label>菜单优先级<b>*</b></label><input name="priority" type="text" class="dfinput" placeholder="请填写菜单优先级" style="width:400px;"/></li>
+                    <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认添加"/></li>
+                </ul>
             </form>
         </div>
     </div>

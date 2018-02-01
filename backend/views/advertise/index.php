@@ -21,7 +21,6 @@
                 width : 100
             });
         });
-
     </script>
     <style type="text/css">
         div.pagin{background-color: red;}
@@ -47,14 +46,14 @@
                         <li><label>位置</label>
                             <div class="vocation">
                                 <select class="select3" name="adposition">
-                                        <option value="0" >首页轮播</option>
-                                        <option value="1" >一楼</option>
-                                        <option value="2" >二楼</option>
-                                        <option value="3">三楼</option>
-                                        <option value="4">四楼</option>
-                                        <option value="5">活动</option>
-                                        <option value="6">兑换</option>
-                                        <option value="7">其他</option>
+                                    <option value="0" >首页轮播</option>
+                                    <option value="1" >一楼</option>
+                                    <option value="2" >二楼</option>
+                                    <option value="3">三楼</option>
+                                    <option value="4">四楼</option>
+                                    <option value="5">活动</option>
+                                    <option value="6">兑换</option>
+                                    <option value="7">其他</option>
                                 </select>
                             </div>
                         </li>
@@ -79,7 +78,6 @@
                         <td><?=$pages->page*$pages->pageSize+$k+1;?></td>
                         <td><?=\yii\helpers\Html::encode($v['adname'])?></td>
                         <td><img src="<?=\yii\helpers\Url::to('@web/uploads/ads/').$v['adlogo']?>" width="150"></td>
-
                         <td>
                             <?php switch(\yii\helpers\Html::encode($v['adposition'])) :
                                 case 0:
@@ -104,7 +102,6 @@
                                     echo '其他';
                             endswitch;?>
                         </td>
-
                         <td>
                             <?=(\yii\helpers\Html::encode($v['top'])==0)?'隐藏':'展示';?>
                         </td>
@@ -127,12 +124,11 @@
                 </div>
             </div>
         </div>
-
         <script type="text/javascript">
-          $("#usual1 ul").idTabs();
+            $("#usual1 ul").idTabs();
         </script>
         <script type="text/javascript">
-        $('.tablelist tbody tr:odd').addClass('odd');
+            $('.tablelist tbody tr:odd').addClass('odd');
         </script>
     </div>
     <script type="text/javascript">

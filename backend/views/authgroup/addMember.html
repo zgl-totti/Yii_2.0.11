@@ -13,17 +13,17 @@
     <script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
 </head>
 <body>
-    <div style="width:300px;height:120px;background-color:#C5C5C5;;margin:0 auto;">
-        <form action="{:U('AuthGroup/addMember')}" method="post" id="form1">
-            <input type="hidden" value="{$group_id}" name="group_id">
-            <select id="mid" name="uid">
-                <volist name="info" id="val" key="k">
-                    <option value="{$val['uid']}">{$val['adminname']}</option>
-                </volist>
-            </select>
-            <input id="sub" type="button" value="确认添加">
-        </form>
-    </div>
+<div style="width:300px;height:120px;background-color:#C5C5C5;;margin:0 auto;">
+    <form action="{:U('AuthGroup/addMember')}" method="post" id="form1">
+        <input type="hidden" value="{$group_id}" name="group_id">
+        <select id="mid" name="uid">
+            <volist name="info" id="val" key="k">
+                <option value="{$val['uid']}">{$val['adminname']}</option>
+            </volist>
+        </select>
+        <input id="sub" type="button" value="确认添加">
+    </form>
+</div>
 </body>
 </html>
 <script type="text/javascript">

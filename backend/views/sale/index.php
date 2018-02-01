@@ -20,7 +20,6 @@
         #page a:hover{
             background: #333;
             color: #fff;
-
         }
         #page span {
             background: #333;
@@ -29,9 +28,7 @@
         }
     </style>
 </head>
-
 <body>
-
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">
@@ -39,17 +36,9 @@
         <li><a href="#">系统设置</a></li>
     </ul>
 </div>
-
 <div class="formbody">
-
-
     <div id="usual1" class="usual">
-
-
-
         <div id="tab2" class="tabson">
-
-
             <ul class="seachform">
                 <form action="<?=\yii\helpers\Url::to(['sale/index'])?>" method="get">
                     <li><label>开始时间:</label>
@@ -61,8 +50,6 @@
                     <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
                 </form>
             </ul>
-
-
             <table class="tablelist">
                 <thead>
                 <tr>
@@ -117,12 +104,9 @@
                 </ul>
             </div>-->
 
-
             <div id="page" style="margin-top: 20px; float: right"><?=\yii\widgets\LinkPager::widget(['pagination'=>$pages])?></div>
         </div>
-
     </div>
-
     <script type="text/javascript">
         $(function(){
             $('.operate').click(function(){
@@ -149,22 +133,8 @@
         $("#usual1 ul").idTabs();
         $('.tablelist tbody tr:odd').addClass('odd');
     </script>
-
-
-
-    <!--查看-->
-    <script type="text/javascript">
-
-    </script>
-
-
-
-
 </div>
-
-
 </body>
-
 </html>
 <script type="text/javascript">
     //禁用

@@ -1,8 +1,5 @@
 
-
 <!-- 中间开始 -->
-
-
     <div style="margin-bottom:20px;padding:45px;background:#F5F5F5;">
         <div class="box">
             <h1 style="color:#71B247;margin:10px 0">商品已成功加入购物车</h1>

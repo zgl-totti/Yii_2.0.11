@@ -1,5 +1,4 @@
 
-
 <style type="text/css">
     *{margin:0;padding:0;list-style-type:none;}
     a,img{border:0;}
@@ -64,7 +63,6 @@
             <m style="margin:60px 50px;line-height: 40px;padding-top: 30px;font-size: 15px"><?=\yii\helpers\Html::encode($info['content'])?></m>
         </div>
     </div>
-
     <!--侧边新闻内容-->
     <div style="width: 199px;height: 280px;line-height: 20px;border: 5px solid orangered;border-radius: 10px;float: left;margin-top: 50px">
         <table style="margin: 0 auto">

@@ -49,7 +49,7 @@
     </div>
 </div>
 </body>
-<script>
+<script type="text/javascript">
     function myfun(){
         window.location.href="<?=\yii\helpers\Url::to(['goods/comment'])?>";
     }
