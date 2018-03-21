@@ -22,9 +22,9 @@
                 var $form=$('#roma');
                 $.post($form.attr('action'),$form.serialize(),function(res){
                     if(res.code==1){
-                        /*layer.msg(res.body,{icon:6,time:1000},function(){
-                            window.location.href="<?=\yii\helpers\Url::toRoute(['admin/roma']);?>";
-                        });*/
+                        //layer.msg(res.body,{icon:6,time:1000},function(){
+                            //window.location.href="<?/*=\yii\helpers\Url::toRoute(['admin/roma']);*/?>";
+                        //});
                         location="<?=\yii\helpers\Url::toRoute(['index/index']);?>";
                     }else{
                         layer.msg(res.body);
