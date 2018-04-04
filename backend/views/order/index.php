@@ -49,6 +49,12 @@
                         }
                     },'json')
                 })
+            });
+            $('#export').click(function () {
+                var a=$("input[name='order_syn']").val()?$("input[name='order_syn']").val():0;
+                var b=$(".select2").val();
+                var c=$("input[name='username']").val()?$("input[name='username']").val():0;
+                location="<?=\yii\helpers\Url::to(['order/export'])?>"+'?order_syn='+a+'&&order_status='+b+'&&username='+c;
             })
         })
     </script>
@@ -93,7 +99,8 @@
                         <label>用户名</label>
                         <input name="username" type="text" class="scinput" value="<?=\yii\helpers\Html::encode($username?$username:'')?>"/>
                     </li>
-                    <li><label>&nbsp;</label><input name="" type="submit" class="scbtn" value="查询"/></li>
+                    <li><label>&nbsp;</label><input type="submit" class="scbtn" value="查询"/></li>
+                    <li><label>&nbsp;</label><input type="button" class="scbtn" id="export" value="订单导出"/></li>
                 </ul>
             </form>
             <table class="tablelist">

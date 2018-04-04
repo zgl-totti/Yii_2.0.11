@@ -71,6 +71,7 @@
     <div id="usual1" class="usual">
         <div id="tab1" class="tabson">
             <form action="#" id="form1">
+                <input name="_csrf" id="csrf" type="hidden" value="<?= Yii::$app->request->csrfToken ?>" />
                 <ul class="forminfo">
                     <!--<li>
                         <label for="{$val['title']}">所属角色<b>*</b></label>
