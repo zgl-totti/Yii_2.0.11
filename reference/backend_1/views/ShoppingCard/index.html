@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+
+
+
+<h1>
+    <span class="action-span"><a href="{:U('add')}">添加购物卡类型</a></span>
+    <span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span><span id="search_id" class="action-span1"> - 购物卡类型列表 </span>
+    <div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+
+        <table cellspacing="1" cellpadding="3">
+            <tbody><tr>
+                <th>储值卡类型名称</th>
+                <th>发放数量</th>
+                <th>有效日期</th>
+                <th>操作</th>
+            </tr>
+            <foreach name="value" item="v">
+            <tr>
+                <td class="first-cell" style="">{$v.type_name}</td>
+                <td style="" align="center"><span>9</span></td>
+                <td style="" align="center">{$v.use_start_date|date="Y-m-d H:i:s",###}--{$v.use_end_date|date="Y-m-d H:i:s",###}</td>
+                <td style="" align="center">
+                    <a href="{:U('ShoppingCard/send', array( 'type_id' => $v['type_id'] ))}">发放</a> |
+                    <a href="{:U('ShoppingCard/vc_list', array( 'type_id' => $v['type_id'] ))}">查看</a> |
+                    <a href="{:U('ShoppingCard/add', array( 'type_id' => $v['type_id'] ))}">编辑</a> |
+                    <a href="javascript:;" onclick="del({$v.type_id})">移除</a></td>
+            </tr>
+            </foreach>
+            <tr>
+                <td colspan="8" style="" nowrap="true" align="right">      <!-- $Id: page.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+            </tr>
+            </tbody></table>
+
+    </div>
+</form>
+<script type="text/javascript">
+    function del(id){
+        //询问框
+
+        layer.confirm('确定要删除此会员吗？', {
+            btn: ['确定以及肯定','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("ShoppingCard/delete")}',{id:id}, function (res) {
+
+                if (res.status) {
+                    layer.msg(res.info,function(){
+                        location='{:U("ShoppingCard/index")}';
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+
+        return false;
+    }
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

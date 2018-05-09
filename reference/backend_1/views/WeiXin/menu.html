@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>微信 管理中心</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="__CSS__/general.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+<body>
+
+<h1>
+	<span class="action-span"><a href="{:U('add_menu')}">添加自定义菜单</a></span>
+    <span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span>
+    <span id="search_id" class="action-span1"> <a href="{:U('WeiXin/menu')}"> 自定义菜单</a> </span>
+    <div style="clear:both"></div>
+</h1>
+
+<link href="__CSS__/calendar.css" rel="stylesheet" type="text/css">
+<!-- 通用信息 -->
+<div class="list-div" id="listDiv">
+<table id="list-table" width="100%" cellspacing="1" cellpadding="2">
+  <tbody><tr>
+    <th>菜单名称</th>
+    <th>菜单类型</th>
+    <th>菜单值</th>
+    <th>排序</th>
+	<th>操作</th>
+  </tr>
+  <foreach name="category" item="v">
+	  <tr>
+	<td>{$v.name}</td>
+	<td><if condition=" $v['type'] eq 1"> 点击 <else/> 连接</if> </td>
+	<td>{$v.value}</td>
+	<td>{$v.order}</td>
+	<td><a href="{:U("add_menu?id=".$v['id'])}">编辑</a>|<a onclick="del({$v['id']})">移除</a></td>
+  </tr>
+
+      <foreach name="v['two']" item="v2">
+    <tr>
+	<td>|____{$v2.name}</td>
+	<td><if condition=" $v2['type'] eq 1"> 点击 <else/> 连接</if> </td>
+	<td>{$v2.value}</td>
+	<td>{$v2.order}</td>
+	<td><a href="{:U("add_menu?id=".$v2['id'])}">编辑</a>|<a onclick="del({$v2['id']})">移除</a></td>
+  </tr>
+      </foreach>
+</foreach>
+  </tbody>
+</table>
+</div>
+<script type="text/javascript">
+    function del(id){
+        //询问框
+        layer.confirm('确定要删除此栏目吗？', {
+            btn: ['干掉他','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("WeiXin/delete")}',{id:id}, function (res) {
+
+                if (res.status) {
+                    layer.msg(res.info,function(){
+                        location='{:U("WeiXin/menu")}';
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+
+        return false;
+    }
+</script>
+
+</body>
+</html>

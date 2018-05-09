@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>站点设置</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__JS__/jquery.validate.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <style type="text/css">
+        .attr_value{ 
+            padding-top: 50px;
+            text-align: left;
+            margin-top: 6px;
+        }
+        .values{
+            margin-left: 10px;
+            font-size: 20px;
+            margin-top: 22px;
+            display: block;
+        }
+        #attr_value{
+            padding-top: 30px;
+            text-align: left;
+            margin-top: 6px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            var validate1=$('#form1').validate({
+                rules:{
+                    cat_name: {
+                        required:true,
+                        maxlength:15,
+                        remote:{
+                            url:"{:U('Category/checkCateName')}",
+                            type:"post"
+                        }
+                    }
+                },
+                messages:{
+                    cat_name:{
+                        required:'分类名称不能为空',
+                        maxlength:'分类名称最大长度不能超过15',
+                        remote:'分类名称已经被占用'
+                    }
+                },
+                success: function(label) {
+                    label.addClass("ok");//验证成功时向lable中添加ok类
+                },
+                validClass:"ok",//有效类为ok
+                errorPlacement: function(error, element) {
+                    error.appendTo(element.parent());
+                }
+            });
+
+             $('.attrform').submit(function(){
+                 if(validate1.form()){
+                     $.post('{:U("addCateGory")}',$('#form1').serialize(),function(res){
+                         if(res.status){
+                             layer.alert(res.info,function(){
+                                 location='{:U("catelist")}'
+                             });
+                         }else{
+                             layer.alert(res.info,function(){
+                                 location='{:U("catelist")}'
+                             });
+                         }
+                     });
+                 }
+                 return false;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="settings"></i><em>分类属性添加</em></span>
+    </div>
+       <form  class="attrform" method="post" id="form1">
+           <table class="add_category">
+               <tr ><td style="padding-left: 72px;
+  padding-top: 50px; font-size: 22px;color:#000000; float: right">分类名称:</td>
+               <td class="attr_value"><input type="text" name="cat_name" style="  width: 210px;
+  height: 30px;margin-left: 10px;"/></td>
+               </tr>
+               <tr ><td style="padding-left: 72px;padding-top: 30px; font-size: 22px;color:#000000; float: right">分类描述:</td>
+                   <td id="attr_value" ><textarea type="text" name="cate_desc" style="  width: 210px;
+  height: 30px;margin-left: 10px;"/></textarea> </td>
+               </tr>
+                <td style="padding-left: 72px;
+ padding-top:27px;font-size: 22px;color:#000000;">分类属性选择:</td>
+                <td>
+                    <span class="values">
+            <volist name="AttrList" id="val" key="k">
+               <input  style="margin-left: 8px;" type="checkbox" name="attr_value[]" value="{$val.attr_name}">{$val.attr_name}
+            </volist>
+                        </span>
+                </td>
+            </tr>
+               <td>&nbsp;</td>
+               <td style="padding-top: 15px;"><input type="submit" value="保存" class="tdBtn" style="margin-left: 170px;"/></td>
+           </table>
+       </form>
+</div>
+</body>
+</html>

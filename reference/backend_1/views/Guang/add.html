@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加广告add</title>
+<link href="__CSS__/guangadd.css" type="text/css" rel="stylesheet" />
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__PLUGIN__/uploadPreview/uploadPreview.js"></script>
+<script type="text/javascript" src="__PLUGIN__/calendar/jedate.js"></script>
+
+    <script>
+        window.onload = function () {
+            new uploadPreview({ UpBtn: "up_img", SpanShow: "imgdiv", ImgShow: "imgShow" });
+        }
+    </script>
+
+
+
+    <script>
+        $(function(){
+
+        $('#addform1').submit(function(){
+            $(this).ajaxSubmit(function (res) {
+                if(res.status==1){
+                    layer.msg(res.info,{icon:1},function(){
+                        location="{:U('show')}";
+                    })
+                }else{
+                    layer.msg(res.info,{icon:5});
+                }
+            },'json');
+            return false;
+        })
+        })
+    </script>
+
+</head>
+<body>
+
+<table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
+  <tr>
+      <td width="99%" align="left" valign="top">
+          <div class="page-title">
+              <span class="modular fl"><i></i><em>广告发布</em></span>
+          </div>
+      </td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">
+    <form method="post" id="addform1"  enctype="multipart/form-data" action="{:U('add')}">
+        <!--<input type="hidden" name="starttime" value="<php> echo time();</php>" >-->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">广告标题： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <input style="width: 200px;height: 25px;" name="title" type="text"  size="22"/>
+            </td>
+        </tr>
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">广告描述： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <input style="width: 200px;height: 25px;" name="desc" type="text"  size="22"/>
+            </td>
+        </tr>
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">链接地址： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <input style="width: 200px;height: 25px;" name="url" type="text"  size="22"/>
+            </td>
+        </tr>
+
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">广告类型： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <select style="width: 200px;" class="textBox" name="cat_id" />
+                <option>请选择分类</option>
+                <foreach name="Adtype" item="c">
+                    <option value="{$c.cat_id}">{$c.cat_name} </option>
+                </foreach>
+                </select>
+            </td>
+        </tr>
+
+
+        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">广告图片：</td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <span id="imgdiv"><img id="imgShow" width="100"  /></span>
+                <input  type="file" name="picname" id="up_img" style="display:none">
+                <label for="up_img"  style="color:#fff;text-align:center;border-radius:4px;width:200px;height:26px;line-height:26px;font-size:16px;background:#00b7ee;padding:8px 52px;cursor:pointer;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)">点击选择图片</label>
+            </td>
+        </tr>
+
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">开始日期： </td>
+        <td  align="left" valign="middle" class="borderright borderbottom main-for">
+            <input style="width: 200px;height: 25px;" id="datebut" name="start_time" type="text" onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" size="22" placeholder="点击选择日期" style="color:#2b542c" />
+
+        </td>
+    </tr>
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">结束日期： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <input style="width: 200px;height: 25px;" id="enddatebut" name="end_time" type="text" onClick="jeDate({dateCell:'#enddatebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" size="22" placeholder="点击选择日期" style="color:crimson" />
+            </td>
+        </tr>
+
+        <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+            <td align="right" valign="middle" class="borderright borderbottom bggray">广告出价： </td>
+            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                <input style="width: 200px;height: 25px;" name="money" type="text"  size="22"/>￥
+            </td>
+        </tr>
+
+
+
+        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">广告位置：</td>
+        <td align="left" valign="middle" class="borderright borderbottom main-for">
+        <select style="width: 200px;" class="textBox" name="position_id" />
+            <option>请选择位置</option>
+            <option value="0">顶部</option>
+            <option value="1">导航</option>
+            <option value="2">中部</option>
+            <option value="3">底部</option>
+        </select>
+
+        </td>
+      </tr>
+      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
+        <td align="left" valign="middle" class="borderright borderbottom main-for">
+            <input  type="submit" value="提交" class="text-but" style="background:#00b7ee;color:#fff;border-radius: 6px;">
+            <input  type="reset" value="重置" class="text-but" style="background:#00b7ee;color:#fff;border-radius: 6px;">
+        </td>
+        </tr>
+    </table>
+    </form>
+    </td>
+    </tr>
+</table>
+</body>
+</html>

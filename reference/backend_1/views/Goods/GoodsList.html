@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        #is_sale:hover{
+            color: #f06015;
+        }
+        #is_sale{
+        cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>商品列表</em></span>
+        <span class="modular fr"><a href="javascript:;" class="pt-link-btn" onclick="daochu()">+导出为excle表格</a></span>
+    </div>
+    <div class="operate">
+        <form action='{:U("GoodsList")}' method="get">
+            <select class="inline-select" name="cat_id">
+                <option value="">请选择分类</option>
+                <volist name="CateName" id="val">
+                    <option value="{$val.cat_id}">{$val.cat_name}</option>
+                </volist>
+            </select>
+            <input type="text" class="textBox length-long" placeholder="输入产品名称..." name="goods_name"/>
+            <input type="submit" value="查询" class="tdBtn"/>
+        </form>
+    </div>
+    <div class="table2excel">
+    <table class="list-style Interlaced">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>商品id</th>
+            <th>商品名称</th>
+            <th>商品图片</th>
+            <th>商品价格</th>
+            <th>添加时间</th>
+            <th>销售数量</th>
+            <th>好评论度</th>
+            <th>是否热销</th>
+            <th>库存</th>
+            <th>状态</th>
+            <th>编辑</th>
+        </tr>
+        </thead>
+        <tbody>
+        <input type="hidden" value="{$status}" id="GoodsInfo"/>
+        <volist name="GoodsList" id="val" key="k">
+        <tr>
+            <td>
+     <span>
+                      <i>{$k}</i>
+     </span>
+            </td>
+            <td class="center pic-area" id="Goods_id">{$val.goods_id}</td>
+            <td class="td-name">
+           <span class="ellipsis td-name block">{$val.goodsname}</span>
+            </td>
+            <td class="center">
+                <img src="/Uploads{$val.img_savepath}100_{$val.goods_img}" style="width: 80px;height: 70px"/>
+            </td>
+            <td class="center">
+     <span>
+      <i>￥</i>
+      <em>{$val.shop_price}</em>
+     </span>
+            </td>
+            <td class="center">
+     <span>
+     {:date('Y-m-d H:i:s',$val['add_time'])}
+     </span>
+            </td>
+            <td class="center">{$val.sale_num}</td>
+            <td class="center"><img src="__IMG__/no.gif"/></td>
+            <td class="center"><a style="color: olivedrab" href="javascript:;" onclick="HotChange({$val.goods_id})">{$val['is_hot']==1?'是':'否'}</a></td>
+            <td class="center">
+               {$val.goods_num}
+            </td>
+            <td class="center" id="is_sale"> <a href="javascript:;" onclick="StateChange({$val.goods_id},{$val['is_sale']})">{$val['is_sale']?'销售':'下架'}</a></td>
+            <td class="center">
+                <a href="{:U('Home/GoodsDetail/goodsDetail?id='.$val['goods_id'])}" title="查看" target="_blank"><img src="__IMG__/icon_view.gif"/></a>
+                <a href="{:U('Goods/GetGoodsInfo?id='.$val['goods_id'])}"  title="编辑"><img src="__IMG__/icon_edit.gif"/></a>
+                <a title="删除" href="javascript:;" onclick="GoodsDel({$val.goods_id})" ><img src="__IMG__/icon_drop.gif"/></a>
+            </td>
+        </tr>
+        </volist>
+        </tbody>
+    </table>
+    </div>
+    <!-- BatchOperation -->
+    <div style="overflow:hidden;">
+        <div class="turnPage center fr">
+            <span>{$page}</span>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+<script type="text/javascript"  src="__JS__/public.js"></script>
+<script type="text/javascript"  src="__PLUGIN__/layer/layer.js"></script>
+<script type="text/javascript">
+    function daochu(){
+        var status=document.getElementById('GoodsInfo').value;
+       if(status==1){
+           location="{:U('Goods/export?cat_id='.$catId.'goods_name='.$goodsname)}";
+       }else{
+           layer.alert("没有相应的商品，不能导出");
+       }
+    }
+    function HotChange(id){
+        $.post('{:U("hot")}',{id:id}, function (res) {
+            layer.msg(res.info,{icon:1});
+            location = "{:U('GoodsList')}";
+        });
+    }
+    function StateChange(id,state){
+        layer.confirm("是否进行更新",function(){
+            $.post('{:U("Goods_Edit")}',{id:id,state:state}, function (res) {
+                layer.msg(res.info);
+                location = "{:U('GoodsList')}";
+            });
+        })
+    }
+    function GoodsDel(id){
+        layer.confirm("是否进行删除",function() {
+            $.post('{:U("GoodsDel")}', {id: id}, function (res) {
+                layer.msg(res.info );
+                location = "{:U('GoodsList')}";
+            });
+        })
+    }
+</script>
+</html>

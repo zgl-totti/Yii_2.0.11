@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>文章编辑</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/kindeditor/kindeditor-all-min.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__PLUGIN__/uploadPreview/uploadPreview.js"></script>
+    <style>
+        b{font-family: 宋体;}
+    </style>
+    <script>
+        $(function() {
+
+            window.onload = function () {
+                new uploadPreview({ UpBtn: "up_img", SpanShow: "imgdiv", ImgShow: "imgShow" });
+            };
+
+
+
+            KindEditor.ready(function (K) {
+                K.create('#content', {
+                    allowFileManager: true,
+                    afterBlur: function(){  //利用该方法处理当富文本编辑框失焦之后，立即同步数据
+                        this.sync("#content") ;
+                    }
+                });
+            });
+
+
+            $('#addform1').submit(function () {
+                $(this).ajaxSubmit(function (res) {
+                 if(res.info){
+                        layer.msg('更新成功',{icon:1},function(){
+                            location="{:U('show')}";
+                        })
+                    }else{
+                        layer.msg('更新失败',{icon:2});
+                    }
+                },'json');
+                return false;
+            })
+        })
+
+    </script>
+
+
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="settings"></i><em>文章修改</em></span>
+  </div>
+  <form  method="post" id="addform1" action="{:U('Article/update')}" enctype="multipart/form-data">
+      <input name="id" value="{$res.id}" type="hidden"/>
+  <table class="noborder">
+   <tr>
+    <td style="width:15%;text-align:right;"><b>文章分类：</b></td>
+    <td>
+     <select class="textBox" name="type_id" style="width: 212px;"/>
+        <option>请选择分类</option>
+       <foreach name="type" item="c">
+            <option value="{$c.id}" <if condition="$c.id eq $res['type_id']" >selected="selected"</if> >{$c.type_name} </option>
+       </foreach>
+     </select>
+    </td>
+   </tr>
+
+
+      <tr>
+          <td style="text-align:right;"><b>作者/来源：</b></td>
+          <td>
+              <input type="text" style="width: 200px;height: 25px;" name="author" class="textBox" value="{$res.author}">
+          </td>
+      </tr>
+
+   <tr>
+    <td style="text-align:right;"><b>文章标题：</b></td>
+    <td>
+     <input type="text" style="width: 200px;height: 25px;" name="title" value="{$res.title}" class="textBox">
+    </td>
+   </tr>
+
+      <tr>
+          <td style="text-align:right;"><b>关键字：</b></td>
+          <td>
+              <input type="text" style="width: 200px;height: 25px;" name="keywords" value="{$res.keywords}" class="textBox">
+          </td>
+      </tr>
+
+      <tr>
+          <td style="text-align:right;"><b>文章图片：</b></td>
+          <td>
+              <img src="/Uploads/Article/{$res.article_img}" style="width:212px;">
+          </td>
+      </tr>
+
+          <tr>
+              <td style="text-align:right;"><b>修改图片：</b></td>
+              <td>
+                  <span id="imgdiv"><img id="imgShow" width="100"/></span>
+                  <input type="file" name="article_img" style="display:none" id="up_img" >
+                  <label for="up_img"  style="color:#fff;text-align:center;border-radius:4px;width:120px;height:26px;line-height:26px;font-size:16px;background:#00b7ee;padding:8px 58px;cursor:pointer;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)">点击选择图片</label>
+              </td>
+          </tr>
+
+
+
+   <tr>
+    <td style="text-align:right;"><b>文章内容：</b></td>
+    <td><textarea name="content" id="content" style="width: 680px" rows="20">{$res.content}</textarea></td>
+   </tr>
+   <tr>
+       <td style="text-align:right;"></td>
+       <td><input type="submit" value="更新" class="tdBtn"/>
+           <input type="reset" value="重置" class="tdBtn"/>
+       </td>
+   </tr>
+
+
+  </table>
+  </form>
+ </div>
+</body>
+</html>

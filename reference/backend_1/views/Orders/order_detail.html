@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>订单详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jquery.js"></script>
+<script src="__JS__/quanxuan.js"></script>
+<script src="/public/Admin/plugin/layer/layer.js" ></script>
+    <style type="text/css" media=print>
+        .noprint{display : none }
+    </style>
+
+</head>
+<body>
+ <div class="wrap">
+     <foreach name="orderList" item="orderList">
+  <div class="page-title">
+    <span class="modular fl"><i class="order"></i><em>订单编号：{$orderList.order_sn}</em></span>
+  </div>
+  <dl class="orderDetail">
+   <dt class="order-h">订单详情{$good.pice}</dt>
+   <dd>
+    <ul>
+     <li>
+      <span class="h-cont h-right">收件人姓名：{$good.name}</span>
+      <span class="h-cont h-left">{$orderList.name}</span>
+     </li>
+     <li>
+      <span class="h-cont h-right">联系电话：</span>
+      <span class="h-cont h-left">{$orderList.mobile}</span>
+     </li>
+     <li>
+      <span class="h-cont h-right">联系地址：</span>
+      <span class="h-cont h-left">{$orderList.address}</span>
+     </li>
+     <li>
+      <span class="h-cont h-right">付款状态：</span>
+      <span class="h-cont h-left">{$orderList.admin_opt}</span>
+     </li>
+     <li>
+      <span class="h-cont h-right">下单时间：</span>
+      <span class="h-cont h-left">{$orderList.add_time|date="Y-m-d H:i:s",###}</span>
+     </li>
+<!--      <li>
+      <span class="h-cont h-right">付款时间：</span>
+      <span class="h-cont h-left">2015-04-18 13:35</span>
+     </li> -->
+    </ul>
+
+   </dd>
+   <dd style="padding:1em 0;">
+    <span><b>订单留言：</b></span>
+    <span>{$orderList.message}</span>
+   </dd>
+
+   <dd>
+    <table class="list-style">
+     <tr>
+      <th>缩略图</th>
+      <th>产品</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>小计</th>
+     </tr>
+        <foreach name="goodList" item="goods">
+     <tr>
+      <td align="center" ><img src="/Uploads{$goods['img_savepath']}{$goods['goods_img']} " style="width:50px;height:50px;" class="thumbnail"/></td>
+      <td>{$goods.goodsname}</td>
+      <td>
+       <span>
+        <i>￥</i>
+        <em>{$goods.shop_price}</em>
+       </span>
+      </td>
+      <td>{$goods.goods_number}</td>
+      <td>
+       <span>
+        <i>￥</i>
+        <em>{$goods['shop_price'] * $goods['goods_number']}</em>
+       </span>
+      </td>
+     </tr>
+        </foreach>
+     <tr>
+      <td colspan="5">
+       <div class="fr">
+        <span style="font-size:15px;font-weight:bold;">
+         <i>订单共计金额：￥{$orderList.order_price}</i>
+         <b>0.00</b>
+        </span>
+       </div>
+      </td>
+     </tr>
+
+    </table>
+   </dd>
+   <dd>
+    <table class="noborder">
+     <tr>
+      <td width="10%" style="text-align:right;"><b>管理员操作：</b></td>
+      <td>
+       <textarea class="block" style="width:80%;height:35px;outline:none;"></textarea>
+      </td>
+     </tr>
+    </table>
+   </dd>
+   <dd>
+      <!-- Operation -->
+	  <div class="BatchOperation">
+          <p class="noprint">
+
+       <input type="hidden" id="{$orderList.id}"/>
+       <input id="btnPrint" type="button" class="btnStyle" value="打印" onclick="javascript:window.print();" />
+	   <input type="button" value="发货" id='fahuo' class="btnStyle"/>
+	   <input type="button" value="取消订单" id="quxiao"  class="btnStyle"/>
+
+          </p>
+	  </div>
+   </dd>
+  </dl>
+     </foreach>
+ </div>
+</body>
+<script>
+    $(function(){
+        $('#fahuo').click(detailOrderdel('#fahuo',"{:U('fahuo')}",'发货'));
+        $('#quxiao').click( detailOrderdel('#quxiao',"{:U('quxiao')}",'取消'));
+        //打印订单详情
+        $('#dayinxiangxi').click(function(){
+            var oid=$(this).attr('oid');
+            $.get("{:U()}")
+        })
+
+    })
+</script>
+</html>

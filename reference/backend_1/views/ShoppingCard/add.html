@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__PLUGIN__/calendar/jedate.js"></script>
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script>
+        $(document).ready(function(){
+        $('body').click(function(){
+            var start = Date.parse(new Date($('#use_start_date').val()));
+            start = start / 1000;
+            $('#start_date').val(start);
+            var end = Date.parse(new Date($('#use_end_date').val()));
+            end = end / 1000;
+            $('#end_date').val(end);
+
+        });
+            $('#use_start_date').blur(function(){
+                var start = Date.parse(new Date($('#use_start_date').val()));
+                start = start / 1000;
+
+                $('#start_date').val(start);
+            });
+            $('#use_end_date').blur(function(){
+                var end = Date.parse(new Date($('#use_end_date').val()));
+                end = end / 1000;
+                $('#end_date').val(end);
+            });
+
+                $('#shopCart').submit(function () {
+                    var start = Date.parse(new Date($('#use_start_date').val()));
+                    start = start / 1000;
+                    var end = Date.parse(new Date($('#use_end_date').val()));
+                    end = end / 1000;
+                    if(end > start) {
+                    $.post('{:U("ShoppingCard/add")}', $('#shopCart').serialize(), function (res) {
+                        if (res) {
+                            layer.confirm('恭喜,更新成功!', {
+                                btn: ['返回列表','继续更新'] //按钮
+                            }, function(){
+                                location='{:U("ShoppingCard/index")}';
+                            }, function(){
+                                location='{:U("ShoppingCard/add")}';
+                            });
+                        } else {
+                            layer.msg('添加失败')
+                        }
+                    });
+                    }else{
+                        layer.msg('使用结束日期要大于使用起始日期!')
+                    }
+                    return false;
+                })
+        })
+    </script>
+
+
+
+</head>
+
+<body>
+
+<h1>
+<span class="action-span"><a href="{:U('index')}">购物卡类型列表</a></span>
+<span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加购物卡类型 </span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+<form method="post" name="theForm" id="shopCart">
+<table width="100%">
+  <tbody><tr>
+    <td class="label">购物卡类型名称</td>
+    <td>
+      <input name="type_name" maxlength="30" size="20" type="text" value="{$type.type_name}">
+        <span class="require-field">*</span></td>
+  </tr>
+
+  <tr>
+    <td class="label">购物卡金额</td>
+    <td>
+    <input name="type_money" size="20" type="text" value="{$type.type_money}">
+        <span class="require-field">*</span>
+    </td>
+  </tr> 
+
+  <tr>
+    <td class="label">
+	  <a href="javascript:showNotice('Use_start_a');" title="点击此处查看提示信息">
+      <img src="__IMG__/notice.gif" alt="点击此处查看提示信息" height="16" width="16" border="0"></a>
+	使用起始日期</td>
+    <td>
+      <input id="use_start_date" size="22" readonly="readonly" onClick="jeDate({dateCell:'#use_start_date',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" value="<if condition="!$type.use_start_date eq 0">{$type.use_start_date|date="Y-m-d H:i:s",###}</if>">
+     <span class="require-field">*</span>
+	  <br><span class="notice-span" style="display:block" id="Use_start_a">只有当前时间介于起始日期和截止日期之间时，此类型的购物卡才可以使用</span>    </td>
+  </tr>
+
+  <tr>
+    <td class="label">使用结束日期</td>
+    <td>
+      <input  id="use_end_date" size="22" readonly="readonly" onClick="jeDate({dateCell:'#use_end_date',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" type="text" value="<if condition="!$type.use_end_date eq 0">{$type.use_end_date|date="Y-m-d H:i:s",###}</if>">
+     <span class="require-field">*</span></td>
+  </tr>
+
+  <tr>
+    <td class="label">&nbsp;</td>
+    <td>
+      <input value=" 确定 " class="button" type="submit">
+      <input value=" 重置 " class="button" type="reset">
+      <input name="type_id" value="{$type.type_id}" type="hidden">
+        <input id="start_date" name="use_start_date" value="<if condition="$type.type_id gt 0">{$type.use_start_date|date="Y-m-d H:i:s",###}</if>" type="hidden">
+        <input id="end_date" name="use_end_date" value="<if condition="$type.type_id gt 0">{$type.use_end_date|date="Y-m-d H:i:s",###}</if> " type="hidden">
+    </td>
+  </tr>
+
+</tbody></table>
+</form>
+</div>
+
+<div id="footer">
+共执行 1 个查询，用时 0.036002 秒，Gzip 已禁用，内存占用 2.516 MB<br>
+技术支持：17Aym开发中心，</div>
+<!-- 新订单提示信息 -->
+
+
+</body></html>

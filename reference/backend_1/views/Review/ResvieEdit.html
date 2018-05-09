@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>文章编辑</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/kindeditor/kindeditor-all-min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/jquery.form.js"></script>
+    <script>
+        $(function() {
+            KindEditor.ready(function (K) {
+                K.create('#content', {
+                    allowFileManager: true,
+                    afterBlur: function(){  //利用该方法处理当富文本编辑框失焦之后，立即同步数据
+                        this.sync("#content") ;
+                    }
+                });
+            });
+            $('#addform1').submit(function () {
+                $(this).ajaxSubmit(function (res) {
+                    if(res.status){
+                        layer.msg(res.info,function(){
+                            location="{:U('review')}";
+                        })
+                    }else{
+                        layer.msg(res.info);
+                    }
+                },'json');
+                return false;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="settings"></i><em>文章修改</em></span>
+    </div>
+    <form  method="post" id="addform1" action="{:U('Review/ResvieEdit')}" enctype="multipart/form-data">
+        <input name="id" value="{$ReviewInfo[0]['id']}" type="hidden"/>
+        <table class="noborder">
+            <tr>
+                <td style="width:15%;text-align:left;"><b>用户名称：{$ReviewInfo[0]['user_name']}</b></td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="review" class="textBox" value="" rows="10" cols="40">{$ReviewInfo[0]['content']}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:left;"><b>回复内容：</b></td>
+            </tr>
+            <tr>
+                <td><textarea name="review_content" id="content" style="width: 680px" rows="20">{$res.content}</textarea></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"></td>
+                <td><input type="submit" value="回复" class="tdBtn"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

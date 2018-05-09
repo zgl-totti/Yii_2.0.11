@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>热销商品编辑</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/timer/WdatePicker.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+    <script>
+        $(function(){
+            $('#editform1').submit(function(){
+                $.post('{:U("Hot/edit")}',$('#editform1').serialize(),function(res){
+                   if(res.status==1){
+                       layer.msg(res.info,{icon:1},function(){
+                           location='{:U("show")}'
+                        })
+                   }else{
+                        layer.msg(res.info,{icon:5})
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="add"></i><em>热销商品发布</em></span>
+  </div>
+  <form method="post" id="editform1">
+  <input type="hidden" name="id" value="{$ress.goods_id}" >
+  <table class="list-style">
+   <tr>
+    <td style="text-align:right;width:15%;">商品名称：</td>
+    <td>{$ress['goodsname']}</td>
+   </tr>
+
+      <tr>
+          <td style="text-align:right;">商品图片：</td>
+          <td>
+              <img src="/Uploads{$ress.img_savepath}100_{$ress['goods_img']}" width="90"  class="mlr5"/>
+          </td>
+      </tr>
+
+      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+          <td style="text-align:right;">市场价：</td>
+          <td>
+              <span>{$ress.}元</span>
+          </td>
+      </tr>
+
+      <tr>
+          <td style="text-align:right;">商城价：</td>
+          <td>
+              <span>{$ress.shop_price}元</span>
+          </td>
+      </tr>
+
+      <tr>
+          <td style="text-align:right;">商品销量：</td>
+          <td>
+              <span>{$ress.sale_num}瓶</span>
+          </td>
+      </tr>
+
+      <tr>
+          <td style="text-align:right;">商品库存：</td>
+          <td>
+              <span>{$ress.goods_num}瓶</span>
+          </td>
+      </tr>
+
+      <tr>
+    <td style="text-align:right;">产品描述：</td>
+    <td>{$ress.goods_brief}</td>
+   </tr>
+
+
+      <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+          <td style="text-align:right;">开始日期： </td>
+          <td  align="left" valign="middle" class="borderright borderbottom main-for">
+              <input readonly="readonly" name="start_time" type="text" value="{:date('Y-m-d',time())}" size="22" style="color:chocolate"/>
+          </td>
+      </tr>
+
+      <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+          <td style="text-align:right;">结束日期： </td>
+          <td align="left" valign="middle" class="borderright borderbottom main-for">
+              <input class="Wdate" name="end_time" type="text" value="2020-12-01" size="22"  onFocus="WdatePicker({isShowClear:false,readOnly:true})"/>
+          </td>
+      </tr>
+
+    <td style="text-align:right;"></td>
+    <td><input type="submit" value="发布" class="tdBtn" style="background:#00b7ee;color:#fff;border-radius: 6px;"/>
+        <input type="reset"  value="重置" class="tdBtn" style="background:#00b7ee;color:#fff;border-radius: 6px;"/>
+    </td>
+  </table>
+  </form>
+ </div>
+</body>
+</html>

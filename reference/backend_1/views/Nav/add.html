@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#form1').submit(function(){
+                $.post('{:U("Nav/add")}',$('#form1').serialize(),function(res){
+
+                    if(res.status){
+                        layer.confirm('恭喜,添加成功!', {
+                            btn: ['返回列表','继续添加'] //按钮
+                        }, function(){
+                            location='{:U("Nav/index")}';
+                        }, function(){
+                            location='{:U("Nav/add")}';
+                        });
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+</head>
+<body>
+<h1>
+<span class="action-span"><a href="{:U('Nav/index')}">返回列表</a></span>
+<span class="action-span1"><a href="{:U('index')}">管理中心</a> </span><span id="search_id" class="action-span1"> - 自定义导航栏 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" id="form1" >
+<table width="100%" cellspacing="1" cellpadding="3">
+<tbody>
+
+
+<tr>
+    <td align="right">名称</td> <td><input name="item_name" id="item_name" size="40"  type="text"></td>
+</tr>
+<tr>
+    <td align="right"><a href="javascript:showNotice('notice_url');" title="如果是本站的网址，可缩写为与商城根目录相对地址，如index.php；&lt;br&gt;其他情况都应该输入完整的网址，如http://www.meijiu.com/"><img src="17aym%E6%B7%98%E5%AE%9D%E5%BA%97%20%E7%AE%A1%E7%90%86%E4%B8%AD%E5%BF%83%20-%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F_files/notice.gif" alt="点击此处查看提示信息" width="16" border="0" height="16">链接地址</a></td> <td><input name="item_url" id="item_url" size="40" onkeypress="javascript:key();" type="text"></td>
+</tr>
+  <tr>
+    <td></td>
+    <td>
+<span class="notice-span" style="display:block" id="notice_url">如果是本站的网址，可缩写为与商城根目录相对地址，如index.php；<br>其他情况都应该输入完整的网址，如http://www.meijiu.com/</span></td>
+  </tr>
+<tr>
+    <td align="right">排序</td> <td><input name="item_vieworder" size="40" type="text"></td>
+</tr>
+<tr>
+    <td align="right">是否显示</td> <td><select name="item_ifshow">
+  <option value="1" selected="selected">是</option><option value="0">否</option>
+  </select></td>
+</tr>
+<tr>
+    <td align="right">是否新窗口</td> <td><select name="item_opennew">
+  <option value="0" selected="selected">否</option><option value="1">是</option>
+  </select></td>
+</tr>
+<tr>
+    <td align="right">位置</td> <td><select name="item_type">
+  <option value="top" selected="selected">顶部</option><option value="middle">中间</option><option value="bottom">底部 </option>
+  </select></td>
+</tr>
+<tr align="center">
+  <td colspan="2">
+
+    <input class="button"  value=" 确定 " type="submit">
+  </td>
+</tr>
+</tbody></table>
+</form>
+</div>
+
+<div id="footer">
+共执行 1 个查询，用时 0.019488 秒，Gzip 已禁用，内存占用 3.721 MB<br>
+技术支持：17aym淘宝店，QQ：2750188891。</div>
+
+
+</body></html>

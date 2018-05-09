@@ -51,9 +51,9 @@ return [
 
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2.0_new',
+            'dsn' => 'mysql:host=localhost;dbname=yii_2.0.11_new',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
             'tablePrefix'=>'shop_'
         ],

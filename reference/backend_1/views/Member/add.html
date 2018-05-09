@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>编辑会员资料</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#addform').submit(function(){
+                $.post('{:U("Member/add")}',$('#addform').serialize(),function(res){
+
+                    if(res.status){
+                        layer.confirm('恭喜,注册成功!', {
+                            btn: ['返回列表','继续注册'] //按钮
+                        }, function(){
+                            location='{:U("Member/index")}';
+                        }, function(){
+                            location='{:U("Member/add")}';
+                        });
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+
+</head>
+<body>
+<form enctype="multipart/form-data" method="post" id="addform" >
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="edit_user"></i><em>编辑会员资料</em></span>
+  </div>
+  <table class="list-style">
+   <tr>
+    <td style="width:15%;text-align:right;">会员昵称：</td>
+    <td><input type="text" name="username" class="textBox length-middle" /></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">电子邮件：</td>
+    <td><input type="text" class="textBox length-middle" name="email" /></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">手机号码：</td>
+    <td><input type="text" class="textBox length-middle" name="telephone" /></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">可用资金：</td>
+    <td>
+     <input type="text" class="textBox length-short"  name="money"  disabled="disabled"/>
+     <span>元</span>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">冻结资金：</td>
+    <td>
+     <input type="text" class="textBox length-short" name="frozen_money"  disabled="disabled"/>
+     <span>元</span>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">会员等级：</td>
+    <td>
+     <select class="textBox" name="level_id">
+      <option>请选择会员等级</option>
+         <foreach name="rank" item="vo">
+      <option value="{$vo.id}">{$vo.level_name}</option>
+             </foreach>
+
+
+     </select>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">用户密码：</td>
+    <td><input type="password" class="textBox length-middle" name="password" /></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">确认密码：</td>
+    <td><input type="password" class="textBox length-middle" name="password2" /></td>
+   </tr>
+      <tr >
+          <td  style="text-align:right;">禁止使用：</td>
+
+          <td><input name="status" id="radio"  value="1" type="radio">
+              是
+              <input name="status" id="radio2"  value="0" checked="checked" type="radio">
+              否</td>
+      </tr>
+      <tr>
+    <td style="text-align:right;"></td>
+    <td><input type="submit" class="tdBtn" value="保存"/></td>
+   </tr>
+  </table>
+ </div>
+</form>
+</body>
+</html>

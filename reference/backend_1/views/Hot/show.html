@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>产品列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i></i><em>热销产品列表</em></span>
+  </div>
+  <div class="operate">
+   <form action="{:U('show')}" method="get">
+    <input type="text" name="goodsname" value="{$goodsname}" class="textBox length-long" placeholder="输入商品名称..."/>
+    <input type="submit" value="查询" class="tdBtn"/>
+   </form>
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+    <th>ID</th>
+    <th>商品图片</th>
+    <th>名称</th>
+    <th>商城价</th>
+    <th>库存</th>
+    <th>开始时间</th>
+    <th>结束时间</th>
+    <th>是否热销</th>
+    <th>热销编辑</th>
+   </tr>
+<volist name="list" id="val" key="k">
+
+   <tr>
+    <td class="center">
+     <span >
+
+     <i>{$val.goods_id}</i>
+     </span>
+    </td>
+    <td class="center pic-area"><img src="/Uploads{$val.img_savepath}100_{$val.goods_img}" style="width:120px;height:90px " class="thumbnail"/></td>
+    <td class="td-name center">
+      <span class="ellipsis td-name block">{$val.goodsname}</span>
+    </td>
+    <td class="center">
+     <span>
+      <i>￥</i>
+      <em>{$val.shop_price}</em>
+     </span>
+    </td>
+    <td class="center">
+     <span>
+      <em>{$val.goods_num}</em>
+      <i>件</i>
+     </span>
+       <!-- <img src="__IMG__/no.gif"/>-->
+    </td>
+    <td class="center">{:date('Y-m-d',$val['start_time'])}</td>
+    <td class="center">{:date('Y-m-d',$val['end_time'])}</td>
+
+    <td class="center"><a href="javascript:;" onclick="del({$val['goods_id']})">{$val['is_hot']==1?'是':'否'}</a></td>
+
+    <td class="center">
+     <a href="{:U('Home/GoodsDetail/goodsDetail?id='.$val['goods_id'])}" title="查看" target="_blank"><img src="__IMG__/icon_view.gif"/></a>
+     <a href="{:U('Hot/edit?id='.$val['goods_id'])}" title="编辑"><img src="__IMG__/icon_edit.gif"/></a>
+    </td>
+   </tr>
+</volist>
+
+  </table>
+     <div class=" center fr" id="turnPage">
+         {$page}
+     </div>
+
+
+ </div>
+</body>
+<script>
+
+
+</script>
+
+</html>

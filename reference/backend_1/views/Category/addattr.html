@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>站点设置</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <style type="text/css">
+        .Cat_id{
+            width: 270px;
+            height: 35px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $('input[name="attr_name"]').blur(function(){
+                var attr_name=$('input[name="attr_name"]').val();
+                if(!attr_name){
+                    alert("属性名不能为空");
+                }
+            });
+            $('input[name="attr_values"]').blur(function(){
+                var attr_values=$('input[name="attr_values"]').val();
+                if(!attr_values){
+                    alert("属性值不能为空");
+                }
+            });
+             $('.attrform').submit(function(){
+                 $.post('{:U("addAttr")}',$('#form1').serialize(),function(res){
+                   if(res){
+                       layer.alert('添加成功',function(){
+                           location='{:U("addAttr")}'
+                       });
+                   }else{
+                       layer.alert('添加失败',function(){
+                           location='{:U("addAttr")}'
+                       });
+                   }
+                 });
+                 return false;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="settings"></i><em>分类属性添加</em></span>
+    </div>
+    <table class="noborder">
+       <form  class="attrform" method="post" id="form1">
+        <tr>
+            <td style="width:15%;text-align:right;"><b>分类名称：</b></td>
+            <td><select class="Cat_id" name="cat_id" />
+                <option value="0" selected="selected">顶层分类</option>
+                <volist name="CateName" id="val">
+                    <option value="{$val.cat_id}">{$val.cat_name}</option>
+                </volist>
+            </select></td>
+        </tr>
+        <tr>
+            <td style="text-align:right;"><b>属性名:</b></td>
+            <td><input type="text" class="textBox length-long" name="attr_name"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right;"><b>属性值：</b></td>
+            <td><input type="text" class="textBox length-long" name="attr_values"/></td>
+        </tr>
+        <tr>
+            <td style="text-align:right;"></td>
+            <td><input type="submit" value="保存" class="tdBtn"/></td>
+        </tr>
+       </form>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>管理组列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/public.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        function setPriority(nav,id){
+            var priority=$(nav).val();
+            $.post("{:U('setPriority')}",{'priority':priority,'id':id},function(res){
+                if(res.status==1){
+                    layer.tips(res.info, '#pri'+id, {
+                        tips: [2, '#3EAFE0']
+                    });
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>管理组列表</em></span>
+    </div>
+    <table class="list-style Interlaced">
+        <tr>
+            <th>管理组名称</th>
+            <th>成员</th>
+            <th>操作</th>
+        </tr>
+        <volist name="groupList"  id="value" key="k">
+            <tr>
+                <td style=" width: 140px;">{$value.title}</td>
+                <td class="center">
+                 {$value.member}
+                </td>
+                <td class="center">
+                    <a href="{:U('addMember',array('gid'=>$value['id']))}" class="tablelink">添加组员</a> ｜
+                    <a href="{:U('allocateRule',array('gid'=>$value['id']))}" class="tablelink">分配权限</a> ｜
+                    <!--<a href="{:U('edit',array('id'=>$value['id']))}" class="tablelink">编辑</a> ｜-->
+                    <a href="javascript:;" onclick="Del({$value['id']})" class="tablelink">删除</a>
+                </td>
+            </tr>
+        </volist>
+    </table>
+    <!-- BatchOperation -->
+    <div style="overflow:hidden;">
+        <div class="turnPage center fr">
+            <span id="page">{$page}</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function Del(id){
+       layer.alert("是否进行删除",function() {
+            $.post('{:U("AuthGroup/delete")}', {id: id}, function (res) {
+                if(res.status){
+                    layer.msg(res.info);
+                    location = "{:U('index')}";
+                }else{
+                    layer.msg("删除失败，稍后重试");
+                }
+            });
+        })
+    }
+</script>
+</body>
+</html>

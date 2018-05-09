@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>商品评论列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/public.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>商品评论列表</em></span>
+    </div>
+    <div class="operate">
+        <form action="{:U('Review/review')}" method="get" >
+            <span>评论状态：</span>
+            <select class="inline-select" name="status">
+                    <option value="">全部</option>
+                    <option value="2">未回复评论</option>
+                    <option value="1">已回复评论</option>
+                </select>
+            <span>评论类型：</span>
+            <select class="inline-select" name="type">
+                <option value="0">全部</option>
+                <option value="5">好评</option>
+                <option value="4">中评</option>
+                <option value="3">差评</option>
+            </select>
+            <span>商品名称：</span>
+            <input type="text" class="textBox length-long" placeholder="输入商品名称..." name="goodsname"/>
+            <input type="submit" value="查询" class="tdBtn"/>
+        </form>
+    </div>
+    <table class="list-style Interlaced">
+        <tr>
+            <th>编号</th>
+            <th>商品名称</th>
+            <th>用户名称</th>
+            <th>评价等级</th>
+            <th>评价内容</th>
+            <th>回复内容</th>
+            <th>评价时间</th>
+            <th>操作</th>
+        </tr>
+      <volist name="ReviewInfo"  id="value" key="k">
+            <tr>
+                <td>
+                   {$k+$firstRow}
+                    </td>
+
+             <td>
+          <span>
+               {$value.goodsname}
+             </span>
+                </td>
+              <td class="center1">
+                    <span class="center pic-area">{$value.user_name}</span>
+                </td>
+
+                <td class="center">
+                  <span>
+                      <for start="0" end="$value['type']">
+                          <img src="/Public/LoGo/xing.png" style="width: 25px;"/>
+                      </for>
+                       </span>
+                </td>
+                <td class="ellipsis td-name block">
+                    {$value['content']}
+                </td>
+
+                <td class="td-name">
+                    <span> {$value['reply_content']}</span>
+                </td>
+                <td class="center2">
+                    <span>{:date('Y-m-d',$value['addtime'])}</span>
+                </td>
+         <td class="center3">
+                    <a href="{:U('Review/ResvieEdit?id='.$value['id'])}" title="查看商品品牌/编辑" target="_self"><img src="__IMG__/icon_view.gif"/></a>
+                    <a title="删除" href="javascript:;" onclick="del({$value['id']})" ><img src="__IMG__/icon_drop.gif"/></a>
+                </td>
+          </tr>
+        </volist>
+    </table>
+    <!-- BatchOperation -->
+    <div style="overflow:hidden;">
+        <!-- Operation -->
+        <div class="BatchOperation fl">
+            <input type="checkbox" id="del"/>
+            <label for="del" class="btnStyle middle" id="chkAll" >全选</label>
+            <input type="button" value="批量删除" class="btnStyle"/>
+        </div>
+        <!-- turn page -->
+        <div class="turnPage center fr">
+            <span id="page">{$page}</span>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function del(id){
+        $.post("{:U('Review/DelReview')}",{rid:id},function(res){
+      if(res.status){
+                layer.msg(res.info,function(){
+                    location="{:U('Review/review')}";
+                });
+            }else{
+                layer.msg(res.info,function(){
+                    location="{:U('Review/review')}";
+                });
+            }
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<script>
+    $(document).ready(function(){
+
+        $('#send').submit(function () {
+            $.post('{:U("ShoppingCard/send")}', $('#send').serialize(), function (res) {
+                    if (res) {
+                        layer.confirm('恭喜,更新成功!', {
+                            btn: ['返回列表','继续更新'] //按钮
+                        }, function(){
+                            location='{:U("ShoppingCard/index")}';
+                        }, function(){
+                            location='{:U("ShoppingCard/send")}';
+                        });
+                    } else {
+                        layer.msg('添加失败')
+                    }
+                });
+
+            return false;
+        })
+    })
+</script>
+<body>
+<h1>
+    <span class="action-span"><a href="{:U('index')}">购物卡类型列表</a></span>
+    <span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span><span id="search_id" class="action-span1"> - 发放购物卡 </span>
+<div style="clear:both"></div>
+</h1>
+<div class="main-div">
+<form method="post" name="theForm" enctype="multipart/form-data" id="send">
+<table width="100%">
+  
+   <tbody><tr>
+      <td class="label">本次发放数量</td>
+      <td>
+      <input name="send_sum" size="30" maxlength="6" type="text">
+      </td>
+    </tr>
+    <tr><td class="label">&nbsp;</td>
+    <td>提示:购物卡卡号由8位随机数字组成</td>
+   </tr>
+   <tr>
+   <td class="label">&nbsp;</td>
+   <td>
+    <input value=" 确定 " class="button" type="submit">
+    <input value=" 重置 " class="button" type="reset">
+  </td>
+ </tr>
+</tbody></table>
+<input name="vc_type_id" value="{$value}" type="hidden">
+
+</form>
+</div>
+
+
+<div id="footer">
+共执行 1 个查询，用时 0.006000 秒，Gzip 已禁用，内存占用 2.549 MB<br>
+技术支持：17Aym开发中心，</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>添加商品品牌</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/jquery.form.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/uploadPreview/uploadPreview.js"></script>
+    <style type="text/css">
+        #click{color:#fff;text-align:center;border-radius:4px;width:120px;height:26px;line-height:26px;font-size:16px;background:#00b7ee;padding:8px 16px;cursor:pointer;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1)}
+    </style>
+    <script>
+        window.onload = function () {
+            new uploadPreview({ UpBtn: "brand_logo", SpanShow: "imgdiv", ImgShow: "imgShow" });
+        };
+        </script>
+        <script type="text/javascript">
+        $(function(){
+            $('#form1').submit(function(){
+                var val=$('select').val();
+               if(val==0){
+                    layer.alert("请选择分类",function(){
+                        location="{:U('addbrand')}"
+                    });
+                   return false;
+                }else{
+                   $(this).ajaxSubmit(function(res){
+                       if(res.info){
+                           layer.alert("添加成功",function(){
+                               location="{:U('addbrand')}"
+                           })
+                       }else{
+                           layer.alert("添加失败",function(){
+                               location="{:U('addbrand')}"
+                           })
+                       }
+                   },'json');
+               }
+                return false;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="add_user"></i><em>添加品牌</em></span>
+    </div>
+    <form  action="{:U('addbrand')}" method="post" id="form1" enctype="multipart/form-data"  >
+        <table class="list-style">
+            <tr>
+                <td style="width:15%;text-align:right;">品牌分类：</td>
+                <td>
+                    <select class="textBox length-middle" name="pid" class="pid"/>
+                    <option  selected="selected" value="0">顶层分类</option>
+                    <volist name="CateName" id="val">
+                        <option value="{$val.cat_id}">{$val.cat_name}</option>
+                    </volist>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">商品品牌：</td>
+                <td><input type="text" class="textBox length-middle" name="brand_name" id="brand_name"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">品牌描述：</td>
+                <td><textarea  name="brand_detail" rows="4"  cols="30"></textarea></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">商品LOGO：</td>
+                <td>
+                    <span id="imgdiv"><img id="imgShow" width="100"/></span>
+                    <input type="file" name="goods_img" style="display:none" id="brand_logo" >
+                    <label for="brand_logo" id="click">点击选择图片</label>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"></td>
+                <td><input type="submit" class="tdBtn" value="添加品牌"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

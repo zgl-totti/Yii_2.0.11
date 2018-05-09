@@ -6048,3 +6048,177 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1522811772.1231
     'REQUEST_TIME' => 1522811772
 ]
+2018-04-11 01:09:07 [127.0.0.1][-][-][error][yii\web\HttpException:404] yii\web\NotFoundHttpException: Page not found. in F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 F:\phpStudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2018-04-11 01:09:07 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.206337940.1523263294'
+    'advanced-backend' => 'ttkad2g6t0j2ip3untcqddld04'
+    '_csrf-backend' => '3433cef21c9256d7e8dcd76b83951982aaf83f1e6ad23804e20f7b696fa4a678a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"QlLE85zX612VSyMHZoPYJkB9hcOx459-\";}'
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;F:\\software\\PuTTY\\;C:\\Program Files\\TortoiseSVN\\bin;F:\\software\\Git\\cmd;F:\\phpStudy\\php\\php-7.0.12-nts;F:\\software\\composer;F:\\phpStudy\\MySQL\\bin;F:\\software\\Go\\bin;F:\\software\\Python\\Scripts\\;F:\\software\\Python\\'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'F:/phpStudy/php/php-7.0.12-nts/'
+    '_FCGI_SHUTDOWN_EVENT_' => '1764'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/site/index'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/site/index'
+    'REMOTE_PORT' => '50700'
+    'SCRIPT_FILENAME' => 'F:/phpStudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => '_ga=GA1.1.206337940.1523263294; advanced-backend=ttkad2g6t0j2ip3untcqddld04; _csrf-backend=3433cef21c9256d7e8dcd76b83951982aaf83f1e6ad23804e20f7b696fa4a678a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22QlLE85zX612VSyMHZoPYJkB9hcOx459-%22%3B%7D'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1523408947.6374
+    'REQUEST_TIME' => 1523408947
+]
+2018-04-11 01:09:15 [127.0.0.1][-][-][error][yii\web\HttpException:404] yii\web\NotFoundHttpException: Page not found. in F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 F:\phpStudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2018-04-11 01:09:15 [127.0.0.1][-][-][info][application] $_GET = [
+    'id' => '1'
+]
+
+$_COOKIE = [
+    '_ga' => 'GA1.1.206337940.1523263294'
+    'advanced-backend' => 'ttkad2g6t0j2ip3untcqddld04'
+    '_csrf-backend' => '3433cef21c9256d7e8dcd76b83951982aaf83f1e6ad23804e20f7b696fa4a678a:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"QlLE85zX612VSyMHZoPYJkB9hcOx459-\";}'
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;F:\\software\\PuTTY\\;C:\\Program Files\\TortoiseSVN\\bin;F:\\software\\Git\\cmd;F:\\phpStudy\\php\\php-7.0.12-nts;F:\\software\\composer;F:\\phpStudy\\MySQL\\bin;F:\\software\\Go\\bin;F:\\software\\Python\\Scripts\\;F:\\software\\Python\\'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'F:/phpStudy/php/php-7.0.12-nts/'
+    '_FCGI_SHUTDOWN_EVENT_' => '1764'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/site/index?id=1'
+    'QUERY_STRING' => 'id=1'
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_QUERY_STRING' => 'id=1'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/site/index'
+    'REMOTE_PORT' => '50714'
+    'SCRIPT_FILENAME' => 'F:/phpStudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => '_ga=GA1.1.206337940.1523263294; advanced-backend=ttkad2g6t0j2ip3untcqddld04; _csrf-backend=3433cef21c9256d7e8dcd76b83951982aaf83f1e6ad23804e20f7b696fa4a678a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22QlLE85zX612VSyMHZoPYJkB9hcOx459-%22%3B%7D'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1523408955.2697
+    'REQUEST_TIME' => 1523408955
+]
+2018-04-26 01:44:18 [127.0.0.1][-][-][error][yii\web\HttpException:404] yii\web\NotFoundHttpException: Page not found. in F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\web\Application.php:114
+Stack trace:
+#0 F:\phpStudy\WWW\Yii_2.0.11_new\vendor\yiisoft\yii2\base\Application.php(380): yii\web\Application->handleRequest(Object(yii\web\Request))
+#1 F:\phpStudy\WWW\Yii_2.0.11_new\backend\web\index.php(17): yii\base\Application->run()
+#2 {main}
+2018-04-26 01:44:17 [127.0.0.1][-][-][info][application] $_COOKIE = [
+    '_ga' => 'GA1.1.206337940.1523263294'
+    'cp_language' => 'zh'
+    'Hm_lvt_5cbfdcc0f95601a047271728d07273b1' => '1523419140'
+    'XSRF-TOKEN' => 'eyJpdiI6IjE3OFZMQVV1WU9tWGNNMjgydkFsZ0E9PSIsInZhbHVlIjoiTjVtK1BBU3Fkb0d5NnpGcndTbFpIa2J5SVZFZ3I1ZWJjc1VTOVNzRUZVdzlOZlFqSm0yZXFJZ0JJaTUyUVBLWW5aYkVpWVc2TmxVNXpNVmRlV3piVnc9PSIsIm1hYyI6ImE3ZmE0OTdkNjBjN2UyMjM3ZmI3YWU5MmYyMDg3YzZiODM3YmNkOGFjNDNmODA4ZWNkNzcyYWJhZTBiZWQ1ZTUifQ=='
+    'laravel_session' => 'eyJpdiI6IkYwVmg0ODl2dHBJcHRYVEFQWDJEWkE9PSIsInZhbHVlIjoiak1ZcElNYVpBQVwvR1BqNEJVK1oyWlpvQ1N0OVwvZHRHM3RzcmdIVXFiUjdybkd4NjR6SEx2cnU5dkNFQWk2aHhMYjRuKzBWUXFOR0Y3UmxjSGpVcWQxdz09IiwibWFjIjoiZWNkMmM1MTJhZGJmZWQzOWQxYWI5NzkwMzc2NDQyZWVjYWUwYTdjNTIxNTNiZjcwNGNhNjU0MDE5ZGJjYmZlZCJ9'
+    'advanced-backend' => '5721kgnl57li1mb9lkdrhung22'
+    '_csrf-backend' => '93887567fb75a3987d2b1ee9e87134bb8258e7b44069b3f3242c7b48b52fa81ba:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"8NT3qnE-w7GD4rVQ_vBugioBcItH4rEQ\";}'
+]
+
+$_SERVER = [
+    'PATH' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;F:\\software\\PuTTY\\;C:\\Program Files\\TortoiseSVN\\bin;F:\\software\\Git\\cmd;F:\\phpStudy\\php\\php-7.0.12-nts;F:\\software\\composer;F:\\phpStudy\\MySQL\\bin;F:\\software\\Go\\bin;F:\\software\\Python\\Scripts\\;F:\\software\\Python\\'
+    'SYSTEMROOT' => 'C:\\Windows'
+    'COMSPEC' => 'C:\\Windows\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\Windows'
+    'PHP_FCGI_MAX_REQUESTS' => '1000'
+    'PHPRC' => 'F:/phpStudy/php/php-7.0.12-nts/'
+    '_FCGI_SHUTDOWN_EVENT_' => '1856'
+    'SCRIPT_NAME' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_URI' => '/Yii_2.0.11_new/backend/web/uploads/integral/thumb100/100_'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'REDIRECT_URL' => '/Yii_2.0.11_new/backend/web/uploads/integral/thumb100/100_'
+    'REMOTE_PORT' => '51979'
+    'SCRIPT_FILENAME' => 'F:/phpStudy/WWW/Yii_2.0.11_new/backend/web/index.php'
+    'SERVER_ADMIN' => 'admin@phpStudy.net'
+    'CONTEXT_DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'CONTEXT_PREFIX' => ''
+    'REQUEST_SCHEME' => 'http'
+    'DOCUMENT_ROOT' => 'F:/phpStudy/WWW'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_NAME' => '127.0.0.1'
+    'SERVER_SOFTWARE' => 'Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9'
+    'SERVER_SIGNATURE' => ''
+    'SystemRoot' => 'C:\\Windows'
+    'HTTP_COOKIE' => '_ga=GA1.1.206337940.1523263294; cp_language=zh; Hm_lvt_5cbfdcc0f95601a047271728d07273b1=1523419140; XSRF-TOKEN=eyJpdiI6IjE3OFZMQVV1WU9tWGNNMjgydkFsZ0E9PSIsInZhbHVlIjoiTjVtK1BBU3Fkb0d5NnpGcndTbFpIa2J5SVZFZ3I1ZWJjc1VTOVNzRUZVdzlOZlFqSm0yZXFJZ0JJaTUyUVBLWW5aYkVpWVc2TmxVNXpNVmRlV3piVnc9PSIsIm1hYyI6ImE3ZmE0OTdkNjBjN2UyMjM3ZmI3YWU5MmYyMDg3YzZiODM3YmNkOGFjNDNmODA4ZWNkNzcyYWJhZTBiZWQ1ZTUifQ%3D%3D; laravel_session=eyJpdiI6IkYwVmg0ODl2dHBJcHRYVEFQWDJEWkE9PSIsInZhbHVlIjoiak1ZcElNYVpBQVwvR1BqNEJVK1oyWlpvQ1N0OVwvZHRHM3RzcmdIVXFiUjdybkd4NjR6SEx2cnU5dkNFQWk2aHhMYjRuKzBWUXFOR0Y3UmxjSGpVcWQxdz09IiwibWFjIjoiZWNkMmM1MTJhZGJmZWQzOWQxYWI5NzkwMzc2NDQyZWVjYWUwYTdjNTIxNTNiZjcwNGNhNjU0MDE5ZGJjYmZlZCJ9; advanced-backend=5721kgnl57li1mb9lkdrhung22; _csrf-backend=93887567fb75a3987d2b1ee9e87134bb8258e7b44069b3f3242c7b48b52fa81ba%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%228NT3qnE-w7GD4rVQ_vBugioBcItH4rEQ%22%3B%7D'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.9'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_REFERER' => 'http://127.0.0.1/Yii_2.0.11_new/backend/web/integral/index'
+    'HTTP_ACCEPT' => 'image/webp,image/apng,image/*,*/*;q=0.8'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+    'HTTP_CONNECTION' => 'close'
+    'HTTP_HOST' => '127.0.0.1'
+    'REDIRECT_STATUS' => '200'
+    'FCGI_ROLE' => 'RESPONDER'
+    'PHP_SELF' => '/Yii_2.0.11_new/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1524707057.9791
+    'REQUEST_TIME' => 1524707057
+]

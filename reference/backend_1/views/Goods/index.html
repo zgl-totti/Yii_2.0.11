@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <title>商品数据统计</title>
+</head>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+    function showdata(name){
+        $('#'+name).slideToggle();
+    }
+</script>
+<body style="background: url('__IMG__/bg.jpg')">
+<div class="content" style="background-color: #ffffee">
+    <ul class="one">
+        <li style="background-color: #fff0bb">
+            <div class="welinfo">
+                <span><img src="__IMG__/dp.png" alt="提醒" onclick="showdata('main')"/></span>
+                <b>商品分类销售信息统计</b>
+            </div>
+            <div id="main" style="width: 1000px;height:500px;display: none"></div>
+        </li>
+        <li style="background-color: #f0d4ff;border-radius: 25px;">
+            <div class="welinfo">
+                <span><img src="__IMG__/dp.png" alt="提醒" onclick="showdata('GoodsSaleTop')" /></span>
+                <b>商品销售信息</b>
+            </div>
+            <div id="GoodsSaleTop" style="width: 1000px;height:500px;display: none"></div>
+        </li>
+        <li style="background-color: #fff0bb;border-radius: 25px;">
+            <div class="welinfo">
+                <span><img src="__IMG__/dp.png" alt="提醒" onclick="showdata('GoodReview')" /></span>
+                <b>商品好评排名前五</b>
+            </div>
+            <div id="GoodReview" style="width: 1000px;height:500px;display: none"></div>
+        </li>
+        <li style="background-color: #f0d4ff;border-radius: 25px;">
+            <div class="welinfo">
+                <span><img src="__IMG__/dp.png" alt="提醒" onclick="showdata('GetBrandsTop')" /></span>
+                <b>商品品牌销售额排名前十</b>
+            </div>
+            <div id="GetBrandsTop" style="width: 1200px;height:500px;display: none"></div>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+<script type="text/javascript" src="__PLUGIN__/echarts.min.js"></script>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title : {
+            text: '不同类别商品销量',
+            subtext: '销量占有率',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+    $.get('{:U("Goods/getCateSale")}').done(function (data) {
+        myChart.setOption({
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:data.info.x
+            },
+            series : [
+                {
+                    name:'访问来源',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:data.info.y
+                }
+            ]
+        });
+    });
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    var  GoodsSaleTop=echarts.init(document.getElementById('GoodsSaleTop'));
+    //商品销售前十名排行
+    $.get('{:U("Goods/GoodsSaleTop")}').done(function (data) {
+        GoodsSaleTop.setOption({
+            xAxis: {
+                data: data.info.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量1',
+                data: data.info.y
+            }]
+        });
+    });
+    var option1 = {
+        title: {
+            text: '商品销量TOP8'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: []
+        }]
+    };
+
+    var option2= {
+        title: {
+            text: '商品销量TOP8'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'line',
+            data: []
+        }]
+    };
+    GoodsSaleTop.setOption(option1);
+    //好评排行前五
+    var  GoodReview=echarts.init(document.getElementById('GoodReview'));
+    $.get('{:U("Goods/GoodReview")}').done(function (data) {
+        GoodReview.setOption({
+            xAxis: {
+                data: data.info.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量1',
+                data: data.info.y
+            }],
+            title: {
+                text: '商品好评率TOP5'
+            }
+        });
+    });
+    GoodReview.setOption(option2);
+
+    var  GetBrandsTop=echarts.init(document.getElementById('GetBrandsTop'));
+    $.get('{:U("Goods/GetBrandsTop")}').done(function (data) {
+        GetBrandsTop.setOption({
+            xAxis: {
+                data: data.info.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量1',
+                data: data.info.y
+            }],
+            title: {
+                text: '商品品牌销售额TOP10'
+            }
+        });
+    });
+    GetBrandsTop.setOption(option2);
+</script>
+</html>

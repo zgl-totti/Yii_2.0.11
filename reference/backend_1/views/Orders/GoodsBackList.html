@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>订单列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jquery.js"></script>
+    <script src="__JS__/public.js"></script>
+    <script src="__JS__/quanxuan.js"></script>
+    <script src="/public/Admin/plugin/layer/layer.js" ></script>
+    <style type="text/css">
+        .ch2{font-size:18px;margin-top:10px;}
+        #delList:hover{color:#00A2E8}
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="order"></i><em>订单列表</em></span>
+    </div>
+    <div class="operate">
+        <form action="{:U('Orders/GoodsBackList')}" method="get" >
+            <img src="__IMG__/icon_search.gif"/>
+            <select class="inline-select" name="status" id="stat">
+                <option name="status1" value="0">未确认</option>
+                <option name="status2" value="1">已确认</option>
+            </select>
+            <input type="submit" value="查询" class="tdBtn"/>
+        </form>
+    </div>
+
+    <table class="list-style Interlaced">
+        <tr>
+            <th>编号</th>
+            <th>商品名称 </th>
+            <th>商品问题图片</th>
+            <th>退货数量</th>
+            <th>退货原因</th>
+            <th>留言信息</th>
+            <th>操作</th>
+        </tr>
+        {//遍历订单表}
+
+        <volist name="ReturnList" id="val">
+            <tr id="tr">
+                <td>
+                    <input type="checkbox" name="inp" class="{$key}"/>
+                    <a href="order_detail.html">{$key}</a>
+                </td>
+                <td class="center">
+                    <span class="block">{$val.goodsname}</span>
+                </td>
+                <td width="450">
+                    <span class="block">
+                        <img src="/Uploads/Return/{$val['img']}" style="width: 150px;height: 100px;"/>
+                    </span>
+                </td>
+                <td class="center">
+                    <span><b>{$val.num}</b></span>
+                </td>
+                <td class="center">
+                    <span>{$val.reason}</span>
+                </td>
+                <td class="center">
+                    <span>{$val.return_remark}</span>
+                </td>
+                <td class="center">
+                 <span>
+                     <if condition="$val['status'] eq 0">
+                         <a href="javascript:;" onclick="queren({$val['id']})" id="quren">确认退货</a>
+                         <else/>
+                         已确认 &nbsp;&nbsp;<a href="javascript:;" rid="{$val['id']}" id="delList">删除</a>
+                     </if>
+                  </span>
+                </td>
+            </tr>
+        </volist>
+    </table>
+        <div class=" center fr" id="turnPage">
+            {$page}
+        </div>
+    </div>
+</div>
+<div id="you" style='position:fixed;right:0;bottom:0;border:1px solid red;'>
+    <a href='javascript:;' id='off'><img src="/Public/Home/Images/images/Image 1.png"/></a>;
+</div>
+</body>
+<script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+<script>
+  function queren(id) {
+      $.post("{:U('Orders/goodsReturn')}", {id: id}, function (res) {
+          if (res.status) {
+              layer.alert(res.info, function () {
+                 location="{:U('Orders/GoodsBackList')}";
+              })
+          } else {
+              layer.alert(res.info)
+          }
+      })
+  }
+  $('#delList').click(function(){
+      var id=$(this).attr('rid');
+      $.get("{:U('Orders/delGoodsReturn')}",{'id':id},function(res){
+           if(res.status){
+               location.reload();
+           }else{
+               layer.msg(res.info);
+           }
+      })
+  })
+</script>
+</html>

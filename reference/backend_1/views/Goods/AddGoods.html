@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>新增商品</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <link href="__PLUGIN__/webuploader/webuploader.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/jquery.form.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/kindeditor/kindeditor-all-min.js"></script>
+    <script src="__PLUGIN__/webuploader/webuploader.js"></script>
+    <script src="__PLUGIN__/jquery.idTabs.min.js"></script>
+    <script src="__PLUGIN__/upload.js"></script>
+    <script type="text/javascript">
+        var uploadUrl = '{:U("uploadGoodsPic")}';
+        var listUrl = "{:U('GoodsList')}";
+        $(function() {
+            KindEditor.ready(function(k){
+                k.create('#content', {
+                    allowFileManager: true,//是否允许管理内容资源
+                    afterBlur: function(){  //利用该方法处理当富文本编辑框失焦之后，立即同步数据
+                        this.sync("#content") ;
+                    }
+                })
+            });
+            $('select[name="cat_id"]').change(function () {
+                var CateId = $('select[name="cat_id"]').val();
+                $.get('{:U("AddGoods")}', {CateId: CateId}, function (res) {
+                    var str = '';
+                    for (var i in res) {
+                        str+=res[i]['attr_name']+' :  '+'<select class="textBox"  name="'+res[i]['attr_id']+'">';
+                        for(var s in res[i]['attr_values']){
+                            str+='<option value="'+res[i]['attr_values'][s]['id']+'">'+res[i]['attr_values'][s]['attr_name']+'</option>'
+                        }
+                        str+='</select>';
+                    }
+                    $('.goods_attr').html(str);
+                });
+                $.post('{:U("getBrands")}', {pid: CateId}, function (res) {
+                    var str='';
+                    str+='<select class="textBox"  name="brand_id">';
+                    for (var i in res) {
+                        str+='<option value="'+res[i]['brand_id']+'">'+res[i]['brand_name']+'</option>'
+                    }
+                    str+='</select>';
+                    $('.goods_brand').html(str);
+                });
+            });
+            $('#form1').submit(function(){
+                $(this).ajaxSubmit(function(res){
+
+                  if(res){
+                      $('.uploadBtn').click();
+                    }else{
+                        layer.alert("更新失败",function(){
+                            location="{:U('GoodsList')}"
+                        })
+                    }
+                },'json');
+                return false;
+            })
+
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>添加商品信息</em></span>
+        <span class="modular fr"><a href="{:U('AddGoods')}" class="pt-link-btn">+添加商品详情</a></span>
+    </div>
+    <form  id="form1" method="post" enctype="multipart/form-data" action="{:U('AddGoods')}">
+    <table class="list-style">
+        <tr>
+            <td style="text-align:right;width:15%;">商品分类:</td>
+            <td>
+                <select class="textBox" name="cat_id">
+                    <option>选择分类</option>
+                    <volist name="CateList" id="val">
+                        <option value="{$val.cat_id}">{$val.cat_name}</option>
+                    </volist>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;width:10%;" >商品品牌：</td>
+            <td class="goods_brand">
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;width:10%;" >商品属性：</td>
+            <td class="goods_attr">
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">商品名称：</td>
+            <td>
+                <input type="text" class="textBox length-short" name="goodsname" style="width: 280px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">库存数量：</td>
+            <td>
+                <input type="text" class="textBox length-short" name="goods_num" style="width: 280px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">商城价格：</td>
+            <td>
+                <input type="text" class="textBox length-short" name="shop_price" style="width: 280px;"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">是否销售：</td>
+            <td>
+                <input type="radio" name="is_sale" id="yes" value="1"/>
+                <label for="yes">是</label>
+                <input type="radio" name="is_sale" id="no" value="0"/>
+                <label for="no">否</label>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">选择商品主图：</td>
+            <td>
+                <div class="usercity" style="border:3px dashed #e6e6e6;width:520px;height:300px;position: relative">
+                    <p id="preview1" ><img id="imghead1"  border=0 src=''></p><span></span>
+                    <input type="file" id="image1" name="goods_image" onchange="previewImage(this,'preview1','imghead1')" style="display:none;" >
+                    <label for="image1"  style="margin:130px 180px;color:#fff;text-align:center;border-radius:4px;width:130px;height:26px;line-height:26px;font-size:18px;background:#00b7ee;padding:8px 16px;cursor:pointer;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);">点击选择主图</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">选择商品图片：</td>
+            <td>
+                <div class="uploader-list-container vocation" style="width: 525px;border:0px;">
+                    <div class="queueList">
+                        <div id="dndArea" class="placeholder">
+                            <div id="filePicker-2"></div>
+                            <p>或将照片拖到这里，单次最多可选10张</p>
+                        </div>
+                    </div>
+                    <div class="statusBar" style="display:none;">
+                        <div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
+                        <div class="info"></div>
+                        <div class="btns">
+                            <div id="filePicker2"></div>
+                            <div class="uploadBtn" style="display: none">开始上传</div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">商品描述：</td>
+            <td>
+                <input type="text" class="textBox length-long" name="goods_brief"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="text-align:right;">商品详情：</td>
+            <td>
+                <textarea name="goods_content" id="content"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;"></td>
+            <td><input type="submit" value="保存" class="tdBtn"/></td>
+        </tr>
+    </table>
+    </form>
+</div>
+<script>
+    //图片上传预览    IE是用了滤镜。
+    function previewImage(file,pre,imag)
+    {
+        var MAXWIDTH  = 300;
+        var MAXHEIGHT = 300;
+        var div = document.getElementById(pre);
+        if( !file.value.match( /.jpg|.gif|.png|.bmp/i ) ){
+            //$(this).prev('span').text('图片格式无效！');
+            $('#'+pre).next('span').css({"color":"red","font-weight":"bold"}).text('图片类型无效！');
+            return false;
+        }else{
+            $('#'+pre).next('span').css({"color":"green","font-weight":"bold"}).text('');
+        }
+        if (file.files && file.files[0])
+        {
+            div.innerHTML ='<img id='+imag+'>';
+            var img = document.getElementById(imag);
+            img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+            }
+            var reader = new FileReader();
+            reader.onload = function(evt){img.src = evt.target.result;}
+            reader.readAsDataURL(file.files[0]);
+        }
+        else //兼容IE
+        {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            file.blur();
+            var src = document.selection.createRange().text;
+            div.innerHTML ='<img id='+imag+'>';
+            var img = document.getElementById(imag);
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+        }
+
+        $(file).next('label').css({margin:0,top:0,position:'absolute',background:'rgba(0,0,0,0.4)',color:'#fff',fontSize:'14px',width:'80px',padding:'3px'}).html('重新选择');
+    }
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+        var param = {top:0, left:0, width:width, height:height};
+        if( width>maxWidth || height>maxHeight )
+        {
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+
+            if( rateWidth > rateHeight )
+            {
+                param.width =  maxWidth;
+                param.height = Math.round(height / rateWidth);
+            }else
+            {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+</script>
+</body>
+</html>

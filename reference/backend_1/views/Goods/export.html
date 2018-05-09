@@ -1,0 +1,42 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:x="urn:schemas-microsoft-com:office:excel"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name=ProgId content=Excel.Sheet>
+    <meta name=Generator content="Microsoft Excel 11">
+</head>
+<body>
+<table border=1 cellpadding=0 cellspacing=0 width="100%" >
+    <tr>
+        <td colspan="6" align="center">
+            <h2>商品列表</h2>
+        </td>
+    </tr>
+    <tr>
+        <th>编号</th>
+        <th>商品id</th>
+        <th>商品名称</th>
+        <th>商品价格</th>
+        <th>添加时间</th>
+        <th>销售数量</th>
+        <th>是否热销</th>
+        <th>库存</th>
+        <th>状态</th>
+    </tr>
+    <volist name="GoodInfo" id="va" key="k">
+        <tr>
+            <td style="text-align: center;width: 240px;">{$k}</td>
+            <td style="text-align: center;width: 240px;">{$va.goods_id}</td>
+            <td style="text-align: center;width: 100px;">{$va.goodsname}</td>
+            <td style="text-align: center;width: 60px;">{$va.goods_price}</td>
+            <td style="text-align: center;width: 200px;">{:date("Y-m-d H:i:s",$va['add_time'])}</td>
+            <td style="text-align: center;width: 100px;">￥{$va.sale_num}</td>
+            <td style="text-align: center;width: 100px;">{$va['is_hot']==1?'是':'否'}</td>
+            <td style="text-align: center;width: 100px;">￥{$va.goods_num}</td>
+            <td style="text-align: center;width: 100px;">{$val['is_sale']?'销售':'下架'}</td>
+        </tr>
+    </volist>
+</table>
+</body>
+</html>

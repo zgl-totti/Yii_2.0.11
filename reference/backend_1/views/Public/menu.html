@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>左侧导航</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jquery.js"></script>
+<script src="__JS__/public.js"></script>
+</head>
+<body style="background:#313131">
+<div class="menu-list">
+ <a href="main.html" target="mainCont" class="block menu-list-title center" style="border:none;margin-bottom:8px;color:#fff;">起始页</a>
+ <ul>
+     <li class="menu-list-title">
+         <span>系统设置</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('System/index')}" title="站点基本设置" target="mainCont">站点基本设置</a></li>
+             <li><a href="{:U('Nav/index')}" title="自定义导航栏" target="mainCont">自定义导航栏</a></li>
+             <li><a href="{:U('AdminNav/index')}" title="菜单列表" target="mainCont">菜单列表</a></li>
+             <li><a href="{:U('AdminNav/add')}" title="添加菜单" target="mainCont">添加菜单</a></li>
+         </ul>
+     </li>
+     <li class="menu-list-title">
+         <span>微信设置</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('WeiXin/index')}" title="微信设置" target="mainCont">微信设置</a></li>
+             <li><a href="{:U('WeiXin/menu')}" title="自定义菜单" target="mainCont">自定义菜单</a></li>
+
+             <!--<li><a href="{:U('AdminNav/index')}" title="菜单列表" target="mainCont">菜单列表</a></li>-->
+             <!--<li><a href="{:U('AdminNav/add')}" title="添加菜单" target="mainCont">添加菜单</a></li>-->
+         <!---->
+         </ul>
+     </li>
+
+     <li class="menu-list-title">
+         <span>权限管理</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('AuthGroup/index')}" title="商品列表" target="mainCont">管理组列表</a></li>
+             <li><a href="{:U('AuthGroup/add')}" title="商品分类" target="mainCont">添加管理组</a></li>
+             <li><a href="{:U('Admins/index')}" title="站点管理员" target="mainCont">站点管理员列表</a></li>
+             <li><a href="{:U('Admins/add')}" title="商品评论管理" target="mainCont">添加管理员</a></li>
+             <li><a href="{:U('AuthRule/index')}" title="商品添加" target="mainCont">权限列表</a></li>
+             <li><a href="{:U('AuthRule/add')}" title="商品评论管理" target="mainCont">添加权限</a></li>
+
+         </ul>
+     </li>
+
+
+     <li class="menu-list-title">
+         <span>会员管理</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('Member/echarts')}" title="会员分析" target="mainCont">会员分析</a></li>
+             <li><a href="{:U('Member/index')}" title="会员列表" target="mainCont">会员列表</a></li>
+             <!--<li><a href="{:U('Member/add')}" title="添加会员" target="mainCont">添加会员</a></li>-->
+             <li><a href="{:U('Member/user_rank')}" title="会员等级" target="mainCont">会员等级</a></li>
+             <li><a href="user_message.html" title="会员留言" target="mainCont">会员留言</a></li>
+         </ul>
+     </li>
+
+
+  <li class="menu-list-title">
+   <span>订单管理</span>
+   <i>◢</i>
+  </li>
+  <li>
+   <ul class="menu-children">
+    <if condition="$num gt 0">
+          <li><a href="{:U('Orders/Order_list')}" title="商品列表" target="mainCont">订单列表({$num})</a></li>
+       <else/>
+          <li><a href="{:U('Orders/Order_list')}" title="商品列表" target="mainCont">订单列表</a></li>
+    </if>
+
+       <li><a href="{:U('Orders/GoodsBackList')}" title="退货列表" target="mainCont">退货列表</a></li>
+   </ul>
+  </li>
+ 
+  <li class="menu-list-title">
+   <span>分类管理</span>
+   <i>◢</i>
+  </li>
+  <li>
+   <ul class="menu-children">
+    <li><a href="{:U('Category/addCateGory')}" title="商品分类" target="mainCont">分类添加</a></li>
+       <li><a href="{:U('Category/catelist')}" title="商品分类" target="mainCont">分类列表</a></li>
+   </ul>
+  </li>
+
+     <li class="menu-list-title">
+         <span>商品管理</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('Goods/index')}" title="商品数据统计" target="mainCont">商品数据统计</a></li>
+             <li><a href="{:U('Goods/GoodsList')}" title="商品列表" target="mainCont">商品列表</a></li>
+             <li><a href="{:U('Goods/AddGoods')}" title="商品添加" target="mainCont">商品添加</a></li>
+		 	 <li><a href="{:U('Brands/brand')}" title="商品品牌" target="mainCont">商品品牌</a></li>
+             <li><a href="{:U('Review/review')}" title="商品评论管理" target="mainCont">商品评论管理</a></li>
+
+         </ul>
+     </li>
+     <li class="menu-list-title">
+         <span>商品属性管理</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('Cateattr/addattrname')}" title="商品属性管理" target="mainCont">属性添加</a></li>
+             <li><a href="{:U('Cateattr/attrlist')}" title="商品属性管理" target="mainCont">属性列表</a></li>
+         </ul>
+     </li>
+     <li class="menu-list-title">
+         <span>活动管理</span>
+         <i>◢</i>
+     </li>
+     <li>
+         <ul class="menu-children">
+             <li><a href="{:U('Fast/echarts')}" title="活动统计" target="mainCont">活动统计</a></li>
+             <li><a href="{:U('Fast/show')}" title="闪购商品管理" target="mainCont">闪购管理</a></li>
+             <li><a href="{:U('Hot/show')}" title="热销商品管理" target="mainCont">热销管理</a></li>
+         </ul>
+     </li>
+
+   <li class="menu-list-title">
+     <span>广告专区</span>
+     <i>◢</i>
+ </li>
+ <li>
+     <ul class="menu-children">
+         <li><a href="{:U('Article/echarts')}" title="数据统计" target="mainCont">数据统计</a></li>
+         <li><a href="{:U('Guang/show')}" title="查看广告" target="mainCont">广告列表</a></li>
+         <li><a href="{:U('Guang/add')}"  title="添加广告" target="mainCont">广告添加</a></li>
+         <li><a href="{:U('Article/show')}" title="文章列表" target="mainCont">文章列表</a></li>
+         <li><a href="{:U('Article/add')}" title="文章发布" target="mainCont">文章发布</a></li>
+     </ul>
+ </li>
+
+
+ </ul>
+</div>
+
+</body>
+</html>

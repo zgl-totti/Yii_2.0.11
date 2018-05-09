@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>产品列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jquery.js"></script>
+<script src="__JS__/public.js"></script>
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i></i><em>热销产品管理</em></span>
+  </div>
+  <div class="operate">
+   <form action="{:U('show')}" method="get">
+    <input type="text" name="goodsname" value="{$goodsname}" class="textBox length-long" placeholder="输入商品名称..."/>
+    <input type="submit" value="查询" class="tdBtn"/>
+   </form>
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+    <th>编号</th>
+    <th>商品图片</th>
+    <th>名称</th>
+    <th>商城价</th>
+    <th>热销价</th>
+    <th>库存</th>
+    <th>开始时间</th>
+    <th>结束时间</th>
+    <th>是否闪购</th>
+    <th>是否热销</th>
+    <th>热销编辑</th>
+   </tr>
+<volist name="list" id="val" key="k">
+
+   <tr>
+    <td>
+     <span >
+
+     <i>{$k+$firstRow}</i>
+     </span>
+    </td>
+    <td class="center pic-area"><img src="/Uploads{$val.img_savepath}100_{$val.goods_img}" style="width:100px;height:96px " class="thumbnail"/></td>
+    <td class="td-name">
+      <span class="ellipsis td-name block">{$val.goodsname}</span>
+    </td>
+    <td class="center">
+     <span>
+      <i>￥</i>
+      <em>{$val.shop_price}</em>
+     </span>
+    </td>
+    <td class="center">
+     <span>
+      <i>￥</i>
+      <em>{$val.promote_price}</em>
+     </span>
+    </td>
+    <td class="center">
+     <span>
+      <em>{$val.goods_num}</em>
+      <i>件</i>
+     </span>
+       <!-- <img src="__IMG__/no.gif"/>-->
+    </td>
+    <td class="center">{:date('Y-m-d  H:i:s',$val['start_time'])}</td>
+    <td class="center">{:date('Y-m-d  H:i:s',$val['end_time'])}</td>
+    <td class="center"><a class="is_promote"> {$val['is_promote']==1?'是':'否'}</a></td>
+    <td class="center">{$val['sale_num']>20?'是':'否'}</td>
+    <td class="center">
+     <a href="http://www.baidu.com/跳转至前台页面哦" title="查看" target="_blank"><img src="__IMG__/icon_view.gif"/></a>
+     <a href="{:U('Fast/hotedit?id='.$val['goods_id'])}" title="编辑"><img src="__IMG__/icon_edit.gif"/></a>
+     <a title="闪购下架"><span class="fastedit"><img src="__IMG__/icon_drop.gif"/></span></a>
+    </td>
+   </tr>
+</volist>
+
+  </table>
+     <div class=" center fr" id="turnPage">
+         {$page}
+     </div>
+
+
+ </div>
+</body>
+<script>
+
+
+</script>
+
+</html>

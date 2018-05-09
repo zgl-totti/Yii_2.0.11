@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>产品列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/public.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>品牌分类列表</em></span>
+        <span class="modular fr"><a href="{:U('addbrand')}" class="pt-link-btn">+添加商品品牌</a></span>
+    </div>
+    <div class="operate">
+        <form action='{:U("brand")}' method="get" >
+            <select class="inline-select" name="pid">
+                <option value="">请选择种类</option>
+               <volist name="CateName" id="val">
+                   <option value="{$val.cat_id}">{$val.cat_name}</option>
+               </volist>
+            </select>
+            <input type="text" class="textBox length-long" placeholder="输入品牌名称..." name="brand_name"/>
+            <input type="submit" value="查询" class="tdBtn"/>
+        </form>
+    </div>
+    <table class="list-style Interlaced">
+        <tr>
+            <th>编号</th>
+            <th>品牌编号</th>
+            <th>分类种类</th>
+            <th>品牌名称</th>
+            <th>是否在售</th>
+            <th>品牌logo</th>
+            <th>操作</th>
+        </tr>
+        <volist name="brandList"  id="value" key="k">
+        <tr>
+            <td>{$k+$firstRow}</td>
+            <td>
+          <span>
+     <input type="checkbox" class="middle children-checkbox"/>
+                 <i>{$value.brand_id}</i>
+             </span>
+            </td>
+            <td class="center pic-area">{$value.pname}</td>
+            <td class="td-name">
+                <span class="ellipsis td-name block">{$value.brand_name}</span>
+            </td>
+            <td class="center">
+     <span>
+      {$value['is_show']?'是':'否'}
+     </span>
+            </td>
+            <td class="center">
+     <span>
+        {$value.brand_logo}
+     </span>
+            </td>
+            <td class="center">
+                <a href="http://www.baidu.com/跳转至前台页面哦" title="查看商品" target="_blank"><img src="__IMG__/icon_view.gif"/></a>
+            </td>
+        </tr>
+        </volist>
+    </table>
+    <!-- BatchOperation -->
+    <div style="overflow:hidden;">
+        <!-- Operation -->
+        <div class="BatchOperation fl">
+            <input type="checkbox" id="del"/>
+            <label for="del" class="btnStyle middle">全选</label>
+            <input type="button" value="批量删除" class="btnStyle"/>
+        </div>
+        <!-- turn page -->
+        <div class="turnPage center fr">
+            {$page}
+        </div>
+    </div>
+</div>
+</body>
+</html>

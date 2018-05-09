@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>添加商品品牌</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function(e) {
+        //异步提交表单
+        $('.tdBtn').click(function(){
+            $.post("{:U('addMember')}",$('#form1').serialize(),function(res){
+
+               if(res.status==1){
+                    layer.msg(
+                            res.info,
+                            {icon:1},
+                            function(){
+                                location.href=res.url;
+                            }
+                    );
+                }else{
+                    layer.alert(res.info);
+                }
+            })
+            return false;
+        })
+
+    })
+</script>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="add_user"></i><em>添加管理组成员</em></span>
+    </div>
+    <form  action="" method="post" id="form1"  >
+        <table class="list-style">
+            <tr>
+                <td style="text-align:right;">管理组名称：</td>
+                <td><input style=" height: 35px;font-size: 20px;" type="text" disabled="disabled" class="textBox length-middle" name="title" value="{$GroupName['title']}"/></td>
+            </tr>
+            <tr>
+                <input type="hidden" name="group_id" value="{$GroupId}"/>
+                <td style="text-align:right;">管理组成员：</td>
+                <td>
+                    <volist name="AdminList" id="value">
+                        <span style="float:left;margin-left: 25px;">
+                        <label for="{$value.user_name}" style="width: 70px">{$value.user_name}</label>
+                        <input name="uid[]" id="{$value.id}" type="checkbox" value="{$value.id}" class="dfinput"  style="width:18px;"/>
+                         </span>
+                    </volist>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"></td>
+                <td><input type="submit" class="tdBtn" value="添加管理成员"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

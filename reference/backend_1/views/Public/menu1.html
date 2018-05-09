@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>左侧导航</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jquery.js"></script>
+    <script src="__JS__/public.js"></script>
+</head>
+<body style="background:#313131">
+<div class="menu-list">
+    <a href="main.html" target="mainCont" class="block menu-list-title center" style="border:none;margin-bottom:8px;color:#fff;">起始页</a>
+    <ul>
+        <volist name="navList" id="val">
+        <li class="menu-list-title">
+            <span>{$val['navname']}</span>
+            <i>◢</i>
+        </li>
+        <li>
+            <ul class="menu-children">
+                <notempty name="val['child']">
+                <volist name="val['child']" id="v1">
+                <li><a href="{:U($v1['navurl'])}" title="{$v1['navname']}" target="mainCont">{$v1['navname']}</a></li>
+                </volist>
+                </notempty>
+            </ul>
+        </li>
+        </volist>
+    </ul>
+</div>
+</body>
+</html>

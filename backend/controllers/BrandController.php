@@ -75,6 +75,10 @@ class BrandController extends BaseController{
                 $model->file=UploadedFile::getInstance($model,'file');
                 if($model->validate()){
                     $model->file->saveAs('backend/web/uploads/'.$model->file->baseName.'.'.$model->file->extension);
+
+                    //用uploads文件夹别名
+                    //$model->file->saveAs(\Yii::getAlias('uploads').$path,true);
+
                     $data['logo']=$model->file->baseName.$model->file->extension;
                     $arr=Brand::findOne($id);
                     if($arr->load($data) && $arr->save()){

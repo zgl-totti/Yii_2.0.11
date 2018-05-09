@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>后台管理中心数据统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/use.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/index.js"></script>
+</head>
+<body>
+<div class="wrap start-page" style="background-color: #c6c5cb;">
+ <h1><i class="home-icon"></i>{$Think.config.SITE_NAME}数据统计</h1>
+</div>
+    <div class="check clearfix">
+        <div class="fl"><p><span class="focus">不同类别闪购商品统计</span></p></div>
+        <div class="fl"><p><span>商品销售排行</span></p></div>
+    </div>
+
+    <div class="wrapper ">
+
+
+        <div class="use-con u1">
+            <div class="con-a">
+                <div class="title clearfix">
+                    <p class="fl">商品比重信息</p>
+                </div>
+                <div class="con-n all">
+
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div class="txt welinfo">
+                                    <img src="__IMG__/dp.png" alt="提醒" />
+                                    <div id="FastSaleTop" style="width: 1000px;height:500px;"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="use-con u2">
+            <div class="con-a">
+                <div class="title clearfix">
+                    <p class="fl">商品销售信息</p>
+                </div>
+                <div class="con-n all">
+
+                    <ul>
+                        <li>
+                            <a href="">
+                                <div class="txt welinfo">
+                                    <img src="__IMG__/dp.png" alt="提醒" />
+                                    <div id="main" style="width: 1000px;height:500px;"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+</div>
+</body>
+<script type="text/javascript" src="__PLUGIN__/echarts.min.js"></script>
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title : {
+            text: '不同类别闪购商品比重',
+            subtext: '闪购占有率',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+
+
+    $.get('{:U("Fast/getCartSale")}').done(function (data) {
+     myChart.setOption({
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:data.info.x
+            },
+            series : [
+                {
+                    name:'比重',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:data.info.y
+                }
+            ]
+        });
+    });
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+
+
+    var  FastSale=echarts.init(document.getElementById('FastSaleTop'));
+    //商品销售前十名排行
+    $.get('{:U("Fast/fastSaleTop")}').done(function (data) {
+
+        FastSale.setOption({
+            xAxis: {
+                data: data.info.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量',
+                data: data.info.y
+            }]
+        });
+    });
+
+    var option1 = {
+        title: {
+            text: '闪购销量TOP8'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: []
+        }]
+    };
+
+    FastSale.setOption(option1);
+
+
+</script>
+</html>

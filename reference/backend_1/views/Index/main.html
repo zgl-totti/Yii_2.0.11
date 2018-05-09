@@ -1,0 +1,322 @@
+﻿<!-- $Id: start.htm 17216 2011-01-19 06:03:12Z liubo $ -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>管理中心</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="__CSS__/general2.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/main2.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/font-awesome.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    .list-div .console_detaile li{
+        margin: 15px 0 0 0;
+        width: 0;
+    }
+
+</style>
+</head>
+
+<body style="cursor: auto;background: url('__IMG__/bg.jpg')">
+<h1>
+    <!--ecmoban模板堂 --zhuo start 订单导出-->
+    <!--ecmoban模板堂 --zhuo end 订单导出-->
+    <span class="action-span1"><a style="color: #fff" href="#">管理中心</a></span>
+</h1>
+<!-- directory install start -->
+<ul id="cloud_list" style="color: #CC0000;">
+</ul>
+
+<ul id="lilist" style="color: #CC0000;">
+</ul>
+<!-- directory install end -->
+<!-- start personal message -->
+<!-- end personal message -->
+<!-- start order statistics -->
+<div class="list-div">
+    <div class="important">
+        <ul>
+            <li class="item01">
+                <div class="con_box">
+                    <img src="__IMG__/icon01.png">
+                    <h2>今日销售总额</h2>
+                    <p>
+                        <!----><em>¥</em>{$TodayPrices}<!---->
+                    </p>
+                </div>
+            </li>
+            <li class="item02">
+                <div class="con_box">
+                    <img src="__IMG__/icon02.png">
+                    <h2>今日订单总数</h2>
+                    <p>
+                        {$TodayOrderNum}
+                    </p>
+                </div>
+            </li>
+            <li class="item03">
+                <div class="con_box">
+                    <img src="__IMG__/icon03.png">
+                    <h2>今日注册会员</h2>
+                    <p>
+                        {$RegisterCount}
+                    </p>
+                </div>
+            </li>
+            <li class="item04">
+                <div class="con_box">
+                    <img src="__IMG__/icon04.png">
+                    <h2>今日网站访问</h2>
+                    <p>
+                       {$visitCount}
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="console_detaile">
+        <ul>
+            <li class="item01">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-weiqueren.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>待发货订单</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[1]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item02">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-daizhifu.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>已付款订单</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[2]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item03">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-daifahuo.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>已发货订单</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[3]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item04">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-iconsvggyiwancheng18.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>已成交订单数</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[4]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item05">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-dengji.png" width="30" height="30">
+                    </div>
+                    <div class="text clearfix">
+                        <h2>订单取消</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[5]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item06">
+                <div class="con_box">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-yifahuo.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>用户收货</h2>
+                        <p>
+                            <a href="#">{$Orderstatus[5]}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="item07">
+                <div class="con_box clearfix">
+                    <div class="img">
+                        <img src="__IMG__/iconfont-iconfeature.png" width="30" height="30">
+                    </div>
+                    <div class="text">
+                        <h2>用户退款申请</h2>
+                        <p>
+                            <a href="#">{$ReturnCount}</a>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- start system information -->
+<div class="list-div">
+    <table cellspacing="1" cellpadding="3">
+        <tbody>
+        <tr>
+            <th colspan="4" class="group-title">
+                系统信息
+            </th>
+        </tr>
+        <tr>
+            <td width="20%">
+                服务器操作系统:
+            </td>
+            <td width="30%">
+                WINNT (127.0.0.41)
+            </td>
+            <td width="20%">
+                Web 服务器:
+            </td>
+            <td width="30%">
+                Apache/2.4.10 (Win32) OpenSSL/0.9.8zb PHP/5.3.29
+            </td>
+        </tr>
+        <tr>
+            <td>
+                PHP 版本:
+            </td>
+            <td>
+                5.3.29
+            </td>
+            <td>
+                MySQL 版本:
+            </td>
+            <td>
+                5.5.40
+            </td>
+        </tr>
+        <tr>
+            <td>
+                安全模式:
+            </td>
+            <td>
+                否
+            </td>
+            <td>
+                安全模式GID:
+            </td>
+            <td>
+                否
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Socket 支持:
+            </td>
+            <td>
+                是
+            </td>
+            <td>
+                时区设置:
+            </td>
+            <td>
+                PRC
+            </td>
+        </tr>
+        <tr>
+            <td>
+                GD 版本:
+            </td>
+            <td>
+                GD2 ( JPEG GIF PNG)
+            </td>
+            <td>
+                Zlib 支持:
+            </td>
+            <td>
+                是
+            </td>
+        </tr>
+        <tr>
+            <td>
+                IP 库版本:
+            </td>
+            <td>
+                20071024
+            </td>
+            <td>
+                文件上传的最大大小:
+            </td>
+            <td>
+                2M
+            </td>
+        </tr>
+        <tr>
+            <td>
+                程序版本:
+            </td>
+            <td>
+                v1.4 RELEASE 20160520
+            </td>
+            <td>
+                安装日期:
+            </td>
+            <td>
+                2016-05-25
+            </td>
+        </tr>
+        <tr>
+            <td>
+                编码:
+            </td>
+            <td>
+                UTF-8
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" src="__IMG__/echarts-all.js"></script>
+<div id="footer">
+    共执行 41 个查询，用时 0.354020 秒，Gzip 已禁用，内存占用 8.181 MB
+    <br>
+    版权所有 © 2005-2016 河南鼎尚科技有限公司，并保留所有权利。
+</div>
+<!-- 新订单提示信息 -->
+<div id="popMsg" class="popMsg">
+    <div class="order_notice">
+        <div class="title">
+            <h3>新订单通知</h3>
+            <span class="close" title="关闭" onclick="Message.close()">✕</span>
+        </div>
+        <div class="notice_content" id="popMsgContent">
+            <div class="item">
+                <span><a href="#">您有新的订单</a></span>
+                <em id="spanNewOrder">0</em>
+            </div>
+            <div class="item last">
+                <span><a href="#"> 您有新付款的订单 </a></span>
+                <em id="spanNewPaid">0</em>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

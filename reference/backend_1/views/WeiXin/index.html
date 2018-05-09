@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>微信 管理中心</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="__CSS__/general.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+<body>
+<h1>
+    <span class="action-span1"><a href="{:U('Index')}">微信 管理中心</a> </span>
+    <span id="search_id" class="action-span1"> - 微信设置</span>
+    <div style="clear:both"></div>
+</h1>
+<link href="__CSS__/calendar.css" rel="stylesheet" type="text/css">
+<!-- start goods form -->
+<div class="tab-div1">
+<!-- tab body -->
+<div id="tabbody-div">
+<!-- 通用信息 -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#weixin').submit(function(){
+                $.post('{:U("WeiXin/index")}',$('#weixin').serialize(),function(res){
+                    if(res.status){
+                        layer.msg(res.info);
+                        location.reload();
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+
+
+<form id="weixin" method="post"  enctype="multipart/form-data">
+
+  <table width="100%" cellspacing="1" cellpadding="3">
+
+  <tbody>
+
+  <tr>
+
+    <td class="label">名称 :</td>
+
+    <td><input name="title" size="20" value="{$weixin.title}" type="text ">&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#F30;">*&nbsp;注:&nbsp;微信对接地址&nbsp;&nbsp;http://127.0.0.34/mobile/weixin/index.php</span></td>
+
+  </tr>
+  
+  <tr>
+
+    <td class="label">Token:</td>
+
+	<td><input name="token" size="20" value="{$weixin.token}" type="text ">&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#F30;">*&nbsp;注:&nbsp;“Token”内容与对接的微信公众号中的Token值一致。</span></td>
+  </tr>
+
+  <tr>
+
+    <td class="label">AppId :</td>
+
+    <td><input name="appid" size="20" value="{$weixin.appid}" type="text "></td>
+
+  </tr>
+
+ <tr>
+
+    <td class="label">AppSecret :</td>
+
+    <td><input name="appsecret" size="32" value="{$weixin.appsecret}" type="text "></td>
+
+  </tr>
+ <tr>
+
+    <td class="label">微信支付商户号 :</td>
+
+    <td><input name="partnerId" size="32" value="{$weixin.partnerid}" type="text "></td>
+
+  </tr>
+ <tr>
+
+    <td class="label">微信支付秘钥 :</td>
+
+    <td><input name="partnerKey" size="32" value="{$weixin.partnerkey}" type="text "></td>
+
+  </tr>
+  <tr>
+
+    <td class="label">微信访问地址 :</td>
+
+    <td><input name="wap_url" size="32" value="{$weixin.wap_url}" type="text ">&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#F30;">*&nbsp;注:请填写&nbsp;&nbsp;&nbsp;http://127.0.0.34/mobile/</span></td>
+
+  </tr>
+   <tr>
+
+    <td class="label">管理员ID :</td>
+
+    <td><input name="admin_id" size="32" value="{$weixin.admin_id}" type="text ">&nbsp;&nbsp;&nbsp;&nbsp;<span>*&nbsp;注:&nbsp;&nbsp;请填写 会员管理-&gt;会员列表&nbsp;&nbsp;前的编号，作为接收订单、会员互动等消息提醒</span></td>
+
+  </tr>
+  
+  
+<!--<tr>-->
+
+ <!--</tr>-->
+  <!--<tr>-->
+
+    <!--<td class="label">是否开启未关注用户引导关注 :</td>-->
+
+    <!--<td><input name="open_guide" value="1" checked="checked" type="radio">开启<input name="open_guide" value="0" type="radio">关闭</td>-->
+
+  <!--</tr>-->
+  <!---->
+  <!--<tr>-->
+
+    <!--<td class="label">引导关注二维码 :</td>-->
+
+    <!--<td><input name="guide_qrcode" type="file">&nbsp;&nbsp;<b style="color:#F00;">√已上传</b>&nbsp;&nbsp;<span>*&nbsp;注:上传官方公众号二维码 建议尺寸：258*258</span></td>-->
+
+  <!--</tr>-->
+
+            <tr><td class="label">绑定前回复内容 :</td>
+            <td>
+                <textarea name="reg_notice" rows="5" cols="40">{$weixin.reg_notice}</textarea>建议不要修改。必须提示用户填写邮箱和密码，使用+分割。</td>
+          </tr>
+          <tr>
+            <td class="label">绑定后回复内容 :</td>
+
+    <td><textarea name="bindmsg" rows="5" cols="40">{$weixin.bindmsg}！</textarea></td>
+
+  </tr>
+
+ <tr>
+
+    <td class="label">关注回复内容 :</td>
+
+    <td><textarea name="followmsg" rows="5" cols="40">{$weixin.followmsg}</textarea></td>
+
+  </tr>
+
+ <tr>
+
+    <td class="label">帮助内容 :</td>
+
+    <td><textarea name="helpmsg" rows="5" cols="40">{$weixin.helpmsg}</textarea></td>
+
+  </tr>
+  
+  <tr>
+  	<td class="label">自动回复：</td>
+    <td><textarea name="auto_reply" rows="5" cols="40">{$weixin.auto_reply}</textarea></td>
+  </tr>
+
+  <tr>
+
+    <td colspan="2" align="center">
+
+      <input value=" 确定 " class="button" type="submit">
+
+    <input value=" 重置 " class="button" type="reset">
+
+    </td>
+
+  </tr>
+
+</tbody>
+  </table>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>
+

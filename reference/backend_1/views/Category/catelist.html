@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>分类列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/public.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <style type="text/css">
+        .text{
+            width: 250px;
+        }
+        .addtime{
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i></i><em>分类列表</em></span>
+        <span class="modular fr"><a href="{:U('addCateGory')}" class="pt-link-btn">+添加分类</a></span>
+    </div>
+    <div class="operate">
+        <form action="{:U('Category/Catelist')}" method="get" >
+            <input type="text" class="textBox length-long" placeholder="输入分类名称..." name="cat_name"/>
+            <input type="submit" value="查询" class="tdBtn"/>
+        </form>
+    </div>
+    <table class="list-style Interlaced">
+        <tr>
+            <th>编号</th>
+            <th>分类名称</th>
+            <th>分类属性</th>
+            <th>分类描述</th>
+            <th>添加时间</th>
+            <th>操作</th>
+        </tr>
+        <volist name="CateGoryList"  id="value" key="k">
+            <tr>
+                <td>
+                    {$k+$firstRow}</td>
+                <td>
+          <span>
+                 <i>{$value.cat_name}</i>
+             </span>
+                </td>
+                <td class="text">
+                <volist name="value['attr_values']" id="val">
+                    <a href="" style="margin-left: 5px; color: #0060ae">{$val}</a>
+                </volist>
+                    </td>
+                <td style="width: 115px;">
+                    <span class="ellipsis td-name block">{$value.cate_desc}</span>
+                </td>
+                <td class="addtime">
+                    {:date('Y-m-d',$value['addtime'])}
+                </td>
+                <td class="center">
+                    <a href="{:U('Category/CateDetail?id='.$value['cat_id'])}"  title="查看商品品牌/编辑" target="_self"><img src="__IMG__/icon_view.gif"/></a>
+                    <a title="删除" href="javascript:;" onclick="Del({$value['cat_id']})" ><img src="__IMG__/icon_drop.gif"/></a>
+                </td>
+            </tr>
+        </volist>
+    </table>
+    <!-- BatchOperation -->
+    <div style="overflow:hidden;">
+        <div class="turnPage center fr">
+            <span id="page">{$page}</span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function Del(id){
+        //询问框
+        layer.confirm('分类很重要,确定要删除吗？', {
+            btn: ['狠心删除','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("Category/CategoryDel")}', {id: id}, function (res) {
+               if (res.status) {
+                    layer.msg(res.info,function(){
+                        location='{:U("Category/catelist")}';
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

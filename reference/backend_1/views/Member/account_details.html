@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>会员资金变动明细</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jquery.js"></script>
+<script src="__JS__/public.js"></script>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="account_user"></i><em>用户资金变动明细</em></span>
+    <!--<span class="modular fr"><a class="pt-link-btn">当前用户：“DeathGhost”，可用资金￥5000000.00</a></span>-->
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+    <th>变动项目</th>
+    <th>变动时间</th>
+    <th>可用资金</th>
+    <th>冻结资金</th>
+       <th>可用资金变动前</th>
+       <th>可用资金变动后</th>
+       <th>冻结资金变动前</th>
+       <th>冻结资金变动后</th>
+    <th>帐户变动原因</th>
+       <th>操作人</th>
+   </tr>
+
+   <foreach name="details" item="c">
+   <tr>
+    <td class="center">{$c.project}</td>
+    <td class="center">{$c.change_time|date="Y-m-d H:i:s",###}</td>
+    <td class="center"><i></i><span>￥</span><b>{$c.money}</b></td>
+    <td class="center"><i></i><span>￥</span><b>{$c.frozen_money}</b></td>
+       <td class="center"><i></i><span>￥</span><b>{$c.money_before}</b></td>
+       <td class="center"><i></i><span>￥</span><b>{$c.money_after}</b></td>
+       <td class="center"><i></i><span>￥</span><b>{$c.frozen_money_before}</b></td>
+       <td class="center"><i></i><span>￥</span><b>{$c.frozen_money_after}</b></td>
+    <td>
+     <div style="width:350px;">
+               {$c.reason}
+     </div>
+    </td>
+       <td class="center"><i></i><span></span><b>{$c.change_user}</b></td>
+   </tr>
+
+   </foreach>
+
+
+  </table>
+  <!-- BatchOperation -->
+  <div>
+	  <!-- turn page -->
+      <div class=" center fr" id="turnPage">
+          {$page}
+      </div>
+  </div>
+ </div>
+</body>
+</html>

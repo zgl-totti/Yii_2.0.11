@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>会员列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#addform').submit(function(){
+                $.post('{:U("Member/account")}',$('#addform').serialize(),function(res){
+
+                    if(res.status){
+                        layer.confirm('恭喜,更新成功!', {
+                            btn: ['返回列表','继续更新'] //按钮
+                        }, function(){
+                            location='{:U("Member/index")}';
+                        }, function(){
+                            location=res.url;
+                        });
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+</head>
+<body>
+<form method="post" id="addform">
+    <input name="uid" value="{$u.id}" type="hidden"/>
+    <input name="change_user" value="{$Think.session.aname}" type="hidden"/>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="account_user"></i><em>会员列表</em></span>
+    <span class="modular fr"><a href="{:U('Member/account_details', array( 'id' => $u['id'] ))}" class="pt-link-btn">资金变动明细</a></span>
+  </div>
+
+  <table class="noborder">
+   <tr>
+    <td style="text-align:right;width:15%;">当前会员：</td>
+    <td>{$u.username}</td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">账户变动原因：</td>
+    <td>
+
+     <textarea class="textarea" style="height:100px;outline:none;" name="reason" ></textarea>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">可用资金账户：</td>
+    <td>
+     <select class="textBox" name="enable" >
+      <option value="m_add">增加</option>
+      <option value="m_down">减少</option>
+     </select>
+     <input type="text" class="textBox length-short" name="money"/>
+     <span class="middle"><i>￥</i><b>0.00</b></span>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">冻结资金账户：</td>
+    <td>
+     <select class="textBox" name="frozen">
+      <option value="f_add">增加</option>
+      <option value="f_down">减少</option>
+     </select>
+     <input type="text" class="textBox length-short" name="frozen_money" />
+     <span class="middle"><i>￥</i><b>0.00</b></span>
+    </td>
+   </tr>
+   <tr>
+    <td style="text-align:right;"></td>
+    <td>
+     <input type="submit" value="确认" class="tdBtn"/>
+     <input type="reset" value="重置" class="tdBtn"/>
+    </td>
+   </tr>
+  </table>
+ </div>
+</form>
+</body>
+</html>

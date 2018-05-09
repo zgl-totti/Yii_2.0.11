@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>订单列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="/Public/Home/Css/cart.css" rel="stylesheet">
+
+<script src="__JS__/jquery.js"></script>
+<script src="__JS__/public.js"></script>
+<script src="__JS__/quanxuan.js"></script>
+<script src="/public/Admin/plugin/layer/layer.js" ></script>
+<style type="text/css">
+    .ch2{font-size:18px;margin-top:10px;}
+    .cui{color:red;}
+</style>
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="order"></i><em>订单列表</em></span>
+  </div>
+  <div class="operate">
+      <form action="{:U('order_list')}" method="get" >
+    <img src="__IMG__/icon_search.gif"/>
+    <input type="text" id="sn" name="order_sn" class="textBox  length-long" value="{$goodsname}" placeholder="输入订单编号..."/>
+    <select class="inline-select" name="status" id="stat">
+     <option name="status1" value="1">未付款</option>
+     <option name="status2" value="2">已付款</option>
+     <option name="status3" value="3">等待客户确认</option>
+     <option name="status4" value="4">订单已完成</option>
+     <option name="status4" value="5">订单已取消</option>
+
+    </select>
+    <input type="submit" value="查询" class="tdBtn"/>
+     </form>
+  </div>
+
+  <table class="list-style Interlaced">
+   <tr>
+    <th>订单编号</th>
+    <th>下单时间</th>
+    <th>收件人</th>
+    <th>订单金额</th>
+    <th>订单状态</th>
+    <th>操作</th>
+   </tr>
+      {//遍历订单表}
+
+      <volist name="orderList" id="ord">
+   <tr id="tr">
+    <td>
+     <input type="checkbox" name="inp" class="{$ord.id}"/>
+     <a href="order_detail.html">{$ord.order_sn}</a>
+    </td>
+    <td class="center">
+      <span class="block">{$ord.add_time|date="Y-m-d H:i:s",###}</span>
+    </td>
+    <td width="450">
+     <span class="block">{$ord.name} ：{$ord.mobile}</span>
+     <address>{$ord.address}</address>
+    </td>
+    <td class="center">
+     <span><i>￥</i><b>{$ord.order_price}</b></span>
+    </td>
+    <td class="center">
+     <span>{$ord.admin_opt}</span>
+    </td>
+    <td class="center">
+     <a href="{:U('detail',array('id'=>$ord['id']))}"  class="inline-block" title="查看订单"><img src="__IMG__/icon_view.gif"/></a>
+     <a class="inline-block delCor" title="删除订单" id="{$ord.id}"><img src="__IMG__/icon_trash.gif"/></a>
+    </td>
+   </tr>
+      </volist>
+  </table>
+  <!-- BatchOperation -->
+  <div style="overflow:hidden;">
+      <!-- Operation -->
+	   <div class="BatchOperation fl">
+	   <input type="checkbox" name="duo" id="del"/>
+	   <label for="del" class="btnStyle middle">全选</label>
+	   <a href="{:U('Orders/export',array('status'=>$where['order_status'],'sn'=>$where['order_sn']))}"><input type="button" value="打印订单" status="{$where.order_status}" sn="{$where.order_sn}" class="btnStyle" id="dayin"/></a>
+	   <input type="button" value="配货" class="btnStyle" id="peihuo"/>
+	   <input type="button" value="删除订单" class="btnStyle" id="delOrder"/>
+   <if condition="$num gt 0">
+       <input type="button" value="你有（{$num}）条催单消息" class="btnStyle" id="xiaoxi"/>
+       <else/>
+   </if>
+	  </div>
+	  <!-- turn page -->
+	  <div class=" center fr" id="turnPage">
+
+       {$page}
+
+	  </div>
+  </div>
+ </div>
+<div id="you" style='position:fixed;right:0;bottom:0;border:1px solid red;'>
+    <a href='javascript:;' id='off'><img src="/Public/Home/Images/images/Image 1.png"/></a>;
+</div>
+
+ <div id="wjPop-body" class="wjPop" style="width:750px;height:100px; margin-top:-50px;margin-left:340px;left: 50%;  top: 50%; opacity: 1;display: none; ">
+     <div class="user_info" style="width:750px;height:100px;">
+         <div class="">
+             <div class="collect_stair03" style="width:750px;">
+                 <div id="wjPop-close" style="cursor:pointer; color:#000; float:right; margin-top:-10px;margin-right: 10px;"><b>马上去发货</b></div>
+                 <h2>催单信息</h2>
+                 <volist name="res" id="res">
+                     <p>订单号为：<span class="cui">{$res.order_sn} </span> 用户下单已超过四个小时未发货，客户在<span class="cui">{$res.time|date="Y-m-d H:i:s",###}</span>催促发货</p>
+                 </volist>
+             </div>
+         </div>
+     </div>
+</div>
+</body>
+<script>
+    $(function() {
+
+        //单个删除操作，点击删除触发事件
+        $('.delCor').click(function () {
+            //获取被删除订单号id
+            var t=$(this);
+            var gid = $(this).attr('id');
+                    layer.confirm('确定删除吗？', {
+                        btn: ['是的','返回'] //按钮
+                    }, function(){
+                        $.post('{:U("del")}', {'id':gid}, function (res) {
+                            if (res == 'true') {
+                                layer.msg('删除成功', {icon: 1});
+                                t.parents('#tr').remove();  //找到包含当前元素的所有祖先元素下的id为tr的元素并remove
+                            } else if(res=='不允许') {
+                                layer.msg('订单状态处于购买状态，不允许删除', {icon: 5});
+                            }else{
+                                layer.msg('删除失败，稍后再试', {icon: 1});
+                            }
+                        })
+                    }, function(){
+                    });
+        })
+        //input框全选
+        $('#del').click(function(){
+            var xz=$(this)[0].checked;
+            var ck=$("input[name='inp']");
+            ck.prop('checked',xz);
+        });
+        //单个或多个删除，配货
+        $("#delOrder").click(duoXuan("#delOrder","{:U('delOrder')}",'删除'));
+        $("#peihuo").click(duoXuan("#peihuo","{:U('peihuo')}",'配货'));
+
+        //导出订单到Excel
+   /*     $("#dayin").click(function(){
+            var status=$(this).attr('status');
+            var sn=$(this).attr('sn');
+            $.get("{:U('Orders/export')}?status="+status+"&sn="+sn,'',function(res){
+                if(res.status==1){
+                    window.open("{:U('Orders/export')}?status="+status+"&sn="+sn);
+                }else{
+                    layer.alert(res.info,{icon:5});
+                }
+            })
+        })*/
+        //催单消息
+        $('#xiaoxi').click(function() {
+            $('#wjPop-body').show();
+
+        })
+        //关闭催单提醒框，并改变催单订单号状态
+        $('#wjPop-close').click(function(){
+            $('#wjPop-body').slideUp();
+            $.get("{:U('Orders/cuidanxinxi')}");
+            $('#xiaoxi').remove();
+        })
+ })
+
+</script>
+</html>

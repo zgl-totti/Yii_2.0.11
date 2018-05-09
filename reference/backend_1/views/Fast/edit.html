@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>产品列表</title>
+    <meta charset="UTF-8">
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript" src="__PLUGIN__/calendar/jedate.js"></script>
+    <script>
+        $(function(){
+            $('#editform1').submit(function(){
+                $.post('{:U("Fast/edit")}',$('#editform1').serialize(),function(res){
+                   if(res.status){
+                       layer.msg(res.info,{icon:1},function(){
+                           location='{:U("show")}'
+                        })
+                   }else{
+                        layer.msg(res.info,{icon:5})
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+
+</head>
+<body>
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="add"></i><em>闪购商品发布</em></span>
+  </div>
+  <form method="post" id="editform1">
+  <input type="hidden" name="id" value="{$ress.goods_id}" >
+  <table class="list-style">
+   <tr>
+    <td style="text-align:right;width:15%;">商品名称：</td>
+    <td>{$ress['goodsname']}</td>
+   </tr>
+
+      <tr>
+          <td style="text-align:right;">商品图片：</td>
+          <td>
+              <img src="/Uploads{$ress.img_savepath}100_{$ress['goods_img']}" width="90"  class="mlr5"/>
+          </td>
+      </tr>
+
+      <tr>
+          <td style="text-align:right;">商城价：</td>
+          <td>
+              <span id="shop_price">{$ress.shop_price}</span><span>元</span>
+          </td>
+      </tr>
+   <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+    <td style="text-align:right;">闪购价：</td>
+    <td>
+        <input type="number" required min="0" name="promote_price" max="{$ress.shop_price}"  value="{$ress['promote_price']}" class="textBox length-short" style=" width: 130px;"/>
+
+
+     <span>元</span><span class="Fprice" style="margin-left:12px"></span>
+    </td>
+   </tr>
+      <tr>
+          <td style="text-align:right;">商品库存：</td>
+          <td>
+              <span id="goods_num">{$ress.goods_num}</span><span>瓶</span>
+          </td>
+      </tr>
+
+   <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+    <td style="text-align:right;">闪购数量：</td>
+    <td>
+        <input type="number" required min="0" max="{$ress.goods_num}" name="fast_num" value="{$ress['fast_num']}" class="textBox length-short" style=" width: 130px;"/>
+     <span>瓶</span><span class="Fnum" style="margin-left:12px"></span>
+    </td>
+   </tr>
+
+   <tr>
+    <td style="text-align:right;">产品描述：</td>
+    <td>{$ress.goods_brief}</td>
+   </tr>
+
+
+      <tr>
+          <td style="text-align:right;">是否推荐：</td>
+          <td>
+              <select style="width: 130px;height: 28px;" name="is_recommend" />
+              <option value="0"<if condition="$ress['is_recommend'] eq 0">selected="selected"</if>>否</option>
+              <option value="1"<if condition="$ress['is_recommend'] eq 1">selected="selected"</if>>是</option>
+              </select>
+          </td>
+      </tr>
+
+      <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+          <td style="text-align:right;">开始日期： </td>
+          <td  align="left" valign="middle" class="borderright borderbottom main-for">
+              <input id="datebut" name="starttime" onClick="jeDate({dateCell:'#datebut',isTime:true,format:'YYYY-MM-DD hh:mm:ss'})" value="{:date('Y-m-d H:i:m',$ress['start_time'])}" type="text"  size="22" placeholder="请选择日期" style="color:#2b542c" />
+          </td>
+      </tr>
+
+      <tr  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+          <td style="text-align:right;">结束日期： </td>
+          <td align="left" valign="middle" class="borderright borderbottom main-for">
+              <span style="color:crimson">{$Think.config.FAST_END_TIME}</span>
+
+          </td>
+      </tr>
+
+    <td style="text-align:right;"></td>
+    <td><input type="submit" value="闪购发布" class="tdBtn tdBtn_1" style="background:#00b7ee;color:#fff;border-radius: 6px;"/>
+        <input type="reset"  value="重置" class="tdBtn" style="background:#00b7ee;color:#fff;border-radius: 6px;"/>
+    </td>
+  </table>
+  </form>
+ </div>
+
+</body>
+</html>

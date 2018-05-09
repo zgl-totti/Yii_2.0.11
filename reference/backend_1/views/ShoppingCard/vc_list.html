@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+
+
+<h1>
+
+    <span class="action-span"><a href="{:U("excel?vc_type=$type_id")}">导出EXCEL{$type_id}</a>&nbsp;&nbsp;</span>
+    <span class="action-span"><a href="{:U('index')}">购物卡类型列表</a></span>
+    <span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span><span id="search_id" class="action-span1"> - 购物卡列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<!-- 订单搜索 -->
+<div class="form-div">
+    <form action="{:U('ShoppingCard/vc_list')}" method="post">
+        <img src="__IMG__/icon_search.gif" alt="SEARCH" height="22" width="26" border="0">
+        <input type="hidden" name="type_id" value="{$type_id}"/>
+        购物卡号：<input name="vc_sn" id="vc_sn" size="15" type="text">
+        是否使用    <select name="is_used" id="is_used">
+        <option value="0">请选择...</option>
+        <option value="1">未使用</option>
+        <option value="2">已使用</option>
+    </select>
+        <input value=" 搜索 " class="button" type="submit">
+    </form>
+</div>
+
+<form method="POST"  name="listForm">
+    <!-- start user_bonus list -->
+    <div class="list-div" id="listDiv">
+
+        <table cellspacing="1" cellpadding="3">
+            <tbody><tr>
+                <th>购物卡卡号</th>
+                <th>密码</th>
+                <th>购物卡金额</th>
+                <th>有效日期</th>
+                <th>添加时间</th>
+                <th>是否使用</th>
+                <th>使用者</th>
+                <th>使用时间</th>
+                <th>操作</th>
+            </tr>
+            <foreach name="value" item="v">
+            <tr>
+                <td style=""><span>{$v.vc_sn}</span></td>
+                <td style="">{$v.vc_pwd}</td>
+                <td style="" align="center">¥{$v.type_money}.00元</td>
+                <td style="" align="center">{$v.use_start_date|date="Y-m-d H:i:s",###}--{$v.use_end_date|date="Y-m-d H:i:s",###}</td>
+                <td style="" align="center">{$v.add_time|date="Y-m-d H:i:s",###}</td>
+                <td style="" align="center"><if condition="$v.used_time gt 0">是<else/>否</if></td>
+                <td style="" align="center">{$v.user_id}</td>
+                <td style="" align="center">{$v.used_time|date="Y-m-d H:i:s",###}</td>
+                <td style="" align="center">
+                    <a href="javascript:;" onclick="del({$v.vc_id})"><img src="__IMG__/icon_drop.gif" height="16" width="16" border="0"></a>
+                </td>
+            </tr>
+            </foreach>
+
+
+
+            </tbody></table>
+    </div>
+    <!-- end user_bonus list -->
+</form>
+<script type="text/javascript">
+    function del(id){
+        //询问框
+
+        layer.confirm('确定要删除此会员吗？', {
+            btn: ['确定以及肯定','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("ShoppingCard/vc_delete")}',{id:id}, function (res) {
+
+                if (res.status) {
+                    layer.msg(res.info,function(){
+                        location="{:U('ShoppingCard/vc_list', array( 'type_id' => $v['type_id'] ))}";
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+
+        return false;
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>列表页</title>
+    <link href="__CSS__/style.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/select.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+
+    <script type="text/javascript">
+
+        function setPriority(nav,id){
+            var priority=$(nav).val();
+            $.post("{:U('setPriority')}",{'priority':priority,'id':id},function(res){
+                if(res.status==1){
+                    layer.tips(res.info, '#pri'+id, {
+                        tips: [2, '#3EAFE0']
+                    });
+                }
+            })
+        }
+        function Del(id){
+            $.post("{:U('AdminNav/del')}",{id:id},function(res){
+                if(res.status==1){
+                    layer.msg(res.info,function(){
+                        location="{:U('AdminNav/index')}"
+                    })
+                }else{
+                    layer.msg(res.info,function(){
+                        location="{:U('AdminNav/index')}"
+                    })
+                }
+            })
+        }
+              function dakai(id) {
+                  $('.tr'+id).toggle();
+              }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $(".select1").uedSelect({
+                width : 345
+            });
+            $(".select2").uedSelect({
+                width : 167
+            });
+            $(".select3").uedSelect({
+                width : 100
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">系统设置</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    <div id="usual1" class="usual">
+        <div id="tab2" class="tabson">
+            <table class="tablelist">
+                <thead>
+                <tr>
+                    <th>排序</th>
+                    <th>菜单名</th>
+                    <th>链接</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <volist name="navList" id="value">
+                    <if condition="$value['pid']==0">
+                        <tr>
+                        <else/>
+                    <tr style="display: none" class="tr{$value['pid']}">
+                    </if>
+                        <td width="100"><input type="text" id="pri{$value.id}" value="{$value.priority}" onchange="setPriority(this,{$value.id})"  style="height:30px;width: 50px"/></td>
+                        <td>{:str_repeat('&nbsp;',12*($value['level']-1))}
+                            <if condition="$value['pid']==0">
+                            <img src="__IMG__/jia.png" style="width: 35px;height: 35px;" onclick="dakai({$value['id']})" />
+                            </if>
+                            {$value.navname}
+                        </td>
+                        <td>{$value.navurl}</td>
+                        <td>
+                            <a href="{:U('add',array('pid'=>$value['id'],'pname'=>$value['navname']))}" class="tablelink">添加子菜单</a>
+                            <a href="{:U('edit',array('id'=>$value['id']))}" class="tablelink">编辑</a>
+                            <a href="javascript:;" onclick="Del({$value['id']})" class="tablelink">删除</a>
+                  </td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+<script type="text/javascript">
+    $(function(){
+        $("#usual1 ul").idTabs();
+        $('.tablelist tbody tr:odd').addClass('odd');
+    })
+
+</script>
+</html>

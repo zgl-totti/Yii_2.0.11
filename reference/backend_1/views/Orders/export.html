@@ -1,0 +1,40 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:x="urn:schemas-microsoft-com:office:excel"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=utf-8">
+    <meta name=ProgId content=Excel.Sheet>
+    <meta name=Generator content="Microsoft Excel 11">
+</head>
+<body>
+<table border=1 cellpadding=0 cellspacing=0 width="100%" >
+    <tr>
+        <td colspan="6" align="center">
+            <h2>订单列表</h2>
+        </td>
+    </tr>
+    <tr>
+        <td style='width:54pt' align="center">编号</td>
+        <td style='width:54pt' align="center">订单编号</td>
+        <td style='width:54pt' align="center">用户名</td>
+        <td style='width:54pt' align="center">联系方式</td>
+        <td style='width:54pt' align="center">收货地址</td>
+        <td style='width:54pt' align="center">订单状态</td>
+        <td style='width:54pt' align="center">订单时间</td>
+        <td style='width:54pt' align="center">订单金额</td>
+    </tr>
+    <volist name="info" id="va" key="k">
+        <tr>
+            <td style="text-align: center">{$k}</td>
+            <td style="text-align: center;width: 240px;">{$va.order_sn}</td>
+            <td style="text-align: center;width: 100px;">{$va.name}</td>
+            <td style="text-align: center;width: 100px;">{$va.mobile}</td>
+            <td style="text-align: center;width: 300px;">{$va.address}{$va.detial}</td>
+            <td style="text-align: center;width: 100px;">{$va.admin_opt}</td>
+            <td style="text-align: center;width: 200px;">{$va.add_time|date="Y-m-d H:i:s",###}</td>
+            <td style="text-align: center;width: 100px;">￥{$va.order_price}</td>
+        </tr>
+    </volist>
+</table>
+</body>
+</html>

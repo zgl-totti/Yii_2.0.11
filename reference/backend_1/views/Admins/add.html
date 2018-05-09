@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>修改密码</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#addform').submit(function(){
+                $.post('{:U("Admins/add")}',$('#addform').serialize(),function(res){
+
+                    if(res.status){
+                        layer.confirm('恭喜,注册成功!', {
+                            btn: ['返回列表','继续注册'] //按钮
+                        }, function(){
+                            location='{:U("Admins/index")}';
+                        }, function(){
+                            location='{:U("Admins/add")}';
+                        });
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+
+</head>
+<body>
+<form method="post" id="addform">
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i class="user"></i><em>管理员添加</em></span>
+  </div>
+  <table class="noborder">
+      <tr>
+              <label style="float: left;">所属组<b>*</b></label>
+              <volist name="groupList" id="value">
+                        <span style="float:left;margin-left: 25px;">
+                        <label for="{$value.title}" style="width: 70px">{$value.title}</label>
+                        <input name="group_id[]" id="{$value.title}" type="checkbox" value="{$value.id}" class="dfinput"  style="width:18px;"/>
+                         </span>
+              </volist>
+      </tr>
+   <tr>
+    <td width="15%" style="text-align:right;">账号：</td>
+    <td><input type="text" name="user_name"  value="{$user.user_name}" class="textBox length-middle"/></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">邮箱：</td>
+    <td><input type="text" name="email"  value="{$user.email}" class="textBox length-middle"/></td>
+   </tr>
+      <if condition="$user">
+      <tr>
+      <td style="text-align:right;">旧密码2：</td>
+      <td><input type="password" name="oldpwd"  value="" class="textBox length-middle"/></td>
+      </tr>
+ </if>
+   <tr>
+    <td style="text-align:right;">新密码：</td>
+    <td><input type="password" name="password"  value="" class="textBox length-middle"/></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;">再次确认密码：</td>
+    <td><input type="password" name="password2"  value="" class="textBox length-middle"/></td>
+   </tr>
+   <tr>
+    <td style="text-align:right;"></td>
+    <td><input type="submit"  class="tdBtn" value="保存"/></td>
+   </tr>
+  </table>
+
+ </div>
+    </form>
+</body>
+</html>

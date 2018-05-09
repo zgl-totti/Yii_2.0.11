@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>微信 管理中心</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="__CSS__/general.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__JS__/jquery.form.js"></script>
+<body>
+<h1>
+	<span class="action-span"><a href="{:U('WeiXin/menu')}">自定义菜单</a></span>
+    <span class="action-span1"><a href="{:U('Index/index')}"> 管理中心</a> </span>
+    <span id="search_id" class="action-span1"> <a href="{:U('add_menu')}"> 添加自定义菜单</a> </span>
+    <div style="clear:both"></div>
+</h1>
+<link href="__CSS__/calendar.css" rel="stylesheet" type="text/css">
+<!-- start goods form -->
+<div class="tab-div">
+<div id="tabbody-div">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#add_menu').submit(function(){
+                $.post('{:U("WeiXin/add_menu")}',$('#add_menu').serialize(),function(res){
+                    if(res.status){
+                        layer.confirm('恭喜,添加成功!', {
+                            btn: ['返回列表','继续添加'] //按钮
+                        }, function(){
+                            location='{:U("WeiXin/menu")}';
+                        }, function(){
+                            location='{:U("WeiXin/add_menu")}';
+                        });
+                    }else{
+                        layer.msg(res.info);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+<!-- 通用信息 -->
+<form id="add_menu" method="post" enctype="multipart/form-data">
+    <input name="id" type="hidden" value="{:I('get.id')}"/>
+  <table width="100%" cellspacing="1" cellpadding="3">
+  <tbody><tr>
+    <td class="label">选择上级菜单:</td>
+	<td>
+	<select name="pid">
+		<option value="0" <if condition="I('get.id')"> <else/>selected="selected"</if>>顶级</option>
+        <foreach name="one" item="v">
+            <option value="{$v.id}" <if condition="$v['id'] eq $eidt['pid']">selected="selected"</if> >{$v.name}</option>
+        </foreach>
+    </select>
+	</td>
+
+  </tr>
+
+  <tr>
+
+    <td class="label">菜单名称 :</td>
+
+    <td><input name="name" size="20" value="{$eidt['name']}" type="text"></td>
+
+  </tr>
+
+  <tr>
+
+    <td class="label">菜单类型 :</td>
+
+    <td>
+
+	<input name="type" onclick="shownews(1)" value="1" <if condition="$eidt['type'] eq 1">checked="checked"</if>  type="radio">命令
+
+	<input name="type" onclick="shownews(1)" value="2" <if condition="$eidt['type'] eq 2">checked="checked"</if>  type="radio">链接
+
+	<!--<input name="type" onclick="shownews(2)" value="3" type="radio">自定义图文-->
+
+	</td>
+
+  </tr>
+
+  <!--<tr id="news" style="display:none">-->
+	<!--<td colspan="2">-->
+		<!--<table width="90%" align="right">-->
+			<!--<tbody><tr>-->
+				<!--<td class="narrow-label">标题：</td>-->
+				<!--<td><input name="title" size="40" maxlength="60" type="text"></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="narrow-label">上传图片：</td>-->
+				<!--<td><input name="file" type="file"></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="narrow-label">描述内容：</td>-->
+				<!--<td><textarea name="description" cols="40" rows="5"></textarea></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td class="narrow-label">链接地址：</td>-->
+				<!--<td><input name="link_url" maxlength="120" type="text"></td>-->
+			<!--</tr>-->
+			<!--<input name="article_cat" value="-1" type="hidden">-->
+			<!--<input name="article_id" value="" type="hidden">-->
+			<!--<input name="file_url" value="" type="hidden">-->
+		<!--</tbody></table>-->
+	<!--</td>-->
+<!--</tr>-->
+
+ <tr id="menuvalue">
+
+    <td class="label">菜单值 :</td>
+
+    <td><input name="value" size="50" value="{$eidt['value']}" type="text "></td>
+
+  </tr>
+
+ <tr>
+
+    <td class="label">排序 :</td>
+
+    <td><input name="order" size="5" value="{$eidt['order']}" type="text">（越大越靠前）</td>
+
+  </tr>
+
+  <tr>
+
+    <td colspan="2" align="center">
+
+      <input value=" 确定 " class="button" type="submit">
+
+    <input value=" 重置 " class="button" type="reset">
+
+    </td>
+
+  </tr>
+</tbody></table>
+</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>添加商品品牌</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/jquery.form.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#form1').submit(function(){
+                $(this).ajaxSubmit(function(res){
+                    if(res){
+                        layer.alert("添加成功",function(){
+                            location="{:U('brand')}"
+                        })
+                    }else{
+                        layer.alert("更新失败",function(){
+                            location="{:U('brand')}"
+                        })
+                    }
+                },'json');
+                return false;
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="add_user"></i><em>添加品牌logo</em></span>
+    </div>
+    <form  action="{:U('addLogo')}" method="post" id="form1" enctype="multipart/form-data"  >
+        <table class="list-style">
+            <tr>
+                <td style="text-align:right;">商品品牌：</td>
+                <input type="hidden" value="{$Brand_id}" name="brand_id"/>
+                <td>{$Brand_name}</td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">商品LOGO：</td>
+                <td><input type="file"   value="选择商品图片" name="brand_logo" id="brand_logo"/></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"></td>
+                <td><input type="submit" class="tdBtn" value="添加品牌"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

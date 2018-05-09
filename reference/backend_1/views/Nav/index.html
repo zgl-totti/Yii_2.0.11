@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>17aym淘宝店 管理中心 - 自定义导航栏 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="__CSS__/nav_general.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css">
+<link href="__CSS__/chosen.css" rel="stylesheet" type="text/css">
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="{:U('add')}">添加导航</a></span>
+<span class="action-span1"><a href="{:U('admin/index')}">管理中心</a> </span><span id="search_id" class="action-span1"> - 自定义导航栏 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+<div class="list-div" id="listDiv">
+<table id="list-table" cellspacing="1" cellpadding="3">
+<tbody><tr>
+	<th>名称</th><th>是否显示</th><th>是否新窗口</th><th>排序</th><th>位置</th><th width="60px">操作</th>
+</tr>
+<foreach name="nav" item="v">
+<tr>
+	<td align="center">{$v.name}</td>
+  <td align="center">
+   <!--  -->
+
+   <img src="__IMG__/<if condition="$v.ifshow" >yes<else/>no</if>.gif" >
+   <!--  --></td>
+  <td align="center">
+   <!--  -->
+    <img src="__IMG__/<if condition="$v.opennew" >yes<else/>no</if>.gif" >
+   <!--  --></td>
+  <td align="center"><!--  --><span>{$v.vieworder}</span><!--  --></td>
+  <td align="center"><if condition="$v.type eq top" >顶部</if> <if condition="$v.type eq middle" >中部</if> <if condition="$v.type eq bottom" >底部</if></td>
+  <td align="center"><!--  --><a href="{:U("edit?id=".$v['id'])}" title="编辑"><img src="__IMG__/icon_edit.gif" width="16" border="0" height="16"></a>
+  <a href="javascript:;" onclick="del({$v.id})" title="确定删除?"><img src="__IMG__/no.gif" width="16" border="0" height="16"><!--  --></a>
+  </td>
+</tr>
+</foreach>
+
+</tbody></table>
+
+
+        <div class="turnPage center fr" id="turnPage">
+            {$Page}
+        </div>
+    </div>
+</form>
+
+<div id="footer">
+共执行 3 个查询，用时 0.004404 秒，Gzip 已禁用，内存占用 2.545 MB<br>
+技术支持：17aym淘宝店，QQ：2750188891。</div>
+
+<script type="text/javascript">
+    function del(id){
+        //询问框
+        layer.confirm('确定要删除此会员吗？', {
+            btn: ['干掉他','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("Nav/delete")}',{id:id}, function (res) {
+
+                if (res.status) {
+                    layer.msg(res.info,function(){
+                        location='{:U("Nav/index")}';
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+
+        return false;
+    }
+</script>
+</body></html>

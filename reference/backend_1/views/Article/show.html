@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>文章列表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+<script src="__JS__/jQuery-1.8.2.min.js"></script>
+<script src="__PLUGIN__/layer/layer.js"></script>
+</head>
+<body>
+
+ <div class="wrap">
+  <div class="page-title">
+    <span class="modular fl"><i></i><em>文章列表</em></span>
+    <span class="modular fr"><a href="{:U('Article/add')}" class="pt-link-btn">+文章发布</a></span>
+  </div>
+  <div class="operate">
+   <form action="{:U('show')}" method="get">
+    <input type="text" name="keywords" value="{$keywords}" class="textBox length-long" placeholder="输入文章标题..."/>
+    <input type="submit" value="查询" class="tdBtn"/>
+   </form>
+  </div>
+  <table class="list-style Interlaced">
+   <tr>
+    <th>编号</th>
+    <th>文章分类</th>
+    <th>图片</th>
+    <th>标题</th>
+    <th>作者/来源</th>
+    <th>添加时间</th>
+    <th>更新时间</th>
+    <th>操作</th>
+   </tr>
+<volist name="list" id="val" key="k">
+
+   <tr>
+    <td class="center">
+     <span >
+     <i>{$k+$firstRow}</i>
+     </span>
+    </td>
+
+       <td class="center">
+     <span>
+      <em>{$val.type_name}</em>
+     </span>
+       </td>
+
+       <td class="center pic-area"><img src="/Uploads/Article/{$val.article_img}" style="width:120px;"/>
+       </td>
+
+       <td class="td-name">
+      <span class="ellipsis td-name block">{$val.title}</span>
+    </td>
+
+    <td class="center">
+
+      <em>{$val.author}</em>
+
+    </td>
+
+       <td class="center">{:date('Y-m-d  H:i:s',$val['add_time'])}</td>
+
+    <td class="center">
+     <span>
+      <em>
+        <if condition="$val['update_time'] eq 0">
+          <else/>
+          {:date('Y-m-d  H:i:s',$val['update_time'])}
+        </if>
+      </em>
+     </span>
+    </td>
+
+    <td class="center">
+     <a href="{:U('Home/Article/show?pid='.$val['id'])}" title="查看" target="_blank"><img src="__IMG__/icon_view.gif"/></a>
+     <a href="{:U('Article/update?id='.$val['id'])}" title="编辑"><img src="__IMG__/icon_edit.gif"/></a>
+     <a href="javascript:;" onclick="del({$val['id']})" title="删除"><img src="__IMG__/icon_drop.gif"/></a>
+    </td>
+   </tr>
+</volist>
+
+  </table>
+     <div class=" center fr" id="turnPage">
+         {$page}
+     </div>
+   
+
+ </div>
+
+ <script>
+     function del(id){
+         layer.confirm("确定删除？",function() {
+             $.post('{:U("Article/del")}', {id: id}, function (res) {
+                 layer.msg('删除成功！',{icon:1}, function () {
+                     location = "{:U('Article/show')}"
+                 });
+             });
+         })
+     }
+ </script>
+</body>
+</html>

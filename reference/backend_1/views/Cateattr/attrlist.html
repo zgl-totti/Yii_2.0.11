@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>属性列表</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__PLUGIN__/layer/layer.js"></script>
+    <script src="__PLUGIN__/jquery.form.js"></script>
+    <script src="__JS__/public.js"></script>
+    <style type="text/css">
+        .page{
+            float: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="page-title">
+        <span class="modular fl"><i class="user"></i><em>属性列表</em></span>
+        <span class="modular fr"><a href="{:U('addattrname')}" class="pt-link-btn">+添加属性</a></span>
+    </div>
+    <table class="list-style Interlaced">
+        <tr>
+            <th>编号</th>
+            <th>属性名</th>
+            <th>添加时间</th>
+            <th>所属分类</th>
+            <th>操作</th>
+        </tr>
+        <volist name="AttrList" id="val" key="k">
+        <tr>
+            <td>{$k}</td>
+            <td>{$val.attr_name}</td>
+            <td class="center">{:date('Y-m-d H:i:s',$val['addtime'])}</td>
+            <td class="center">{$val.cat_name}</td>
+            <td class="center">
+                <a href="" title="查看" target="_self"><img src="__IMG__/icon_view.gif"/></a>
+                <a href="{:U('AttrEdit?id='.$val['id'])}" target="_self"><img src="__IMG__/icon_edit.gif"/></a>
+                <a href="javascript:;" onclick="Del({$val['id']})" ><img src="__IMG__/icon_drop.gif" alt="删除"/></a>
+            </td>
+        </tr>
+        </volist>
+    </table>
+    <div class="page">
+        <span>{$page}</span>
+    </div>
+</div>
+<script type="text/javascript">
+    function Del($id){
+        //询问框
+        layer.confirm('确定要删除吗？', {
+            btn: ['狠心删除','考虑下'] //按钮
+        }, function(){
+            $.post('{:U("Cateattr/AttrDel")}', {id: $id}, function (res) {
+                if (res.status) {
+                    layer.msg(res.info,function(){
+                        location='{:U("attrlist")}';
+                    });
+                } else {
+                    layer.msg(res.info);
+                }
+            });
+        }, function(){
+
+            layer.msg('遵命', {
+                time: 1000 //20s后自动关闭
+
+            });
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

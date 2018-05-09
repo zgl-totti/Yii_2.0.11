@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>后台管理中心数据统计</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="__CSS__/adminStyle.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/use.css" rel="stylesheet" type="text/css" />
+    <script src="__JS__/jQuery-1.8.2.min.js"></script>
+    <script src="__JS__/index.js"></script>
+</head>
+<body>
+<div class="wrap start-page" style="background-color: #c6c5cb;">
+    <h1><i class="home-icon"></i>{$Think.config.SITE_NAME}数据统计</h1>
+</div>
+<div class="check clearfix">
+    <div class="fl" style="border-right: dotted 2px rosybrown;"><p><span style="font-size: 16px;" class="focus">点击量排行</span></p></div>
+    <div class="fl"><p><span style="font-size: 16px;" >文章分类数量统计信息</span></p></div>
+</div>
+<!-- 选择框 END -->
+
+<!-- 试用内容 STRAT-->
+<div class="wrapper ">
+
+
+    <div class="use-con u1">
+        <div class="con-a">
+            <div class="title clearfix">
+                <p class="fl">文章分类数量统计信息</p>
+            </div>
+            <div class="con-n all">
+
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="txt welinfo">
+                                <img src="__IMG__/dp.png" alt="提醒" />
+                                <div id="main" style="width: 1000px;height:500px;"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="use-con u2">
+        <div class="con-a">
+            <div class="title clearfix">
+                <p class="fl">点击量排行</p>
+            </div>
+            <div class="con-n all">
+
+                <ul>
+                    <li>
+                        <a href="">
+                            <div class="txt welinfo">
+                                <img src="__IMG__/dp.png" alt="提醒" />
+                                <div id="clickSaleTop" style="width: 1000px;height:500px;"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="wrap start-page">
+ <h1><i class="home-icon"></i>{$Think.config.SITE_NAME}数据统计</h1>
+
+ <dl style="width: 48%;float: left;">
+  <dt>文章分类数量统计信息</dt>
+  <dd>
+      <div class="welinfo">
+          <span><img src="__IMG__/dp.png" alt="" /></span>
+          <b>不同类别文章比重信息</b>
+      </div>
+      <div id="main" style="width: 800px;height:400px;"></div>
+  </dd>
+ </dl>
+
+
+
+ <dl style="width: 48%;float: left;padding: 0 0 0 3rem;">
+  <dt>点击量排行</dt>
+  <dd>
+      <div class="welinfo">
+          <span><img src="__IMG__/dp.png" alt="" /></span>
+          <b>点击量信息</b>
+      </div>
+      <div id="GoodsSaleTop" style="width: 800px;height:400px;"></div>
+  </dd>
+ </dl>
+
+
+</div>-->
+</body>
+<script type="text/javascript" src="__PLUGIN__/echarts.min.js"></script>
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title : {
+            text: '不同类别文章比重',
+            subtext: '分类占有率',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : 'left',
+            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ]
+            }
+        ]
+    };
+
+
+    $.get('{:U("Article/getCateinfo")}').done(function (data) {
+     myChart.setOption({
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                data:data.info.x
+            },
+            series : [
+                {
+                    name:'文章分类统计',
+                    type:'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:data.info.y
+                }
+            ]
+        });
+    });
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+    var  GoodsSaleTop=echarts.init(document.getElementById('clickSaleTop'));
+
+
+    //商品销售前十名排行
+    $.get('{:U("Article/clickTop")}').done(function (data) {
+        GoodsSaleTop.setOption({
+            xAxis: {
+                data: data.info.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '点击量',
+                data: data.info.y
+            }]
+        });
+    });
+    var option1 = {
+        title: {
+            text: '点击量TOP10'
+        },
+        tooltip: {},
+        legend: {
+            data:['点击量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '点击量',
+            type: 'line',
+            data: []
+        }]
+    };
+
+   GoodsSaleTop.setOption(option1);
+</script>
+</html>
