@@ -186,6 +186,7 @@ class OrderController extends BaseController{
             $arr[$k]['order_status']=$v['status_name'];
             $arr[$k]['addtime']=date('Y-m-d H:i:s',$v['addtime']);
         }
+
         Excel::export([
             'models'=>$arr,
             'fileName'=>'订单表_'.date('Ymd'),
@@ -247,5 +248,23 @@ class OrderController extends BaseController{
                 'sheet3' => ['column1' => 'Header Column 1','column2' => 'Header Column 2', 'column3' => 'Header Column 3']
             ],
         ]);*/
+    }
+
+
+    /**
+     * excel导入
+     * @param $file_name
+     * @return string
+     * @author totti_zgl
+     * @date 2018/5/14 14:29
+     */
+    public function actionInputExcel($file_name){
+        $data=Excel::import($file_name,[
+            'setFirstRecordAsKeys' => true,
+            'setIndexSheetByName' => true,
+            'getOnlySheet' => 'sheet1',
+        ]);
+
+        return $data;
     }
 }
