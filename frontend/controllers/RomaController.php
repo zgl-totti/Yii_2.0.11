@@ -156,4 +156,64 @@ class RomaController extends Controller
     public function actionTotti(){
         return Yii::$app->urlManager->createAbsoluteUrl(['login/roma']);
     }
+
+    public function actionTest1(){
+        $model = new Goods();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            $brand=Brand::find()->asArray()->all();
+            if ($brand && is_array($brand)) {
+                foreach ($brand as $k => $v) {
+                    $list1[$v['id']] = $v['bname'];
+                }
+            }
+            $category=Category::find()->orderBy('path')->asArray()->all();
+            if ($category && is_array($category)) {
+                foreach ($category as $val) {
+                    $space = count(explode(',', $val['path']));
+                    /*$val['catename'] = str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $space) . $val['catename'];*/
+                    $val['catename'] = str_repeat("--", $space) . $val['catename'];
+                    $list2[$val['id']] = $val['catename'];
+                }
+            }
+
+            return $this->renderAjax('create', [
+                'model' => $model,
+                'brand'=>$list1,
+                'category'=>$list2,
+                'list'=>$brand
+            ]);
+        }
+    }
+
+    public function actionTest2(){
+        $model = new Goods();
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            $brand=Brand::find()->asArray()->all();
+            if ($brand && is_array($brand)) {
+                foreach ($brand as $k => $v) {
+                    $list1[$v['id']] = $v['bname'];
+                }
+            }
+            $category=Category::find()->orderBy('path')->asArray()->all();
+            if ($category && is_array($category)) {
+                foreach ($category as $val) {
+                    $space = count(explode(',', $val['path']));
+                    /*$val['catename'] = str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $space) . $val['catename'];*/
+                    $val['catename'] = str_repeat("--", $space) . $val['catename'];
+                    $list2[$val['id']] = $val['catename'];
+                }
+            }
+
+            return $this->renderAjax('create', [
+                'model' => $model,
+                'brand'=>$list1,
+                'category'=>$list2,
+                'list'=>$brand
+            ]);
+        }
+    }
 }

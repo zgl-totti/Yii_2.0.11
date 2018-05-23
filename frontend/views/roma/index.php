@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,8 +15,67 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+        <?=Html::a('世界杯', '#', [
+            'id' => 'world',
+            'data-toggle' => 'modal',
+            'data-target' => '#create-modal',
+            'class' => 'btn btn-success',
+        ]);?>
+        <?=Html::a('欧洲杯', '#', [
+            'id' => 'europe',
+            'data-toggle' => 'modal',
+            'data-target' => '#update-modal',
+            'class' => 'btn btn-success',
+        ]);?>
+    </p>
+
+
+
+    <?php
+    Modal::begin([
+        'id' => 'create-modal',
+        'header' => '<h4 class="modal-title">创建</h4>',
+        'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>',
+    ]);
+    $requestUrl = \yii\helpers\Url::toRoute('test1');
+    $js = <<<JS
+    $.get('{$requestUrl}', {},
+        function (data) {
+            $('.modal-body').html(data);
+        }  
+    );
+
+JS;
+    $this->registerJs($js);
+    Modal::end();
+
+    Modal::begin([
+        'id' => 'update-modal',
+        'header' => '<h4 class="modal-title">更新</h4>',
+        'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">关闭</a>',
+    ]);
+    $requestUrl = \yii\helpers\Url::toRoute('test2');
+    $js = <<<JS
+$('#europe').click(function() {
+    alert('欧洲杯');
+    $('.document-nav-form').remove();
+    $.get('{$requestUrl}', {},
+        function (data) {
+            $('.modal-body').html(data);
+        }  
+    );
+})
+JS;
+    $this->registerJs($js);
+    Modal::end();
+    ?>
+
+
+
+    <p>
         <?= Html::a('Create Goods', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
@@ -71,3 +131,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+
+
