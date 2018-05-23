@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?=Html::a('世界杯', '#', [
-            'id' => 'world',
+            'id' => 'create',
             'data-toggle' => 'modal',
             'data-target' => '#create-modal',
             'class' => 'btn btn-success',
         ]);?>
         <?=Html::a('欧洲杯', '#', [
-            'id' => 'europe',
+            'id' => 'update',
             'data-toggle' => 'modal',
             'data-target' => '#update-modal',
             'class' => 'btn btn-success',
