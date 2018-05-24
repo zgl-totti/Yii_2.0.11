@@ -26,7 +26,14 @@ class LoginController extends Controller{
 
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){
+
+            //使用场景
             $admin= new Admin();
+            $admin->scenario='login';
+
+            //$admin= new Admin(['scenario'=>'login']);
+
+
             if($admin->load(\Yii::$app->request->post()) && $admin->validate()) {
                 $data['username']=$admin->username;
                 //$data['password']=\Yii::$app->security->generatePasswordHash($admin->password);

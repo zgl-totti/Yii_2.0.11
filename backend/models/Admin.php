@@ -10,19 +10,26 @@ class Admin extends ActiveRecord{
         return "{{%admin}}";
     }
 
-    /*public function scenarios(){
-        return [
-            'index'=>['username','password','captcha'],
-            'add'=>['username','password'],
+    public function scenarios(){
+
+        $scenarios=parent::scenarios();
+        $scenarios['login']=['username','password','captcha'];
+        $scenarios['create']=['username','password','gender'];
+        return $scenarios;
+
+        /*return [
+            'create'=>['username','password','gender'],
+            'login'=>['username','password','captcha'],
             'edit'=>['password']
-        ];
-    }*/
+        ];*/
+    }
 
     public function rules(){
         return [
-            [['username','password','captcha'],'required','message'=>"{attribute}不能为空"],
-            /*[['username','password','captcha'],'required','message'=>"{attribute}不能为空",'on'=>'index'],*/
-            ['captcha','captcha','captchaAction'=>'login/captcha','message'=>"{attribute}错误"]
+            [['username','password'],'required','message'=>"{attribute}不能为空",'on'=>['login','create','edit']],
+            ['captcha','required','message'=>"{attribute}不能为空",'on'=>'login'],
+            ['gender','required','message'=>"{attribute}不能为空",'on'=>'create'],
+            ['captcha','captcha','captchaAction'=>'login/captcha','message'=>"{attribute}错误",'on'=>'login']
         ];
     }
 
@@ -30,7 +37,8 @@ class Admin extends ActiveRecord{
         return [
             'username'=>'用户名',
             'password'=>'密 码',
-            'captcha'=>'验证码'
+            'captcha'=>'验证码',
+            'gender'=>'性别'
         ];
     }
 

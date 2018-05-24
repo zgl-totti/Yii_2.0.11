@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap\Modal;
 
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -27,6 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'data-target' => '#update-modal',
             'class' => 'btn btn-success',
         ]);?>
+    </p>
+
+    <p>
+
     </p>
 
 

@@ -31,8 +31,12 @@ class AdminController extends BaseController{
 
     public function actionAdd(){
         if(\Yii::$app->request->isAjax){
+
+            //使用场景
             $admin= new Admin();
-            if($admin->load(\Yii::$app->request->post()) && $admin->validate()){
+            $admin->scenario='create';
+
+            if($admin->load(\Yii::$app->request->post(),'') && $admin->validate()){
                 $data['username']=$admin->username;
                 $info=Admin::find()->where($data)->one();
                 if(!$info) {
@@ -40,6 +44,8 @@ class AdminController extends BaseController{
                     $pwd=md5($password);
                     $admin->password=$pwd;
                     $admin->addtime=time();
+                    $admin->logintime=time();
+                    $admin->loginip=\Yii::$app->request->getUserIP();
                     $row = $admin->save();
                     if ($row) {
                         return Json::encode(['code' => 1, 'body' => '添加成功']);
