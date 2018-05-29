@@ -28,7 +28,7 @@ class LoginController extends Controller{
         if(\Yii::$app->request->isAjax){
 
             //使用场景
-            $admin= new Admin();
+            $admin= new \common\models\Admin();
             $admin->scenario='login';
 
             //$admin= new Admin(['scenario'=>'login']);

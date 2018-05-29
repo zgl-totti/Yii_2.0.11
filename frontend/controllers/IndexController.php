@@ -20,11 +20,16 @@ class IndexController extends BaseController{
     /*public function behaviors(){
         return [
             'class'=>'yii\filters\HttpCache',
-            //'only'=>'index',
+            //'only'=>['index'],
             'lastModified' => function () {
                 $q = new \yii\db\Query();
                 return $q->from('shop_category')->max('id');
             },
+            'duration' => 60,
+            'dependency' => [
+                'class' => 'yii\caching\DbDependency',
+                'sql' => 'SELECT COUNT(*) FROM post',
+            ],
         ];
     }*/
 

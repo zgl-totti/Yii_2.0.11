@@ -2,12 +2,46 @@
 namespace backend\controllers;
 
 use backend\models\Admin;
+use yii\base\Exception;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\helpers\Json;
+use yii\web\HttpException;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends BaseController{
     public $layout=false;
     public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
+
+    public function behaviors(){
+        return [
+            'access'=>[
+                'class'=>AccessControl::className(),
+                'only'=>['index','add','edit','operate','delete'],
+                'rules'=>[
+
+                    [
+                        'allow'=>true,
+                        'actions'=>['add','edit'],
+                        'roles'=>['GET','POST'],
+                    ],
+
+                    [
+                        'allow'=>true,
+                        'actions'=>['index',],
+                        'roles'=>['GET'],
+                    ],
+
+                    [
+                        'allow'=>true,
+                        'actions'=>['operate','delete'],
+                        'roles'=>['POST'],
+                    ]
+
+                ]
+            ]
+        ];
+    }
 
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
@@ -32,31 +66,37 @@ class AdminController extends BaseController{
     public function actionAdd(){
         if(\Yii::$app->request->isAjax){
 
-            //使用场景
-            $admin= new Admin();
-            $admin->scenario='create';
+            try {
 
-            if($admin->load(\Yii::$app->request->post(),'') && $admin->validate()){
-                $data['username']=$admin->username;
-                $info=Admin::find()->where($data)->one();
-                if(!$info) {
-                    $password=$admin->password;
-                    $pwd=md5($password);
-                    $admin->password=$pwd;
-                    $admin->addtime=time();
-                    $admin->logintime=time();
-                    $admin->loginip=\Yii::$app->request->getUserIP();
-                    $row = $admin->save();
-                    if ($row) {
-                        return Json::encode(['code' => 1, 'body' => '添加成功']);
+                //使用场景
+                $admin = new Admin();
+                $admin->scenario = 'create';
+
+                if ($admin->load(\Yii::$app->request->post(), '') && $admin->validate()) {
+                    $data['username'] = $admin->username;
+                    $info = Admin::find()->where($data)->one();
+                    if (!$info) {
+                        $password = $admin->password;
+                        $pwd = md5($password);
+                        $admin->password = $pwd;
+                        $admin->addtime = time();
+                        $admin->logintime = time();
+                        $admin->loginip = \Yii::$app->request->getUserIP();
+                        $row = $admin->save();
+                        if ($row) {
+                            return Json::encode(['code' => 1, 'body' => '添加成功']);
+                        } else {
+                            return Json::encode(['code' => 2, 'body' => '添加失败']);
+                        }
                     } else {
-                        return Json::encode(['code' => 2, 'body' => '添加失败']);
+                        return Json::encode(['code' => 3, 'body' => '管理员已存在']);
                     }
-                }else{
-                    return Json::encode(['code' => 3, 'body' => '管理员已存在']);
+                } else {
+                    return Json::encode(['code' => 4, 'body' => $admin->getErrors()]);
                 }
-            }else{
-                return Json::encode(['code'=>4,'body'=>$admin->getErrors()]);
+            }catch (\Exception $e){
+                throw new HttpException(500,$e->getMessage());
+                throw new NotFoundHttpException($e->getMessage(),500);
             }
         }else{
             return $this->render('add');

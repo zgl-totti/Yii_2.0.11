@@ -12,6 +12,8 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'defaultRoute'=>'index',
+    'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -50,7 +52,7 @@ return [
 
             'rules' => [
                 '<action>&<controller>_<gid:\d+>' => '<controller>/<action>',
-            ]
+            ],
 
             /*'rules' => [
                 [
@@ -61,6 +63,14 @@ return [
                     ],
                 ],
             ],*/
+
+            /*//为user控制器增加一个URL规则
+            'rule'=>[
+                [
+                    'class'=>'yii\rest\UrlRule',
+                    'controller'=>'user',
+                ]
+            ]*/
         ],
 
         'db' => [

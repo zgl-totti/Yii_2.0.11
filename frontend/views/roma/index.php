@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <!--Modal小部件-->
     <p>
         <?=Html::a('世界杯', '#', [
             'id' => 'create',
@@ -30,8 +31,27 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);?>
     </p>
 
-    <p>
+    <!--Menu小部件-->
+    <P>
+        <?=\yii\widgets\Menu::widget([
+            'activateItems'=>false,
+            'items'=>[
+                ['label'=>'Home','url'=>'site/index'],
+                ['label'=>'Roma','url'=>'roma/index'],
+                ['label'=>'Totti','url'=>'totti/index','visible'=>Yii::$app->user->isGuest]
+            ]
+        ])?>
+    </P>
 
+    <p>
+        <?/*= \DatePicker::widget([
+            'model' => $model,
+            'attribute' => 'from_date',
+            'language' => 'ru',
+            'clientOptions' => [
+                'dateFormat' => 'yy-mm-dd',
+            ],
+        ]) */?>
     </p>
 
 
@@ -44,6 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     $requestUrl = \yii\helpers\Url::toRoute('test1');
     $js = <<<JS
+    
     $.get('{$requestUrl}', {},
         function (data) {
             $('.modal-body').html(data);
@@ -61,6 +82,7 @@ JS;
     ]);
     $requestUrl = \yii\helpers\Url::toRoute('test2');
     $js = <<<JS
+    
 $('#europe').click(function() {
     alert('欧洲杯');
     $('.document-nav-form').remove();
@@ -70,6 +92,7 @@ $('#europe').click(function() {
         }  
     );
 })
+
 JS;
     $this->registerJs($js);
     Modal::end();

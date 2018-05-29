@@ -4,10 +4,15 @@ namespace backend\models;
 use yii\db\ActiveRecord;
 
 class Address extends ActiveRecord{
+
     public $province;
+
     public $city;
+
     public $town;
+
     public $jiedao;
+
     public static function tableName(){
         return "{{%address}}";
     }
