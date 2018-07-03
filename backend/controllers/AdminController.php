@@ -13,7 +13,7 @@ class AdminController extends BaseController{
     public $layout=false;
     public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
 
-    public function behaviors(){
+    /*public function behaviors(){
         return [
             'access'=>[
                 'class'=>AccessControl::className(),
@@ -41,7 +41,7 @@ class AdminController extends BaseController{
                 ]
             ]
         ];
-    }
+    }*/
 
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
@@ -50,16 +50,18 @@ class AdminController extends BaseController{
         }else{
             $where='';
         }
-        $count=Admin::find()->where($where)->count();
+
+        $admin=Admin::find()->where($where);
         $pages= new Pagination([
             'pageSize'=>10,
-            'totalCount'=>$count
+            'totalCount'=>$admin->count()
         ]);
-        $list=Admin::find()->where($where)
+        $list=$admin
             ->offset($pages->offset)
             ->limit($pages->limit)
             ->asArray()
             ->all();
+
         return $this->render('index',['list'=>$list,'pages'=>$pages,'keywords'=>$keywords]);
     }
 
