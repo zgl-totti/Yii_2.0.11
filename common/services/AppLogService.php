@@ -9,6 +9,8 @@
 namespace app\common\services;
 
 
+use app\models\AppAccessLog;
+
 class AppLogService
 {
     public static function addErrorLog($app_name,$content)
@@ -40,5 +42,25 @@ class AppLogService
         $app_log->updated_time=date('Y-m-d H:i:s');
 
         $app_log->save();
+    }
+
+    public static function addAppAccessLog($uid=0){
+        $get_params=\Yii::$app->request->get();
+        $post_params=\Yii::$app->request->post();
+
+        $target_url=$_SERVER['REQUEST_URI'] ?? '';
+        $referer=$_SERVER['HTTP_REFERER'] ?? '';
+        $ua=$_SERVER['HTTP_USER_AGENT'] ?? '';
+
+        $access_log= new AppAccessLog();
+        $access_log->uid=$uid;
+        $access_log->refer_url=$referer;
+        $access_log->target_url=$target_url;
+        $access_log->ua=$ua;
+        $access_log->query_params=json_encode(array_merge($get_params,$post_params));
+        $access_log->ip=UriService::getIp();
+        $access_log->created_time=date('Y-m-d H:i:s');
+
+        return $access_log->save();
     }
 }
