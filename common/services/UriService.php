@@ -45,6 +45,14 @@ class UriService
         return 'javascript:void(0);';
     }
 
+    public static function buildPicUrl($bucket,$img_key)
+    {
+        $domain_config=\Yii::$app->params['domain'];
+        $upload_config=\Yii::$app->params['upload'];
+
+        return $domain_config['www'].$upload_config[$bucket].'/'.$img_key;
+    }
+
     /**
      * 获取IP
      */
@@ -55,5 +63,13 @@ class UriService
         }
 
         return $_SERVER['REMOTE_ADDR'];
+    }
+
+    /**
+     * 获取根目录
+     */
+    public static function getRootPath()
+    {
+        return dirname(\Yii::$app->vendorPath);
     }
 }
