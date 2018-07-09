@@ -12,7 +12,7 @@ namespace common\controllers;
 use app\common\services\RequestService;
 use app\common\services\UriService;
 
-class MenuController
+class MenuController extends BaseController
 {
     public function actionIndex()
     {

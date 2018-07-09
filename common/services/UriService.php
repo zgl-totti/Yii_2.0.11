@@ -72,4 +72,16 @@ class UriService
     {
         return dirname(\Yii::$app->vendorPath);
     }
+
+    /**
+     * 是否微信浏览器
+     */
+    public static function isWechat()
+    {
+        $ua=$_SERVER['HTTP_USER_AGENT'] ?? '';
+        if(stripos($ua,'micromessenger') !== false){
+            return true;
+        }
+        return false;
+    }
 }

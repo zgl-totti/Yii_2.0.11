@@ -6,8 +6,10 @@
  * Time: 7:29
  */
 
-namespace common\controllers;
+namespace common\weixin\controllers;
 
+
+use common\controllers\BaseController;
 
 class WeixinController extends BaseController
 {
