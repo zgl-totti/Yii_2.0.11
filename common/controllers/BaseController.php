@@ -9,6 +9,8 @@ class BaseController extends Controller
 {
     public $enableCsrfValidation=false;  //关闭防御csrf的攻击机制;
 
+    protected $current_openid='taolu_openid';
+
     public function get($key,$value='')
     {
         return \Yii::$app->request->get($key,$value);

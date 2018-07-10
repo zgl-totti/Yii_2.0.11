@@ -3,6 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
+
+    <?php
+    \app\common\services\StaticService::includeAppStatic('css','/css/style.css',['depends'=>app\assets\WebAsset::cliassName()]);
+    \app\common\services\StaticService::includeAppStatic('js','/js/jQuery-1.8.2.min.js',['depends'=>app\assets\WebAsset::cliassName()])
+    ?>
+
     <?=\yii\helpers\Html::cssFile('@web/css/style.css')?>
     <?=\yii\helpers\Html::cssFile('@web/css/select.css')?>
     <?=\yii\helpers\Html::jsFile('@web/js/jQuery-1.8.2.min.js')?>

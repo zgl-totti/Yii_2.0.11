@@ -8,5 +8,14 @@ return [
         'www'=>'',
         'web'=>'.../web/',
         'wap'=>'.../wap/'
-    ]
+    ],
+
+    'upload'=>[
+        'avatar'=>'/uploads/avatar',
+        'goods'=>'/uploads/goods'
+    ],
+
+    'weixin'=>[
+
+    ],
 ];

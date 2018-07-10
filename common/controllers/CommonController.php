@@ -9,10 +9,13 @@
 namespace common\controllers;
 
 
+use app\common\services\AppLogService;
 use app\common\services\UriService;
 
 class CommonController extends BaseController
 {
+    public $userInfo=null;
+
     public $allowActions=[
         'login/index',
     ];
@@ -33,6 +36,10 @@ class CommonController extends BaseController
             }
             return false;
         }
+
+        //记录所有用户访问
+        AppLogService::addAppAccessLog($this->userInfo['user_id']);
+
         return true;
     }
 
@@ -62,6 +69,7 @@ class CommonController extends BaseController
             return false;
         }
 
+        $this->userInfo=$info;
         return true;
     }
 

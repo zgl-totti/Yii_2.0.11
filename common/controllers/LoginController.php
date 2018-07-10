@@ -13,7 +13,7 @@ use app\common\services\UriService;
 
 class LoginController extends CommonController
 {
-    public function index()
+    public function actionIndex()
     {
         if(\Yii::$app->request->isGet){
             return $this->render('');
@@ -47,4 +47,15 @@ class LoginController extends CommonController
         $this->removeCookie('user_id');
         return $this->redirect(UriService::buildWwwUrl('login/index'));
     }
+
+    public function actionEdit()
+    {
+        if(\Yii::$app->request->isPost){
+            $user_id=$this->post('user_id',0);
+        }
+
+        $userInfo=$this->userInfo;
+        return $this->render('',compact('userInfo'));
+    }
+
 }
