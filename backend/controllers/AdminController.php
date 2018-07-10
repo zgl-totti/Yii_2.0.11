@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use backend\models\Admin;
+use yii\base\ErrorException;
 use yii\base\Exception;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -97,6 +98,7 @@ class AdminController extends BaseController{
                     return Json::encode(['code' => 4, 'body' => $admin->getErrors()]);
                 }
             }catch (\Exception $e){
+            //}catch (ErrorException $e){
                 throw new HttpException(500,$e->getMessage());
                 throw new NotFoundHttpException($e->getMessage(),500);
             }
