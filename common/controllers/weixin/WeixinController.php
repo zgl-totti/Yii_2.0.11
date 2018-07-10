@@ -23,6 +23,27 @@ class WeixinController extends BaseController
         if(array_key_exists('echostr',$_GET) && $_GET['echostr']){
             return $_GET['echostr'];
         }
+
+        $xml_data=file_get_contents("php://input");
+        if(empty($xml_data)){
+            return 'error xml';
+        }
+
+        $xml_obj=simplexml_load_string($xml_data,'SimpleXMLElement',LIBXML_NOCDATA);
+        $from_username=$xml_obj->FromUserName;
+        $to_username=$xml_obj->ToUserName;
+        $msg_type=$xml_obj->MsgType;
+
+        switch ($msg_type) {
+            case 'text':
+                $kw=trim($xml_obj->Content);
+                $res=$this->search($kw);
+                break;
+            case 'event':
+                break;
+        }
+
+        return 'Hello World';
     }
 
     public function checkSignature()
