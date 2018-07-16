@@ -104,3 +104,552 @@ Additional Information:
     ]
     'argc' => 2
 ]
+2018-07-14 02:47:46 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:47:46 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536466.4365
+    'REQUEST_TIME' => 1531536466
+    'argv' => [
+        0 => 'yii'
+        1 => 'order/hello'
+    ]
+    'argc' => 2
+]
+2018-07-14 02:48:06 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:48:06 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536486.7905
+    'REQUEST_TIME' => 1531536486
+    'argv' => [
+        0 => 'yii'
+        1 => 'order/hello'
+    ]
+    'argc' => 2
+]
+2018-07-14 02:48:09 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order/hello', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:48:09 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536489.735
+    'REQUEST_TIME' => 1531536489
+    'argv' => [
+        0 => 'yii'
+        1 => 'order/hello'
+    ]
+    'argc' => 2
+]
+2018-07-14 02:48:59 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "order". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('order', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "order". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('order', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:48:59 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536539.8572
+    'REQUEST_TIME' => 1531536539
+    'argv' => [
+        0 => 'yii'
+        1 => 'order'
+    ]
+    'argc' => 2
+]
+2018-07-14 02:51:21 [-][-][-][error][yii\db\Exception] PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php:630
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(630): PDO->__construct('mysql:host=loca...', 'root', 'root', NULL)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(563): yii\db\Connection->createPdoInstance()
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(896): yii\db\Connection->open()
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(883): yii\db\Connection->getMasterPdo()
+#4 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#5 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(896): yii\db\Command->prepare(true)
+#6 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#7 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\mysql\Schema.php(199): yii\db\Command->queryAll()
+#8 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\mysql\Schema.php(98): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#9 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Schema.php(152): yii\db\mysql\Schema->loadTableSchema('migration')
+#10 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\MigrateController.php(199): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#11 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(774): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#12 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(138): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#13 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#14 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#15 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#16 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#17 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#18 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#19 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#20 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#21 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#22 {main}
+
+Next yii\db\Exception: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES) in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php:568
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(896): yii\db\Connection->open()
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Connection.php(883): yii\db\Connection->getMasterPdo()
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(219): yii\db\Connection->getSlavePdo()
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(896): yii\db\Command->prepare(true)
+#4 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Command.php(362): yii\db\Command->queryInternal('fetchAll', NULL)
+#5 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\mysql\Schema.php(199): yii\db\Command->queryAll()
+#6 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\mysql\Schema.php(98): yii\db\mysql\Schema->findColumns(Object(yii\db\TableSchema))
+#7 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\db\Schema.php(152): yii\db\mysql\Schema->loadTableSchema('migration')
+#8 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\MigrateController.php(199): yii\db\Schema->getTableSchema('{{%migration}}', true)
+#9 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(774): yii\console\controllers\MigrateController->getMigrationHistory(NULL)
+#10 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\controllers\BaseMigrateController.php(138): yii\console\controllers\BaseMigrateController->getNewMigrations()
+#11 [internal function]: yii\console\controllers\BaseMigrateController->actionUp(0)
+#12 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#13 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#14 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('', Array)
+#15 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('', Array)
+#16 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate', Array)
+#17 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate', Array)
+#18 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#19 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#20 {main}
+Additional Information:
+
+2018-07-14 02:51:20 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536680.8898
+    'REQUEST_TIME' => 1531536680
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate'
+    ]
+    'argc' => 2
+]
+2018-07-14 02:52:58 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "make:model". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('make:model', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('make:model', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "make:model". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('make:model', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:52:58 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536778.5904
+    'REQUEST_TIME' => 1531536778
+    'argv' => [
+        0 => 'yii'
+        1 => 'make:model'
+        2 => 'common/models/Totti'
+    ]
+    'argc' => 3
+]
+2018-07-14 02:55:42 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "commands/order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('commands/order/...', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('commands/order/...', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "commands/order/hello". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('commands/order/...', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-14 02:55:42 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531536942.6942
+    'REQUEST_TIME' => 1531536942
+    'argv' => [
+        0 => 'yii'
+        1 => 'commands/order/hello'
+    ]
+    'argc' => 2
+]
