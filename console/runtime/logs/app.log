@@ -653,3 +653,78 @@ Stack trace:
     ]
     'argc' => 2
 ]
+2018-07-18 14:30:36 [-][-][-][error][yii\console\UnknownCommandException] yii\base\InvalidRouteException: Unable to resolve the request "make:command". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php:532
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('make:command', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('make:command', Array)
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#3 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#4 {main}
+
+Next yii\console\UnknownCommandException: Unknown command "make:command". in D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php:183
+Stack trace:
+#0 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('make:command', Array)
+#1 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#2 D:\phpStudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#3 {main}
+2018-07-18 14:30:35 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\guanglei\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LENOVO-PC'
+    'ComSpec' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'configsetroot' => 'C:\\WINDOWS\\ConfigSetRoot'
+    'DriverData' => 'C:\\Windows\\System32\\Drivers\\DriverData'
+    'easyplussdk' => '\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"'
+    'FPS_BROWSER_APP_PROFILE_STRING' => 'Internet Explorer'
+    'FPS_BROWSER_USER_PROFILE_STRING' => 'Default'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\guanglei'
+    'lnkenv' => 'C:\\Program Files (x86)\\Internet Explorer\\IEXPLORE.EXE'
+    'LOCALAPPDATA' => 'C:\\Users\\guanglei\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LENOVO-PC'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OneDrive' => 'C:\\Users\\guanglei\\OneDrive'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin;C:\\ProgramData\\Lenovo\\ReadyApps;D:\\phpStudy\\PHPTutorial\\MySQL\\bin;E:\\Software\\SVN\\bin;D:\\phpStudy\\PHPTutorial\\php\\php-7.0.12-nts;E:\\Software\\Composer;E:\\Software\\Git\\cmd;C:\\ProgramData\\ComposerSetup\\bin;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Users\\guanglei\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\guanglei\\AppData\\Roaming\\Composer\\vendor\\bin;'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 69 Stepping 1, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '4501'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'READYAPPS' => 'C:\\ProgramData\\Lenovo\\ReadyApps'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'TEMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\guanglei\\AppData\\Local\\Temp'
+    'TVT' => 'C:\\Program Files (x86)\\Lenovo'
+    'USERDOMAIN' => 'Lenovo-PC'
+    'USERDOMAIN_ROAMINGPROFILE' => 'Lenovo-PC'
+    'USERNAME' => 'zgl'
+    'USERPROFILE' => 'C:\\Users\\guanglei'
+    'windir' => 'C:\\WINDOWS'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1531924235.9836
+    'REQUEST_TIME' => 1531924235
+    'argv' => [
+        0 => 'yii'
+        1 => 'make:command'
+    ]
+    'argc' => 2
+]
