@@ -10,6 +10,7 @@ namespace common\controllers;
 
 
 use app\common\services\HttpClient;
+use app\common\services\QueueListService;
 use app\common\services\UriService;
 
 //微信网页授权及绑定账号
@@ -109,6 +110,13 @@ class OauthController extends BaseController
                 $model_bind->created_time=date('Y-m-d H:i:s');
 
                 $model_bind->save();
+
+                //绑定后消息队列推送消息
+                QueueListService::addQueue('bind',[
+                    'user_id'=>'',
+                    'type'=>1,
+                    'openid'=>''
+                ]);
             }
         }
 

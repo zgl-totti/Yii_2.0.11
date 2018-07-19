@@ -37,6 +37,15 @@
             "bower-asset-library": "vendor/bower"
         }
     },
+
+    //执行中国镜像
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    },
+
     "scripts": {
         "post-install-cmd": "php init --env=Development --overwrite=n"
     }
