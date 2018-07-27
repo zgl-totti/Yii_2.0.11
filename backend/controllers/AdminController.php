@@ -46,11 +46,15 @@ class AdminController extends BaseController{
 
     public function actionIndex(){
         $keywords=\Yii::$app->request->get('keywords');
-        if($keywords) {
+
+        /*if($keywords) {
             $where = ['like', 'username', $keywords];
         }else{
             $where='';
-        }
+        }*/
+
+        //单侧模糊查询用第四个参数false
+        $where=['like','username',$keywords.'%',false];
 
         $admin=Admin::find()->where($where);
         $pages= new Pagination([

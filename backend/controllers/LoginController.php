@@ -8,7 +8,7 @@ use yii\web\Controller;
 class LoginController extends Controller{
     public $layout=false;
 
-    public function actions(){
+    /*public function actions(){
         return [
             'captcha'=>[
                 'class'=>'yii\captcha\CaptchaAction',
@@ -22,7 +22,7 @@ class LoginController extends Controller{
                 'padding' => 4,
             ],
         ];
-    }
+    }*/
 
     public function actionIndex(){
         if(\Yii::$app->request->isAjax){

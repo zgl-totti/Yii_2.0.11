@@ -10,7 +10,7 @@ use backend\models\OrderGoods;
 use yii\console\Controller;
 
 
-//sh -c "cd /www/wwwroot/Yii_2.0.11;php think order;"
+//sh -c "cd /www/wwwroot/Yii_2.0.11;php yii test/index;"
 //0 */1 * * * /home/crontab/Yii_2.0.11
 
 
