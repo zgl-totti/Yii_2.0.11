@@ -40,6 +40,11 @@ class RomaController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Goods::find()->joinWith('brand')->joinWith('cate'),
+            'pagination'=>[
+                'pageSize'=>20,
+                //'pageParam' => 'current_page'
+            ],
+            //'sort'=>false
         ]);
 
         return $this->render('index', [
