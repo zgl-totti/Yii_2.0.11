@@ -1,0 +1,62 @@
+2019-04-10 06:18:34 [-][-][-][error][yii\console\Exception] exception 'yii\console\Exception' with message 'Missing required arguments: name' in F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Controller.php:166
+Stack trace:
+#0 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\InlineAction.php(51): yii\console\Controller->bindActionParams(Object(yii\base\InlineAction), Array)
+#1 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Controller.php(156): yii\base\InlineAction->runWithParams(Array)
+#2 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Controller.php(128): yii\base\Controller->runAction('create', Array)
+#3 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Module.php(523): yii\console\Controller->runAction('create', Array)
+#4 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(180): yii\base\Module->runAction('migrate/create', Array)
+#5 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\console\Application.php(147): yii\console\Application->runAction('migrate/create', Array)
+#6 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\vendor\yiisoft\yii2\base\Application.php(380): yii\console\Application->handleRequest(Object(yii\console\Request))
+#7 F:\phpstudy\PHPTutorial\WWW\Yii_2.0.11\yii(27): yii\base\Application->run()
+#8 {main}
+2019-04-10 06:18:34 [-][-][-][info][application] $_SERVER = [
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\Administrator.SC-201902271934\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'SC-201902271934'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\Administrator.SC-201902271934'
+    'LOCALAPPDATA' => 'C:\\Users\\Administrator.SC-201902271934\\AppData\\Local'
+    'LOGONSERVER' => '\\\\SC-201902271934'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;F:\\phpstudy\\PHPTutorial\\php\\php-5.6.27-nts;C:\\ProgramData\\ComposerSetup\\bin;F:\\Software\\Putty\\;F:\\Software\\Git\\cmd;F:\\phpstudy\\PHPTutorial\\MySQL\\bin;C:\\Users\\Administrator.SC-201902271934\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Administrator.SC-201902271934\\AppData\\Roaming\\Composer\\vendor\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 158 Stepping 9, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '9e09'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\ADMINI~1.SC-\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\ADMINI~1.SC-\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'SC-201902271934'
+    'USERDOMAIN_ROAMINGPROFILE' => 'SC-201902271934'
+    'USERNAME' => 'Administrator'
+    'USERPROFILE' => 'C:\\Users\\Administrator.SC-201902271934'
+    'windir' => 'C:\\Windows'
+    'PHP_SELF' => 'yii'
+    'SCRIPT_NAME' => 'yii'
+    'SCRIPT_FILENAME' => 'yii'
+    'PATH_TRANSLATED' => 'yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1554877114.7662
+    'REQUEST_TIME' => 1554877114
+    'argv' => [
+        0 => 'yii'
+        1 => 'migrate/create'
+    ]
+    'argc' => 2
+]
