@@ -13,6 +13,11 @@ return [
             'password' => 'root',
             'charset' => 'utf8',
         ],
-
     ],
+
+    //手动加载vendor包
+    'aliases'=>[
+        '@bower'=>'@vendor/bower-asset',
+        '@rmrevin/yii/fontawesome'=>'@vendor/rmrevin/yii2-fontawesome'
+    ]
 ];

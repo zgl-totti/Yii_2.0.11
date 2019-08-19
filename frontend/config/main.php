@@ -112,7 +112,13 @@ return [
             'apikey' => '9b11127a9701975c734b8aee81ee3526', // 请替换成您的apikey
             'useFileTransport' => false*/
         ]
-
     ],
+
+    //手动加载vendor包
+    'aliases'=>[
+        '@bower'=>'@vendor/bower-asset',
+        '@rmrevin/yii/fontawesome'=>'@vendor/rmrevin/yii2-fontawesome'
+    ],
+
     'params' => $params,
 ];
